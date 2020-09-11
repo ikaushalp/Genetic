@@ -33,9 +33,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!--begin::Form-->
-                        <form action="" class="form">
-                            <div class="card">
-                                <div class="card-header">
+                        <form action="" class="form" method="post">
+                            {% csrf_token %}
+                            <div class="card mb-2">
+                                <div class="card-header border-bottom">
                                     <h5>
                                         <i class="fas fa-user-check icon-lg mr-1"></i>
                                         Basic Details
@@ -162,8 +163,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-header">
+                            <div class="card mb-2">
+                                <div class="card-header border-bottom">
                                     <h5>
                                         <i class="fas fa-pencil-ruler icon-lg mr-1"></i>
                                         Emergency Contact
@@ -172,7 +173,7 @@
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <div class="col-lg-4">
-                                            <label>Guardian</label>
+                                            <label class="">Guardian</label>
                                             <input type="text" class="form-control" name="guardian"/>
                                         </div>
                                         <div class="col-lg-4">
@@ -187,7 +188,7 @@
                                 </div>
                             </div>
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header border-bottom">
                                     <h5>
                                         <i class="fas fa-user-lock icon-lg mr-1"></i>
                                         Login Details
@@ -232,13 +233,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
+
                         </form>
                         <!--end::Form-->
                     </div>
