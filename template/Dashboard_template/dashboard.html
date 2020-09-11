@@ -38,7 +38,7 @@
                         <div class="card card-custom bg-light-success card-stretch gutter-b">
                             <!--begin::Body-->
                             <div class="card-body my-3">
-                                <a href="#"
+                                <a href="{% url 'Patient:patient_list' %}"
                                     class="card-title font-weight-bolder text-success text-hover-state-dark font-size-h6 mb-4 d-block">Patients</a>
 
                                 <div class="font-weight-bold text-muted font-size-sm"><span
@@ -99,7 +99,7 @@
                         <div class="card card-custom bg-light-danger card-stretch gutter-b">
                             <!--begin::Body-->
                             <div class="card-body my-4">
-                                <a href="#"
+                                <a href="{% url 'Patient:appointment' %}"
                                     class="card-title font-weight-bolder text-warning font-size-h6 mb-4 text-hover-state-dark d-block">Appointments</a>
 
                                 <div class="font-weight-bold text-muted font-size-sm"><span

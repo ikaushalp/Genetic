@@ -9,6 +9,9 @@ def add_Patient(request):
 def category(request):
     return render(request, 'Patient_template/category.html')
 
+def patient_list(request):
+    return render(request, 'Patient_template/view.html')
+
 # Appoinment #
 def appointment(request):
     return render(request, 'Patient_template/appointment.html')
