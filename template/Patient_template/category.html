@@ -1,0 +1,182 @@
+{% extends "index.html" %}
+{% comment %} Template tag base:start {% endcomment %}
+
+{% load static %}
+{% block title %}Category{% endblock %}
+{% block header_name %}Create Patient{% endblock %}
+{% block header_name_sub %}
+    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+        <li class="breadcrumb-item">
+            <a href="" class="text-muted">Create</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="" class="text-muted">Add</a>
+        </li>
+    </ul>
+{% endblock header_name_sub %}
+
+{% comment %} Template tag base:end {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+{% block content %}
+    <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <form action="" class="form">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>
+                                        <i class="fas fa-edit icon-lg mr-1"></i>
+                                        Add Category
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label>Category Name *</label>
+                                            <input type="text" class="form-control" name="category"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="reset" class="btn btn-primary mr-2">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>
+                                    <i class="fas fa-list mr-1"></i>
+                                    Category List
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <!--begin: Datatable-->
+                                <table class="table table-separate table-head-custom"
+                                       id="kt_datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Karan</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Kaushal</td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--end: Datatable-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Container-->
+
+            <!--end::Entry-->
+        </div>
+    </div>
+{% endblock %}
+</body>
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $('#kt_datatable').DataTable({
+
+                searching: true,
+
+                responsive: true,
+
+                lengthMenu: [5, 10, 25, 50],
+
+                pageLength: 5,
+
+                language: {
+                    'lengthMenu': 'Display _MENU_',
+                },
+
+                ordering: false,
+            });
+        });
+
+    </script>
+{% endblock %}
+</html>
