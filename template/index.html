@@ -32,6 +32,9 @@
         .border-bottom {
             border-bottom: 1px solid gray !important;
         }
+        .card-header h5{
+            margin-bottom: 0px !important;
+        }
     </style>
 </head>
 <!--end::Head-->
@@ -246,13 +249,11 @@
 <script src="{% static "plugins/custom/prismjs/prismjs.bundle.js" %}"></script>
 <script src="{% static "js/scripts.bundle.js" %}"></script>
 <script src="{% static "plugins/custom/datatables/datatables.bundle.js" %}"></script>
-<!-- Calander JS -->
 <script src="{% static "plugins/custom/fullcalendar/fullcalendar.bundle.js" %}"></script>
-<script src="{% static "js/pages/features/calendar/google.js" %}"></script>
-                       
+                   
 {% block js %}
 
-{% endblock %}
+{% endblock js %}
 <!--end::Global Theme Bundle-->
 
 <!--end::Page Scripts-->

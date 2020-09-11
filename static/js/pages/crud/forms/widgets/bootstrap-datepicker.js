@@ -88,7 +88,6 @@ var KTBootstrapDatepicker = function () {
             todayHighlight: true,
             templates: arrows,
             autoclose: true,
-            format: 'mm/dd/yyyy',
             startView: 3,
             maxViewMode: 3,
 

@@ -141,8 +141,12 @@
         </div>
         <!--end::Entry-->
     </div>
-    {% endblock %}
+    {% endblock content%}
     <!--end::Content-->
 </body>
+{% block js %}
 
+<script src="{% static "js/pages/features/calendar/google.js" %}"></script>
+
+{% endblock js %}
 </html>

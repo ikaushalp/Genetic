@@ -235,8 +235,8 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                        <button type="submit" class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save</button>
+                                        <button type="reset" class="btn btn-light-danger btn-lg font-weight-bold">Cancel</button>
                                     </div>
                                 </div>
                             </div>
@@ -252,7 +252,7 @@
         <!--end::Entry-->
     </div>
 
-{% endblock %}
+{% endblock content %}
 </body>
 {% block js %}
     <script>
@@ -289,5 +289,5 @@
     <script src="{% static  "js/pages/crud/forms/widgets/bootstrap-datepicker.js" %}"></script>
     <script src="{% static "js/pages/crud/forms/widgets/autosize.js" %}"></script>
     <script src="{% static "js/pages/crud/file-upload/dropzonejs.js" %}"></script>
-{% endblock %}
+{% endblock js %}
 </html>
