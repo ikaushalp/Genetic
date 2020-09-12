@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!--begin::Form-->
-                        <form action="" id="kt_form_1" class="form" method="post">
+                        <form action="" id="form_1" class="form" method="post">
                             {% csrf_token %}
                             <div class="card mb-2">
                                 <div class="card-header border-bottom">
@@ -174,7 +174,7 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label class="">Guardian</label>
-                                            <input type="text" class="form-control" name="guardian"/>
+                                            <input type="text" class="form-control" name="guardian_name"/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Relationship</label>
@@ -285,6 +285,7 @@
             document.getElementById('age').value = a;
         }
     </script>
+    <script src="{% static "js/pages/crud/forms/validation/patient-form-validation.js" %}"></script>
     <script src="{% static  "js/pages/crud/forms/widgets/bootstrap-select.js" %}"></script>
     <script src="{% static  "js/pages/crud/forms/widgets/bootstrap-datepicker.js" %}"></script>
     <script src="{% static "js/pages/crud/forms/widgets/autosize.js" %}"></script>
