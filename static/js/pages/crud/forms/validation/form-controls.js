@@ -53,16 +53,36 @@ var KTFormControls = function () {
 					phone: {
 						validators: {
 							notEmpty: {
-								message: 'US phone number is required'
+								message: 'IN phone number is required'
 							},
 							phone: {
-								country: 'US',
-								message: 'The value is not a valid US phone number'
+								country: 'IN',
+								message: 'The value is not a valid IN phone number'
 							}
 						}
 					},
 
-					option: {
+					guardian_mobile: {
+						validators: {
+							notEmpty: {
+								message: 'IN phone number is required'
+							},
+							phone: {
+								country: 'IN',
+								message: 'The value is not a valid IN phone number'
+							}
+						}
+					},
+
+					marital_status: {
+						validators: {
+							notEmpty: {
+								message: 'Please select an option'
+							}
+						}
+					},
+
+					marital_status: {
 						validators: {
 							notEmpty: {
 								message: 'Please select an option'
