@@ -31,7 +31,81 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-
+                        <div class="card">
+                            <div class="card-header border-bottom">
+                                <h5>
+                                    <i class="fas fa-user icon-lg mr-1"></i>
+                                    Patient List
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <!--begin: Datatable-->
+                                <table class="table table-separate table-head-custom" id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr No.</th>
+                                            <th>Photo</th>
+                                            <th>Patient Id</th>
+                                            <th>Name</th>
+                                            <th>Category</th>
+                                            <th>Gender</th>
+                                            <th>Guardian</th>
+                                            <th>Blood Group</th>
+                                            <th>Email</th>
+                                            <th>Mobile No</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                    <img alt="Pic" src="{% static "media/users/300_18.jpg"%}" />
+                                                </div>
+                                            </td>
+                                            <td>P01</td>
+                                            <td>Karen</td>
+                                            <td>Orthopedic</td>
+                                            <td>Female</td>
+                                            <td></td>
+                                            <td>O+</td>
+                                            <td>Support@gmai.com</td>
+                                            <td>0123456789</td>
+                                            <td>
+                                                <a href="#" class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                        class="fas fa-pen"></i></a>
+                                                <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                        class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>2</td>
+                                            <td>
+                                                <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                    <img alt="Pic" src="{% static "media/users/300_20.jpg"%}" />
+                                                </div>
+                                            </td>
+                                            <td>P02</td>
+                                            <td>Julia</td>
+                                            <td>Medicine</td>
+                                            <td>Female</td>
+                                            <td></td>
+                                            <td>A+</td>
+                                            <td>Support@gmail.com</td>
+                                            <td>0123456789</td>
+                                            <td>
+                                                <a href="#" class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                        class="fas fa-pen"></i></a>
+                                                <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                        class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!--end: Datatable-->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,13 +116,13 @@
 {% block js %}
 <script>
     $(document).ready(function () {
-        $('#kt_datatable').DataTable({
+        $('#datatable').DataTable({
 
             searching: true,
 
             responsive: true,
 
-            lengthMenu: [5, 10],
+            lengthMenu: [5, 10, 25, 50],
 
             pageLength: 5,
 
