@@ -6,5 +6,8 @@ from django.shortcuts import render
 def global_Settings(request):
     return render(request, 'Settings_template/global_settings.html')
 
+def api_Settings(request):
+    return render(request, 'Settings_template/api_settings.html')
+
 def profile(request):
     return render(request, 'Settings_template/profile.html')
