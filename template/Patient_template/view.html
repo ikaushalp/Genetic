@@ -31,12 +31,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card">
+                        <div class="card card-custom">
                             <div class="card-header border-bottom">
-                                <h5>
-                                    <i class="fas fa-user icon-lg mr-1"></i>
-                                    Patient List
-                                </h5>
+                                <div class="card-title">
+                                    <h5 class="card-label">
+                                        <i class="fas fa-user icon-lg mr-1"></i>
+                                        Patient List
+                                    </h5>
+                                </div>
+                                <div class="card-toolbar">
+                                    <a href="javaScript:void(0)" class="btn btn-light-warning btn-icon btn-lg mr-2" id="export_print" data-toggle="tooltip" data-placement="top" title="Print" data-theme="dark">
+                                        <i class="fas fa-print"></i>
+                                    </a>
+                                    <a href="javaScript:void(0)" class="btn btn-light-primary btn-icon btn-lg mr-2" id="export_pdf" data-toggle="tooltip" data-placement="top" title="PDF" data-theme="dark">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </a>
+                                    <a href="javaScript:void(0)" class="btn btn-light-success btn-icon btn-lg mr-2" id="export_excel" data-toggle="tooltip" data-placement="top" title="Excel" data-theme="dark">
+                                        <i class="fas fa-file-excel"></i>
+                                    </a>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <!--begin: Datatable-->
@@ -79,7 +92,7 @@
                                                         class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
-                                         <tr>
+                                        <tr>
                                             <td>2</td>
                                             <td>
                                                 <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
@@ -114,10 +127,10 @@
     {% endblock content %}
 </body>
 {% block js %}
-<script>
+ <script>
     $(document).ready(function () {
         $('#datatable').DataTable({
-
+          
             searching: true,
 
             responsive: true,
@@ -131,6 +144,46 @@
             },
 
             ordering: false,
+
+            buttons: [
+            {
+                extend: 'print',
+                exportOptions: {
+                columns: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                }
+                },
+
+                {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                }
+                },
+
+                {
+                extend: 'excelHtml5',
+                exportOptions: {
+                columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                }
+                },
+            ],
+            
+        });
+        var table = $('#datatable').DataTable();
+        
+        $('#export_print').on('click', function(e) {
+			e.preventDefault();
+			table.button(0).trigger();
+        });
+        
+        $('#export_pdf').on('click', function(e) {
+			e.preventDefault();
+			table.button(1).trigger();
+		});
+
+		$('#export_excel').on('click', function(e) {
+			e.preventDefault();
+			table.button(2).trigger();
         });
     });
 </script>
