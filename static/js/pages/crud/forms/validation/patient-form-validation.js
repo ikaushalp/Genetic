@@ -6,7 +6,15 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 name: {
                     validators: {
                         notEmpty: {
-                            message: 'Patient Name is required'
+                            message: 'Patient name is required'
+                        }
+                    }
+                },
+
+                age: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Patient age is required'
                         }
                     }
                 },
@@ -21,36 +29,20 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
                 email: {
                     validators: {
-                        notEmpty: {
-                            message: 'Email is required'
-                        },
                         emailAddress: {
                             message: 'The value is not a valid email address'
                         }
                     }
                 },
 
-                
-                digits: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Digits is required'
-                        },
-                        digits: {
-                            message: 'The velue is not a valid digits'
-                        }
-                    }
-                },
-                
-
                 phone: {
                     validators: {
                         notEmpty: {
-                            message: 'IN phone number is required'
+                            message: 'Indian phone number is required'
                         },
                         phone: {
                             country: 'IN',
-                            message: 'The value is not a valid IN phone number'
+                            message: 'The value is not a valid Indian phone number'
                         }
                     }
                 },
@@ -66,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 relationship: {
                     validators: {
                         notEmpty: {
-                            message: 'Relationship required'
+                            message: 'Relationship is required'
                         },
                     }
                 },
@@ -74,16 +66,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 guardian_mobile: {
                     validators: {
                         notEmpty: {
-                            message: 'IN phone number is required'
+                            message: 'Indian phone number is required'
                         },
                         phone: {
                             country: 'IN',
-                            message: 'The value is not a valid IN phone number'
+                            message: 'The value is not a valid Indian phone number'
                         }
                     }
                 },
-
-                
 
                 marital_status: {
                     validators: {

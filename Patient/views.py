@@ -12,6 +12,3 @@ def category(request):
 def patient_list(request):
     return render(request, 'Patient_template/view.html')
 
-# Appoinment #
-def appointment(request):
-    return render(request, 'Patient_template/appointment.html')
