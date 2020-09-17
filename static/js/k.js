@@ -27,7 +27,20 @@ var Datatables = function () {
                     extend: 'pdfHtml5',
                     exportOptions: {
                         columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
-                    }
+                    },
+                    customize: function(doc) {
+                        doc.styles.title = {
+                          fontSize: '35',
+                          alignment: 'center'
+                        }
+                        doc.styles.tableHeader = {
+                          fillColor:'#2D4154',
+                          color: 'white',
+                          fontSize: '12',
+                          bold: 2,
+                          alignment: 'left'
+                        }
+                      }  
                 },
 
                 {
