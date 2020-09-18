@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
                 email: {
                     validators: {
+                        notEmpty: {
+                            message: 'Patient email is required'
+                        },
                         emailAddress: {
                             message: 'The value is not a valid email address'
                         }

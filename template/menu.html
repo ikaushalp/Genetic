@@ -49,10 +49,9 @@
             <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1"
                 data-menu-dropdown-timeout="500">
                 <!--begin::Menu Nav-->
-                {% with request.resolver_match.url_name as url_name %}
+            {% with request.resolver_match.view_name as view_name %}
                 <ul class="menu-nav">
-                    <li class="menu-item {% if url_name == 'dashboard' %} menu-item-here menu-item-open{% endif %}"
-                        aria-haspopup="true">
+                    <li class="menu-item {% if view_name == 'Dashboard:dashboard' %}menu-item-here menu-item-open{% endif %}" aria-haspopup="true">
                         <a href="{% url 'Dashboard:dashboard' %}" class="menu-link">
                             <span class="svg-icon menu-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -74,8 +73,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-item menu-item-submenu {% if url_name == 'add' or url_name == 'category' or url_name == 'view'%} menu-item-here menu-item-open {% endif %}"
-                        aria-haspopup="true" data-menu-toggle="hover">
+                    <li class="menu-item menu-item-submenu {% if view_name == 'Patient:add' or view_name == 'Patient:view' or view_name == 'Patient:category' %}menu-item-here menu-item-open{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
@@ -104,8 +102,7 @@
                                         <span class="menu-text">Patient Details</span>
                                     </span>
                                 </li>
-                                <li class="menu-item  {% if url_name == 'add' %}menu-item-active{% endif %}"
-                                    aria-haspopup="true">
+                                <li class="menu-item {% if view_name == 'Patient:add' %}menu-item-active{% endif %}" aria-haspopup="true">
                                     <a href="{% url 'Patient:add' %}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -113,8 +110,7 @@
                                         <span class="menu-text">Create Patient</span>
                                     </a>
                                 </li>
-                                <li class="menu-item {% if url_name == 'view' %}menu-item-active{% endif %}"
-                                    aria-haspopup="true">
+                                <li class="menu-item {% if request.path == '/patient/view' %}menu-item-active{% endif %}" aria-haspopup="true">
                                     <a href="{% url 'Patient:view' %}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -122,8 +118,7 @@
                                         <span class="menu-text">Patient List</span>
                                     </a>
                                 </li>
-                                <li class="menu-item {% if url_name == 'category' %}menu-item-active{% endif %}"
-                                    aria-haspopup="true">
+                                <li class="menu-item {% if request.path == '/patient/category' %}menu-item-active{% endif %}" aria-haspopup="true">
                                     <a href="{% url 'Patient:category' %}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -136,7 +131,8 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                    <li class="menu-item menu-item-submenu"
+                        aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/General/Settings-1.svg-->
@@ -165,15 +161,17 @@
                                         <span class="menu-text">Employee</span>
                                     </span>
                                 </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                    <a href="#" class="menu-link">
+                                <li class="menu-item {% if url_name == 'employee/add' %}menu-item-active{% endif %}"
+                                    aria-haspopup="true">
+                                    <a href="{% url 'Employee:add'%}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>
                                         <span class="menu-text">Add Employee</span>
                                     </a>
                                 </li>
-                                <li class="menu-item" aria-haspopup="true">
+                                <li class="menu-item {% if url_name == 'employee/view' %}menu-item-active{% endif %}"
+                                    aria-haspopup="true">
                                     <a href="#" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -185,7 +183,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item {% if url_name == 'appointment' %} menu-item-here menu-item-open{% endif %}"
+                    <li class="menu-item"
                         aria-haspopup="true">
                         <a href="{% url 'Appointment:schedule' %}" class="menu-link">
                             <span class="svg-icon menu-icon">
@@ -271,7 +269,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu {% if url_name == 'global' %} menu-item-here menu-item-open {% endif %}"
+                    <li class="menu-item menu-item-submenu"
                         aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
@@ -324,7 +322,7 @@
                     </li>
 
                 </ul>
-                {% endwith %}
+            {% endwith %}  
                 <!--end::Menu Nav-->
             </div>
             <!--end::Menu Container-->

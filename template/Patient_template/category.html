@@ -32,12 +32,14 @@
                 <div class="row">
                     <div class="col-lg-5 mb-2">
                         <form action="" class="form">
-                            <div class="card">
+                            <div class="card card-custom">
                                 <div class="card-header border-bottom">
-                                    <h5>
-                                        <i class="fas fa-edit icon-lg mr-1"></i>
-                                        Add Category
-                                    </h5>
+                                    <div class="card-title">
+                                        <h5 class="card-label">
+                                            <i class="fas fa-edit icon-lg mr-1"></i>
+                                            Add Category
+                                        </h5>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group row">
@@ -57,12 +59,14 @@
                         </form>
                     </div>
                     <div class="col-lg-7">
-                        <div class="card">
+                        <div class="card card-custom">
                             <div class="card-header border-bottom">
-                                <h5>
-                                    <i class="fas fa-list icon-lg mr-1"></i>
-                                    Category List
-                                </h5>
+                                <div class="card-title">
+                                    <h5 class="card-label">
+                                        <i class="fas fa-list icon-lg mr-1"></i>
+                                        Category List
+                                    </h5>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <!--begin: Datatable-->
@@ -86,7 +90,7 @@
                                                         class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
-                                        
+
                                         <tr>
                                             <td>2</td>
                                             <td>Nephrology</td>
@@ -150,10 +154,10 @@
     </div>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header border-bottom">
-                    <h5>
+                    <h5 class="modal-title">
                         <i class="fas fa-edit icon-lg mr-1"></i>
                         Edit Category
                     </h5>
@@ -173,8 +177,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    {% endblock content %}
+        {% endblock content %}
 </body>
 {% block js %}
 <script>
