@@ -1,0 +1,377 @@
+{% extends "index.html" %}
+{% comment %} Template tag base:start {% endcomment %}
+
+{% load static %}
+{% block title %}Employee List{% endblock %}
+{% block header_name %}Employee List{% endblock %}
+{% block header_name_sub %}
+<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+    <li class="breadcrumb-item">
+        <a href="" class="text-muted">List</a>
+    </li>
+</ul>
+{% endblock header_name_sub %}
+
+{% comment %} Template tag base:end {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    {% block content %}
+    <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card card-custom">
+                            <div class="card-header card-header-tabs-line">
+                                <div class="card-toolbar">
+                                    <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                                        <li class="nav-item" data-table="admin">
+                                            <a class="nav-link active" data-toggle="tab" href="#kt_tab_pane_1_4">
+                                                <span class="nav-icon"><i class="fas fa-user"></i></span>
+                                                <span class="nav-text">Admin</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" data-table="doctor">
+                                            <a class="nav-link" data-toggle="tab"  href="#kt_tab_pane_2_4">
+                                                <span class="nav-icon"><i class="fas fa-user"></i></span>
+                                                <span class="nav-text">Doctor</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" data-table="receptionist">
+                                            <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_3_4">
+                                                <span class="nav-icon"><i class="fas fa-user"></i></span>
+                                                <span class="nav-text">Receptionist</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-toolbar">
+                                    <a href="javaScript:void(0)" class="btn btn-light-warning btn-icon btn-lg mr-2"
+                                        id="export_print" data-toggle="tooltip" data-placement="top" title="Print"
+                                        data-theme="dark">
+                                        <i class="fas fa-print"></i>
+                                    </a>
+                                    <a href="javaScript:void(0)" class="btn btn-light-primary btn-icon btn-lg mr-2"
+                                        id="export_pdf" data-toggle="tooltip" data-placement="top" title="PDF"
+                                        data-theme="dark">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </a>
+                                    <a href="javaScript:void(0)" class="btn btn-light-success btn-icon btn-lg mr-2"
+                                        id="export_excel" data-toggle="tooltip" data-placement="top" title="Excel"
+                                        data-theme="dark">
+                                        <i class="fas fa-file-excel"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="kt_tab_pane_1_4" role="tabpanel"
+                                        aria-labelledby="kt_tab_pane_1_4">
+                                        <table class="table table-separate table-head-custom text-center"
+                                            id="admin">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr No.</th>
+                                                    <th>Photo</th>
+                                                    <th>Patient Id</th>
+                                                    <th>Name</th>
+                                                    <th>Category</th>
+                                                    <th>Gender</th>
+                                                    <th>Guardian</th>
+                                                    <th>Blood Group</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile No</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                            <img alt="Pic" src="{% static "media/users/100_3.jpg"%}" />
+                                                        </div>
+                                                    </td>
+                                                    <td>P01</td>
+                                                    <td>John</td>
+                                                    <td>Orthopedic</td>
+                                                    <td>Male</td>
+                                                    <td>Karan Khojiji</td>
+                                                    <td>O+</td>
+                                                    <td>Support@gmai.com</td>
+                                                    <td>0123456789</td>
+                                                    <td>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>
+                                                        <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                            <img alt="Pic" src="{% static "media/users/300_20.jpg"%}" />
+                                                        </div>
+                                                    </td>
+                                                    <td>P02</td>
+                                                    <td>Julia</td>
+                                                    <td>Medicine</td>
+                                                    <td>Female</td>
+                                                    <td></td>
+                                                    <td>AB+</td>
+                                                    <td>Support@gmail.com</td>
+                                                    <td>9543568470</td>
+                                                    <td>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>
+                                                        <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                            <img alt="Pic" src="{% static "media/users/300_1.jpg"%}" />
+                                                        </div>
+                                                    </td>
+                                                    <td>P03</td>
+                                                    <td>Roy</td>
+                                                    <td>Nephrology</td>
+                                                    <td>Male</td>
+                                                    <td></td>
+                                                    <td>B</td>
+                                                    <td>Support@gmail.com</td>
+                                                    <td>7758664584</td>
+                                                    <td>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>
+                                                        <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                            <img alt="Pic" src="{% static "media/users/300_23.jpg"%}" />
+                                                        </div>
+                                                    </td>
+                                                    <td>P04</td>
+                                                    <td>Jack</td>
+                                                    <td>General Surgery</td>
+                                                    <td>Male</td>
+                                                    <td></td>
+                                                    <td>A-</td>
+                                                    <td>Support@gmail.com</td>
+                                                    <td>6377774580</td>
+                                                    <td>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="kt_tab_pane_2_4" role="tabpanel"
+                                        aria-labelledby="kt_tab_pane_2_4">
+                                        <table class="table table-separate table-head-custom text-center"
+                                            id="doctor">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr No.</th>
+                                                    <th>Photo</th>
+                                                    <th>Patient Id</th>
+                                                    <th>Name</th>
+                                                    <th>Category</th>
+                                                    <th>Gender</th>
+                                                    <th>Guardian</th>
+                                                    <th>Blood Group</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile No</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                            <img alt="Pic" src="{% static "media/users/100_3.jpg"%}" />
+                                                        </div>
+                                                    </td>
+                                                    <td>P01</td>
+                                                    <td>John</td>
+                                                    <td>Orthopedic</td>
+                                                    <td>Male</td>
+                                                    <td>Karan Khojiji</td>
+                                                    <td>O+</td>
+                                                    <td>Support@gmai.com</td>
+                                                    <td>0123456789</td>
+                                                    <td>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>
+                                                        <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                            <img alt="Pic" src="{% static "media/users/300_20.jpg"%}" />
+                                                        </div>
+                                                    </td>
+                                                    <td>P02</td>
+                                                    <td>Julia</td>
+                                                    <td>Medicine</td>
+                                                    <td>Female</td>
+                                                    <td></td>
+                                                    <td>AB+</td>
+                                                    <td>Support@gmail.com</td>
+                                                    <td>9543568470</td>
+                                                    <td>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>
+                                                        <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                            <img alt="Pic" src="{% static "media/users/300_1.jpg"%}" />
+                                                        </div>
+                                                    </td>
+                                                    <td>P03</td>
+                                                    <td>Roy</td>
+                                                    <td>Nephrology</td>
+                                                    <td>Male</td>
+                                                    <td></td>
+                                                    <td>B</td>
+                                                    <td>Support@gmail.com</td>
+                                                    <td>7758664584</td>
+                                                    <td>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="kt_tab_pane_3_4" role="tabpanel"
+                                        aria-labelledby="kt_tab_pane_3_4">
+                                        <table class="table table-separate table-head-custom text-center"
+                                            id="receptionist">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr No.</th>
+                                                    <th>Photo</th>
+                                                    <th>Patient Id</th>
+                                                    <th>Name</th>
+                                                    <th>Category</th>
+                                                    <th>Gender</th>
+                                                    <th>Guardian</th>
+                                                    <th>Blood Group</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile No</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                            <img alt="Pic" src="{% static "media/users/100_3.jpg"%}" />
+                                                        </div>
+                                                    </td>
+                                                    <td>P01</td>
+                                                    <td>John</td>
+                                                    <td>Orthopedic</td>
+                                                    <td>Male</td>
+                                                    <td>Karan Khojiji</td>
+                                                    <td>O+</td>
+                                                    <td>Support@gmai.com</td>
+                                                    <td>0123456789</td>
+                                                    <td>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>
+                                                        <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                            <img alt="Pic" src="{% static "media/users/300_20.jpg"%}" />
+                                                        </div>
+                                                    </td>
+                                                    <td>P02</td>
+                                                    <td>Julia</td>
+                                                    <td>Medicine</td>
+                                                    <td>Female</td>
+                                                    <td></td>
+                                                    <td>AB+</td>
+                                                    <td>Support@gmail.com</td>
+                                                    <td>9543568470</td>
+                                                    <td>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</body>
+{% block js %}
+<!-- <script src="{% static "js/employee_list.js" %}"></script> -->
+{% endblock js%}
+
+</html>

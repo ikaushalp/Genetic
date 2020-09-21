@@ -131,7 +131,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu"
+                    <li class="menu-item menu-item-submenu {% if view_name == 'Employee:add' or view_name == 'Employee:view' %}menu-item-here menu-item-open{% endif %}"
                         aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
@@ -161,7 +161,7 @@
                                         <span class="menu-text">Employee</span>
                                     </span>
                                 </li>
-                                <li class="menu-item {% if url_name == 'employee/add' %}menu-item-active{% endif %}"
+                                <li class="menu-item {% if view_name == 'Employee:add' %}menu-item-active{% endif %}"
                                     aria-haspopup="true">
                                     <a href="{% url 'Employee:add'%}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
@@ -170,9 +170,9 @@
                                         <span class="menu-text">Add Employee</span>
                                     </a>
                                 </li>
-                                <li class="menu-item {% if url_name == 'employee/view' %}menu-item-active{% endif %}"
+                                <li class="menu-item {% if view_name == 'Employee:view' %}menu-item-active{% endif %}"
                                     aria-haspopup="true">
-                                    <a href="#" class="menu-link">
+                                    <a href="{% url 'Employee:view'%}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>
