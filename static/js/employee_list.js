@@ -1,6 +1,6 @@
 var Datatables = function () {
-    var Table1 = function inittable() {
-        var table = $('.table').DataTable({
+    var Table1 = function () {
+        var table = $("#table1").DataTable({
 
             searching: true,
 
