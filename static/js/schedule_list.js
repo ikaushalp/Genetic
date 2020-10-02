@@ -1,6 +1,6 @@
 var Datatables = function () {
     var Table1 = function () {
-        var table = $('#datatable').DataTable({
+        var table = $('#schedule').DataTable({
 
             searching: true,
 
@@ -50,8 +50,8 @@ var Datatables = function () {
                     }
                 },
             ],
-
         });
+
         $('#export_print').on('click', function (e) {
             e.preventDefault();
             table.button(0).trigger();
@@ -66,10 +66,8 @@ var Datatables = function () {
             e.preventDefault();
             table.button(2).trigger();
         });
-    };
+    }();
     return {
-
-        //main function to initiate the module
         init: function () {
             Table1();
         }

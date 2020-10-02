@@ -4,5 +4,3 @@ from django.shortcuts import render
 def appointment(request):
     return render(request, 'Appointment_template/appointment.html')
 
-def schedule(request):
-    return render(request, 'Appointment_template/schedule.html')

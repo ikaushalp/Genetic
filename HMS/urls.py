@@ -24,10 +24,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Authentication.urls')),
     path('dashboard/', include('Dashboard.urls')),
-    path('employee/', include('Employee.urls')),
     path('patient/', include('Patient.urls')),
+    path('employee/', include('Employee.urls')),
+    path('schedule/', include('Schedule.urls')),
+    path('appointment/', include('Appointment.urls')),
     path('settings/', include('Settings.urls')),
-    path('appointment/', include('Appointment.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
