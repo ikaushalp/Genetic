@@ -1,6 +1,6 @@
 var Datatables = function () {
-    var Table1 = function () {
-        var table = $('#schedule').DataTable({
+    var schedule = function () {
+        var table = $("#schedule").DataTable({
 
             searching: true,
 
@@ -19,39 +19,40 @@ var Datatables = function () {
             buttons: [{
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6]
                     }
                 },
 
                 {
                     extend: 'pdfHtml5',
                     exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 1, 2, 3, 4, 5]
                     },
                     customize: function(doc) {
                         doc.styles.title = {
                           fontSize: '35',
                           alignment: 'center'
-                        }
+                        },
                         doc.styles.tableHeader = {
                           fillColor:'#2D4154',
                           color: 'white',
                           fontSize: '12',
                           bold: 2,
-                          alignment: 'left'
+                          alignment: 'center'
                         }
-                    }  
+                        doc.content[1].table.widths =  Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.defaultStyle.alignment = 'center';
+                    }
                 },
-
                 {
                     extend: 'excelHtml5',
                     exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 1, 2, 3, 4]
                     }
                 },
             ],
-        });
 
+        });
         $('#export_print').on('click', function (e) {
             e.preventDefault();
             table.button(0).trigger();
@@ -66,10 +67,12 @@ var Datatables = function () {
             e.preventDefault();
             table.button(2).trigger();
         });
-    }();
+    };
     return {
+
+        //main function to initiate the module
         init: function () {
-            Table1();
+            schedule();
         }
     };
 }();

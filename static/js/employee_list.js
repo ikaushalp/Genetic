@@ -1,5 +1,5 @@
 var Datatables = function () {
-    var Table1 = function () {
+    var employee = function () {
         var table = $("#table1").DataTable({
 
             searching: true,
@@ -38,8 +38,9 @@ var Datatables = function () {
                           color: 'white',
                           fontSize: '12',
                           bold: 2,
-                          alignment: 'left'
-                        }
+                          alignment: 'center'
+                        },
+                        doc.defaultStyle.alignment = 'center';
                       }  
                 },
 
@@ -71,7 +72,7 @@ var Datatables = function () {
 
         //main function to initiate the module
         init: function () {
-            Table1();
+            employee();
         }
     };
 }();
