@@ -1,0 +1,142 @@
+{% extends "index.html" %}
+{% comment %} Template tag base:start {% endcomment %}
+
+{% load static %}
+{% block title %}Add Appointment{% endblock %}
+{% block header_name %}Add Appointment{% endblock %}
+{% block header_name_sub %}
+<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+    <li class="breadcrumb-item">
+        <a href="" class="text-muted">Add</a>
+    </li>
+</ul>
+{% endblock header_name_sub %}
+
+{% comment %} Template tag base:end {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    {% block content %}
+    <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!--begin::Form-->
+                        <form action="" class="form" method="post">
+                            {% csrf_token %}
+                            <div class="card card-custom">
+                                <div class="card-header border-bottom">
+                                    <div class="card-title">
+                                        <h5 class="card-label">
+                                            <i class="fas fa-edit icon-lg mr-1"></i>
+                                            Add Appointment
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-lg-5">
+                                            <label>Patient *</label>
+                                            <select class="form-control selectpicker" data-live-search="true"
+                                                data-size="4" name="patient">
+                                                <option value="">Select</option>
+                                                <option value="A+">A+</option>
+                                                <option value="A-">A-</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-lg-5">
+                                            <label>Doctor  *</label>
+                                            <select class="form-control selectpicker" data-live-search="true"
+                                                data-size="4" data-dropup-auto="false" name="doctor">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-lg-5">
+                                        <label>Appointment Date *</label>
+                                            <div class="input-group date mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-calendar-plus"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control" id="kt_datepicker_3"
+                                                    name="appointment_date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-lg-5">
+                                            <label>Time Slot *</label>
+                                            <select class="form-control selectpicker"
+                                                data-size="4" data-dropup-auto="false" name="timeslot">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-lg-5">
+                                            <label>Consultation Fees *</label>
+                                            <input type="number" class="form-control" name="fees" id="fees">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group row justify-content-center">
+                                        <div class="col-lg-5">
+                                            <label>Discount</label>
+                                            <input type="number" class="form-control" name="discount" id="discount">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-lg-5">
+                                            <label>Net Payable</label>
+                                            <input type="number" class="form-control" name="net_fees" id="net_fees">
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-lg-5">
+                                            <label>Remarks</label>
+                                            <textarea class="form-control" id="kt_autosize_1" rows="2"
+                                                name="remarks"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit"
+                                            class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save</button>
+                                        <button type="reset"
+                                            class="btn btn-light-danger btn-lg font-weight-bold">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                </div>
+            </div>
+
+            <!--end::Container-->
+        </div>
+        <!--end::Entry-->
+    </div>
+
+    {% endblock content %}
+</body>
+{% block js %}
+<script src="{% static 'js/pages/crud/forms/widgets/bootstrap-timepicker.js' %}"></script>
+{% endblock js %}
+
+</html>

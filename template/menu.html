@@ -73,7 +73,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-item menu-item-submenu {% if view_name == 'Patient:add' or view_name == 'Patient:view' or view_name == 'Patient:category' %}menu-item-here menu-item-open{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
+                    <li class="menu-item menu-item-submenu {% if view_name == 'Patient:view' or view_name == 'Patient:add' or view_name == 'Patient:category' %}menu-item-here menu-item-open{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
@@ -131,7 +131,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu {% if view_name == 'Employee:add' or view_name == 'Employee:view' %}menu-item-here menu-item-open{% endif %}"
+                    <li class="menu-item menu-item-submenu {% if view_name == 'Employee:view' or view_name == 'Employee:add' %}menu-item-here menu-item-open{% endif %}"
                         aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
@@ -183,7 +183,7 @@
                         </div>
                     </li>
 
-                     <li class="menu-item menu-item-submenu {% if view_name == 'Schedule:add' or view_name == 'Schedule:view' %}menu-item-here menu-item-open{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
+                     <li class="menu-item menu-item-submenu {% if view_name == 'Schedule:view' or view_name == 'Schedule:add' %}menu-item-here menu-item-open{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
@@ -232,7 +232,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                    <li class="menu-item menu-item-submenu {% if view_name == 'Appointment:view' or view_name == 'Appointment:add' %}menu-item-here menu-item-open{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
@@ -267,16 +267,16 @@
                                         <span class="menu-text">Appointment</span>
                                     </span>
                                 </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                    <a href="#" class="menu-link">
+                                <li class="menu-item {% if view_name == 'Appointment:add' %}menu-item-active{% endif %}" aria-haspopup="true">
+                                    <a href="{% url 'Appointment:add' %}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>
                                         <span class="menu-text">Add Appointment</span>
                                     </a>
                                 </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                    <a href="#" class="menu-link">
+                                <li class="menu-item {% if view_name == 'Appointment:view' %}menu-item-active{% endif %}" aria-haspopup="true">
+                                    <a href="{% url 'Appointment:view' %}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>

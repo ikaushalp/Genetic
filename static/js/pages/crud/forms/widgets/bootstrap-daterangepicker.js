@@ -84,7 +84,8 @@ var KTBootstrapDaterangepicker = function () {
             buttonClasses: ' btn',
             applyClass: 'btn-primary',
             cancelClass: 'btn-secondary',
-
+            opens: "left",
+            
             startDate: start,
             endDate: end,
             ranges: {
