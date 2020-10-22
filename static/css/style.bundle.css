@@ -28107,6 +28107,9 @@ a.text-white:hover, a.text-white:focus {
 .max-h-75px {
   max-height: 75px !important; }
 
+.max-h-225px {
+  max-height: 255px !important; }
+
 .max-w-75px {
   max-width: 75px !important; }
 
