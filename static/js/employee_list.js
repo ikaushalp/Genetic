@@ -1,6 +1,6 @@
 var Datatables = function () {
     var employee = function () {
-        var table = $("#table1").DataTable({
+        var table = $("#employee").DataTable({
 
             searching: true,
 
@@ -19,14 +19,14 @@ var Datatables = function () {
             buttons: [{
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                        columns: [0, 2, 3, 4, 5, 6, 7]
                     }
                 },
 
                 {
                     extend: 'pdfHtml5',
                     exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 2, 3, 4, 5, 6, 7]
                     },
                     customize: function(doc) {
                         doc.styles.title = {
@@ -47,7 +47,7 @@ var Datatables = function () {
                 {
                     extend: 'excelHtml5',
                     exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 2, 3, 4, 5, 6, 7]
                     }
                 },
             ],

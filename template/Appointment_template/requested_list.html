@@ -2,8 +2,8 @@
 {% comment %} Template tag base:start {% endcomment %}
 
 {% load static %}
-{% block title %}Appointment List{% endblock %}
-{% block header_name %}Appointment List{% endblock %}
+{% block title %}Requested List{% endblock %}
+{% block header_name %}Requested List{% endblock %}
 {% block header_name_sub %}
 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
     <li class="breadcrumb-item">
@@ -31,47 +31,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card card-custom mb-2">
-                            <div class="card-header border-bottom">
-                                <div class="card-title">
-                                    <h5 class="card-label">
-                                        <i class="fas fa-edit icon-lg mr-1"></i>
-                                        Select Date
-                                    </h5>
-                                </div>
-                            </div>
-                            <form action="" method="POST">
-                                {% csrf_token %}
-                                <div class="card-body">
-                                    <div class="form-group row flex-row justify-content-center">
-                                        <div class="col-lg-4">
-                                            <label>Date *</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-calendar-check"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" name="date"
-                                                    id="kt_daterangepicker_6" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-light-success btn-lg mr-2 font-weight-bold"
-                                            onclick="show()">Filter</button>
-                                    </div>
-                                </div>
-                        </div>
-                        </form>
-                        <div class="card card-custom" id="table" style="display:none;">
+                        <div class="card card-custom">
                             <div class="card-header border-bottom">
                                 <div class="card-title">
                                     <h5 class="card-label">
                                         <i class="fas fa-list icon-lg mr-1"></i>
-                                        Appointment List
+                                        Requested List
                                     </h5>
                                 </div>
                                 <div class="card-toolbar">
@@ -93,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <table class="table table-separate table-head-custom text-center" id="appointment">
+                                <table class="table table-separate table-head-custom text-center" id="requested">
                                     <thead>
                                         <tr>
                                             <th>Appointment ID</th>
@@ -115,12 +80,11 @@
                                             <td>10:00 AM - 12:30 PM</td>
                                             <td>No Cold Food</td>
                                             <td>
-                                            <span class="label label-success label-inline label-lg font-weight-bold mr-2">Confirmed</span>
-                                            <span class="label label-primary label-inline label-lg font-weight-bold mr-2">Closed</span>
+                                            <span class="label label-warning label-inline label-lg font-weight-bold mr-2">Pending</span>
                                             </td>
                                             <td>
                                                 <a href="#" class="btn btn-icon btn-outline-info btn-sm mr-2"
-                                                    data-toggle="tooltip" data-placement="top" title="Make Closed"
+                                                    data-toggle="tooltip" data-placement="top" title="Make Confirm"
                                                     data-theme="dark"><i class="fas fa-check"></i></a>
                                                 <a href="#" class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                     data-toggle="tooltip" data-placement="top" title="Edit"
@@ -142,12 +106,6 @@
     {% endblock content %}
 </body>
 {% block js %}
-<script>
-    function show() {
-        document.getElementById("table").style.display = 'block';
-    }
-</script>
-<script src="{% static "js/appointment_list.js" %}"></script>
+<script src="{% static "js/requested_list.js" %}"></script>
 {% endblock js%}
-
 </html>

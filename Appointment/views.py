@@ -7,3 +7,7 @@ def add_appointment(request):
 def appointment_list(request):
     return render(request, 'Appointment_template/appointment_list.html')
 
+def requested_list(request):
+    return render(request, 'Appointment_template/requested_list.html')
+
+

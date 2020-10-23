@@ -232,7 +232,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item menu-item-submenu {% if view_name == 'Appointment:view' or view_name == 'Appointment:add' %}menu-item-here menu-item-open{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
+                    <li class="menu-item menu-item-submenu {% if view_name == 'Appointment:view' or view_name == 'Appointment:add' or view_name == 'Appointment:requested'%}menu-item-here menu-item-open{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
@@ -283,8 +283,8 @@
                                         <span class="menu-text">Appointment List</span>
                                     </a>
                                 </li>
-                                <li class="menu-item" aria-haspopup="true">
-                                    <a href="#" class="menu-link">
+                                <li class="menu-item {% if view_name == 'Appointment:requested' %}menu-item-active{% endif %}" aria-haspopup="true">
+                                    <a href="{% url 'Appointment:requested' %}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>

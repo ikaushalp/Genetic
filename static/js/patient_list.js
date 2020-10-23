@@ -1,6 +1,6 @@
 var Datatables = function () {
     var patient = function () {
-        var table = $('#datatable').DataTable({
+        var table = $('#patient').DataTable({
 
             searching: true,
 

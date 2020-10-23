@@ -1,6 +1,6 @@
 var Datatables = function () {
-    var appointment = function () {
-        var table = $("#appointment").DataTable({
+    var requested = function () {
+        var table = $("#requested").DataTable({
 
             searching: true,
 
@@ -72,7 +72,7 @@ var Datatables = function () {
 
         //main function to initiate the module
         init: function () {
-            appointment();
+            requested();
         }
     };
 }();
