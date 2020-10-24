@@ -56,6 +56,7 @@ var KTBootstrapDatepicker = function () {
             clearBtn: true,
             todayHighlight: true,
             autoclose: true,
+            orientation: 'bottom left',
             templates: arrows
         });
 
