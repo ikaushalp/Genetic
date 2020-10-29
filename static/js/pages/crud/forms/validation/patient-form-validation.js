@@ -1,12 +1,21 @@
+var form = document.getElementById('patient');
 document.addEventListener('DOMContentLoaded', function(e) {
     FormValidation.formValidation(
-        document.getElementById('form_1'),
+        document.getElementById('patient'),
         {
             fields: {
                 name: {
                     validators: {
                         notEmpty: {
                             message: 'Patient name is required'
+                        }
+                    }
+                },
+
+                gender: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please select an option'
                         }
                     }
                 },
@@ -27,17 +36,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Patient email is required'
-                        },
-                        emailAddress: {
-                            message: 'The value is not a valid email address'
-                        }
-                    }
-                },
-
                 phone: {
                     validators: {
                         notEmpty: {
@@ -46,6 +44,17 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         phone: {
                             country: 'IN',
                             message: 'The value is not a valid Indian phone number'
+                        }
+                    }
+                },
+
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Patient email is required'
+                        },
+                        emailAddress: {
+                            message: 'The value is not a valid email address'
                         }
                     }
                 },
@@ -78,12 +87,36 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                marital_status: {
+               
+
+                username: {
                     validators: {
                         notEmpty: {
-                            message: 'Please select an option'
+                            message: 'Please enter a username'
                         }
                     }
+                },
+
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter a password'
+                        }
+                    }
+                },
+
+                retype_pasword: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter a password again'
+                        },
+                        identical: {
+                            compare: function() {
+                                return form.querySelector('[name="password"]').value;
+                            },
+                            message: "Password doesn't match"
+                        }
+                    },
                 },
             },
 

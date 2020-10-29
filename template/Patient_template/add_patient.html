@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!--begin::Form-->
-                        <form action="" id="form_1" class="form" method="post">
+                        <form action="" id="patient" class="form" method="post">
                             {% csrf_token %}
                             <div class="card card-custom mb-2">
                                 <div class="card-header border-bottom">
@@ -54,7 +54,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label>Gender</label>
+                                            <label>Gender *</label>
                                             <select class="form-control selectpicker"
                                                 data-size="4" name="gender">
                                                 <option value="">Select</option>
@@ -81,7 +81,7 @@
                                             <input type="number" class="form-control" name="age" id="age" value="" />
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Marital Status</label>
+                                            <label>Marital Status *</label>
                                             <select class="form-control selectpicker" data-size="4"
                                                 name="marital_status">
                                                 <option value="">Select</option>
@@ -96,7 +96,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                             class="fas fa-phone-volume"></i></span></div>
-                                                <input type="tel" name="phone" class="form-control" name="mobile_no" />
+                                                <input type="number" name="phone" class="form-control" name="mobile_no" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -209,7 +209,7 @@
                                                         <i class="fas fa-user-lock"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" name="user_name" />
+                                                <input type="text" class="form-control" name="username" />
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
