@@ -59,10 +59,18 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
+                category: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Patient category is required'
+                        }
+                    }
+                },
+
                 guardian_name: {
                     validators: {
                         notEmpty: {
-                            message: 'Gurdian name required'
+                            message: 'Guardian name required'
                         },
                     }
                 },

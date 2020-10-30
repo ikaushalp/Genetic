@@ -92,6 +92,7 @@ var KTBootstrapDatepicker = function () {
             autoclose: true,
             startView: 3,
             maxViewMode: 3,
+            format: "dd/mm/yyyy",
 
         });
 
