@@ -57,7 +57,8 @@ var KTBootstrapDatepicker = function () {
             todayHighlight: true,
             autoclose: true,
             orientation: 'bottom left',
-            templates: arrows
+            templates: arrows,
+            format: "dd/mm/yyyy",
         });
 
         // enable clear button for modal demo
