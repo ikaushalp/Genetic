@@ -5,11 +5,11 @@
 {% block title %}Add Employee{% endblock %}
 {% block header_name %}Add Employee{% endblock %}
 {% block header_name_sub %}
-<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-    <li class="breadcrumb-item">
-        <a href="" class="text-muted">Add</a>
-    </li>
-</ul>
+    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+        <li class="breadcrumb-item">
+            <a href="" class="text-muted">Add</a>
+        </li>
+    </ul>
 {% endblock header_name_sub %}
 
 {% comment %} Template tag base:end {% endcomment %}
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    {% block content %}
+{% block content %}
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
 
         <div class="d-flex flex-column-fluid">
@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!--begin::Form-->
-                        <form action="" id="form_1" class="form" method="post">
+                        <form action="" id="employee" class="form" method="post">
                             {% csrf_token %}
                             <div class="card card-custom mb-2">
                                 <div class="card-header border-bottom">
@@ -49,14 +49,14 @@
                                             <label>Name *</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
-                                                            class="fas fa-user"></i></span></div>
-                                                <input type="text" class="form-control" name="name" />
+                                                        class="fas fa-user"></i></span></div>
+                                                <input type="text" class="form-control" name="name"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label>Gender</label>
+                                            <label>Gender *</label>
                                             <select name="marital_status" class="form-control selectpicker"
-                                                data-size="4" data-dropup-auto="false" name="gender">
+                                                    data-size="4" data-dropup-auto="false" name="gender">
                                                 <option value="">Select</option>
                                                 <option>Male</option>
                                                 <option>Female</option>
@@ -73,12 +73,13 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" id="kt_datepicker_4_3"
-                                                    name="birthday"/>
+                                                       name="birthday"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Blood Group</label>
-                                            <select class="form-control selectpicker" data-size="4" data-dropup-auto="false" name="blood_group">
+                                            <select class="form-control selectpicker" data-size="4"
+                                                    data-dropup-auto="false" name="blood_group">
                                                 <option value="">Select</option>
                                                 <option value="A+">A+</option>
                                                 <option value="A-">A-</option>
@@ -91,9 +92,10 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Marital Status</label>
-                                            <select class="form-control selectpicker" data-size="4" data-dropup-auto="false"
-                                                name="marital_status">
+                                            <label>Marital Status *</label>
+                                            <select class="form-control selectpicker" data-size="4"
+                                                    data-dropup-auto="false"
+                                                    name="marital_status">
                                                 <option value="">Select</option>
                                                 <option>Single</option>
                                                 <option>Married</option>
@@ -105,16 +107,16 @@
                                             <label>Mobile No *</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
-                                                            class="fas fa-phone-volume"></i></span></div>
-                                                <input type="tel" name="phone" class="form-control" name="mobile_no" />
+                                                        class="fas fa-phone-volume"></i></span></div>
+                                                <input type="tel" class="form-control" name="mobile_no"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>Email *</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
-                                                            class="fas fa-envelope-open"></i></span></div>
-                                                <input type="email" class="form-control" name="email" />
+                                                        class="fas fa-envelope-open"></i></span></div>
+                                                <input type="email" class="form-control" name="email"/>
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +124,7 @@
                                         <div class="col-lg-12">
                                             <label>Address</label>
                                             <textarea class="form-control" id="kt_autosize_1" rows="3"
-                                                name="address"></textarea>
+                                                      name="address"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -159,7 +161,7 @@
                                                         <i class="fas fa-user-lock"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" name="user_name" />
+                                                <input type="text" class="form-control" name="username"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -170,8 +172,8 @@
                                                         <i class="fas fa-unlock-alt"></i>
                                                     </span>
                                                 </div>
-                                                <input type="password" id="password" class="form-control"
-                                                    name="password" />
+                                                <input type="password" class="form-control"
+                                                       name="password"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -182,8 +184,8 @@
                                                         <i class="fas fa-unlock-alt"></i>
                                                     </span>
                                                 </div>
-                                                <input type="password" id="confirm_password" class="form-control"
-                                                    name="retype_pasword" />
+                                                <input type="password" class="form-control"
+                                                       name="password1"/>
                                             </div>
                                         </div>
                                     </div>
@@ -202,7 +204,8 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>Role *</label>
-                                            <select class="form-control selectpicker" data-size="4" data-dropup-auto="false" name="role">
+                                            <select class="form-control selectpicker" data-size="4"
+                                                    data-dropup-auto="false" name="role">
                                                 <option value="">Select</option>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Doctor">Doctor</option>
@@ -211,7 +214,8 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Designations *</label>
-                                            <select class="form-control selectpicker" data-size="4" data-dropup-auto="false" name="designation">
+                                            <select class="form-control selectpicker" data-size="4"
+                                                    data-dropup-auto="false" name="designation">
                                                 <option value="">Select</option>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Doctor">Doctor</option>
@@ -220,7 +224,8 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Department *</label>
-                                            <select class="form-control selectpicker" data-size="4" data-dropup-auto="false" name="department">
+                                            <select class="form-control selectpicker" data-size="4"
+                                                    data-dropup-auto="false" name="department">
                                                 <option value="">Select</option>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Doctor">Doctors</option>
@@ -238,7 +243,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" id="kt_datepicker_3"
-                                                    name="joining_date">
+                                                       name="joining_date">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -250,9 +255,11 @@
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
                                         <button type="submit"
-                                            class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save</button>
+                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save
+                                        </button>
                                         <button type="reset"
-                                            class="btn btn-light-danger btn-lg font-weight-bold">Cancel</button>
+                                                class="btn btn-light-danger btn-lg font-weight-bold">Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -267,26 +274,11 @@
         <!--end::Entry-->
     </div>
 
-    {% endblock content %}
+{% endblock content %}
 </body>
 {% block js %}
-<script>
-    var password = document.getElementById("password"),
-        confirm_password = document.getElementById("confirm_password");
-
-    function validatePassword() {
-        if (password.value != confirm_password.value) {
-            confirm_password.setCustomValidity("Passwords Don't Match");
-        } else {
-            confirm_password.setCustomValidity('');
-        }
-    }
-
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
-</script>
-<script src="{% static "js/pages/crud/file-upload/dropzonejs.js" %}"></script>
-<script src="{% static "js/pages/crud/forms/validation/employee_validation.js" %}"></script>
+    <script src="{% static "js/pages/crud/forms/validation/employee_validation.js" %}"></script>
+    <script src="{% static "js/pages/crud/file-upload/dropzonejs.js" %}"></script>
 {% endblock js %}
 
 </html>

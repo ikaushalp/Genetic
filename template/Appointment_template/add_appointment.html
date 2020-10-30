@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!--begin::Form-->
-                        <form action="" class="form" method="post">
+                        <form action="" class="form" method="post" id="appointment">
                             {% csrf_token %}
                             <div class="card card-custom">
                                 <div class="card-header border-bottom">
@@ -82,7 +82,7 @@
                                         <div class="col-lg-5">
                                             <label>Time Slot *</label>
                                             <select class="form-control selectpicker"
-                                                data-size="4" data-dropup-auto="false" name="timeslot">
+                                                data-size="4" data-dropup-auto="false" name="time_slot">
                                                 <option value="">Select</option>
                                             </select>
                                         </div>
@@ -93,18 +93,6 @@
                                             <input type="number" class="form-control" name="fees" id="fees">
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group row justify-content-center">
-                                        <div class="col-lg-5">
-                                            <label>Discount</label>
-                                            <input type="number" class="form-control" name="discount" id="discount">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-lg-5">
-                                            <label>Net Payable</label>
-                                            <input type="number" class="form-control" name="net_fees" id="net_fees">
-                                        </div>
-                                    </div> -->
                                     <div class="form-group row justify-content-center">
                                         <div class="col-lg-5">
                                             <label>Remarks</label>
@@ -136,7 +124,7 @@
     {% endblock content %}
 </body>
 {% block js %}
-<script src="{% static 'js/pages/crud/forms/widgets/bootstrap-timepicker.js' %}"></script>
+    <script src="{% static 'js/pages/crud/forms/validation/appointment_validation.js' %}"></script>
 {% endblock js %}
 
 </html>

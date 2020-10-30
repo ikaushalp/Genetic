@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                retype_pasword: {
+                retype_password: {
                     validators: {
                         notEmpty: {
                             message: 'Please enter a password again'

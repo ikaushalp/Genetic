@@ -26,7 +26,6 @@ var KTBootstrapTimepicker = function () {
 
         // default time
         $('.kt_timepicker_4, .kt_timepicker_4_modal').timepicker({
-            defaultTime: '10:30:20 AM',           
             minuteStep: 1,
             showMeridian: true,
         });

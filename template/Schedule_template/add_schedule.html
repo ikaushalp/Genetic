@@ -5,11 +5,11 @@
 {% block title %}Create Schedule{% endblock %}
 {% block header_name %}Create Schedule{% endblock %}
 {% block header_name_sub %}
-<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-    <li class="breadcrumb-item">
-        <a href="" class="text-muted">Create</a>
-    </li>
-</ul>
+    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+        <li class="breadcrumb-item">
+            <a href="" class="text-muted">Create</a>
+        </li>
+    </ul>
 {% endblock header_name_sub %}
 
 {% comment %} Template tag base:end {% endcomment %}
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    {% block content %}
+{% block content %}
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
 
         <div class="d-flex flex-column-fluid">
@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!--begin::Form-->
-                        <form action="" class="form" method="post">
+                        <form action="" class="form" method="post" id="schedule">
                             {% csrf_token %}
                             <div class="card card-custom">
                                 <div class="card-header border-bottom">
@@ -48,7 +48,7 @@
                                         <div class="col-lg-5">
                                             <label>Doctor *</label>
                                             <select class="form-control selectpicker" data-live-search="true"
-                                                data-size="4" name="doctor">
+                                                    data-size="4" name="doctor">
                                                 <option value="">Select</option>
                                                 <option value="A+">A+</option>
                                                 <option value="A-">A-</option>
@@ -65,7 +65,7 @@
                                         <div class="col-lg-5">
                                             <label>Week Day *</label>
                                             <select class="form-control selectpicker" data-live-search="true"
-                                                data-size="4" data-dropup-auto="false" name="weekday">
+                                                    data-size="4" data-dropup-auto="false" name="weekday">
                                                 <option value="">Select</option>
                                                 <option value="Sunday">Sunday</option>
                                                 <option value="Monday">Monday</option>
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="form-group row justify-content-center">
                                         <div class="col-lg-5">
-                                        <label>Time Slot *</label>
+                                            <label>Time Slot *</label>
                                             <div class="form-group row">
                                                 <div class="col-lg-6 mb-2">
                                                     <div class="input-group timepicker">
@@ -88,7 +88,8 @@
                                                                 <i class="fas fa-clock"></i>
                                                             </span>
                                                         </div>
-                                                        <input class="form-control kt_timepicker_4" type="text" name="start_time"/>
+                                                        <input class="form-control kt_timepicker_4" type="text"
+                                                               name="start_time"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -98,7 +99,8 @@
                                                                 <i class="fas fa-clock"></i>
                                                             </span>
                                                         </div>
-                                                        <input class="form-control kt_timepicker_4" type="text" name="end_time"/>
+                                                        <input class="form-control kt_timepicker_4" type="text"
+                                                               name="end_time">
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,9 +110,11 @@
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
                                         <button type="submit"
-                                            class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save</button>
+                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save
+                                        </button>
                                         <button type="reset"
-                                            class="btn btn-light-danger btn-lg font-weight-bold">Cancel</button>
+                                                class="btn btn-light-danger btn-lg font-weight-bold">Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -125,10 +129,11 @@
         <!--end::Entry-->
     </div>
 
-    {% endblock content %}
+{% endblock content %}
 </body>
 {% block js %}
-<script src="{% static 'js/pages/crud/forms/widgets/bootstrap-timepicker.js' %}"></script>
+    <script src="{% static 'js/pages/crud/forms/validation/schedule_validation.js' %}"></script>
+    <script src="{% static 'js/pages/crud/forms/widgets/bootstrap-timepicker.js' %}"></script>
 {% endblock js %}
 
 </html>

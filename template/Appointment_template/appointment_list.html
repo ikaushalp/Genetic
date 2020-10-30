@@ -60,13 +60,12 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-light-success btn-lg mr-2 font-weight-bold"
-                                            onclick="show()">Filter</button>
+                                        <button type="button" class="btn btn-light-success btn-lg mr-2 font-weight-bold">Filter</button>
                                     </div>
                                 </div>
+                                </form>
                         </div>
-                        </form>
-                        <div class="card card-custom" id="table" style="display:none;">
+                        <div class="card card-custom" id="table">
                             <div class="card-header border-bottom">
                                 <div class="card-title">
                                     <h5 class="card-label">
@@ -122,12 +121,12 @@
                                                 <a href="#" class="btn btn-icon btn-outline-info btn-sm mr-2"
                                                     data-toggle="tooltip" data-placement="top" title="Make Closed"
                                                     data-theme="dark"><i class="fas fa-check"></i></a>
-                                                <a href="#" class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                <a href="{% url 'Appointment:add' %}" class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                     data-toggle="tooltip" data-placement="top" title="Edit"
                                                     data-theme="dark"><i class="fas fa-pen"></i></a>
                                                 <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"
                                                     data-toggle="tooltip" data-placement="top" title="Delete"
-                                                    data-theme="dark"><i class="fas fa-trash"></i></a>
+                                                    data-theme="dark" id="delete"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -142,12 +141,26 @@
     {% endblock content %}
 </body>
 {% block js %}
-<script>
-    function show() {
-        document.getElementById("table").style.display = 'block';
-    }
-</script>
 <script src="{% static "js/table/appointment_list.js" %}"></script>
+    <script>
+    $("#delete").click(function(e) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!"
+    }).then(function(result) {
+        if (result.value) {
+            Swal.fire(
+                "Deleted!",
+                "Your record has been deleted.",
+                "success"
+            )
+        }
+    });
+});
+    </script>
 {% endblock js%}
 
 </html>

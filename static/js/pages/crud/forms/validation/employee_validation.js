@@ -1,13 +1,13 @@
-var form = document.getElementById('patient');
+var form = document.getElementById('employee');
 document.addEventListener('DOMContentLoaded', function(e) {
     FormValidation.formValidation(
-        document.getElementById('patient'),
+        document.getElementById('employee'),
         {
             fields: {
                 name: {
                     validators: {
                         notEmpty: {
-                            message: 'Patient name is required'
+                            message: 'Employee name is required'
                         }
                     }
                 },
@@ -20,14 +20,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                age: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Patient age is required'
-                        }
-                    }
-                },
-
                 marital_status: {
                     validators: {
                         notEmpty: {
@@ -36,12 +28,12 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                phone: {
+                mobile_no: {
                     validators: {
                         notEmpty: {
                             message: 'Indian phone number is required'
                         },
-                        phone: {
+                        mobile_no: {
                             country: 'IN',
                             message: 'The value is not a valid Indian phone number'
                         }
@@ -51,51 +43,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 email: {
                     validators: {
                         notEmpty: {
-                            message: 'Patient email is required'
+                            message: 'Employee email is required'
                         },
                         emailAddress: {
                             message: 'The value is not a valid email address'
                         }
                     }
                 },
-
-                category: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Patient category is required'
-                        }
-                    }
-                },
-
-                guardian_name: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Guardian name required'
-                        },
-                    }
-                },
-
-                relationship: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Relationship is required'
-                        },
-                    }
-                },
-
-                guardian_mobile: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Indian phone number is required'
-                        },
-                        phone: {
-                            country: 'IN',
-                            message: 'The value is not a valid Indian phone number'
-                        }
-                    }
-                },
-
-               
 
                 username: {
                     validators: {
@@ -113,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                retype_pasword: {
+                password1: {
                     validators: {
                         notEmpty: {
                             message: 'Please enter a password again'
@@ -124,7 +78,39 @@ document.addEventListener('DOMContentLoaded', function(e) {
                             },
                             message: "Password doesn't match"
                         }
-                    },
+                    }
+                },
+
+                role: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please select an option'
+                        }
+                    }
+                },
+
+                designation: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please select an option'
+                        }
+                    }
+                },
+
+                department: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please select an option'
+                        }
+                    }
+                },
+
+                joining_date: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Joining date is required'
+                        }
+                    }
                 },
             },
 

@@ -233,7 +233,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="password" id="confirm_password" class="form-control"
-                                                    name="retype_pasword" />
+                                                    name="retype_password" />
                                             </div>
                                         </div>
                                     </div>
@@ -262,21 +262,6 @@
     {% endblock content %}
 </body>
 {% block js %}
-<script>
-    var password = document.getElementById("password"),
-        confirm_password = document.getElementById("confirm_password");
-
-    function validatePassword() {
-        if (password.value != confirm_password.value) {
-            confirm_password.setCustomValidity("Passwords Don't Match");
-        } else {
-            confirm_password.setCustomValidity('');
-        }
-    }
-
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
-</script>
 <script type="text/javascript">
     function AGE() {
         var n = document.getElementById('kt_datepicker_4_3').value;
