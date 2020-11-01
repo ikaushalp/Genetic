@@ -81,7 +81,7 @@
                                     <div class="form-group row justify-content-center">
                                         <div class="col-lg-5">
                                             <label>Prescription *</label>
-                                            <textarea class="form-control" id="kt_autosize_1" rows="3"
+                                            <textarea class="form-control" id="mytextarea" rows="3"
                                                 name="prescription"></textarea>
                                         </div>
                                     </div>
@@ -111,6 +111,11 @@
 {% endblock content %}
 </body>
 {% block js %}
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
     <script src="{% static 'js/pages/crud/forms/widgets/bootstrap-timepicker.js' %}"></script>
     <script src="{% static 'js/pages/crud/forms/validation/prescription_validation.js' %}"></script>
 {% endblock js %}
