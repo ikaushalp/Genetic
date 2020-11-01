@@ -44,17 +44,15 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-lg-5">
+                                    <div class="form-group row">
+                                        <div class="col-lg-4">
                                             <label>Doctor *</label>
                                             <select class="form-control selectpicker" data-live-search="true"
                                                     data-size="4" data-dropup-auto="false" name="doctor">
                                                 <option value="">Select</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-4">
                                             <label>Patient *</label>
                                             <select class="form-control selectpicker" data-live-search="true"
                                                     data-size="4" name="patient">
@@ -63,9 +61,7 @@
                                                 <option value="A-">A-</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-4">
                                             <label>Date *</label>
                                             <div class="input-group date mb-2">
                                                 <div class="input-group-prepend">
@@ -79,10 +75,51 @@
                                         </div>
                                     </div>
                                     <div class="form-group row justify-content-center">
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-10">
                                             <label>Prescription *</label>
-                                            <textarea class="form-control" id="mytextarea" rows="3"
-                                                name="prescription"></textarea>
+                                            <textarea class="form-control" id="full-featured-non-premium" rows="3" name="prescription">
+                                                <p style="text-align: center; font-size: 15px;">
+                                                    <img title="TinyMCE Logo" src="{% static 'media/logos/logo.png' %}" alt="Logo" width="230" height="97" />
+                                                </p>
+                                                    <table style="border-collapse: collapse; width: 100%;" border="1">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Medicine Name</th>
+                                                            <th>Breakfast</th>
+                                                            <th>Lunch</th>
+                                                            <th>Dinner</th>
+                                                            <th>Qty</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -111,11 +148,7 @@
 {% endblock content %}
 </body>
 {% block js %}
-    <script>
-      tinymce.init({
-        selector: '#mytextarea'
-      });
-    </script>
+    <script src="{% static 'js/custom-tinymce.js' %}"></script>
     <script src="{% static 'js/pages/crud/forms/widgets/bootstrap-timepicker.js' %}"></script>
     <script src="{% static 'js/pages/crud/forms/validation/prescription_validation.js' %}"></script>
 {% endblock js %}
