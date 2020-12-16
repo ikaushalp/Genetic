@@ -25,109 +25,79 @@
 <body>
 {% block content %}
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
-
-        <div class="d-flex flex-column-fluid">
-            <!--begin::Container-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card card-custom mb-2">
-                            <div class="card-header border-bottom">
-                                <div class="card-title">
-                                    <h5 class="card-label">
-                                        <i class="fas fa-edit icon-lg mr-1"></i>
-                                        Select Designation
-                                    </h5>
-                                </div>
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-custom">
+                        <div class="card-header card-header-tabs-line">
+                            <div class="card-toolbar">
+                                <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#tab_pane_1">
+                                            <span class="nav-icon"><i class="fas fa-users"></i></span>
+                                            <span class="nav-text">Admin</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tab_pane_2">
+                                            <span class="nav-icon"><i class="fas fa-users"></i></span>
+                                            <span class="nav-text">Doctor</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tab_pane_3">
+                                            <span class="nav-icon"><i class="fas fa-users"></i></span>
+                                            <span class="nav-text">Receptionist</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                            <form action="" method="POST">
-                                {% csrf_token %}
-                                <div class="card-body">
-                                    <div class="form-group row flex-row justify-content-center">
-                                        <div class="col-lg-4">
-                                            <label>Designation *</label>
-                                            <select class="form-control selectpicker" name="designation">
-                                                <option>Select</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="Doctor">Doctor</option>
-                                                <option value="Receptionist">Receptionist</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-light-success btn-lg mr-2 font-weight-bold">Filter
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
-                        <div class="card card-custom" id="table">
-                            <div class="card-header border-bottom">
-                                <div class="card-title">
-                                    <h5 class="card-label">
-                                        <i class="fas fa-user-friends icon-lg mr-1"></i>
-                                        Employee List
-                                    </h5>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="tab_pane_1" role="tabpanel"
+                                 aria-labelledby="tab_pane_1">
+                                <div class="card-body">
+                                    <table class="table table-separate table-head-custom text-center" id="admin">
+                                        <thead>
+                                        <tr>
+                                            <th>Employee Id</th>
+                                            <th>Photo</th>
+                                            <th>Name</th>
+                                            <th>Designation</th>
+                                            <th>Role</th>
+                                            <th>Department</th>
+                                            <th>Email</th>
+                                            <th>Mobile No</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                    <img alt="Pic" src="{% static "media/users/100_3.jpg" %}"/>
+                                                </div>
+                                            </td>
+                                            <td>John</td>
+                                            <td>Admin</td>
+                                            <td>Admin</td>
+                                            <td>Admin</td>
+                                            <td>Support@gmai.com</td>
+                                            <td>0123456789</td>
+                                            <td>
+                                                <a href="{% url 'Employee:add' %}"
+                                                   class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                        class="fas fa-pen"></i></a>
+                                                <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                        class="fas fa-trash" id="delete"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="card-toolbar">
-                                    <a href="javaScript:void(0)" class="btn btn-light-warning btn-icon btn-lg mr-2"
-                                       id="export_print" data-toggle="tooltip" data-placement="top" title="Print"
-                                       data-theme="dark">
-                                        <i class="fas fa-print"></i>
-                                    </a>
-                                    <a href="javaScript:void(0)" class="btn btn-light-primary btn-icon btn-lg mr-2"
-                                       id="export_pdf" data-toggle="tooltip" data-placement="top" title="PDF"
-                                       data-theme="dark">
-                                        <i class="fas fa-file-pdf"></i>
-                                    </a>
-                                    <a href="javaScript:void(0)" class="btn btn-light-success btn-icon btn-lg mr-2"
-                                       id="export_excel" data-toggle="tooltip" data-placement="top" title="Excel"
-                                       data-theme="dark">
-                                        <i class="fas fa-file-excel"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-separate table-head-custom text-center" id="employee">
-                                    <thead>
-                                    <tr>
-                                        <th>Employee Id</th>
-                                        <th>Photo</th>
-                                        <th>Name</th>
-                                        <th>Designation</th>
-                                        <th>Role</th>
-                                        <th>Department</th>
-                                        <th>Email</th>
-                                        <th>Mobile No</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
-                                                <img alt="Pic" src="{% static "media/users/100_3.jpg" %}"/>
-                                            </div>
-                                        </td>
-                                        <td>John</td>
-                                        <td>Admin</td>
-                                        <td>Admin</td>
-                                        <td>Admin</td>
-                                        <td>Support@gmai.com</td>
-                                        <td>0123456789</td>
-                                        <td>
-                                            <a href="{% url 'Employee:add' %}"
-                                               class="btn btn-icon btn-outline-success btn-sm mr-2"><i
-                                                    class="fas fa-pen"></i></a>
-                                            <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
-                                                    class="fas fa-trash" id="delete"></i></a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
@@ -135,12 +105,10 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
 {% endblock content %}
 </body>
 {% block js %}
-    <script src="{% static "js/table/employee_list.js" %}"></script>
+    <script src="{% static "js/table/admin_list.js" %}"></script>
     <script>
         $("#delete").click(function (e) {
             Swal.fire({
