@@ -12,15 +12,15 @@ var Datatables = function () {
 
             initComplete: function () {
                 $("div.toolbar")
-                    .html('<a href="javaScript:void(0)" class="btn btn-light-warning btn-icon btn-lg mr-2"\n' +
+                    .html('<a href="javaScript:void(0)" class="btn btn-light-warning btn-icon mr-2"\n' +
                         '                                       id="export_print">\n' +
                         '                                        <i class="fas fa-print"></i>\n' +
                         '                                    </a>\n' +
-                        '                                    <a href="javaScript:void(0)" class="btn btn-light-primary btn-icon btn-lg mr-2"\n' +
+                        '                                    <a href="javaScript:void(0)" class="btn btn-light-primary btn-icon mr-2"\n' +
                         '                                       id="export_pdf">\n' +
                         '                                        <i class="fas fa-file-pdf"></i>\n' +
                         '                                    </a>\n' +
-                        '                                    <a href="javaScript:void(0)" class="btn btn-light-success btn-icon btn-lg mr-2"\n' +
+                        '                                    <a href="javaScript:void(0)" class="btn btn-light-success btn-icon mr-2"\n' +
                         '                                       id="export_excel">\n' +
                         '                                        <i class="fas fa-file-excel"></i>\n' +
                         '                                    </a>');
@@ -53,7 +53,6 @@ var Datatables = function () {
                         doc.styles.title = {
                             fontSize: '35',
                             alignment: 'center',
-
                         }
                         doc.styles.tableHeader = {
                             fillColor: '#2D4154',
@@ -62,7 +61,12 @@ var Datatables = function () {
                             bold: 2,
                             alignment: 'center'
                         }
-                            doc.defaultStyle.alignment = 'center';
+                        doc.styles.table = {
+                           widths: 'auto',
+                        }
+                        doc.styles.table = {
+                           widths: 'auto',
+                        }
                     }
                 },
 
@@ -70,7 +74,8 @@ var Datatables = function () {
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: [0, 2, 3, 4, 5, 6, 7]
-                    }
+                    },
+                    title: 'Admin List',
                 },
             ],
 
