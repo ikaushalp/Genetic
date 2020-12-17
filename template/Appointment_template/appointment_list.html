@@ -143,23 +143,7 @@
 {% block js %}
 <script src="{% static "js/table/appointment_list.js" %}"></script>
     <script>
-    $("#delete").click(function(e) {
-    Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it!"
-    }).then(function(result) {
-        if (result.value) {
-            Swal.fire(
-                "Deleted!",
-                "Your record has been deleted.",
-                "success"
-            )
-        }
-    });
-});
+
     </script>
 {% endblock js%}
 
