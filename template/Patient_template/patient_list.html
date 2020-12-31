@@ -76,6 +76,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    {% for items in all_patient %}
                                     <tr>
                                         <td>1</td>
                                         <td>
@@ -83,14 +84,14 @@
                                                 <img alt="Pic" src="{% static "media/users/100_3.jpg" %}"/>
                                             </div>
                                         </td>
-                                        <td>P01</td>
-                                        <td>John</td>
-                                        <td>Orthopedic</td>
-                                        <td>Male</td>
-                                        <td>Karan Khojiji</td>
-                                        <td>O+</td>
-                                        <td>Support@gmai.com</td>
-                                        <td>0123456789</td>
+                                        <td>{{ items.id }}</td>
+                                        <td>{{ items.name }}</td>
+                                        <td>{{ items.category }}</td>
+                                        <td>{{ items.gender }}</td>
+                                        <td>{{ items.guardian }}</td>
+                                        <td>{{ items.blood_group }}</td>
+                                        <td>{{ items.email }}</td>
+                                        <td>{{ items.mobile }}</td>
                                         <td>
                                             <a href="{% url 'Patient:add' %}"
                                                class="btn btn-icon btn-outline-success btn-sm mr-2"><i
@@ -99,6 +100,7 @@
                                                     class="fas fa-trash" id="patient_delete"></i></a>
                                         </td>
                                     </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
                                 <!--end: Datatable-->

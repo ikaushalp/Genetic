@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'HMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'HMS',
+        'NAME': 'hms',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -137,3 +137,8 @@ STATICFILES_DIRS = [
 # media files settings
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+
+DATE_INPUT_FORMATS = [
+    '%d/%m/%Y', '%m/%d/%Y', '%Y-%m-%d',
+]
+
