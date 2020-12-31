@@ -62,10 +62,10 @@
                                 <table class="table table-separate table-head-custom text-center" id="patient">
                                     <thead>
                                     <tr>
-                                        <th>Sr No.</th>
-                                        <th>Photo</th>
                                         <th>Patient Id</th>
+                                        <th>Photo</th>
                                         <th>Name</th>
+                                        <th>Birthdate</th>
                                         <th>Category</th>
                                         <th>Gender</th>
                                         <th>Guardian</th>
@@ -77,29 +77,31 @@
                                     </thead>
                                     <tbody>
                                     {% for items in all_patient %}
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
-                                                <img alt="Pic" src="{% static "media/users/100_3.jpg" %}"/>
-                                            </div>
-                                        </td>
-                                        <td>{{ items.id }}</td>
-                                        <td>{{ items.name }}</td>
-                                        <td>{{ items.category }}</td>
-                                        <td>{{ items.gender }}</td>
-                                        <td>{{ items.guardian }}</td>
-                                        <td>{{ items.blood_group }}</td>
-                                        <td>{{ items.email }}</td>
-                                        <td>{{ items.mobile }}</td>
-                                        <td>
-                                            <a href="{% url 'Patient:add' %}"
-                                               class="btn btn-icon btn-outline-success btn-sm mr-2"><i
-                                                    class="fas fa-pen"></i></a>
-                                            <a class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
-                                                    class="fas fa-trash" id="patient_delete"></i></a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{ items.id }}</td>
+                                            <td>
+                                                <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
+                                                    <img alt="Pic" src="{% static "media/users/100_3.jpg" %}"/>
+                                                </div>
+                                            </td>
+                                            <td>{{ items.name }}</td>
+                                            <td>{{ items.birthdate|date:'d-m-Y' }}</td>
+                                            <td>{{ items.category }}</td>
+                                            <td>{{ items.gender }}</td>
+                                            <td>{{ items.guardian_name }}</td>
+                                            <td>{{ items.blood_group }}</td>
+                                            <td>{{ items.email }}</td>
+                                            <td>{{ items.mobile_no }}</td>
+                                            <td>
+                                                <a href="{% url 'Patient:add' %}"
+                                                   class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                        class="fas fa-pen"></i></a>
+
+                                                <a class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                        class="fas fa-trash" id="patient_delete"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>

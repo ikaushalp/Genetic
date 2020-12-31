@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from Patient.models import Patient
 
-
 # Create your views here.
 
 # Patient #

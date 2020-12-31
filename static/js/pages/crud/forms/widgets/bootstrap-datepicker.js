@@ -93,8 +93,7 @@ var KTBootstrapDatepicker = function () {
             autoclose: true,
             startView: 3,
             maxViewMode: 3,
-            format: "dd/mm/yyyy",
-
+            format: "yyyy-mm-dd",
         });
 
         $('#kt_datepicker_4_4').datepicker({

@@ -138,7 +138,3 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-DATE_INPUT_FORMATS = [
-    '%d/%m/%Y', '%m/%d/%Y', '%Y-%m-%d',
-]
-
