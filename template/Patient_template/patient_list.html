@@ -95,7 +95,7 @@
                                             <a href="{% url 'Patient:add' %}"
                                                class="btn btn-icon btn-outline-success btn-sm mr-2"><i
                                                     class="fas fa-pen"></i></a>
-                                            <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                            <a class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
                                                     class="fas fa-trash" id="patient_delete"></i></a>
                                         </td>
                                     </tr>
@@ -113,5 +113,6 @@
 </body>
 {% block js %}
     <script src="{% static "js/table/patient_list.js" %}"></script>
+    <script src="{% static "js/pages/features/miscellaneous/sweetalert2.js" %}"></script>
 {% endblock js %}
 </html>
