@@ -80,18 +80,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for items in item %}
-                                    <tr>
-                                        <td>{{items.id}}</td>
-                                        <td>{{items.category_name}}</td>
-                                        <td>
-                                            <a href="#" class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                               data-toggle="modal" data-target="#exampleModalCenter"><i
-                                                    class="fas fa-pen"></i></a>
-                                            <a href="/patient/category/delete/{{ items.id }}" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
-                                                    class="fas fa-trash" id="category_delete"></i></a>
-                                        </td>
-                                    </tr>
+                                    {% for cat in categories %}
+                                        <tr>
+                                            <td>{{cat.id}}</td>
+                                            <td>{{cat.category_name}}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                   data-toggle="modal" data-target="#exampleModalCenter"><i
+                                                        class="fas fa-pen"></i></a>
+                                                <a href="/patient/category/delete/{{ cat.id }}" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                        class="fas fa-trash" id="category_delete"></i></a>
+                                            </td>
+                                        </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>

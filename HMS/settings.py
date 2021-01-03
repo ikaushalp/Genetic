@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'HMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hms',
+        'NAME': 'genetic',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

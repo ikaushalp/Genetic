@@ -1,6 +1,6 @@
 var SweetAlert2 = function () {
     var init = function () {
-        $("#patient_delete").click(function (e) {
+        $(".table").on('click','#patient_delete',function () {
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -10,6 +10,22 @@ var SweetAlert2 = function () {
                 cancelButtonText: "No, cancel!"
             }).then(function (result) {
                 if (result.value) {
+                    let id = $(this).attr("data-pid");
+                    info = {pid:id}
+                    $.ajax({
+                        url: '{% url "delete" %}',
+                        method: "POST",
+                        data: info,
+                        success: function (data) {
+                            if (data.deleted == 1) {
+                                /*window.location.reload(true)*/
+                                console.log("True")
+                            }
+                            else {
+                                console.log("False")
+                            }
+                        }
+                    });
                     Swal.fire(
                         "Deleted!",
                         "Your file has been deleted.",
@@ -24,7 +40,7 @@ var SweetAlert2 = function () {
                 }
             });
         });
-        $("#category_delete").click(function (e) {
+        $("#category_delete").click(function () {
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",

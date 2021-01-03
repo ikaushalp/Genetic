@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from Patient.models import Patient
-
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+
 
 # Patient #
 def add_Patient(request):
@@ -26,6 +28,17 @@ def add_Patient(request):
         )
         add.save()
     return render(request, 'Patient_template/add_patient.html')
+
+@csrf_exempt
+def delete_patient(request):
+    if request.method == 'POST':
+        id = request.POST.get('pid')
+        rem = Patient.objects.get(id=id)
+        rem.delete()
+        data = {
+            'deleted': 1
+        }
+    return redirect('patient/view')
 
 def patient_list(request):
     list = Patient.objects.all()
