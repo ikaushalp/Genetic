@@ -1,8 +1,10 @@
 from django.db import models
-from django.conf import settings
 # Create your models here.
 
 class Patient(models.Model):
+    class Meta():
+        db_table = 'patient'
+
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=150)
     gender = models.CharField(max_length=100)
@@ -23,5 +25,7 @@ class Patient(models.Model):
     guardian_mobile_no = models.CharField(max_length=13)
 
 class Category(models.Model):
+    class Meta():
+        db_table = 'category'
     id = models.AutoField(primary_key=True)
     category_name = models.CharField(max_length=60)

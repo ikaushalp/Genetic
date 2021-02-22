@@ -100,7 +100,8 @@
 
                                                 <a class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
                                                    type="button" data-info="{{ items.id }}"
-                                                   id="patient_delete"><i class="fas fa-trash"></i>
+                                                   id="patient_delete">
+                                                    <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -119,7 +120,6 @@
 </body>
 {% block js %}
     <script src="{% static "js/table/patient_list.js" %}"></script>
-    {#    <script src="{% static "js/pages/features/miscellaneous/sweetalert2.js" %}"></script>#}
     <script>
         $(".table").on('click', '#patient_delete', function () {
             let id = $(this).attr("data-info");
@@ -146,11 +146,10 @@
                                     text: "Your file has been deleted.",
                                     icon: "success",
                                     confirmButtonText: "Ok",
-                                }).then(function (result){
-                                    if (result.value){
+                                }).then(function (result) {
+                                    if (result.value) {
                                         location.reload();
-                                    }
-                                    else {
+                                    } else {
                                         location.reload();
                                     }
                                 });

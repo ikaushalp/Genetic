@@ -5,11 +5,11 @@
 {% block title %}Create Patient{% endblock %}
 {% block header_name %}Create Patient{% endblock %}
 {% block header_name_sub %}
-<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-    <li class="breadcrumb-item">
-        <a href="" class="text-muted">Create</a>
-    </li>
-</ul>
+    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+        <li class="breadcrumb-item">
+            <a href="" class="text-muted">Create</a>
+        </li>
+    </ul>
 {% endblock header_name_sub %}
 
 {% comment %} Template tag base:end {% endcomment %}
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    {% block content %}
+{% block content %}
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
 
         <div class="d-flex flex-column-fluid">
@@ -49,14 +49,14 @@
                                             <label>Name *</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
-                                                            class="fas fa-user"></i></span></div>
-                                                <input type="text" class="form-control" name="name" />
+                                                        class="fas fa-user"></i></span></div>
+                                                <input type="text" class="form-control" name="name"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>Gender *</label>
                                             <select class="form-control selectpicker"
-                                                data-size="4" name="gender">
+                                                    data-size="4" name="gender">
                                                 <option value="">Select</option>
                                                 <option>Male</option>
                                                 <option>Female</option>
@@ -73,17 +73,17 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" id="kt_datepicker_4_3"
-                                                    name="birthdate" onchange="AGE()" />
+                                                       name="birthdate" onchange="AGE()"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Age *</label>
-                                            <input type="number" class="form-control" name="age" id="age" value="" />
+                                            <input type="number" class="form-control" name="age" id="age" value=""/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Marital Status *</label>
                                             <select class="form-control selectpicker" data-size="4"
-                                                name="marital_status">
+                                                    name="marital_status">
                                                 <option value="">Select</option>
                                                 <option>Single</option>
                                                 <option>Married</option>
@@ -95,16 +95,16 @@
                                             <label>Mobile No *</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
-                                                            class="fas fa-phone-volume"></i></span></div>
-                                                <input type="number" name="phone" class="form-control" />
+                                                        class="fas fa-phone-volume"></i></span></div>
+                                                <input type="tel" name="phone" class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>Email *</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
-                                                            class="fas fa-envelope-open"></i></span></div>
-                                                <input type="email" class="form-control" name="email" />
+                                                        class="fas fa-envelope-open"></i></span></div>
+                                                <input type="email" class="form-control" name="email"/>
                                             </div>
                                         </div>
                                     </div>
@@ -139,22 +139,22 @@
                                         </div>
                                         <div class="col-lg-2">
                                             <label>Blood Pressure</label>
-                                            <input type="number" class="form-control" name="blood_pressure" />
+                                            <input type="number" class="form-control" name="blood_pressure"/>
                                         </div>
                                         <div class="col-lg-2">
                                             <label>Height</label>
-                                            <input type="number" class="form-control" name="height" />
+                                            <input type="number" class="form-control" name="height"/>
                                         </div>
                                         <div class="col-lg-2">
                                             <label>Weight</label>
-                                            <input type="number" class="form-control" name="weight" />
+                                            <input type="number" class="form-control" name="weight"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-12">
                                             <label>Address</label>
                                             <textarea class="form-control" id="kt_autosize_1" rows="3"
-                                                name="address"></textarea>
+                                                      name="address"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -185,27 +185,27 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label class="">Guardian</label>
-                                            <input type="text" class="form-control" name="guardian_name" />
+                                            <input type="text" class="form-control" name="guardian_name"/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Relationship</label>
-                                            <input type="text" class="form-control" name="relationship" />
+                                            <input type="text" class="form-control" name="relationship"/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Mobile No</label>
-                                            <input type="tel" class="form-control" name="guardian_mobile" />
+                                            <input type="tel" class="form-control" name="guardian_mobile"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card card-custom">
                                 <div class="card-header ">
-                                <div class="card-title">
-                                    <h5 class="card-label">
-                                        <i class="fas fa-user-lock icon-lg mr-1"></i>
-                                        Login Details
-                                    </h5>
-                                </div> 
+                                    <div class="card-title">
+                                        <h5 class="card-label">
+                                            <i class="fas fa-user-lock icon-lg mr-1"></i>
+                                            Login Details
+                                        </h5>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group row">
@@ -217,7 +217,7 @@
                                                         <i class="fas fa-user-lock"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" name="username" />
+                                                <input type="text" class="form-control" name="username"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -229,7 +229,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="password" id="password" class="form-control"
-                                                    name="password" />
+                                                       name="password"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -241,7 +241,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="password" id="confirm_password" class="form-control"
-                                                    name="retype_password" />
+                                                       name="retype_password"/>
                                             </div>
                                         </div>
                                     </div>
@@ -249,9 +249,11 @@
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
                                         <button type="submit"
-                                            class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save</button>
+                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save
+                                        </button>
                                         <button type="reset"
-                                            class="btn btn-light-danger btn-lg font-weight-bold">Cancel</button>
+                                                class="btn btn-light-danger btn-lg font-weight-bold">Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -267,26 +269,26 @@
         <!--end::Entry-->
     </div>
 
-    {% endblock content %}
+{% endblock content %}
 </body>
 {% block js %}
-<script type="text/javascript">
-    function AGE() {
-        var n = document.getElementById('kt_datepicker_4_3').value;
-        var bd = new Date(n);
+    <script type="text/javascript">
+        function AGE() {
+            var n = document.getElementById('kt_datepicker_4_3').value;
+            var bd = new Date(n);
 
-        var cd = new Date();
+            var cd = new Date();
 
-        var a = (cd.getFullYear() - bd.getFullYear());
+            var a = (cd.getFullYear() - bd.getFullYear());
 
-        if (cd.getMonth() < bd.getMonth() || cd.getMonth() == bd.getMonth() && cd.getDate() < bd.getDate()) {
-            a = a - 1;
+            if (cd.getMonth() < bd.getMonth() || cd.getMonth() === bd.getMonth() && cd.getDate() < bd.getDate()) {
+                a = a - 1;
+            }
+            document.getElementById('age').value = a;
         }
-        document.getElementById('age').value = a;
-    }
-</script>
-<script src="{% static "js/pages/crud/forms/validation/patient_validation.js" %}"></script>
-<script src="{% static "js/pages/crud/file-upload/dropzonejs.js" %}"></script>
+    </script>
+    <script src="{% static "js/pages/crud/forms/validation/patient_validation.js" %}"></script>
+    <script src="{% static "js/pages/crud/file-upload/dropzonejs.js" %}"></script>
 {% endblock js %}
 
 </html>
