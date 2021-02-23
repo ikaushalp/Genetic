@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from Patient.models import Patient
 from django.http import JsonResponse
-# Create your views here.
 
 # Patient #
 def add_Patient(request):
@@ -25,17 +24,16 @@ def add_Patient(request):
             guardian_mobile_no=request.POST['guardian_mobile'],
         )
         add.save()
+        return JsonResponse({'saved': 1})
     return render(request, 'Patient_template/add_patient.html')
+
 
 def delete_patient(request):
     if request.method == 'POST':
         id = request.POST['pid']
         rem = Patient.objects.get(id=id)
         rem.delete()
-        data = {
-            'deleted': 1
-        }
-    return JsonResponse(data)
+    return JsonResponse({'deleted': 1})
 
 
 def patient_list(request):

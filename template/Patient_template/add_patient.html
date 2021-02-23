@@ -249,7 +249,7 @@
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
                                         <button type="submit"
-                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold" id="btnsave">
+                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">
                                             Save
                                         </button>
                                         <button type="reset"
@@ -286,6 +286,26 @@
                 a = a - 1;
             }
             document.getElementById('age').value = a;
+        }
+    </script>
+    <script>
+        const form = document.getElementById("patient");
+        form.addEventListener("submit", submitHandler);
+
+        function submitHandler(e){
+            e.preventDefault();
+            $.ajax({
+                url : {% url 'Patient:add' %},
+                type : 'POST',
+                data : $("#form").serialize(),
+                dataType: 'json',
+                success: function(msg){
+                    if (msg.saved === 1){
+                        alert("Data Saved");
+                        form.reset();
+                    }
+                }
+            });
         }
     </script>
     <script src="{% static "js/pages/crud/forms/validation/patient_validation.js" %}"></script>
