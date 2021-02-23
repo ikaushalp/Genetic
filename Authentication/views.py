@@ -26,5 +26,5 @@ def login_handle(request):
 
     return render(request, 'Authentication_template/login.html')
 
-# def handleLogin(request):
-#     return render(request, 'Authentication_template/login.html')
+def handleLogin(request):
+    return render(request, 'Authentication_template/login.html')

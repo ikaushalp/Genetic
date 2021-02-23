@@ -17,7 +17,8 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser):
-    id = models.IntegerFieldField()
+    id = models.AutoField(primary_key=True)
+    aid = models.IntegerField()
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=150)
     role = models.CharField(max_length=150)
