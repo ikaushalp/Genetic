@@ -1,10 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 from Patient.models import Patient
 from django.http import JsonResponse
+from django.views.generic import TemplateView
 
 # Patient #
+def index(request):
+    return render(request, "Patient_template/add_patient.html")
+
 def add_Patient(request):
     if request.method == 'POST':
+
         add = Patient(
             name=request.POST['name'],
             gender=request.POST['gender'],
@@ -24,8 +29,8 @@ def add_Patient(request):
             guardian_mobile_no=request.POST['guardian_mobile'],
         )
         add.save()
-        return JsonResponse({'saved': 1})
-    return render(request, 'Patient_template/add_patient.html')
+    return JsonResponse('')
+
 
 
 def delete_patient(request):

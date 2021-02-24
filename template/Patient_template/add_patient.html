@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!--begin::Form-->
-                        <form action="" id="patient" class="form" method="post">
+                        <form id="patient" class="form" method="POST">
                             {% csrf_token %}
                             <div class="card card-custom mb-2">
                                 <div class="card-header ">
@@ -288,25 +288,37 @@
             document.getElementById('age').value = a;
         }
     </script>
-    <script>
-        const form = document.getElementById("patient");
-        form.addEventListener("submit", submitHandler);
-
-        function submitHandler(e){
+    <script type="text/javascript">
+        $(document).on('submit','#patient', function (e){
             e.preventDefault();
-            $.ajax({
-                url : {% url 'Patient:add' %},
-                type : 'POST',
-                data : $("#form").serialize(),
-                dataType: 'json',
-                success: function(msg){
-                    if (msg.saved === 1){
-                        alert("Data Saved");
-                        form.reset();
-                    }
+            alldata = {
+                    name:$("input[name=name]").val(),
+                    gender:$("input[name=gender]").val(),
+                    birthdate:$("input[name=birthdate]").val(),
+                    age:$("input[name=age]").val(),
+                    marital_status:$("input[name=marital_status]").val(),
+                    phone:$("input[name=phone]").val(),
+                    email:$("input[name=email]").val(),
+                    category:$("input[name=category]").val(),
+                    blood_group:$("input[name=blood_group]").val(),
+                    blood_pressure:$("input[name=blood_pressure]").val(),
+                    height:$("input[name=height]").val(),
+                    weight:$("input[name=weight]").val(),
+                    address:$("input[name=address]").val(),
+                    guardian_name:$("input[name=guardian_name]").val(),
+                    relationship:$("input[name=relationship]").val(),
+                    guardian_mobile:$("input[name=guardian_mobile]").val(),
+                    csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]")
                 }
+            $.ajax({
+                url : '{% url 'Patient:add_data' %}',
+                method : "POST",
+                data : alldata,
+                success: function(){
+                    alert("Data Saved");
+                },
             });
-        }
+        });
     </script>
     <script src="{% static "js/pages/crud/forms/validation/patient_validation.js" %}"></script>
     <script src="{% static "js/pages/crud/file-upload/dropzonejs.js" %}"></script>

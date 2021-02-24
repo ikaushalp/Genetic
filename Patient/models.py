@@ -24,6 +24,9 @@ class Patient(models.Model):
     relationship = models.CharField(max_length=50)
     guardian_mobile_no = models.CharField(max_length=13)
 
+    def get_absolute_url(self):
+        return reversed("Patient:add")
+
 class Category(models.Model):
     class Meta():
         db_table = 'category'
