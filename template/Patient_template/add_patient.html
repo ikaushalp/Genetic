@@ -288,26 +288,6 @@
             document.getElementById('age').value = a;
         }
     </script>
-    <script>
-        const form = document.getElementById("patient");
-        form.addEventListener("submit", submitHandler);
-
-        function submitHandler(e){
-            e.preventDefault();
-            $.ajax({
-                url : {% url 'Patient:add' %},
-                type : 'POST',
-                data : $("#form").serialize(),
-                dataType: 'json',
-                success: function(msg){
-                    if (msg.saved === 1){
-                        alert("Data Saved");
-                        form.reset();
-                    }
-                }
-            });
-        }
-    </script>
     <script src="{% static "js/pages/crud/forms/validation/patient_validation.js" %}"></script>
     <script src="{% static "js/pages/crud/file-upload/dropzonejs.js" %}"></script>
 {% endblock js %}

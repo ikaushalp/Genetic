@@ -24,7 +24,6 @@ def add_Patient(request):
             guardian_mobile_no=request.POST['guardian_mobile'],
         )
         add.save()
-        return JsonResponse({'saved': 1})
     return render(request, 'Patient_template/add_patient.html')
 
 
