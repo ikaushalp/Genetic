@@ -4,12 +4,8 @@ from django.http import JsonResponse
 from django.views.generic import TemplateView
 
 # Patient #
-def index(request):
-    return render(request, "Patient_template/add_patient.html")
-
 def add_Patient(request):
     if request.method == 'POST':
-
         add = Patient(
             name=request.POST['name'],
             gender=request.POST['gender'],
@@ -29,12 +25,10 @@ def add_Patient(request):
             guardian_mobile_no=request.POST['guardian_mobile'],
         )
         add.save()
-<<<<<<< HEAD
-    return JsonResponse('')
+        return JsonResponse('')
+    else:
+        return render(request, 'Patient_template/add_patient.html')
 
-=======
-    return render(request, 'Patient_template/add_patient.html')
->>>>>>> 1a763b7541ece96801aad08917d04629a3c943d8
 
 
 def delete_patient(request):

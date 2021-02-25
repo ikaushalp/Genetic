@@ -3,8 +3,7 @@ from Patient import views
 app_name = 'Patient'
 
 urlpatterns = [
-    path('add', views.index, name='add'),
-    path('add_data', views.add_Patient, name='add_data'),
+    path('add', views.add_patient, name='add'),
     path('category', views.category, name='category'),
     path('view', views.patient_list, name='view'),
     path('delete', views.delete_patient, name='delete'),
