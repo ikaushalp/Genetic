@@ -25,9 +25,7 @@
 <body>
 {% block content %}
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
-
         <div class="d-flex flex-column-fluid">
-            <!--begin::Container-->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -137,7 +135,7 @@
                     info = {pid: id, csrfmiddlewaretoken: csrf}
                     $.ajax({
                         url: '{% url 'Patient:delete' %}',
-                        method: "POST",
+                        type: 'POST',
                         data: info,
                         success: function (data) {
                             if (data.deleted === 1) {
