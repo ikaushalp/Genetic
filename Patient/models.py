@@ -19,13 +19,9 @@ class Patient(models.Model):
     height = models.IntegerField()
     weight = models.IntegerField()
     address = models.TextField()
-    image = models.ImageField(upload_to='patient/profile')
     guardian_name = models.CharField(max_length=150)
     relationship = models.CharField(max_length=50)
     guardian_mobile_no = models.CharField(max_length=13)
-
-    def get_absolute_url(self):
-        return reversed("Patient:add")
 
 class Category(models.Model):
     class Meta():

@@ -55,9 +55,9 @@
                                             <label>Gender *</label>
                                             <select class="form-control selectpicker"
                                                     data-size="4" name="gender">
-                                                <option value="">Select</option>
-                                                <option>Male</option>
-                                                <option>Female</option>
+                                                <option>Select</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
                                             </select>
                                         </div>
                                     </div>
@@ -82,9 +82,9 @@
                                             <label>Marital Status *</label>
                                             <select class="form-control selectpicker" data-size="4"
                                                     name="marital_status">
-                                                <option value="">Select</option>
-                                                <option>Single</option>
-                                                <option>Married</option>
+                                                <option>Select</option>
+                                                <option value="Single">Single</option>
+                                                <option value="Married">Married</option>
                                             </select>
                                         </div>
                                     </div>
@@ -153,19 +153,6 @@
                                             <label>Address</label>
                                             <textarea class="form-control" id="kt_autosize_1" rows="3"
                                                       name="address"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-12">
-                                            <label>Profile Picture</label>
-                                            <div class="dropzone dropzone-default dropzone-success" id="kt_dropzone_3">
-                                                <div class="dropzone-msg dz-message needsclick">
-                                                    <h3 class="dropzone-msg-title">Drop files here or click to
-                                                        upload.</h3>
-                                                    <span class="dropzone-msg-desc">Only image, pdf and psd files are
-                                                        allowed for upload</span>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -285,47 +272,10 @@
     </script>
     <script type="text/javascript">
         $(document).on('click', '#sbn', function () {
-            console.log("Save Button Clicked");
-            let v1 = $('input[name=name]').val();
-            let v2 = $('input[name=gender]').val();
-            let v3 = $('input[name=birthdate]').val();
-            let v4 = $('input[name=age]').val();
-            let v5 = $('input[name=marital_status]').val();
-            let v6 = $('input[name=phone]').val();
-            let v7 = $('input[name=email]').val();
-            let v8 = $('input[name=category]').val();
-            let v9 = $('input[name=blood_group]').val();
-            let v10 = $('input[name=blood_pressure]').val();
-            let v11 = $('input[name=height]').val();
-            let v12 = $('input[name=weight]').val();
-            let v13 = $('input[name=address]').val();
-            let v14 = $('input[name=guardian_name]').val();
-            let v15 = $('input[name=relationship]').val();
-            let v16 = $('input[name=guardian_mobile]').val();
-            let csrf = $('input[name=csrfmiddlewaretoken]').val();
-            info = {
-                name: v1,
-                gender: v2,
-                birthdate: v3,
-                age: v4,
-                marital_status: v5,
-                phone: v6,
-                email: v7,
-                category: v8,
-                blood_group: v9,
-                blood_pressure: v10,
-                height: v11,
-                weight: v12,
-                address: v13,
-                guardian_name: v14,
-                relationship: v15,
-                guardian_mobile: v16,
-                csrfmiddlewaretoken: csrf
-            }
             $.ajax({
                 url: '{% url 'Patient:add' %}',
                 type: 'POST',
-                data: info,
+                data: $("#patient").serialize(),
                 dataType: 'json',
                 success: function (data) {
                     if (data.saved === 1) {
@@ -336,7 +286,6 @@
         });
     </script>
     <script src="{% static "js/pages/crud/forms/validation/patient_validation.js" %}"></script>
-    <script src="{% static "js/pages/crud/file-upload/dropzonejs.js" %}"></script>
 {% endblock js %}
 
 </html>
