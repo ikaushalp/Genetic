@@ -255,7 +255,7 @@
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
                                         <button type="submit"
-                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save
+                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold" id="sbn">Save
                                         </button>
                                         <button type="reset"
                                                 class="btn btn-light-danger btn-lg font-weight-bold">Cancel
@@ -277,6 +277,54 @@
 {% endblock content %}
 </body>
 {% block js %}
+<script type="text/javascript">
+        $(document).on('click', '#sbn', function () {
+            console.log("Save Button Clicked");
+            let v1 = $('input[name=name]').val();
+            let v2 = $('input[name=gender]').val();
+            let v3 = $('input[name=birthdate]').val();
+            let v4 = $('input[name=marital_status]').val();
+            let v5 = $('input[name=phone]').val();
+            let v6 = $('input[name=email]').val();
+            let v7 = $('input[name=address]').val();
+            let v8 = $('input[name=username]').val();
+            let v9 = $('input[name=password1]').val();
+            let v10 = $('input[name=role]').val();
+            let v11 = $('input[name=designation]').val();
+            let v12 = $('input[name=department]').val();
+            let v13 = $('input[name=joining_date]').val();
+            let v14 = $('input[name=qualification]').val();
+            let csrf = $('input[name=csrfmiddlewaretoken]').val();
+            info = {
+                name: v1,
+                gender: v2,
+                birthdate: v3,
+                marital_status: v4,
+                phone: v5,
+                email: v6,
+                address: v7,
+                username: v8,
+                password: v9,
+                role: v10,
+                designation: v11,
+                department: v12,
+                joining_date: v13,
+                qualification: v14,
+                csrfmiddlewaretoken: csrf
+            }
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'Employee:add' %}',
+                data: info,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.saved === 1) {
+                        alert("Data Saved");
+                    }
+                }
+            });
+        });
+    </script>
     <script src="{% static "js/pages/crud/forms/validation/employee_validation.js" %}"></script>
     <script src="{% static "js/pages/crud/file-upload/dropzonejs.js" %}"></script>
 {% endblock js %}

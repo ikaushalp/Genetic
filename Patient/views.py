@@ -8,18 +8,18 @@ def add_patient(request):
     if request.method == "POST" and request.is_ajax():
         add = Patient(
             name=request.POST['name'],
-            gender = request.POST['gender'],
+            #gender = request.POST['gender'],
             birthdate = request.POST['birthdate'],
             age = request.POST['age'],
-            marital_status = request.POST['marital_status'],
+            #marital_status = request.POST['marital_status'],
             mobile_no = request.POST['phone'],
             email = request.POST['email'],
-            category = request.POST['category'],
-            blood_group = request.POST['blood_group'],
+            #category = request.POST['category'],
+            #blood_group = request.POST['blood_group'],
             blood_pressure = request.POST['blood_pressure'],
             height = request.POST['height'],
             weight = request.POST['weight'],
-            address = request.POST['address'],
+            #address = request.POST['address'],
             guardian_name = request.POST['guardian_name'],
             relationship = request.POST['relationship'],
             guardian_mobile_no = request.POST['guardian_mobile']
