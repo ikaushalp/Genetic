@@ -7,25 +7,31 @@ from django.http import JsonResponse
 # Patient #
 def add_patient(request):
     if request.method == "POST":
+        name = request.POST['name']
+        gender = request.POST['gender']
+        birthdate = request.POST['birthdate']
+        age = request.POST['age']
+        marital_status = request.POST['marital_status']
+        mobile_no = request.POST['phone']
+        email = request.POST['email']
+        category = request.POST['category']
+        blood_group = request.POST['blood_group']
+        blood_pressure = request.POST['blood_pressure']
+        height = request.POST['height']
+        weight = request.POST['weight']
+        address = request.POST['address']
+        guardian_name = request.POST['guardian_name']
+        relationship = request.POST['relationship']
+        guardian_mobile_no = request.POST['guardian_mobile']
 
-        add = Patient(
-            name=request.POST.get('name'),
-            gender=request.POST.get('gender'),
-            birthdate=request.POST.get('birthdate'),
-            age=request.POST.get('age'),
-            marital_status=request.POST.get('marital_status'),
-            mobile_no=request.POST.get('phone'),
-            email=request.POST.get('email'),
-            category=request.POST.get('category'),
-            blood_group=request.POST.get('blood_group'),
-            blood_pressure=request.POST.get('blood_pressure'),
-            height=request.POST.get('height'),
-            weight=request.POST.get('weight'),
-            address=request.POST.get('address'),
-            guardian_name=request.POST.get('guardian_name'),
-            relationship=request.POST.get('relationship'),
-            guardian_mobile_no=request.POST.get('guardian_mobile'),
-        )
+        if not birthdate:
+            birthdate = None
+
+        add = Patient(name=name, gender=gender, birthdate=birthdate, age=age, marital_status=marital_status,
+                      mobile_no=mobile_no, email=email, category=category, blood_group=blood_group,
+                      blood_pressure=blood_pressure, height=height, weight=weight, address=address,
+                      guardian_name=guardian_name, relationship=relationship, guardian_mobile_no=guardian_mobile_no
+                      )
         add.save()
         return JsonResponse({'saved': 1})
     else:

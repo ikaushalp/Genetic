@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!--begin::Form-->
-                        <form method="post" id="patient" class="form">
+                        <form id="patient" class="form">
                             {% csrf_token %}
                             <div class="card card-custom mb-2">
                                 <div class="card-header ">
@@ -233,7 +233,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
-                                        <button type="button"
+                                        <button type="submit"
                                                 class="btn btn-light-success btn-lg mr-2 font-weight-bold" id="sbn">
                                             Save
                                         </button>
@@ -243,7 +243,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </form>
                         <!--end::Form-->
                     </div>
@@ -271,7 +270,7 @@
         }
     </script>
     <script type="text/javascript">
-        $(document).on('click', '#sbn', function () {
+        $(document).on('submit', '#patient', function () {
             $.ajax({
                 url: '{% url 'Patient:add' %}',
                 type: 'POST',

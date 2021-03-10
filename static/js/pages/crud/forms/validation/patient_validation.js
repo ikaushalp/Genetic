@@ -67,36 +67,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                guardian_name: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Guardian name required'
-                        },
-                    }
-                },
-
-                relationship: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Relationship is required'
-                        },
-                    }
-                },
-
-                guardian_mobile: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Indian phone number is required'
-                        },
-                        phone: {
-                            country: 'IN',
-                            message: 'The value is not a valid Indian phone number'
-                        }
-                    }
-                },
-
-               
-
                 username: {
                     validators: {
                         notEmpty: {
