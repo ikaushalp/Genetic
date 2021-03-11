@@ -29,7 +29,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form method="post" id="patient" onsubmit="myFunction()">
+                        <form method="post" id="patient">
                             {% csrf_token %}
                             <div class="card card-custom mb-2">
                                 <div class="card-header ">
@@ -233,9 +233,9 @@
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
                                         <input type="submit"
-                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">
+                                               class="btn btn-light-success btn-lg mr-2 font-weight-bold">
                                         <input type="reset"
-                                                class="btn btn-light-danger btn-lg font-weight-bold">
+                                               class="btn btn-light-danger btn-lg font-weight-bold">
                                     </div>
                                 </div>
                             </div>
@@ -265,49 +265,12 @@
         }
     </script>
     <script>
-        {#document.getElementById("patient").addEventListener("submit", myFunction);#}
-        function myFunction(){
+        $(document).on('submit', '#patient', function (e){
             e.preventDefault();
-            let v1 = $('input[name=name]').val();
-            let v2 = $('select[name=gender]').val();
-            let v3 = $('input[name=birthdate]').val();
-            let v4 = $('input[name=age]').val();
-            let v5 = $('select[name=marital_status]').val();
-            let v6 = $('input[name=phone]').val();
-            let v7 = $('input[name=email]').val();
-            let v8 = $('select[name=category]').val();
-            let v9 = $('select[name=blood_group]').val();
-            let v10 = $('input[name=blood_pressure]').val();
-            let v11 = $('input[name=height]').val();
-            let v12 = $('input[name=weight]').val();
-            let v13 = $('textarea[name=address]').val();
-            let v14 = $('input[name=guardian_name]').val();
-            let v15 = $('input[name=relationship]').val();
-            let v16 = $('input[name=guardian_mobile]').val();
-            let csrf = $('input[name=csrfmiddlewaretoken]').val();
-            info = {
-                name: v1,
-                gender: v2,
-                birthdate: v3,
-                age: v4,
-                marital_status: v5,
-                phone: v6,
-                email: v7,
-                category: v8,
-                blood_group: v9,
-                blood_pressure: v10,
-                height: v11,
-                weight: v12,
-                address: v13,
-                guardian_name: v14,
-                relationship: v15,
-                guardian_mobile: v16,
-                csrfmiddlewaretoken: csrf
-            }
             $.ajax({
                 type: 'POST',
                 url: '{% url 'Patient:add' %}',
-                data: info,
+                data: $("#patient").serialize(),
                 dataType: 'json',
                 success: function (data) {
                     if (data.saved === 1) {
@@ -315,7 +278,7 @@
                     }
                 }
             });
-        };
+        });
     </script>
 
 {% endblock js %}
