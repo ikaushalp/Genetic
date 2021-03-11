@@ -1,12 +1,11 @@
 import json
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from Patient.models import Patient
-from django.http import JsonResponse
-
+from django.http import JsonResponse, HttpResponse
 
 # Patient #
 def add_patient(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         name = request.POST['name']
         gender = request.POST['gender']
         birthdate = request.POST['birthdate']
@@ -27,13 +26,26 @@ def add_patient(request):
         if not birthdate:
             birthdate = None
 
+        if not blood_pressure:
+            blood_pressure = None
+
+        if not height:
+            height = None
+
+        if not weight:
+            weight = None
+
+        if not address:
+            address = None
+
         add = Patient(name=name, gender=gender, birthdate=birthdate, age=age, marital_status=marital_status,
                       mobile_no=mobile_no, email=email, category=category, blood_group=blood_group,
                       blood_pressure=blood_pressure, height=height, weight=weight, address=address,
                       guardian_name=guardian_name, relationship=relationship, guardian_mobile_no=guardian_mobile_no
                       )
         add.save()
-        return JsonResponse({'saved': 1})
+        data = {'saved': 1}
+        return JsonResponse(data)
     else:
         return render(request, 'Patient_template/add_patient.html')
 

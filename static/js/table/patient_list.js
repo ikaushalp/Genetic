@@ -20,7 +20,7 @@ var Datatables = function () {
                 {
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
                 },
 
@@ -54,6 +54,7 @@ var Datatables = function () {
             ],
 
         });
+
         $('#export_print').on('click', function (e) {
             e.preventDefault();
             table.button(0).trigger();
