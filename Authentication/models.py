@@ -6,10 +6,12 @@ from django.contrib.auth.models import (
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, password=None):
-        if username:
+    def create_user(self, username, password=None, role=None, aid=None):
+        if username and role and aid:
             user = self.model(
-                username=username
+                username=username,
+                role=role,
+                aid=aid
             )
         user.set_password(password)
         user.save(using=self._db)

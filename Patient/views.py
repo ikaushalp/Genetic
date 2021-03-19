@@ -1,7 +1,7 @@
-import json
 from django.shortcuts import render
 from Patient.models import Patient
-from django.http import JsonResponse, HttpResponse
+from Authentication.models import CustomUser
+from django.http import JsonResponse
 
 # Patient #
 def add_patient(request):
@@ -44,6 +44,23 @@ def add_patient(request):
                       guardian_name=guardian_name, relationship=relationship, guardian_mobile_no=guardian_mobile_no
                       )
         add.save()
+
+        username = request.POST['username']
+        password = request.POST['retype_password']
+        role = 4
+        aid = add.id
+
+        try:
+            check = CustomUser.objects.get(username=username)
+        except CustomUser.DoesNotExist:
+            check = None
+
+        if check:
+            data = {'existdata': 1}
+            return JsonResponse(data)
+
+        add2 = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
+        add2.save()
         data = {'saved': 1}
         return JsonResponse(data)
     else:
@@ -54,7 +71,9 @@ def delete_patient(request):
     if request.method == 'POST':
         id = request.POST['pid']
         rem = Patient.objects.get(id=id)
+        rem2 = CustomUser.objects.get(aid=id)
         rem.delete()
+        rem2.delete()
     return JsonResponse({'deleted': 1})
 
 
