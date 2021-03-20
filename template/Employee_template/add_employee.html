@@ -172,7 +172,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="password" class="form-control"
-                                                       name="password1"/>
+                                                       name="retype_password"/>
                                             </div>
                                         </div>
                                     </div>
@@ -189,17 +189,17 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
                                             <label>Role *</label>
                                             <select class="form-control selectpicker" data-size="4"
                                                     data-dropup-auto="false" name="role">
                                                 <option value="">Select</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="Doctor">Doctor</option>
-                                                <option value="Receptionist">Receptionist</option>
+                                                <option value='1'>Admin</option>
+                                                <option value='2'>Doctor</option>
+                                                <option value='3'>Receptionist</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
                                             <label>Designations *</label>
                                             <select class="form-control selectpicker" data-size="4"
                                                     data-dropup-auto="false" name="designation">
@@ -207,16 +207,6 @@
                                                 <option value="Admin">Admin</option>
                                                 <option value="Doctor">Doctor</option>
                                                 <option value="Receptionist">Receptionist</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label>Department *</label>
-                                            <select class="form-control selectpicker" data-size="4"
-                                                    data-dropup-auto="false" name="department">
-                                                <option value="">Select</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="Doctor">Doctors</option>
-                                                <option value="Receptionist">Reception</option>
                                             </select>
                                         </div>
                                     </div>
@@ -241,11 +231,11 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
-                                        <button type="button"
+                                        <button type="submit"
                                                 class="btn btn-light-success btn-lg mr-2 font-weight-bold" id="sbn">Save
                                         </button>
                                         <button type="reset"
-                                                class="btn btn-light-danger btn-lg font-weight-bold">Cancel
+                                                class="btn btn-light-danger btn-lg font-weight-bold">Reset
                                         </button>
                                     </div>
                                 </div>
@@ -265,44 +255,14 @@
 </body>
 {% block js %}
     <script type="text/javascript">
-        $(document).on('click', '#sbn', function (e) {
-            console.log("Save Button Clicked");
-            let v1 = $('input[name=name]').val();
-            let v2 = $('input[name=gender]').val();
-            let v3 = $('input[name=birthdate]').val();
-            let v4 = $('input[name=marital_status]').val();
-            let v5 = $('input[name=phone]').val();
-            let v6 = $('input[name=email]').val();
-            let v7 = $('input[name=address]').val();
-            let v8 = $('input[name=username]').val();
-            let v9 = $('input[name=password1]').val();
-            let v10 = $('input[name=role]').val();
-            let v11 = $('input[name=designation]').val();
-            let v12 = $('input[name=department]').val();
-            let v13 = $('input[name=joining_date]').val();
-            let v14 = $('input[name=qualification]').val();
-            let csrf = $('input[name=csrfmiddlewaretoken]').val();
-            info = {
-                name: v1,
-                gender: v2,
-                birthdate: v3,
-                marital_status: v4,
-                phone: v5,
-                email: v6,
-                address: v7,
-                username: v8,
-                password: v9,
-                role: v10,
-                designation: v11,
-                department: v12,
-                joining_date: v13,
-                qualification: v14,
-                csrfmiddlewaretoken: csrf
-            };
+        $(document).on('submit', '#employee', function (e) {
+            const v1 = $("select[name=role]").val()
+            console.log(v1)
+            e.preventDefault();
             $.ajax({
                 type: 'POST',
                 url: '{% url 'Employee:add' %}',
-                data: info,
+                data: $('#employee').serialize(),
                 dataType: 'json',
                 success: function (data) {
                     if (data.saved === 1) {

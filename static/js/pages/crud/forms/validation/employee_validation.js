@@ -1,7 +1,6 @@
-var form = document.getElementById('employee');
-document.addEventListener('DOMContentLoaded', function(e) {
-    FormValidation.formValidation(
-        document.getElementById('employee'),
+const form = document.getElementById('employee');
+document.addEventListener('DOMContentLoaded', function (e) {
+    const fv = FormValidation.formValidation(form,
         {
             fields: {
                 name: {
@@ -67,13 +66,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                password1: {
+                retype_password: {
                     validators: {
                         notEmpty: {
                             message: 'Please enter a password again'
                         },
                         identical: {
-                            compare: function() {
+                            compare: function () {
                                 return form.querySelector('[name="password"]').value;
                             },
                             message: "Password doesn't match"
@@ -97,14 +96,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                department: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please select an option'
-                        }
-                    }
-                },
-
                 joining_date: {
                     validators: {
                         notEmpty: {
@@ -119,11 +110,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 // Bootstrap Framework Integration
                 bootstrap: new FormValidation.plugins.Bootstrap(),
                 // Validate fields when clicking the Submit button
-                submitButton: new FormValidation.plugins.SubmitButton(),
+                // submitButton: new FormValidation.plugins.SubmitButton(),
                 // Submit the form when all fields are valid
-                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
             }
         }
     );
+    $(form).submit(function () {
+        fv.validate();
+    });
 });
 
