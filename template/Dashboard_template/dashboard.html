@@ -5,14 +5,14 @@
 {% block title %}Dashboard{% endblock %}
 {% block header_name %}My Dashboard{% endblock %}
 {% block header_name_sub %}
-<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-    <li class="breadcrumb-item">
-        <a href="" class="text-muted">Admin</a>
-    </li>
-    <li class="breadcrumb-item">
-        <a href="" class="text-muted">Dashboard</a>
-    </li>
-</ul>
+    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+        <li class="breadcrumb-item">
+            <a href="" class="text-muted">Admin</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="" class="text-muted">Dashboard</a>
+        </li>
+    </ul>
 {% endblock header_name_sub %}
 
 {% comment %} Template tag base:end {% endcomment %}
@@ -25,8 +25,8 @@
 </head>
 
 <body>
-    <!--begin::Content-->
-    {% block content %}
+<!--begin::Content-->
+{% block content %}
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
 
         <div class="d-flex flex-column-fluid">
@@ -34,85 +34,52 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-3">
-                        <!--begin: Stats Widget 19-->
-                        <div class="card card-custom bg-light-success card-stretch gutter-b">
+                        <div class="card card-custom bg-info card-stretch gutter-b">
                             <!--begin::Body-->
-                            <div class="card-body my-3">
-                                <a href="{% url 'Patient:view' %}"
-                                    class="card-title font-weight-bolder text-success text-hover-state-dark font-size-h6 mb-4 d-block">Patients</a>
-
-                                <div class="font-weight-bold text-muted font-size-sm"><span
-                                        class="text-dark-75 font-size-h2 font-weight-bolder mr-2">{{ patient }}</span>Total Strength
-                                </div>
-
-                                <div class="progress progress-xs mt-7 bg-success-o-60">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"
-                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <!--end:: Body-->
-                        </div>
-                        <!--end: Stats:Widget 19-->
-                    </div>
-                    <div class="col-xl-3">
-                        <!--begin::Stats Widget 20-->
-                        <div class="card card-custom bg-light-warning card-stretch gutter-b">
-                            <!--begin::Body-->
-                            <div class="card-body my-4">
-                                <a href="#"
-                                    class="card-title font-weight-bolder text-warning font-size-h6 mb-4 text-hover-state-dark d-block">Doctor</a>
-
-                                <div class="font-weight-bold text-muted font-size-sm"><span
-                                        class="text-dark-75 font-weight-bolder font-size-h2 mr-2">46</span>Total Strength</div>
-
-                                <div class="progress progress-xs mt-7 bg-warning-o-60">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;"
-                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                            <div class="card-body">
+                                <i class="fas fa-users text-white icon-2x"></i>
+                                <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{ patient }}</span>
+                                <span class="font-weight-bold text-white font-size-h5">Total
+                                    Patient</span>
                             </div>
                             <!--end::Body-->
                         </div>
-                        <!--end::Stats Widget 20-->
                     </div>
                     <div class="col-xl-3">
-                        <!--begin::Stats Widget 21-->
-                        <div class="card card-custom bg-light-info card-stretch gutter-b">
-                            <!--begin::ody-->
-                            <div class="card-body my-4">
-                                <a href="#"
-                                    class="card-title font-weight-bolder text-info font-size-h6 mb-4 text-hover-state-dark d-block">Employee</a>
-
-                                <div class="font-weight-bold text-muted font-size-sm"><span
-                                        class="text-dark-75 font-weight-bolder font-size-h2 mr-2">650</span>Total Strengh</div>
-
-                                <div class="progress progress-xs mt-7 bg-info-o-60">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%;"
-                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <!--end::Body-->
-                        </div>
-                        <!--end::Stats Widget 21-->
-                    </div>
-                    <div class="col-xl-3">
-                        <!--begin::Stats Widget 20-->
-                        <div class="card card-custom bg-light-danger card-stretch gutter-b">
+                        <div class="card card-custom bg-danger card-stretch gutter-b">
                             <!--begin::Body-->
-                            <div class="card-body my-4">
-                                <a href="{% url 'Appointment:view' %}"
-                                    class="card-title font-weight-bolder text-warning font-size-h6 mb-4 text-hover-state-dark d-block">Appointments</a>
-
-                                <div class="font-weight-bold text-muted font-size-sm"><span
-                                        class="text-dark-75 font-weight-bolder font-size-h2 mr-2">15,000</span>Total Strength</div>
-
-                                <div class="progress progress-xs mt-7 bg-warning-o-60">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;"
-                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                            <div class="card-body">
+                                <i class="fas fa-user-md text-white icon-2x"></i>
+                                <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">30</span>
+                                <span class="font-weight-bold text-white font-size-h5">Total
+                                    Doctor</span>
                             </div>
                             <!--end::Body-->
                         </div>
-                        <!--end::Stats Widget 20-->
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="card card-custom bg-primary card-stretch gutter-b">
+                            <!--begin::Body-->
+                            <div class="card-body">
+                                <i class="fas fa-users-cog text-white icon-2x"></i>
+                                <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">30</span>
+                                <span class="font-weight-bold text-white font-size-h5">Total
+                                    Employee</span>
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="card card-custom bg-success card-stretch gutter-b">
+                            <!--begin::Body-->
+                            <div class="card-body">
+                                <i class="fas fa-clipboard-list text-white icon-2x"></i>
+                                <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">30</span>
+                                <span class="font-weight-bold text-white font-size-h5">Total
+                                    Appointment</span>
+                            </div>
+                            <!--end::Body-->
+                        </div>
                     </div>
                 </div>
                 <!-- Calander Start -->
@@ -141,12 +108,12 @@
         </div>
         <!--end::Entry-->
     </div>
-    {% endblock content%}
-    <!--end::Content-->
+{% endblock content %}
+<!--end::Content-->
 </body>
 {% block js %}
 
-<script src="{% static "js/pages/features/calendar/google.js" %}"></script>
+    <script src="{% static "js/pages/features/calendar/google.js" %}"></script>
 
 {% endblock js %}
 </html>

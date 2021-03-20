@@ -8,7 +8,7 @@ class Employee(models.Model):
     id = models.AutoField(primary_key=True)
     ename = models.CharField(max_length=50)
     gender = models.CharField(max_length=10)
-    blood_group = models.CharField(max_length=3, null=True)
+    blood_group = models.CharField(max_length=3)
     birthdate = models.DateField()
     mobile = models.CharField(max_length=13)
     email = models.EmailField()

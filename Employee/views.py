@@ -15,7 +15,6 @@ def add_Employee(request):
         marital_status = request.POST['marital_status'],
         address = request.POST['address'],
         role = request.POST['role'],
-        print(role)
         designation = request.POST['designation'],
         joining_date = request.POST['joining_date'],
         qualification = request.POST['qualification']
