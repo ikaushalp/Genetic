@@ -267,30 +267,6 @@
         }
     </script>
     <script type="text/javascript">
-        $(document).on('submit', '#patient', function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '{% url 'Patient:add' %}',
-                data: $("#patient").serialize(),
-                dataType: 'json',
-                success: function (data) {
-                    if (data.existdata === 1) {
-                        Swal.fire(
-                            "Cancelled",
-                            "Username already Exist",
-                            "error"
-                        )
-                    }
-                    if (data.saved === 1) {
-                        $.notify("Information Saved Successfully");
-                        location.reload();
-                    }
-                }
-            });
-        });
-    </script>
-    <script type="text/javascript">
         $('input[name=username]').keyup(function (e) {
             e.preventDefault();
             const username = $('input[name=username]').val();
@@ -305,7 +281,7 @@
                     if (data.Exist === 1) {
                         const avail = $('div').hasClass('invalid-feedback');
                         console.log(avail);
-                        if (avail != true) {
+                        if (avail !== true) {
                             $('input[name=username]').addClass('is-invalid');
                             $('#username').append('<div class="invalid-feedback">Username Not Available</div>');
                         }
@@ -314,6 +290,28 @@
                     }
                 }
             });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).on('submit', '#patient', function (e) {
+            const avail = $('div').hasClass('invalid-feedback');
+            var form = document.getElementById('patient');
+            e.preventDefault();
+            if (avail === false) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url 'Patient:add' %}',
+                    data: $("#patient").serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.saved === 1) {
+                            $.notify("Information Saved Successfully");
+                            $('#patient')
+                            form.reset();
+                        }
+                    }
+                });
+            }
         });
     </script>
 {% endblock js %}
