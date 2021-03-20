@@ -50,15 +50,6 @@ def add_patient(request):
         role = 4
         aid = add.id
 
-        try:
-            check = CustomUser.objects.get(username=username)
-        except CustomUser.DoesNotExist:
-            check = None
-
-        if check:
-            data = {'existdata': 1}
-            return JsonResponse(data)
-
         add2 = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
         add2.save()
         data = {'saved': 1}

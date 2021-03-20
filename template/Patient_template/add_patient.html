@@ -191,8 +191,8 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
+                                    <div class="form-group row validated">
+                                        <div class="col-lg-6" id="username">
                                             <label>Username *</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
@@ -266,7 +266,7 @@
             document.getElementById('age').value = a;
         }
     </script>
-    <script>
+    <script type="text/javascript">
         $(document).on('submit', '#patient', function (e) {
             e.preventDefault();
             $.ajax({
@@ -290,7 +290,32 @@
             });
         });
     </script>
-
+    <script type="text/javascript">
+        $('input[name=username]').keyup(function (e) {
+            e.preventDefault();
+            const username = $('input[name=username]').val();
+            const csrf = $("input[name=csrfmiddlewaretoken]").val();
+            info = {username: username, csrfmiddlewaretoken: csrf};
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'Authentication:validate_user' %}',
+                data: info,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.Exist === 1) {
+                        const avail = $('div').hasClass('invalid-feedback');
+                        console.log(avail);
+                        if (avail != true) {
+                            $('input[name=username]').addClass('is-invalid');
+                            $('#username').append('<div class="invalid-feedback">Username Not Available</div>');
+                        }
+                    } else if (data.NotExist === 1) {
+                        $('div').remove('.invalid-feedback');
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock js %}
 
 </html>
