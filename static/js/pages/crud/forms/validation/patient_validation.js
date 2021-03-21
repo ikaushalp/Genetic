@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
         }
     });
-    $(form).submit(function (){
-       fv.validate();
+    $(form).submit(function () {
+        fv.validate();
     });
 });

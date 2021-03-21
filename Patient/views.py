@@ -22,6 +22,8 @@ def add_patient(request):
         guardian_name = request.POST['guardian_name']
         relationship = request.POST['relationship']
         guardian_mobile_no = request.POST['guardian_mobile']
+        username = request.POST['username']
+        password = request.POST['retype_password']
 
         if not birthdate:
             birthdate = None
@@ -38,6 +40,10 @@ def add_patient(request):
         if not address:
             address = None
 
+        check = CustomUser.objects.filter(username=username)
+        if check:
+            return JsonResponse({'exist': 1})
+
         add = Patient(name=name, gender=gender, birthdate=birthdate, age=age, marital_status=marital_status,
                       mobile_no=mobile_no, email=email, category=category, blood_group=blood_group,
                       blood_pressure=blood_pressure, height=height, weight=weight, address=address,
@@ -45,15 +51,12 @@ def add_patient(request):
                       )
         add.save()
 
-        username = request.POST['username']
-        password = request.POST['retype_password']
         role = 4
         aid = add.id
 
-        add2 = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
-        add2.save()
-        data = {'saved': 1}
-        return JsonResponse(data)
+        user = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
+        user.save()
+        return JsonResponse({'saved': 1})
     else:
         return render(request, 'Patient_template/add_patient.html')
 

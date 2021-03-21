@@ -11,7 +11,7 @@ class Patient(models.Model):
     name = models.CharField(max_length=150)
     gender = models.CharField(max_length=100)
     birthdate = models.DateField(null=True)
-    age = models.IntegerField(null=True)
+    age = models.IntegerField()
     marital_status = models.CharField(max_length=10)
     mobile_no = models.CharField(max_length=13)
     email = models.EmailField()

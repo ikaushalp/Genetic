@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render, HttpResponse
-from django.http import JsonResponse
 from Authentication.models import CustomUser
 from django.contrib.auth import authenticate, login
 
@@ -31,14 +30,3 @@ def login_handle(request):
 
 def handleLogin(request):
     return render(request, 'Authentication_template/login.html')
-
-
-def validate_user(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        check = CustomUser.objects.filter(username=username)
-        if check:
-            return JsonResponse({'Exist': 1})
-        return JsonResponse({'NotExist': 1})
-    else:
-        return redirect('/')
