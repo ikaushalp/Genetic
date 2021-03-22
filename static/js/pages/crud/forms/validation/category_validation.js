@@ -1,6 +1,7 @@
+const create_form = document.getElementById('create_category');
+const update_form = document.getElementById('update_category');
 document.addEventListener('DOMContentLoaded', function(e) {
-    FormValidation.formValidation(
-        document.getElementById('create_category'),
+    const fv = FormValidation.formValidation(create_form,
         {
             fields: {
                 category: {
@@ -18,14 +19,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 // Bootstrap Framework Integration
                 bootstrap: new FormValidation.plugins.Bootstrap(),
                 // Validate fields when clicking the Submit button
-                submitButton: new FormValidation.plugins.SubmitButton(),
+                // submitButton: new FormValidation.plugins.SubmitButton(),
                 // Submit the form when all fields are valid
-                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
             }
         }
     );
-    FormValidation.formValidation(
-        document.getElementById('update_category'),
+
+    const ufv = FormValidation.formValidation(update_form,
         {
             fields: {
                 category: {
@@ -43,11 +44,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 // Bootstrap Framework Integration
                 bootstrap: new FormValidation.plugins.Bootstrap(),
                 // Validate fields when clicking the Submit button
-                submitButton: new FormValidation.plugins.SubmitButton(),
+                // submitButton: new FormValidation.plugins.SubmitButton(),
                 // Submit the form when all fields are valid
-                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
             }
         }
     );
+    $(create_form).submit(function () {
+        fv.validate();
+    });
 });
 

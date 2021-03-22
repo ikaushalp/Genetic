@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from Patient.models import Patient
+from Patient.models import Patient, Category
 from Authentication.models import CustomUser
 from django.http import JsonResponse
 
@@ -78,4 +78,23 @@ def patient_list(request):
 
 
 def category(request):
-    return render(request, 'Patient_template/category.html')
+    if request.method == 'POST':
+        category = request.POST['category']
+
+        check = Category.objects.filter(category_name=category)
+        if check:
+            return JsonResponse({'exist': 1})
+        add = Category(category_name=category)
+        add.save()
+        return JsonResponse({'saved': 1})
+    else:
+        list = Category.objects.all()
+        context = {'category_list': list}
+        return render(request, 'Patient_template/category.html', context)
+
+def delete_category(request):
+    if request.method == 'POST':
+        id = request.POST['pid']
+        rem = Category.objects.get(id=id)
+        rem.delete()
+    return JsonResponse({'deleted': 1})

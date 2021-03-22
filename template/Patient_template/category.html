@@ -30,7 +30,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 mb-2">
-                        <form action="" id="create_category" class="form" method="POST">
+                        <form id="create_category" method="POST">
                             {% csrf_token %}
                             <div class="card card-custom">
                                 <div class="card-header">
@@ -52,7 +52,7 @@
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
                                         <button type="submit"
-                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold ">Save
+                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save
                                         </button>
                                     </div>
                                 </div>
@@ -80,16 +80,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for cat in categories %}
+                                    {% for cat in category_list %}
                                         <tr>
-                                            <td>{{cat.id}}</td>
-                                            <td>{{cat.category_name}}</td>
+                                            <td>{{ cat.id }}</td>
+                                            <td>{{ cat.category_name }}</td>
                                             <td>
+                                                {% csrf_token %}
                                                 <a href="#" class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                    data-toggle="modal" data-target="#exampleModalCenter"><i
                                                         class="fas fa-pen"></i></a>
-                                                <a href="/patient/category/delete/{{ cat.id }}" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
-                                                        class="fas fa-trash" id="category_delete"></i></a>
+                                                <a class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                   type="button" data-info="{{ cat.id }}"
+                                                   id="category_delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -156,6 +160,74 @@
                 },
 
                 ordering: false,
+            });
+        });
+    </script>
+    <script>
+        $(document).on('submit', '#create_category', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'Patient:category' %}',
+                data: $("#create_category").serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if (data.saved === 1) {
+                        $.notify("Information Saved Successfully")
+                    } else if (data.exist === 1) {
+                        Swal.fire(
+                            "Error",
+                            "Category Already Exist",
+                            "error"
+                        )
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(".table").on('click', '#category_delete', function () {
+            let id = $(this).attr("data-info");
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!"
+            }).then(function (result) {
+                if (result.value) {
+                    let csrf = $("input[name=csrfmiddlewaretoken]").val();
+                    info = {pid: id, csrfmiddlewaretoken: csrf}
+                    $.ajax({
+                        url: '{% url 'Patient:delete_category' %}',
+                        type: 'POST',
+                        data: info,
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.deleted === 1) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success",
+                                    confirmButtonText: "Ok",
+                                }).then(function (result) {
+                                    if (result.value) {
+                                        location.reload();
+                                    } else {
+                                        location.reload();
+                                    }
+                                });
+                            }
+                        }
+                    });
+                } else if (result.dismiss === "cancel") {
+                    Swal.fire(
+                        "Cancelled",
+                        "Your Record is safe",
+                        "error"
+                    )
+                }
             });
         });
     </script>
