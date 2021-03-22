@@ -20,6 +20,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block js %}
+        <script src="{% static "js/pages/crud/forms/validation/category_validation.js" %}"></script>
+        <script src="{% static "js/table/category_list.js" %}"></script>
+        <script src="{% static "js/ajax/category.js" %}"></script>
+    {% endblock js %}
 </head>
 
 <body>
@@ -68,10 +73,27 @@
                                         Category List
                                     </h5>
                                 </div>
+                                <div class="card-toolbar">
+                                    <a href="javaScript:void(0)" class="btn btn-light-warning btn-icon btn-lg mr-2"
+                                       id="export_print" data-toggle="tooltip" data-placement="top" title="Print"
+                                       data-theme="dark">
+                                        <i class="fas fa-print"></i>
+                                    </a>
+                                    <a href="javaScript:void(0)" class="btn btn-light-primary btn-icon btn-lg mr-2"
+                                       id="export_pdf" data-toggle="tooltip" data-placement="top" title="PDF"
+                                       data-theme="dark">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </a>
+                                    <a href="javaScript:void(0)" class="btn btn-light-success btn-icon btn-lg mr-2"
+                                       id="export_excel" data-toggle="tooltip" data-placement="top" title="Excel"
+                                       data-theme="dark">
+                                        <i class="fas fa-file-excel"></i>
+                                    </a>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <!--begin: Datatable-->
-                                <table class="table table-separate table-head-custom" id="datatable">
+                                <table class="table table-separate table-head-custom" id="category">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
@@ -86,12 +108,12 @@
                                             <td>{{ cat.category_name }}</td>
                                             <td>
                                                 {% csrf_token %}
-                                                <a href="#" class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                   data-toggle="modal" data-target="#exampleModalCenter"><i
+                                                <a class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                   data-toggle="modal" data-target="#exampleModalCenter" data-info="{{ cat.id }}"><i
                                                         class="fas fa-pen"></i></a>
                                                 <a class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
                                                    type="button" data-info="{{ cat.id }}"
-                                                   id="category_delete">
+                                                   id="delete_category">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -114,7 +136,8 @@
          aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form action="" id="update_category">
+                <form method="POST" id="update_category">
+                    {% csrf_token %}
                     <div class="modal-header ">
                         <h5 class="modal-title">
                             <i class="fas fa-edit icon-lg mr-1"></i>
@@ -124,9 +147,8 @@
                     <div class="modal-body">
                         <div class="form-group row">
                             <div class="col-lg-12">
-
                                 <label>Category Name *</label>
-                                <input type="text" class="form-control" name="category"/>
+                                <input type="text" class="form-control" name="update_category"/>
                             </div>
                         </div>
                     </div>
@@ -142,97 +164,4 @@
     </div>
 {% endblock content %}
 </body>
-{% block js %}
-    <script>
-        $(document).ready(function () {
-            $('#datatable').DataTable({
-
-                searching: true,
-
-                responsive: true,
-
-                lengthMenu: [5, 10],
-
-                pageLength: 5,
-
-                language: {
-                    'lengthMenu': 'Display _MENU_',
-                },
-
-                ordering: false,
-            });
-        });
-    </script>
-    <script>
-        $(document).on('submit', '#create_category', function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '{% url 'Patient:category' %}',
-                data: $("#create_category").serialize(),
-                dataType: 'json',
-                success: function (data) {
-                    if (data.saved === 1) {
-                        $.notify("Information Saved Successfully")
-                    } else if (data.exist === 1) {
-                        Swal.fire(
-                            "Error",
-                            "Category Already Exist",
-                            "error"
-                        )
-                    }
-                }
-            });
-        });
-    </script>
-    <script>
-        $(".table").on('click', '#category_delete', function () {
-            let id = $(this).attr("data-info");
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "No, cancel!"
-            }).then(function (result) {
-                if (result.value) {
-                    let csrf = $("input[name=csrfmiddlewaretoken]").val();
-                    info = {pid: id, csrfmiddlewaretoken: csrf}
-                    $.ajax({
-                        url: '{% url 'Patient:delete_category' %}',
-                        type: 'POST',
-                        data: info,
-                        dataType: 'json',
-                        success: function (data) {
-                            if (data.deleted === 1) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success",
-                                    confirmButtonText: "Ok",
-                                }).then(function (result) {
-                                    if (result.value) {
-                                        location.reload();
-                                    } else {
-                                        location.reload();
-                                    }
-                                });
-                            }
-                        }
-                    });
-                } else if (result.dismiss === "cancel") {
-                    Swal.fire(
-                        "Cancelled",
-                        "Your Record is safe",
-                        "error"
-                    )
-                }
-            });
-        });
-    </script>
-    <script src="{% static "js/pages/crud/forms/validation/category_validation.js" %}"></script>
-    <script src="{% static "js/pages/features/miscellaneous/sweetalert2.js" %}"></script>
-{% endblock js %}
-
 </html>

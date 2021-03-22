@@ -3,6 +3,7 @@ from Patient.models import Patient, Category
 from Authentication.models import CustomUser
 from django.http import JsonResponse
 
+
 # Patient #
 def add_patient(request):
     if request.method == 'POST':
@@ -56,7 +57,7 @@ def add_patient(request):
 
         user = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
         user.save()
-        return JsonResponse({'saved': 1})
+        return JsonResponse({'insert': 1})
     else:
         return render(request, 'Patient_template/add_patient.html')
 
@@ -65,10 +66,10 @@ def delete_patient(request):
     if request.method == 'POST':
         id = request.POST['pid']
         rem = Patient.objects.get(id=id)
-        rem2 = CustomUser.objects.get(aid=id)
+        rem2 = CustomUser.objects.filter(aid=id)
         rem.delete()
         rem2.delete()
-    return JsonResponse({'deleted': 1})
+    return JsonResponse({'delete': 1})
 
 
 def patient_list(request):
@@ -86,15 +87,17 @@ def category(request):
             return JsonResponse({'exist': 1})
         add = Category(category_name=category)
         add.save()
-        return JsonResponse({'saved': 1})
+        return JsonResponse({'insert': 1})
     else:
         list = Category.objects.all()
         context = {'category_list': list}
         return render(request, 'Patient_template/category.html', context)
+
 
 def delete_category(request):
     if request.method == 'POST':
         id = request.POST['pid']
         rem = Category.objects.get(id=id)
         rem.delete()
-    return JsonResponse({'deleted': 1})
+    return JsonResponse({'delete': 1})
+

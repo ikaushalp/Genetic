@@ -1,11 +1,17 @@
 $(document).ready(function () {
-//Insert Patient Data
-    $(document).on('submit', '#patient', function (e) {
+//Insert Patient Category
+    $(document).on('submit', '#create_category', function (e) {
         e.preventDefault();
+        let category = $("input[name=category]").val();
+        let csrf = $("input[name=csrfmiddlewaretoken]").val();
+        if (category === "") {
+            category_create.validate();
+        }
+        info = {category: category, csrfmiddlewaretoken: csrf}
         $.ajax({
             type: 'POST',
-            url: 'add',
-            data: $("#patient").serialize(),
+            url: 'category',
+            data: info,
             dataType: 'json',
             success: function (data) {
                 if (data.insert === 1) {
@@ -13,7 +19,7 @@ $(document).ready(function () {
                 } else if (data.exist === 1) {
                     Swal.fire(
                         "Error",
-                        "Username Not Available",
+                        "Category Already Exist",
                         "error"
                     )
                 }
@@ -21,12 +27,10 @@ $(document).ready(function () {
         });
     });
 
-// Delete Patient Data
-    $(".table").on('click', '#patient_delete', function () {
-
+//Delete Patient Category
+    $(document).on('click', '#delete_category', function () {
         let id = $(this).attr("data-info");
         let csrf = $("input[name=csrfmiddlewaretoken]").val();
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -35,11 +39,10 @@ $(document).ready(function () {
             confirmButtonText: "Yes, delete it!",
             cancelButtonText: "No, cancel!"
         }).then(function (result) {
-            let info;
             if (result.value) {
                 info = {pid: id, csrfmiddlewaretoken: csrf}
                 $.ajax({
-                    url: 'delete',
+                    url: 'delete_category',
                     type: 'POST',
                     data: info,
                     dataType: 'json',
@@ -68,5 +71,10 @@ $(document).ready(function () {
                 )
             }
         });
+    });
+
+//Update Patient Category
+    $(document).on('submit', '#update_category', function (e) {
+        e.preventDefault();
     });
 });

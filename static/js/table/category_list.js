@@ -1,11 +1,11 @@
 $(document).ready(function () {
-    var table = $("#schedule").DataTable({
+    var table = $('#category').DataTable({
 
         searching: true,
 
         responsive: true,
 
-        lengthMenu: [5, 10, 25, 50],
+        lengthMenu: [5, 10],
 
         pageLength: 5,
 
@@ -15,42 +15,42 @@ $(document).ready(function () {
 
         ordering: false,
 
-        buttons: [{
-            extend: 'print',
-            exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6]
-            }
-        },
+        buttons: [
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [0, 1]
+                }
+            },
 
             {
                 extend: 'pdfHtml5',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1]
                 },
                 customize: function (doc) {
                     doc.styles.title = {
                         fontSize: '35',
                         alignment: 'center'
-                    },
-                        doc.styles.tableHeader = {
-                            fillColor: '#2D4154',
-                            color: 'white',
-                            fontSize: '12',
-                            bold: 2,
-                            alignment: 'center'
-                        }
-                    doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    }
+                    doc.styles.tableHeader = {
+                        fillColor: '#2D4154',
+                        color: 'white',
+                        fontSize: '12',
+                        bold: 2,
+                        alignment: 'center'
+                    }
                     doc.defaultStyle.alignment = 'center';
                 }
             },
+
             {
                 extend: 'excelHtml5',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
+                    columns: [0, 1]
                 }
             },
         ],
-
     });
     $('#export_print').on('click', function (e) {
         e.preventDefault();
@@ -67,5 +67,3 @@ $(document).ready(function () {
         table.button(2).trigger();
     });
 });
-
-

@@ -1,7 +1,7 @@
 const create_form = document.getElementById('create_category');
 const update_form = document.getElementById('update_category');
-document.addEventListener('DOMContentLoaded', function(e) {
-    const fv = FormValidation.formValidation(create_form,
+$(document).ready(function () {
+    var category_create = FormValidation.formValidation(create_form,
         {
             fields: {
                 category: {
@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
         }
     );
 
-    const ufv = FormValidation.formValidation(update_form,
+    var category_update = FormValidation.formValidation(update_form,
         {
             fields: {
-                category: {
+                update_category: {
                     validators: {
                         notEmpty: {
                             message: 'Category name is required'
@@ -51,7 +51,11 @@ document.addEventListener('DOMContentLoaded', function(e) {
         }
     );
     $(create_form).submit(function () {
-        fv.validate();
+        category_create.validate();
+    });
+    $(update_form).submit(function () {
+        category_update.validate();
     });
 });
+
 

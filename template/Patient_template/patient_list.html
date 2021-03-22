@@ -118,51 +118,6 @@
 </body>
 {% block js %}
     <script src="{% static "js/table/patient_list.js" %}"></script>
-    <script>
-        $(".table").on('click', '#patient_delete', function () {
-            let id = $(this).attr("data-info");
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "No, cancel!"
-            }).then(function (result) {
-                if (result.value) {
-                    let csrf = $("input[name=csrfmiddlewaretoken]").val();
-                    info = {pid: id, csrfmiddlewaretoken: csrf}
-                    $.ajax({
-                        url: '{% url 'Patient:delete' %}',
-                        type: 'POST',
-                        data: info,
-                        dataType: 'json',
-                        success: function (data) {
-                            if (data.deleted === 1) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success",
-                                    confirmButtonText: "Ok",
-                                }).then(function (result) {
-                                    if (result.value) {
-                                        location.reload();
-                                    } else {
-                                        location.reload();
-                                    }
-                                });
-                            }
-                        }
-                    });
-                } else if (result.dismiss === "cancel") {
-                    Swal.fire(
-                        "Cancelled",
-                        "Your Record is safe",
-                        "error"
-                    )
-                }
-            });
-        });
-    </script>
+    <script src="{% static "js/ajax/patient.js" %}"></script>
 {% endblock js %}
 </html>
