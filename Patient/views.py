@@ -59,7 +59,9 @@ def add_patient(request):
         user.save()
         return JsonResponse({'insert': 1})
     else:
-        return render(request, 'Patient_template/add_patient.html')
+        list = Category.objects.all()
+        context = {'category_list': list}
+        return render(request, 'Patient_template/add_patient.html', context)
 
 
 def delete_patient(request):

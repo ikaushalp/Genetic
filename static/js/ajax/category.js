@@ -15,6 +15,9 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.insert === 1) {
+                    setTimeout(function (){
+                        location.reload();
+                    }, 2000);
                     $.notify("Information Saved Successfully")
                 } else if (data.exist === 1) {
                     Swal.fire(

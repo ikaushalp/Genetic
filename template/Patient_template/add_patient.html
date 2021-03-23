@@ -107,16 +107,11 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>Category *</label>
-                                            <select class="form-control selectpicker" data-size="4" name="category">
+                                            <select class="form-control selectpicker" data-size="4" name="category" data-live-search="true">
                                                 <option selected hidden value=""></option>
-                                                <option>A+</option>
-                                                <option>A-</option>
-                                                <option>B+</option>
-                                                <option>B-</option>
-                                                <option>O+</option>
-                                                <option>O-</option>
-                                                <option>AB+</option>
-                                                <option>AB-</option>
+                                                {% for cat in category_list %}
+                                                    <option>{{ cat.category_name}}</option>
+                                                {% endfor %}
                                             </select>
                                         </div>
                                         <div class="col-lg-2">
