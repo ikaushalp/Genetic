@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     }
                 },
 
-                medicine_name: {
+                'medicine_name[]' : {
                     validators: {
                         notEmpty: {
                             message: 'Medicine name is required'
