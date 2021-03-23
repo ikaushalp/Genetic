@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 date: {
                     validators: {
                         notEmpty: {
-                            message: 'Appointment date is required'
+                            message: 'Prescription date is required'
                         }
                     }
                 },
 
-                prescription: {
+                medicine_name: {
                     validators: {
                         notEmpty: {
-                            message: 'Appointment date is required'
+                            message: 'Medicine name is required'
                         }
                     }
                 },
