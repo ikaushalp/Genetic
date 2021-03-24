@@ -1,7 +1,6 @@
-const form = document.getElementById('employee');
-document.addEventListener('DOMContentLoaded', function (e) {
-    const fv = FormValidation.formValidation(form,
-        {
+var employee_form = document.getElementById('employee');
+$(document).ready(function () {
+    var employee_create = FormValidation.formValidation(employee_form, {
             fields: {
                 name: {
                     validators: {
@@ -73,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         },
                         identical: {
                             compare: function () {
-                                return form.querySelector('[name="password"]').value;
+                                return employee_form.querySelector('[name="password"]').value;
                             },
                             message: "Password doesn't match"
                         }
@@ -96,13 +95,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     }
                 },
 
-                // joining_date: {
-                //     validators: {
-                //         notEmpty: {
-                //             message: 'Joining date is required'
-                //         }
-                //     }
-                // },
+                joining_date: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Joining date is required'
+                        }
+                    }
+                },
             },
 
             plugins: { //Learn more: https://formvalidation.io/guide/plugins
@@ -116,8 +115,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
             }
         }
     );
-    $(form).submit(function () {
-        fv.validate();
+    $(employee_form).submit(function () {
+        employee_create.validate();
     });
-});
-
+})

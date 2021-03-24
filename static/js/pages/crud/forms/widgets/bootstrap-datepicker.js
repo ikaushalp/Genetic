@@ -101,7 +101,7 @@ var KTBootstrapDatepicker = function () {
             orientation: "bottom right",
             todayHighlight: true,
             templates: arrows,
-            autoclose: true
+            autoclose: true,
         });
 
         // range picker
