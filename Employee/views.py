@@ -10,6 +10,7 @@ def add_Employee(request):
     if request.method == 'POST':
         ename = request.POST['name'],
         gender = request.POST['gender'],
+        birthdate = request.POST['birthdate'],
         blood_group = request.POST['blood_group'],
         mobile = request.POST['mobile_no'],
         email = request.POST['email'],
@@ -22,14 +23,23 @@ def add_Employee(request):
         username = request.POST['username']
         password = request.POST['retype_password']
 
-        add = Employee(ename=ename, gender=gender, blood_group=blood_group, mobile=mobile, email=email,
+        if not birthdate:
+            birthdate = None
+
+        if not joining_date:
+            joining_date = None
+
+        print(role)
+
+        print(type(role))
+        add = Employee(ename=ename, gender=gender, birthdate=birthdate, blood_group=blood_group, mobile=mobile, email=email,
                        marital_status=marital_status, address=address, role=role, designation=designation,
                        joining_date=joining_date, qualification=qualification)
         add.save()
 
-        aid = add.id
-        user = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
-        user.save()
+        # aid = add.id
+        # user = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
+        # user.save()
         return JsonResponse({'saved': 1})
     else:
         return render(request, 'Employee_template/add_employee.html')
