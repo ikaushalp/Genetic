@@ -1,6 +1,7 @@
-const form = document.getElementById('patient');
+const patient_form = document.getElementById('patient');
+let patient_validation;
 document.addEventListener('DOMContentLoaded', function () {
-    const fv = FormValidation.formValidation(form, {
+    patient_validation = FormValidation.formValidation(patient_form, {
         fields: {
             name: {
                 validators: {
@@ -69,14 +70,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 validators: {
                     notEmpty: {
                         message: 'Please enter a username'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_.]+$/,
+                        message: 'The username can only consist of alphabetical, number, dot and underscore'
                     }
-                }
+                },
+
             },
 
             password: {
                 validators: {
                     notEmpty: {
                         message: 'Please enter a password'
+                    },
+                    stringLength:{
+                        min: 6,
+                        max: 12,
+                        message: 'The username must be more than 6 and less than 12 characters long'
                     }
                 }
             },
@@ -88,14 +99,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     identical: {
                         compare: function () {
-                            return form.querySelector('[name="password"]').value;
+                            return patient_form.querySelector('[name="password"]').value;
                         },
                         message: "Password doesn't match"
                     }
                 },
             },
         },
-
         plugins: { //Learn more: https://formvalidation.io/guide/plugins
             trigger: new FormValidation.plugins.Trigger(),
             // Bootstrap Framework Integration
@@ -105,8 +115,5 @@ document.addEventListener('DOMContentLoaded', function () {
             // Submit the form when all fields are valid
             // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
         }
-    });
-    $(form).submit(function () {
-        fv.validate();
     });
 });

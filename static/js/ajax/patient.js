@@ -2,23 +2,30 @@ $(document).ready(function () {
 //Insert Patient Data
     $(document).on('submit', '#patient', function (e) {
         e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: 'add',
-            data: $("#patient").serialize(),
-            dataType: 'json',
-            success: function (data) {
-                if (data.insert === 1) {
-                    $.notify("Information Saved Successfully")
-                } else if (data.exist === 1) {
-                    Swal.fire(
-                        "Error",
-                        "Username Not Available",
-                        "error"
-                    )
-                }
+        patient_validation.validate().then(function (status) {
+            if (status === 'Valid') {
+                $.ajax({
+                    type: 'POST',
+                    url: 'add',
+                    data: $("#patient").serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.insert === 1) {
+                            $.notify("Information Saved Successfully")
+                        } else if (data.exist === 1) {
+                            Swal.fire(
+                                "Error",
+                                "Username Not Available",
+                                "error"
+                            )
+                        }
+                    }
+                });
             }
-        });
+            else {
+                KTUtil.scrollTop();
+            }
+        })
     });
 
 // Delete Patient Data
