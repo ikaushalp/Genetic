@@ -96,13 +96,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     }
                 },
 
-                joining_date: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Joining date is required'
-                        }
-                    }
-                },
+                // joining_date: {
+                //     validators: {
+                //         notEmpty: {
+                //             message: 'Joining date is required'
+                //         }
+                //     }
+                // },
             },
 
             plugins: { //Learn more: https://formvalidation.io/guide/plugins

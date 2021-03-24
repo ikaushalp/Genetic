@@ -23,7 +23,7 @@ class CustomUser(AbstractBaseUser):
     aid = models.IntegerField()
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=150)
-    role = models.CharField(max_length=150)
+    role = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

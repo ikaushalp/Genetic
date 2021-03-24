@@ -194,9 +194,9 @@
                                             <select class="form-control selectpicker" data-size="4"
                                                     data-dropup-auto="false" name="role">
                                                 <option selected hidden value=""></option>
-                                                <option value='1'>Admin</option>
-                                                <option value='2'>Doctor</option>
-                                                <option value='3'>Receptionist</option>
+                                                <option value=1>Admin</option>
+                                                <option value=2>Doctor</option>
+                                                <option value=3>Receptionist</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-6">
@@ -257,6 +257,9 @@
     <script type="text/javascript">
         $(document).on('submit', '#employee', function (e) {
             e.preventDefault();
+            var v1 = $('select[name=role]').val();
+            console.log(v1);
+            console.log(typeof v1)
             $.ajax({
                 type: 'POST',
                 url: '{% url 'Employee:add' %}',
