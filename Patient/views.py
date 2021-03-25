@@ -103,11 +103,17 @@ def delete_category(request):
         rem.delete()
     return JsonResponse({'delete': 1})
 
+
 def update_category(request):
     if request.method == 'POST':
-        id = request.POST['cid']
+        id = request.POST['id']
         category = request.POST['update_category']
+
         cat = Category.objects.get(id=id)
+        check = Category.objects.filter(category_name=category)
+
+        if check:
+            return JsonResponse({'exist': 1})
         cat.category_name = category
         cat.save()
-        return JsonResponse({'update': 1})
+    return JsonResponse({'update': 1})

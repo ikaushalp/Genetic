@@ -9,5 +9,5 @@ urlpatterns = [
     path('delete', views.delete_patient, name='delete'),
     path('category', views.category, name='category'),
     path('delete_category', views.delete_category, name='delete_category'),
-    # path('update_category', views.update_category, name='update_category'),
+    path('update_category', views.update_category, name='update_category'),
 ]

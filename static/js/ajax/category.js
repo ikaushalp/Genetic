@@ -2,32 +2,27 @@ $(document).ready(function () {
 //Insert Patient Category
     $(document).on('submit', '#create_category', function (e) {
         e.preventDefault();
-        let category = $("input[name=category]").val();
-        let csrf = $("input[name=csrfmiddlewaretoken]").val();
-        if (category === "") {
-            category_create.validate();
-        }
-        info = {category: category, csrfmiddlewaretoken: csrf}
-        $.ajax({
-            type: 'POST',
-            url: 'category',
-            data: info,
-            dataType: 'json',
-            success: function (data) {
-                if (data.insert === 1) {
-                    setTimeout(function (){
-                        location.reload();
-                    }, 2000);
-                    $.notify("Information Saved Successfully")
-                } else if (data.exist === 1) {
-                    Swal.fire(
-                        "Error",
-                        "Category Already Exist",
-                        "error"
-                    )
-                }
+        category_create_validation.validate().then(function (status) {
+            if (status === 'Valid') {
+                $.ajax({
+                    type: 'POST',
+                    url: 'category',
+                    data: $('#create_category').serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.insert === 1) {
+                            $.notify("Information Saved Successfully")
+                        } else if (data.exist === 1) {
+                            Swal.fire(
+                                "Error",
+                                "Category Already Exist",
+                                "error"
+                            )
+                        }
+                    }
+                });
             }
-        });
+        })
     });
 
 //Delete Patient Category
@@ -67,11 +62,12 @@ $(document).ready(function () {
                     }
                 });
             } else if (result.dismiss === "cancel") {
-                Swal.fire(
-                    "Cancelled",
-                    "Your Record is safe",
-                    "error"
-                )
+                Swal.fire({
+                    title: "Cancelled",
+                    text: "Your Record is safe",
+                    icon: "error",
+                    confirmButtonText: "Ok"
+                })
             }
         });
     });
@@ -79,12 +75,43 @@ $(document).ready(function () {
 //Update Patient Category
     $(document).on('click', '#category-edit', function (e) {
         e.preventDefault();
-        var $this = $(this);
+        let $this = $(this);
         let category_id = $this.parents("tr").find('td').eq(0).text();
         let category_name = $this.parents("tr").find('td').eq(1).text();
+        $("input[name=id]").val(category_id);
         $("input[name=update_category]").val(category_name);
 
-        $('#category-modal').modal('show');
-        return false;
+        category_update_validation.validate().then(function (status) {
+            if (status === 'Valid') {
+                $('#category-modal').modal('show');
+                return false;
+            }
+        })
+    });
+
+    $(document).on('submit', '#update_category', function (e) {
+        e.preventDefault();
+        category_update_validation.validate().then(function (status) {
+            if (status === 'Valid') {
+                $.ajax({
+                    type: 'POST',
+                    url: 'update_category',
+                    data: $('#update_category').serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.update === 1) {
+                            $('#category-modal').modal('hide');
+                            $.notify("Information Saved Successfully");
+                        } else if (data.exist === 1) {
+                            Swal.fire(
+                                "Error",
+                                "Category Already Exist",
+                                "error"
+                            )
+                        }
+                    }
+                });
+            }
+        })
     });
 });
