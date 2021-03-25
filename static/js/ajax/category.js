@@ -77,7 +77,14 @@ $(document).ready(function () {
     });
 
 //Update Patient Category
-    $(document).on('submit', '#update_category', function (e) {
+    $(document).on('click', '#category-edit', function (e) {
         e.preventDefault();
+        var $this = $(this);
+        let category_id = $this.parents("tr").find('td').eq(0).text();
+        let category_name = $this.parents("tr").find('td').eq(1).text();
+        $("input[name=update_category]").val(category_name);
+
+        $('#category-modal').modal('show');
+        return false;
     });
 });

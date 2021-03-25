@@ -108,8 +108,7 @@
                                             <td>{{ cat.category_name }}</td>
                                             <td>
                                                 {% csrf_token %}
-                                                <a class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                   data-toggle="modal" data-target="#exampleModalCenter" data-info="{{ cat.id }}"><i
+                                                <a class="btn btn-icon btn-outline-success btn-sm mr-2" id="category-edit" data-id="{{ cat.id }}"><i
                                                         class="fas fa-pen"></i></a>
                                                 <a class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
                                                    type="button" data-info="{{ cat.id }}"
@@ -132,8 +131,8 @@
             <!--end::Entry-->
         </div>
     </div>
-    <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog"
-         aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal fade" id="category-modal" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="edit" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <form method="POST" id="update_category">
