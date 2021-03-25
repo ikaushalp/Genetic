@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
             },
-
+            
             username: {
                 validators: {
                     notEmpty: {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     notEmpty: {
                         message: 'Please enter a password'
                     },
-                    stringLength:{
+                    stringLength: {
                         min: 6,
                         max: 12,
                         message: 'The username must be more than 6 and less than 12 characters long'
@@ -108,12 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         plugins: { //Learn more: https://formvalidation.io/guide/plugins
             trigger: new FormValidation.plugins.Trigger(),
-            // Bootstrap Framework Integration
             bootstrap: new FormValidation.plugins.Bootstrap(),
-            // Validate fields when clicking the Submit button
-            // submitButton: new FormValidation.plugins.SubmitButton(),
-            // Submit the form when all fields are valid
-            // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
         }
+    }).on('core.form.invalid', function () {
     });
 });
