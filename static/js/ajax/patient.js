@@ -44,7 +44,7 @@ $(document).ready(function () {
         }).then(function (result) {
             let info;
             if (result.value) {
-                info = {pid: id, csrfmiddlewaretoken: csrf}
+                info = {patient_id: id, csrfmiddlewaretoken: csrf}
                 $.ajax({
                     url: 'delete',
                     type: 'POST',

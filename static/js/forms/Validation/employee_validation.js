@@ -1,6 +1,7 @@
-var employee_form = document.getElementById('employee');
-$(document).ready(function () {
-    var employee_create = FormValidation.formValidation(employee_form, {
+let employee_form = document.getElementById('employee');
+let employee_create_validation;
+document.addEventListener('DOMContentLoaded', function () {
+    employee_create_validation = FormValidation.formValidation(employee_form, {
             fields: {
                 name: {
                     validators: {
@@ -11,14 +12,6 @@ $(document).ready(function () {
                 },
 
                 gender: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please select an option'
-                        }
-                    }
-                },
-
-                marital_status: {
                     validators: {
                         notEmpty: {
                             message: 'Please select an option'
@@ -106,16 +99,8 @@ $(document).ready(function () {
 
             plugins: { //Learn more: https://formvalidation.io/guide/plugins
                 trigger: new FormValidation.plugins.Trigger(),
-                // Bootstrap Framework Integration
                 bootstrap: new FormValidation.plugins.Bootstrap(),
-                // Validate fields when clicking the Submit button
-                // submitButton: new FormValidation.plugins.SubmitButton(),
-                // Submit the form when all fields are valid
-                // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
             }
         }
     );
-    $(employee_form).submit(function () {
-        employee_create.validate();
-    });
 })

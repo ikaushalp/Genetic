@@ -3,7 +3,6 @@ from Employee.models import Employee
 from Authentication.models import CustomUser
 from django.http import JsonResponse
 
-
 # Create your views here.
 
 def add_Employee(request):
@@ -35,15 +34,19 @@ def add_Employee(request):
         if role == 'Receptionist':
             role = 3
 
+        check = CustomUser.objects.get(username=username)
+        if check:
+            return JsonResponse({'exist': 1})
+
         add = Employee(ename=ename, gender=gender, birthdate=birthdate, blood_group=blood_group, mobile=mobile,
                        email=email,
                        marital_status=marital_status, address=address, role=role, designation=designation,
                        joining_date=joining_date, qualification=qualification)
         add.save()
 
-        # aid = add.id
-        # user = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
-        # user.save()
+        aid = add.id
+        user = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
+        user.save()
         return JsonResponse({'insert': 1})
     else:
         return render(request, 'Employee_template/add_employee.html')

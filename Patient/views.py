@@ -59,16 +59,16 @@ def add_patient(request):
         user.save()
         return JsonResponse({'insert': 1})
     else:
-        list = Category.objects.all()
-        context = {'category_list': list}
+        cat_list = Category.objects.all()
+        context = {'category_list': cat_list}
         return render(request, 'Patient_template/add_patient.html', context)
 
 
 def delete_patient(request):
     if request.method == 'POST':
-        id = request.POST['pid']
-        rem = Patient.objects.get(id=id)
-        rem2 = CustomUser.objects.filter(aid=id)
+        patient_id = request.POST['patient_id']
+        rem = Patient.objects.get(pk=patient_id)
+        rem2 = CustomUser.objects.get(aid=patient_id, role=4)
         rem.delete()
         rem2.delete()
     return JsonResponse({'delete': 1})
@@ -87,6 +87,7 @@ def category(request):
         check = Category.objects.filter(category_name=category)
         if check:
             return JsonResponse({'exist': 1})
+
         add = Category(category_name=category)
         add.save()
         return JsonResponse({'insert': 1})
@@ -99,7 +100,7 @@ def category(request):
 def delete_category(request):
     if request.method == 'POST':
         id = request.POST['pid']
-        rem = Category.objects.get(id=id)
+        rem = Category.objects.get(pk=id)
         rem.delete()
     return JsonResponse({'delete': 1})
 
@@ -109,11 +110,9 @@ def update_category(request):
         id = request.POST['id']
         category = request.POST['update_category']
 
-        cat = Category.objects.get(id=id)
         check = Category.objects.filter(category_name=category)
-
         if check:
             return JsonResponse({'exist': 1})
-        cat.category_name = category
-        cat.save()
+
+        Category.objects.filter(pk=id).update(category_name=category)
     return JsonResponse({'update': 1})

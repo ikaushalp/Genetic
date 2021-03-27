@@ -89,8 +89,8 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Marital Status *</label>
-                                            <select class="form-control selectpicker" data-size="4"
+                                            <label>Marital Status</label>
+                                            <select class="form-control selectpicker"
                                                     data-dropup-auto="false"
                                                     name="marital_status">
                                                 <option selected hidden value=""></option>
@@ -216,7 +216,7 @@
                                                         <i class="fas fa-calendar-plus"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" id="kt_datepicker_3"
+                                                <input type="text" class="form-control" id="kt_datepicker_4_2"
                                                        name="joining_date">
                                             </div>
                                         </div>
@@ -248,23 +248,7 @@
 </body>
 {% block js %}
     <script src="{% static "js/forms/validation/employee_validation.js" %}"></script>
-    <script type="text/javascript">
-        $(document).on('submit', '#employee', function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '{% url 'Employee:add' %}',
-                data: $('#employee').serialize(),
-                dataType: 'json',
-                success: function (data) {
-                    if (data.insert === 1) {
-                        alert("Data Saved");
-                    }
-                }
-            });
-        });
-    </script>
-
+    <script src="{% static "js/ajax/employee.js" %}"></script>
 {% endblock js %}
 
 </html>
