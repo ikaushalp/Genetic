@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     notEmpty: {
                         message: 'Indian phone number is required'
                     },
-                    phone: {
-                        country: 'IN',
-                        message: 'The value is not a valid Indian phone number'
-                    }
+                    regexp: {
+                        regexp: /^(\+)?(91)?(| |-)?[6789]\d{9}$/,
+                        message: 'The value can only consist phone number'
+                    },
                 }
             },
 
