@@ -92,7 +92,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                         class="fas fa-phone-volume"></i></span></div>
-                                                <input type="tel" name="phone" class="form-control"/>
+                                                <input type="text" name="phone" class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -107,10 +107,11 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>Category *</label>
-                                            <select class="form-control selectpicker" data-size="4" name="category" data-live-search="true">
+                                            <select class="form-control selectpicker" data-size="4" name="category"
+                                                    data-live-search="true">
                                                 <option selected hidden></option>
                                                 {% for cat in category_list %}
-                                                    <option>{{ cat.category_name}}</option>
+                                                    <option>{{ cat.category }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
@@ -171,7 +172,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Mobile No</label>
-                                            <input type="tel" class="form-control" name="guardian_mobile"/>
+                                            <input type="text" class="form-control" name="guardian_mobile"/>
                                         </div>
                                     </div>
                                 </div>

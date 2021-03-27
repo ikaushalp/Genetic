@@ -9,10 +9,10 @@ class Patient(models.Model):
 
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=150)
-    gender = models.CharField(max_length=100)
+    gender = models.CharField(max_length=6)
     birthdate = models.DateField(null=True)
     age = models.IntegerField()
-    marital_status = models.CharField(max_length=10)
+    marital_status = models.CharField(max_length=7)
     mobile_no = models.CharField(max_length=13)
     email = models.EmailField()
     category = models.CharField(max_length=100)
@@ -31,4 +31,4 @@ class Category(models.Model):
         db_table = 'category'
 
     id = models.AutoField(primary_key=True)
-    category_name = models.CharField(max_length=60)
+    category = models.CharField(max_length=60)

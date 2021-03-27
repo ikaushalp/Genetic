@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from Patient.models import Patient, Category
-from Authentication.models import CustomUser
 from django.http import JsonResponse
+from django.shortcuts import render, redirect
+
+from Authentication.models import CustomUser
+from Patient.models import Patient, Category
 
 
 # Patient #
@@ -71,7 +72,9 @@ def delete_patient(request):
         rem2 = CustomUser.objects.get(aid=patient_id, role=4)
         rem.delete()
         rem2.delete()
-    return JsonResponse({'delete': 1})
+        return JsonResponse({'delete': 1})
+    else:
+        return redirect('/dashboard')
 
 
 def patient_list(request):
@@ -80,15 +83,16 @@ def patient_list(request):
     return render(request, 'Patient_template/patient_list.html', context)
 
 
+# Category #
 def category(request):
     if request.method == 'POST':
         category = request.POST['category']
 
-        check = Category.objects.filter(category_name=category)
+        check = Category.objects.filter(category=category)
         if check:
             return JsonResponse({'exist': 1})
 
-        add = Category(category_name=category)
+        add = Category(category=category)
         add.save()
         return JsonResponse({'insert': 1})
     else:
@@ -99,10 +103,15 @@ def category(request):
 
 def delete_category(request):
     if request.method == 'POST':
-        id = request.POST['pid']
-        rem = Category.objects.get(pk=id)
-        rem.delete()
-    return JsonResponse({'delete': 1})
+        id = request.POST['category_id']
+
+        cat = Category.objects.get(pk=id)
+        Patient.objects.filter(category=cat.category).update(category="")
+        cat.delete()
+
+        return JsonResponse({'delete': 1})
+    else:
+        return redirect('/dashboard')
 
 
 def update_category(request):
@@ -110,9 +119,14 @@ def update_category(request):
         id = request.POST['id']
         category = request.POST['update_category']
 
-        check = Category.objects.filter(category_name=category)
+        check = Category.objects.filter(category=category)
         if check:
             return JsonResponse({'exist': 1})
 
-        Category.objects.filter(pk=id).update(category_name=category)
-    return JsonResponse({'update': 1})
+        cat = Category.objects.get(pk=id)
+        Patient.objects.filter(category=cat.category).update(category=category)
+        Category.objects.filter(category=cat.category).update(category=category)
+
+        return JsonResponse({'update': 1})
+    else:
+        return redirect('/dashboard')

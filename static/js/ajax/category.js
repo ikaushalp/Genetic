@@ -38,7 +38,7 @@ $(document).ready(function () {
             cancelButtonText: "No, cancel!"
         }).then(function (result) {
             if (result.value) {
-                info = {pid: id, csrfmiddlewaretoken: csrf}
+                info = {category_id: id, csrfmiddlewaretoken: csrf}
                 $.ajax({
                     url: 'delete_category',
                     type: 'POST',
