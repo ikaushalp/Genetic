@@ -92,6 +92,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     validators: {
                         notEmpty: {
                             message: 'Joining date is required'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'The date is not valid'
                         }
                     }
                 },
@@ -103,4 +107,19 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     );
+    $('[name="joining_date"]')
+        .datepicker({
+            rtl: KTUtil.isRTL(),
+            todayBtn: "linked",
+            clearBtn: true,
+            todayHighlight: true,
+            autoclose: true,
+            orientation: 'top left',
+            templates: arrows,
+            format: "yyyy-mm-dd",
+        })
+        .on('changeDate', function () {
+            // Revalidate the date field
+            employee_create_validation.revalidateField('joining_date');
+        });
 })

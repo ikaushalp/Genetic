@@ -27,15 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
 
-            birthdate: {
-                validators: {
-                    notEmpty: {
-                        message: 'Patient age is required'
-                    }
-                }
-            },
-
-
             marital_status: {
                 validators: {
                     notEmpty: {
