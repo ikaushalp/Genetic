@@ -26,6 +26,7 @@ def add_patient(request):
         guardian_mobile_no = request.POST['guardian_mobile']
         username = request.POST['username']
         password = request.POST['retype_password']
+        category = int(category)
 
         if not birthdate:
             birthdate = None
@@ -47,7 +48,7 @@ def add_patient(request):
             return JsonResponse({'exist': 1})
 
         add = Patient(name=name, gender=gender, birthdate=birthdate, age=age, marital_status=marital_status,
-                      mobile_no=mobile_no, email=email, category=category, blood_group=blood_group,
+                      mobile_no=mobile_no, email=email, category_id=category, blood_group=blood_group,
                       blood_pressure=blood_pressure, height=height, weight=weight, address=address,
                       guardian_name=guardian_name, relationship=relationship, guardian_mobile_no=guardian_mobile_no
                       )
@@ -106,7 +107,6 @@ def delete_category(request):
         id = request.POST['category_id']
 
         cat = Category.objects.get(pk=id)
-        Patient.objects.filter(category=cat.category).update(category="")
         cat.delete()
 
         return JsonResponse({'delete': 1})
@@ -124,7 +124,6 @@ def update_category(request):
             return JsonResponse({'exist': 1})
 
         cat = Category.objects.get(pk=id)
-        Patient.objects.filter(category=cat.category).update(category=category)
         Category.objects.filter(category=cat.category).update(category=category)
 
         return JsonResponse({'update': 1})

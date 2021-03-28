@@ -60,34 +60,48 @@
                                 <table class="table table-separate table-head-custom text-center" id="patient">
                                     <thead>
                                     <tr>
+                                        <th>Extend</th>
                                         <th>Patient Id</th>
-                                        <th>Photo</th>
                                         <th>Name</th>
-                                        <th>Birthdate</th>
-                                        <th>Category</th>
                                         <th>Gender</th>
-                                        <th>Guardian</th>
-                                        <th>Blood Group</th>
+                                        <th>Birthdate</th>
+                                        <th>Age</th>
+                                        <th>Marital Status</th>
                                         <th>Mobile No</th>
+                                        <th>Email</th>
+                                        <th>Category</th>
+                                        <th>Blood Group</th>
+                                        <th>Blood Pressure</th>
+                                        <th>Height</th>
+                                        <th>Weight</th>
+                                        <th>Address</th>
+                                        <th>Guardian Name</th>
+                                        <th>Guardian Relationship</th>
+                                        <th>Guardian Mobile No</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for items in all_patient %}
                                         <tr>
+                                            <td></td>
                                             <td>{{ items.id }}</td>
-                                            <td>
-                                                <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
-                                                    <img alt="Pic" src="{% static "media/users/100_3.jpg" %}"/>
-                                                </div>
-                                            </td>
                                             <td>{{ items.name }}</td>
-                                            <td>{{ items.birthdate|date:'j/n/Y' }}</td>
-                                            <td>{{ items.category }}</td>
                                             <td>{{ items.gender }}</td>
-                                            <td>{{ items.guardian_name }}</td>
-                                            <td>{{ items.blood_group }}</td>
+                                            <td>{{ items.birthdate|date:'j/n/Y' }}</td>
+                                            <td>{{ items.age }}</td>
+                                            <td>{{ items.marital_status }}</td>
                                             <td>{{ items.mobile_no }}</td>
+                                            <td>{{ items.email }}</td>
+                                            <td>{{ items.category }}</td>
+                                            <td>{{ items.blood_group }}</td>
+                                            <td>{{ items.blood_pressure }}</td>
+                                            <td>{{ items.height }}</td>
+                                            <td>{{ items.weight }}</td>
+                                            <td>{{ items.address }}</td>
+                                            <td>{{ items.guardian_name }}</td>
+                                            <td>{{ items.relationship }}</td>
+                                            <td>{{ items.guardian_mobile_no }}</td>
                                             <td>
                                                 {% csrf_token %}
                                                 <a href="{% url 'Patient:add' %}"

@@ -69,7 +69,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" id="kt_datepicker_4_3"
-                                                       name="birthdate"/>
+                                                       name="birthdate" onchange="AGE()"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -111,7 +111,7 @@
                                                     data-live-search="true">
                                                 <option selected hidden></option>
                                                 {% for cat in category_list %}
-                                                    <option>{{ cat.category }}</option>
+                                                    <option value="{{ cat.id }}">{{ cat.category }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>

@@ -3,8 +3,19 @@ from django.db import models
 
 # Create your models here.
 
+class Category(models.Model):
+    class Meta:
+        db_table = 'category'
+
+    id = models.AutoField(primary_key=True)
+    category = models.CharField(max_length=60)
+
+    def __str__(self):
+        return self.category
+
+
 class Patient(models.Model):
-    class Meta():
+    class Meta:
         db_table = 'patient'
 
     id = models.AutoField(primary_key=True)
@@ -15,7 +26,7 @@ class Patient(models.Model):
     marital_status = models.CharField(max_length=7)
     mobile_no = models.CharField(max_length=13)
     email = models.EmailField()
-    category = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     blood_group = models.CharField(max_length=3)
     blood_pressure = models.IntegerField(null=True)
     height = models.IntegerField(null=True)
@@ -24,11 +35,3 @@ class Patient(models.Model):
     guardian_name = models.CharField(max_length=150)
     relationship = models.CharField(max_length=50)
     guardian_mobile_no = models.CharField(max_length=13)
-
-
-class Category(models.Model):
-    class Meta():
-        db_table = 'category'
-
-    id = models.AutoField(primary_key=True)
-    category = models.CharField(max_length=60)
