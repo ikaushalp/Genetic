@@ -11,7 +11,13 @@ $(document).ready(function () {
                     dataType: 'json',
                     success: function (data) {
                         if (data.insert === 1) {
-                            $.notify("Information Saved Successfully")
+                            sessionStorage.setItem("load", "true");
+                            KTUtil.scrollTop();
+
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 800)
+
                         } else if (data.exist === 1) {
                             Swal.fire(
                                 "Error",
@@ -19,11 +25,8 @@ $(document).ready(function () {
                                 "error"
                             )
                         }
-                    }
+                    },
                 });
-            }
-            else {
-                KTUtil.scrollTop();
             }
         })
     });
@@ -76,4 +79,9 @@ $(document).ready(function () {
             }
         });
     });
+
+    if (sessionStorage.getItem("load")) {
+        $.notify("Information Saved SuccessFully");
+        sessionStorage.clear();
+    }
 });

@@ -32,6 +32,3 @@ class Patient(models.Model):
     height = models.IntegerField(null=True)
     weight = models.IntegerField(null=True)
     address = models.TextField(null=True)
-    guardian_name = models.CharField(max_length=150)
-    relationship = models.CharField(max_length=50)
-    guardian_mobile_no = models.CharField(max_length=13)

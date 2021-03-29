@@ -21,9 +21,6 @@ def add_patient(request):
         height = request.POST['height']
         weight = request.POST['weight']
         address = request.POST['address']
-        guardian_name = request.POST['guardian_name']
-        relationship = request.POST['relationship']
-        guardian_mobile_no = request.POST['guardian_mobile']
         username = request.POST['username']
         password = request.POST['retype_password']
         category = int(category)
@@ -49,9 +46,7 @@ def add_patient(request):
 
         add = Patient(name=name, gender=gender, birthdate=birthdate, age=age, marital_status=marital_status,
                       mobile_no=mobile_no, email=email, category_id=category, blood_group=blood_group,
-                      blood_pressure=blood_pressure, height=height, weight=weight, address=address,
-                      guardian_name=guardian_name, relationship=relationship, guardian_mobile_no=guardian_mobile_no
-                      )
+                      blood_pressure=blood_pressure, height=height, weight=weight, address=address)
         add.save()
 
         role = 4
@@ -79,8 +74,8 @@ def delete_patient(request):
 
 
 def patient_list(request):
-    list = Patient.objects.all()
-    context = {'all_patient': list}
+    patient_all_list = Patient.objects.all()
+    context = {'all_patient': patient_all_list}
     return render(request, 'Patient_template/patient_list.html', context)
 
 
