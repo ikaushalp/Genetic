@@ -80,6 +80,27 @@ $(document).ready(function () {
         });
     });
 
+// Show All Patient Details
+    $(document).on('click', '#show_patient_details', function (e) {
+        e.preventDefault();
+        let id = $(this).attr("data-info");
+        let csrf = $("input[name=csrfmiddlewaretoken]").val();
+        info = {patient_id: id, csrfmiddlewaretoken: csrf}
+        $.ajax({
+            type: 'POST',
+            url: 'getdata',
+            data: info,
+            dataType: 'json',
+            success: function (data) {
+                if (data.get === 1) {
+                    $('#id').text(data.id);
+                    $('#name').text(data.name);
+                    $('#patient_view_modal').modal('show');
+                }
+            }
+        })
+    });
+
     if (sessionStorage.getItem("load")) {
         $.notify("Information Saved SuccessFully");
         sessionStorage.clear();

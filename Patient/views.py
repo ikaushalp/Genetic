@@ -1,3 +1,4 @@
+import json
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
@@ -77,6 +78,33 @@ def patient_list(request):
     patient_all_list = Patient.objects.all()
     context = {'all_patient': patient_all_list}
     return render(request, 'Patient_template/patient_list.html', context)
+
+
+def get_data(request):
+    if request.method == 'POST':
+        id = request.POST['patient_id']
+
+        patient_data = Patient.objects.get(pk=id)
+        data = {
+            'id': patient_data.id,
+            'name': patient_data.name,
+            'birthdate': patient_data.birthdate,
+            'age': patient_data.age,
+            'gender': patient_data.gender,
+            'cat': patient_data.category,
+            'mobile_no': patient_data.mobile_no,
+            'email': patient_data.email,
+            'blood_group': patient_data.blood_group,
+            'blood_pressure': patient_data.blood_pressure,
+            'height': patient_data.height,
+            'weight': patient_data.weight,
+            'address': patient_data.address,
+            'get': 1
+        }
+
+        return JsonResponse(data)
+    else:
+        return render(request, 'Patient_template/patient_list.html')
 
 
 # Category #
