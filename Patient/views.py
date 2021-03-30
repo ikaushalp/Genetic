@@ -80,36 +80,6 @@ def patient_list(request):
     return render(request, 'Patient_template/patient_list.html', context)
 
 
-def get_data(request):
-    if request.method == 'POST':
-        id = request.POST['patient_id']
-
-        patient_data = Patient.objects.get(pk=id)
-        print(patient_data.birthdate)
-        data = {
-            'id': patient_data.id,
-            'name': patient_data.name,
-            'birthdate': patient_data.birthdate,
-            'age': patient_data.age,
-            'gender': patient_data.gender,
-            'cat': patient_data.category,
-            'mobile_no': patient_data.mobile_no,
-            'marital_status': patient_data.marital_status,
-            'email': patient_data.email,
-            'blood_group': patient_data.blood_group,
-            'blood_pressure': patient_data.blood_pressure,
-            'height': patient_data.height,
-            'weight': patient_data.weight,
-            'address': patient_data.address,
-            'show': 1
-        }
-        data = json.dumps(data, default=str)
-
-        return HttpResponse(data)
-    else:
-        return render(request, 'Patient_template/patient_list.html')
-
-
 # Category #
 def category(request):
     if request.method == 'POST':

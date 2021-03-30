@@ -1,84 +1,79 @@
-var Datatables = function () {
-    var patient = function () {
-        var table = $('#patient').DataTable({
+jQuery(document).ready(function () {
+    $('#patient').DataTable({
 
-            searching: true,
+        searching: true,
 
-            responsive: true,
+        responsive: true,
 
-            lengthMenu: [5, 10, 25, 50],
+        lengthMenu: [5, 10, 25, 50],
 
-            pageLength: 5,
+        pageLength: 5,
 
-            language: {
-                'lengthMenu': 'Display _MENU_',
+        language: {
+            'lengthMenu': 'Display _MENU_',
+        },
+
+        ordering: false,
+
+        columnDefs: [
+            {
+                "targets": [9, 10, 11, 12, 13],
+                "visible": false,
+                "searchable": false
+            },
+        ],
+
+        buttons: [
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                }
             },
 
-            ordering: false,
-
-            buttons: [
-                {
-                    extend: 'print',
-                    exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
-                    }
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
                 },
-
-                {
-                    extend: 'pdfHtml5',
-                    exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
-                    },
-                    customize: function (doc) {
-                        doc.styles.title = {
-                            fontSize: '35',
-                            alignment: 'center'
-                        }
-                        doc.styles.tableHeader = {
-                            fillColor: '#2D4154',
-                            color: 'white',
-                            fontSize: '12',
-                            bold: 2,
-                            alignment: 'center'
-                        }
-                        doc.defaultStyle.alignment = 'center';
+                customize: function (doc) {
+                    doc.styles.title = {
+                        fontSize: '35',
+                        alignment: 'center'
                     }
-                },
-
-                {
-                    extend: 'excelHtml5',
-                    exportOptions: {
-                        columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                    doc.styles.tableHeader = {
+                        fillColor: '#2D4154',
+                        color: 'white',
+                        fontSize: '12',
+                        bold: 2,
+                        alignment: 'center'
                     }
-                },
-            ],
+                    doc.defaultStyle.alignment = 'center';
+                }
+            },
 
-        });
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                }
+            },
+        ],
 
-        $('#export_print').on('click', function (e) {
-            e.preventDefault();
-            table.button(0).trigger();
-        });
+    });
 
-        $('#export_pdf').on('click', function (e) {
-            e.preventDefault();
-            table.button(1).trigger();
-        });
+    $('#export_print').on('click', function (e) {
+        e.preventDefault();
+        table.button(0).trigger();
+    });
 
-        $('#export_excel').on('click', function (e) {
-            e.preventDefault();
-            table.button(2).trigger();
-        });
-    };
-    return {
+    $('#export_pdf').on('click', function (e) {
+        e.preventDefault();
+        table.button(1).trigger();
+    });
 
-        //main function to initiate the module
-        init: function () {
-            patient();
-        }
-    };
-}();
-
-jQuery(document).ready(function () {
-    Datatables.init();
+    $('#export_excel').on('click', function (e) {
+        e.preventDefault();
+        table.button(2).trigger();
+    });
 });

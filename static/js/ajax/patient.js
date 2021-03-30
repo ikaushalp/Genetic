@@ -83,38 +83,34 @@ $(document).ready(function () {
 // Show All Patient Details
     $(document).on('click', '#show_patient_details', function (e) {
         e.preventDefault();
-        let id = $(this).attr("data-info");
-        let csrf = $("input[name=csrfmiddlewaretoken]").val();
-        info = {patient_id: id, csrfmiddlewaretoken: csrf}
-        $.ajax({
-            type: 'POST',
-            url: 'getdata',
-            data: info,
-            dataType: 'json',
-            success: function (data) {
-                if (data.show === 1) {
-                    $('#id').text(data.id);
-                    $('#name').text(data.name);
-                    $('#birthdate').text(data.birthdate);
-                    $('#age').text(data.age);
-                    $('#gender').text(data.gender);
-                    $('#cat').text(data.cat);
-                    $('#mobile_no').text(data.mobile_no);
-                    $('#marital_status').text(data.marital_status);
-                    $('#email').text(data.email);
-                    $('#blood_group').text(data.blood_group);
-                    $('#blood_pressure').text(data.blood_pressure);
-                    $('#height').text(data.height);
-                    $('#weight').text(data.weight);
-                    $('#address').text(data.address);
-                    $('#patient_view_modal').modal('show');
-                }
-            }
-        })
+        let currentrow = $(this).closest('tr');
+
+        let data = $('#patient').DataTable().row(currentrow).data();
+
+        $('#id').text(data[0]);
+        $('#name').text(data[1]);
+        $('#gender').text(data[2]);
+        $('#birthdate').text(data[3]);
+        $('#age').text(data[4]);
+        $('#marital_status').text(data[5]);
+        $('#mobile_no').text(data[6]);
+        $('#email').text(data[7]);
+        $('#cat').text(data[8]);
+        $('#blood_group').text(data[9]);
+        $('#blood_pressure').text(data[10]);
+        $('#height').text(data[11]);
+        $('#weight').text(data[12]);
+        $('#address').text(data[13]);
+
+        $('#patient_view_modal').modal('show');
+
+        return false;
     });
 
     if (sessionStorage.getItem("load")) {
-        $.notify("Information Saved SuccessFully");
-        sessionStorage.clear();
+        setTimeout(function () {
+            $.notify("Information Saved SuccessFully");
+            sessionStorage.clear();
+        }, 1000)
     }
 });
