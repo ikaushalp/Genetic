@@ -70,7 +70,6 @@
                                         <th>Mobile No</th>
                                         <th>Email</th>
                                         <th>Category</th>
-                                        <th>Blood Group</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -80,29 +79,35 @@
                                             <td>{{ items.id }}</td>
                                             <td>{{ items.name }}</td>
                                             <td>{{ items.gender }}</td>
-                                            <td>{{ items.birthdate|date:'j/n/Y' }}</td>
+                                            <td>{{ items.birthdate }}</td>
                                             <td>{{ items.age }}</td>
                                             <td>{{ items.marital_status }}</td>
                                             <td>{{ items.mobile_no }}</td>
                                             <td>{{ items.email }}</td>
                                             <td>{{ items.category }}</td>
-                                            <td>{{ items.blood_group }}</td>
                                             <td>
                                                 {% csrf_token %}
                                                 <button
                                                         class="btn btn-icon btn-outline-warning btn-sm mr-2"
-                                                        type="button" id="show_patient_details" data-info="{{ items.id }}">
+                                                        type="button" id="show_patient_details"
+                                                        data-info="{{ items.id }}" data-toggle="tooltip"
+                                                        data-placement="top" title="View"
+                                                        data-theme="dark">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                                 <button href="{% url 'Patient:add' %}"
                                                         class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                        type="button">
+                                                        type="button" data-toggle="tooltip"
+                                                        data-placement="top" title="Edit"
+                                                        data-theme="dark">
                                                     <i class="fas fa-pen"></i>
                                                 </button>
 
                                                 <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
                                                         type="button" data-info="{{ items.id }}"
-                                                        id="patient_delete">
+                                                        id="patient_delete" data-toggle="tooltip"
+                                                        data-placement="top" title="Delete"
+                                                        data-theme="dark">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </td>
@@ -125,7 +130,10 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Patient Details</h5>
+                    <div class="modal-title">
+                        <i class="fas fa-user icon-lg mr-1"></i>
+                        Patient Details
+                    </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
@@ -141,25 +149,25 @@
                             <th>Patient ID</th>
                             <td><span id="id"></span></td>
                             <th>Gender</th>
-                            <td>Male</td>
+                            <td><span id="gender"></span></td>
                         </tr>
                         <tr>
                             <th>Birthdate</th>
-                            <td>13-06-2002</td>
+                            <td><span id="birthdate"></span></td>
                             <th>Age</th>
-                            <td>18</td>
+                            <td><span id="age"></span></td>
                         </tr>
                         <tr>
                             <th>Blood group</th>
-                            <td>O+</td>
+                            <td><span id="blood_group"></span></td>
                             <th>Blood Pressure</th>
-                            <td>89</td>
+                            <td><span id="blood_pressure"></span></td>
                         </tr>
                         <tr>
                             <th>Height</th>
-                            <td>174</td>
+                            <td><span id="height"></span></td>
                             <th>Weight</th>
-                            <td>64</td>
+                            <td><span id="weight"></span></td>
                         </tr>
                         <tr>
                             <th>Email</th>
@@ -167,13 +175,13 @@
                         </tr>
                         <tr>
                             <th>Mobile No</th>
-                            <td>+17573352201</td>
+                            <td><span id="mobile_no"></span></td>
                             <th>Marital Status</th>
-                            <td>Single</td>
+                            <td><span id="marital_status"></span></td>
                         </tr>
-                        <tr class="quick-address">
+                        <tr>
                             <th>Address</th>
-                            <td colspan="3" height="80px;">D/2684  Jefferson Street, Portsmouth, Virginia.</td>
+                            <td colspan="3" height="80px;"><span id="address"></span></td>
                         </tr>
                         </tbody>
                     </table>

@@ -1,5 +1,5 @@
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 
 from Authentication.models import CustomUser
@@ -85,6 +85,7 @@ def get_data(request):
         id = request.POST['patient_id']
 
         patient_data = Patient.objects.get(pk=id)
+        print(patient_data.birthdate)
         data = {
             'id': patient_data.id,
             'name': patient_data.name,
@@ -93,16 +94,18 @@ def get_data(request):
             'gender': patient_data.gender,
             'cat': patient_data.category,
             'mobile_no': patient_data.mobile_no,
+            'marital_status': patient_data.marital_status,
             'email': patient_data.email,
             'blood_group': patient_data.blood_group,
             'blood_pressure': patient_data.blood_pressure,
             'height': patient_data.height,
             'weight': patient_data.weight,
             'address': patient_data.address,
-            'get': 1
+            'show': 1
         }
+        data = json.dumps(data, default=str)
 
-        return JsonResponse(data)
+        return HttpResponse(data)
     else:
         return render(request, 'Patient_template/patient_list.html')
 

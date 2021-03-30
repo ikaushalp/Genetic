@@ -92,9 +92,21 @@ $(document).ready(function () {
             data: info,
             dataType: 'json',
             success: function (data) {
-                if (data.get === 1) {
+                if (data.show === 1) {
                     $('#id').text(data.id);
                     $('#name').text(data.name);
+                    $('#birthdate').text(data.birthdate);
+                    $('#age').text(data.age);
+                    $('#gender').text(data.gender);
+                    $('#cat').text(data.cat);
+                    $('#mobile_no').text(data.mobile_no);
+                    $('#marital_status').text(data.marital_status);
+                    $('#email').text(data.email);
+                    $('#blood_group').text(data.blood_group);
+                    $('#blood_pressure').text(data.blood_pressure);
+                    $('#height').text(data.height);
+                    $('#weight').text(data.weight);
+                    $('#address').text(data.address);
                     $('#patient_view_modal').modal('show');
                 }
             }
