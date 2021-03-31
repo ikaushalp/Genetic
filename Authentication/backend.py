@@ -1,13 +1,14 @@
 from django.contrib.auth.hashers import check_password
 from Authentication.models import CustomUser
+from django.conf import settings
 
-class CustomUserBackend():
-    def authenticate(self, request, username=None, password=None):
+class CustomUserBackend:
+    def authenticate(self, request, username, password):
         if username and password:
             try:
                 user = CustomUser.objects.get(username=username)
                 if check_password(password, user.password):
-                    if user:
+                    if user is not None:
                         return user
             except CustomUser.DoesNotExist:
                 return None

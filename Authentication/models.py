@@ -39,7 +39,7 @@ class CustomUser(AbstractBaseUser):
     def is_authenticated(self):
         return True
 
-    class Meta():
+    class Meta:
         db_table = 'login'
         verbose_name = 'User'
         verbose_name_plural = 'Users'
