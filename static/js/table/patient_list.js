@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-    $('#patient').DataTable({
+    var table = $('#patient').DataTable({
 
         searching: true,
 
@@ -27,14 +27,14 @@ jQuery(document).ready(function () {
             {
                 extend: 'print',
                 exportOptions: {
-                    columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                    columns: [0, 1, 2, 3, 4, 6, 7, 8, 9]
                 }
             },
 
             {
                 extend: 'pdfHtml5',
                 exportOptions: {
-                    columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                    columns: [0, 1, 2, 3, 4, 6, 7, 8, 9]
                 },
                 customize: function (doc) {
                     doc.styles.title = {
@@ -55,7 +55,7 @@ jQuery(document).ready(function () {
             {
                 extend: 'excelHtml5',
                 exportOptions: {
-                    columns: [0, 2, 3, 4, 5, 6, 7, 8, 9]
+                    columns: [0, 1, 2, 3, 4, 6, 7, 8, 9]
                 }
             },
         ],
