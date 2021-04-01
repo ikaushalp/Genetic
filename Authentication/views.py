@@ -1,13 +1,12 @@
 from django.http import JsonResponse, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
-
 
 # Create your views here.
 
 def loginpage(request):
     if request.user.is_authenticated:
-        return render(request, 'Dashboard_template/dashboard.html')
+        return redirect(reverse('Dashboard:dashboard'))
     return render(request, 'Authentication_template/login.html')
 
 
@@ -28,4 +27,4 @@ def handlelogin(request):
 
 def handlelogout(request):
     logout(request)
-    return render(request, 'Authentication_template/login.html')
+    return redirect(reverse('Authentication:loginpage'))

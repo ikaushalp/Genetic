@@ -63,40 +63,42 @@
                                             <thead>
                                             <tr>
                                                 <th>Employee Id</th>
-                                                <th>Photo</th>
                                                 <th>Name</th>
                                                 <th>Designation</th>
                                                 <th>Role</th>
-                                                <th>Department</th>
                                                 <th>Email</th>
                                                 <th>Mobile No</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    <div class="symbol symbol-50 symbol-lg-50 symbol-circle">
-                                                        <img alt="Pic" src="{% static "media/users/100_3.jpg" %}"/>
-                                                    </div>
-                                                </td>
-                                                <td>John</td>
-                                                <td>Admin</td>
-                                                <td>Admin</td>
-                                                <td>Admin</td>
-                                                <td>Support@gmail.com</td>
-                                                <td>0123456789</td>
-                                                <td>
-                                                    <a href="{% url 'Employee:add' %}"
-                                                       class="btn btn-icon btn-outline-success btn-sm mr-2"><i
-                                                            class="fas fa-pen"></i></a>
-                                                    <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
-                                                            class="fas fa-trash" id="delete"></i></a>
-                                                </td>
-                                            </tr>
+                                            {% for item in admin %}
+                                                <tr>
+                                                    <td>{{ item.id }}</td>
+                                                    <td>{{ item.ename }}</td>
+                                                    <td>{{ item.designation }}</td>
+                                                    <td>{{ item.role }}</td>
+                                                    <td>{{ item.email }}</td>
+                                                    <td>{{ item.mobile }}</td>
+                                                    <td>
+                                                        <a href="{% url 'Employee:add' %}"
+                                                           class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                                class="fas fa-pen"></i></a>
+                                                        <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                                class="fas fa-trash" id="delete"></i></a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="tab_pane_2" role="tabpanel"
+                                         aria-labelledby="tab_pane_1">
+
+                                    </div>
+                                    <div class="tab-pane fade show active" id="tab_pane_3" role="tabpanel"
+                                         aria-labelledby="tab_pane_1">
+
                                     </div>
                                 </div>
                             </div>

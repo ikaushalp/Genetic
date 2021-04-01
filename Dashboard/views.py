@@ -1,14 +1,17 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from Patient.models import Patient
-from Authentication.models import CustomUser
-# Create your views here.
+from Employee.models import Employee
 
+
+# Create your views here.
 
 def index(request):
     patient = Patient.objects.count()
-    user = CustomUser.objects.count()
-    context = {'patient': patient, 'user': user}
+    employee = Employee.objects.count()
+    context = {'patient': patient, 'employee': employee}
     return render(request, 'Dashboard_template/dashboard.html', context=context)
+
 
 def user_panel(request):
     patient = Patient.objects.count()

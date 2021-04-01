@@ -3,9 +3,10 @@ from Employee.models import Employee
 from Authentication.models import CustomUser
 from django.http import JsonResponse
 
+
 # Create your views here.
 
-def add_Employee(request):
+def add_employee(request):
     if request.method == 'POST':
         ename = request.POST['name']
         gender = request.POST['gender']
@@ -34,7 +35,7 @@ def add_Employee(request):
         if role == 'Receptionist':
             role = 3
 
-        check = CustomUser.objects.get(username=username)
+        check = CustomUser.objects.filter(username=username)
         if check:
             return JsonResponse({'exist': 1})
 
@@ -52,5 +53,9 @@ def add_Employee(request):
         return render(request, 'Employee_template/add_employee.html')
 
 
-def employee_List(request):
-    return render(request, 'Employee_template/employee_list.html')
+def employee_list(request):
+    admin = Employee.objects.filter(role=1)
+    doctor = Employee.objects.filter(role=2)
+    receptionist = Employee.objects.filter(role=3)
+    context = {'admin': admin, 'doctor': doctor, 'receptionist': receptionist}
+    return render(request, 'Employee_template/employee_list.html', context=context)
