@@ -1,7 +1,7 @@
-var form = document.getElementById('schedule');
-document.addEventListener('DOMContentLoaded', function(e) {
-    FormValidation.formValidation(
-        document.getElementById('schedule'),
+var schedule_form = document.getElementById('schedule');
+var schedule_create_validation;
+document.addEventListener('DOMContentLoaded', function (e) {
+    schedule_create_validation = FormValidation.formValidation(schedule_form,
         {
             fields: {
                 doctor: {
@@ -27,18 +27,43 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         }
                     }
                 },
+                start_time: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please select an option'
+                        },
+                        regexp: {
+                            regexp: /^(([1-9]|1[0-2])(:[0-5]\d)(\ [AP][M]))$/,
+                            message: 'Invalid Time Format'
+                        }
+                    }
+                },
+                end_time: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please select an option'
+                        },
+                        regexp: {
+                            regexp: /^(([1-9]|1[0-2])(:[0-5]\d)(\ [AP][M]))$/,
+                            message: 'Invalid Time Format'
+                        }
+                    }
+                },
             },
 
             plugins: { //Learn more: https://formvalidation.io/guide/plugins
                 trigger: new FormValidation.plugins.Trigger(),
-                // Bootstrap Framework Integration
                 bootstrap: new FormValidation.plugins.Bootstrap(),
-                // Validate fields when clicking the Submit button
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                // Submit the form when all fields are valid
-                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
             }
         }
-    );
+    )
+    $('input[name="start_time"]').on('change', function () {
+            // Revalidate the date field
+            schedule_create_validation.revalidateField('start_time');
+        });
+    $('input[name="end_time"]').on('change', function () {
+            // Revalidate the date field
+            schedule_create_validation.revalidateField('end_time');
+        });
 });
 

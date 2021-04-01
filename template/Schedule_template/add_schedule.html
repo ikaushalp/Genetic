@@ -49,9 +49,11 @@
                                             <label>Doctor *</label>
                                             <select class="form-control selectpicker" data-live-search="true"
                                                     data-size="4" name="doctor">
-                                                <option value="">Select</option>
-                                                <option value="A+">A+</option>
-                                                <option value="A-">A-</option>
+                                                <option selected disabled hidden></option>
+                                                {% for item in doctor_list %}
+                                                    <option value="{{ item.id}}">{{ item.ename }}</option>
+                                                {% endfor %}
+
                                             </select>
                                         </div>
                                     </div>
@@ -88,8 +90,8 @@
                                                                 <i class="fas fa-clock"></i>
                                                             </span>
                                                         </div>
-                                                        <input class="form-control kt_timepicker_4" type="text"
-                                                               name="start_time"/>
+                                                        <input class="form-control" type="text"
+                                                               name="start_time" id="start_timepicker"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -99,8 +101,8 @@
                                                                 <i class="fas fa-clock"></i>
                                                             </span>
                                                         </div>
-                                                        <input class="form-control kt_timepicker_4" type="text"
-                                                               name="end_time">
+                                                        <input class="form-control" type="text"
+                                                               name="end_time" id="end_timepicker">
                                                     </div>
                                                 </div>
                                             </div>
@@ -133,6 +135,7 @@
 </body>
 {% block js %}
     <script src="{% static 'js/forms/validation/schedule_validation.js' %}"></script>
+    <script src="{% static 'js/ajax/schedule.js' %}"></script>
     <script src="{% static 'js/pages/crud/forms/widgets/bootstrap-timepicker.js' %}"></script>
 {% endblock js %}
 

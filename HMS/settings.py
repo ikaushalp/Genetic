@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Dashboard',
     'Employee',
     'Patient',
+    'Schedule',
     'Settings',
 ]
 
@@ -95,7 +96,6 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'Authentication.CustomUser'
 AUTHENTICATION_BACKENDS = ['Authentication.backend.CustomUserBackend', 'django.contrib.auth.backends.ModelBackend']
-LOGIN_REDIRECT_URL = '/'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
