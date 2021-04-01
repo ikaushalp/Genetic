@@ -19,8 +19,13 @@ def handlelogin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponse("got it")
+            return JsonResponse({'success': 1})
         else:
             return JsonResponse({'NotExist': 1})
     else:
         return render(request, 'Authentication_template/login.html')
+
+
+def handlelogout(request):
+    logout(request)
+    return render(request, 'Authentication_template/login.html')

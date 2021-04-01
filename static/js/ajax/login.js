@@ -5,15 +5,14 @@ $(document).ready(function () {
             if (status === 'Valid') {
                 $.ajax({
                     type: 'POST',
-                    url: '/auth',
-                    data: {
-                        username: $('input[name=username]').val(),
-                        password: $('input[name=password]').val(),
-                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-                    },
+                    url: 'login',
+                    data: $('#login').serialize(),
                     dataType: 'json',
                     success: function (data) {
-                        if (data.NotExist === 1) {
+                        if (data.success === 1){
+                            window.location = '/dashboard';
+                        }
+                        else if(data.NotExist === 1) {
                             Swal.fire(
                                 "Error",
                                 "Invalid Credentials",

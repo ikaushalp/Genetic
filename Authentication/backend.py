@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import check_password
 from Authentication.models import CustomUser
-from django.conf import settings
+
 
 class CustomUserBackend:
     def authenticate(self, request, username, password):
