@@ -72,21 +72,24 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John</td>
-                                        <td>20</td>
-                                        <td>Sunday</td>
-                                        <td>10:30 AM</td>
-                                        <td>12:00 AM</td>
-                                        <td>
-                                            <a href="{% url 'Schedule:add' %}"
-                                               class="btn btn-icon btn-outline-success btn-sm mr-2"><i
-                                                    class="fas fa-pen"></i></a>
-                                            <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
-                                                    class="fas fa-trash" id="delete"></i></a>
-                                        </td>
-                                    </tr>
+                                    {% for item in schedules %}
+                                        <tr>
+                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.doctor }}</td>
+                                            <td>{{ item.fees }}</td>
+                                            <td>{{ item.week_day }}</td>
+                                            <td>{{ item.start_time}}</td>
+                                            <td>{{ item.end_time}}</td>
+                                            <td>
+                                                <a href="{% url 'Schedule:add' %}"
+                                                   class="btn btn-icon btn-outline-success btn-sm mr-2"><i
+                                                        class="fas fa-pen"></i></a>
+                                                <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
+                                                        class="fas fa-trash" id="delete"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
                                     </tbody>
                                 </table>
                                 <!--end: Datatable-->

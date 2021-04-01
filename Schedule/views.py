@@ -27,4 +27,6 @@ def add_schedule(request):
 
 
 def schedule_list(request):
-    return render(request, 'Schedule_template/schedule_list.html')
+    schedule_items = Schedule.objects.all()
+    context = {'schedules': schedule_items}
+    return render(request, 'Schedule_template/schedule_list.html', context=context)
