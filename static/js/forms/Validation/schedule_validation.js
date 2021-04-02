@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                             message: 'Please select an option'
                         },
                         regexp: {
-                            regexp: /^(([1-9]|1[0-2])(:[0-5]\d)(\ [AP][M]))$/,
+                            regexp: /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
                             message: 'Invalid Time Format'
                         }
                     }
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                             message: 'Please select an option'
                         },
                         regexp: {
-                            regexp: /^(([1-9]|1[0-2])(:[0-5]\d)(\ [AP][M]))$/,
+                            regexp: /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
                             message: 'Invalid Time Format'
                         }
                     }

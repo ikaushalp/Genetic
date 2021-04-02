@@ -78,8 +78,8 @@
                                             <td>{{ item.doctor }}</td>
                                             <td>{{ item.fees }}</td>
                                             <td>{{ item.week_day }}</td>
-                                            <td>{{ item.start_time}}</td>
-                                            <td>{{ item.end_time}}</td>
+                                            <td>{{ item.start_time|time:'g:i A'}}</td>
+                                            <td>{{ item.end_time|time:'g:i A'}}</td>
                                             <td>
                                                 <a href="{% url 'Schedule:add' %}"
                                                    class="btn btn-icon btn-outline-success btn-sm mr-2"><i

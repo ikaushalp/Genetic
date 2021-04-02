@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
     $('#start_timepicker, #end_timepicker').timepicker({
         minuteStep: 1,
         defaultTime: '',
-        showMeridian: true,
+        showMeridian: false,
         disableMousewheel: true
     });
 });
