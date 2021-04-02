@@ -55,6 +55,5 @@ document.addEventListener('DOMContentLoaded', function () {
             trigger: new FormValidation.plugins.Trigger(),
             bootstrap: new FormValidation.plugins.Bootstrap(),
         }
-    }).on('core.form.invalid', function () {
-    });
+    })
 });

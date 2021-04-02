@@ -55,9 +55,10 @@
 <!--begin::Header Mobile-->
 <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
     <!--begin::Logo-->
-    <a href="index.html">
-        <img alt="Logo" src="{% static "media/logos/logo-light.png" %}"
-             style="height: 165px !important; width: 200px !important; margin-left: 0px !important;"/>
+    <a href="{% url 'Dashboard:dashboard' %}">
+{#        <img alt="Logo" src="{% static "media/logos/logo-light.png" %}"#}
+{#             style="height: 165px !important; width: 200px !important; margin-left: 0px !important;"/>#}
+        <h3 style="color: whitesmoke">HMS {{ patient }}</h3>
     </a>
     <!--end::Logo-->
     <!--begin::Toolbar-->

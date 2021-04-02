@@ -16,4 +16,4 @@ def index(request):
 def user_panel(request):
     patient = Patient.objects.count()
     context = {'patient': patient}
-    return render(request, 'user_panel.html', context=context)
+    return render(request, 'index.html', context=context)

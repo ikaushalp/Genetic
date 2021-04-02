@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         mobile_no: {
                             country: 'IN',
                             message: 'The value is not a valid Indian phone number'
+                        },
+                        regexp: {
+                            regexp: /^(\+)?(91)?(| |-)?[6789]\d{9}$/,
+                            message: 'The value can only consist phone number'
                         }
                     }
                 },
@@ -46,6 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     validators: {
                         notEmpty: {
                             message: 'Please enter a username'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_.]+$/,
+                            message: 'The username can only consist of alphabetical, number, dot and underscore'
                         }
                     }
                 },
@@ -54,6 +62,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     validators: {
                         notEmpty: {
                             message: 'Please enter a password'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 12,
+                            message: 'The username must be more than 6 and less than 12 characters long'
                         }
                     }
                 },

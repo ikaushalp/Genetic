@@ -125,7 +125,7 @@
                                                 <label class="col-lg-3 col-form-label text-right">About Page</label>
                                                 <div class="col-lg-6">
                                                     <input type="email" class="form-control"
-                                                           placeholder="https://genetic/about"/>
+                                                           placeholder="https://genetic/about" name="link1"/>
                                                     <span class="form-text text-muted">Please enter your about page link</span>
                                                 </div>
                                             </div>
@@ -133,7 +133,7 @@
                                                 <label class="col-lg-3 col-form-label text-right">Team Page</label>
                                                 <div class="col-lg-6">
                                                     <input type="email" class="form-control"
-                                                           placeholder="https://genetic/team"/>
+                                                           placeholder="https://genetic/team" name="link2"/>
                                                     <span class="form-text text-muted">Please enter your team page link</span>
                                                 </div>
                                             </div>
@@ -141,7 +141,7 @@
                                                 <label class="col-lg-3 col-form-label text-right">Contact</label>
                                                 <div class="col-lg-6">
                                                     <input type="email" class="form-control"
-                                                           placeholder="https://genetic/contact"/>
+                                                           placeholder="https://genetic/contact" name="link3"/>
                                                     <span class="form-text text-muted">Please enter your contact page link</span>
                                                 </div>
                                             </div>
@@ -209,5 +209,6 @@
 <!--end::Body-->
 {% block js %}
     <script src="{% static "js/forms/validation/global_settings_validation.js" %}"></script>
+    <script src="{% static "js/ajax/global_settings.js" %}"></script>
 {% endblock js %}
 </html>
