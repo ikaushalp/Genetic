@@ -2,7 +2,7 @@ from django.db import models
 # Create your models here.
 
 class Employee(models.Model):
-    class Meta():
+    class Meta:
         db_table = 'employee'
 
     id = models.AutoField(primary_key=True)

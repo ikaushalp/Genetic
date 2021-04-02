@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function(e) {
-    FormValidation.formValidation(
-        document.getElementById('appointment'),
-        {
+let appointment_form = document.getElementById('appointment');
+let appointment_create_validation;
+document.addEventListener('DOMContentLoaded', function (e) {
+    appointment_create_validation = FormValidation.formValidation(appointment_form, {
             fields: {
                 patient: {
                     validators: {
@@ -46,12 +46,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
             plugins: { //Learn more: https://formvalidation.io/guide/plugins
                 trigger: new FormValidation.plugins.Trigger(),
-                // Bootstrap Framework Integration
-                bootstrap: new FormValidation.plugins.Bootstrap(),
-                // Validate fields when clicking the Submit button
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                // Submit the form when all fields are valid
-                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                bootstrap: new FormValidation.plugins.Bootstrap()
             }
         }
     );
