@@ -1,8 +1,8 @@
 // Class definition
-
+var arrows;
 var KTBootstrapDatepicker = function () {
 
-    var arrows;
+
     if (KTUtil.isRTL()) {
         arrows = {
             leftArrow: '<i class="la la-angle-right"></i>',

@@ -30,3 +30,6 @@ def schedule_list(request):
     schedule_items = Schedule.objects.all()
     context = {'schedules': schedule_items}
     return render(request, 'Schedule_template/schedule_list.html', context=context)
+
+
+

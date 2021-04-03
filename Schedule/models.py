@@ -1,5 +1,7 @@
 from django.db import models
 from Employee.models import Employee
+
+
 # Create your models here.5
 class Schedule(models.Model):
     class Meta:
@@ -11,4 +13,3 @@ class Schedule(models.Model):
     week_day = models.CharField(max_length=20)
     start_time = models.TimeField()
     end_time = models.TimeField()
-
