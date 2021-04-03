@@ -1,7 +1,28 @@
-# GENETIC (Hospital Management System)
+# Genetic (Hospital Management System)
 
-This is a web application that helps manage the information related to health care. This web application, as “The Hospital Management System”, 
-will be used to give the patient and doctor an innovative way to provide access to features such as ‘Online Appointment’, ’Employee Attendance’, etc. 
-Django and Python will be used to develop User interface and backend of this system and MySQL will be used to store the data. In future, system will be enhanced 
-to develop a health tracking through mobile application, Billing, Pathology and Investigation Report.
+*Genetic is a Jekyll theme for Netlify CMS. You
+can [preview the theme to see what it looks like](https://github.com/mrkaushal/HMS), or
+even [use it today](#installation-and-usage).*
 
+## Project philosophy
+
+[Genetic](https://github.com/mrkaushal/HMS) is intended to make it quick and easy
+for [Django](https://www.djangoproject.com) users to create their first (of 1000s) website. The theme should meet the vast
+majority of users' needs out of the box, erring on the side of simplicity rather than flexibility, and provide users the
+opportunity to opt-in to additional complexity if they have specific needs or wish to further customize their
+experience (such as adding custom CSS or modifying the default layout). It should also look great, but that goes without
+saying.
+
+## Installation and Usage
+
+To know how to install the theme and how to use, please refer to
+our [documentation](https://github.com/mrkaushal/HMS).
+
+## Roadmap
+
+See the [open issues](https://github.com/mrkaushal/HMS/issues) for a list of proposed features (and known issues).
+
+## Contributing
+
+Interested in contributing to Genetic? We'd love your help. Spese is an open source project, built on contribution by
+users like you. See [CONTRIBUTING](https://github.com/mrkaushal/HMS) file for instructions on how to contribute.
