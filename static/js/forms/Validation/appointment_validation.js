@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     validators: {
                         notEmpty: {
                             message: 'Appointment date is required'
-                        }
+                        },
                     }
                 },
 
@@ -34,14 +34,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
                         }
                     }
                 },
-
-                fees: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Consultation Fees is required'
-                        }
-                    }
-                },
             },
 
             plugins: { //Learn more: https://formvalidation.io/guide/plugins
@@ -49,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 bootstrap: new FormValidation.plugins.Bootstrap()
             }
         }
-    );
+    )
+
+    $('[name="appointment_date"]').on('changeDate', function () {
+        // Revalidate the date field
+        appointment_create_validation.revalidateField('appointment_date');
+    });
 });
 

@@ -68,8 +68,8 @@
                                                         <i class="fas fa-birthday-cake"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" id="kt_datepicker_4_3"
-                                                       name="birthdate" onchange="AGE()"/>
+                                                <input type="text" class="form-control" id="patient_birthdate"
+                                                       name="birthdate" onchange="AGE()" readonly/>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -224,7 +224,7 @@
     <script src="{% static "js/ajax/patient.js" %}"></script>
     <script type="text/javascript">
         function AGE() {
-            var n = document.getElementById('kt_datepicker_4_3').value;
+            var n = document.getElementById('patient_birthdate').value;
             var bd = new Date(n);
 
             var cd = new Date();

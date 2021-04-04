@@ -58,7 +58,8 @@
                                         <div class="col-lg-5">
                                             <label>Doctor *</label>
                                             <select class="form-control selectpicker" data-live-search="true"
-                                                    data-size="4" data-dropup-auto="false" name="doctor" id="doctor_list">
+                                                    data-size="4" data-dropup-auto="false" name="doctor"
+                                                    id="doctor_list">
                                                 <option selected disabled hidden></option>
                                                 {% for item in doctor_list %}
                                                     <option value="{{ item.id }}">{{ item.ename }}</option>
@@ -75,7 +76,8 @@
                                                         <i class="fas fa-calendar-plus"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" name="appointment_date" id="date">
+                                                <input type="text" class="form-control" name="appointment_date"
+                                                       id="appointment_datepicker" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -83,8 +85,9 @@
                                         <div class="col-lg-5">
                                             <label>Time Slot *</label>
                                             <select class="form-control selectpicker"
-                                                    data-size="4" data-dropup-auto="false" name="time_slot" id="timeslot">
-                                                <option selected disabled hidden></option>
+                                                    data-size="4" data-dropup-auto="false" name="time_slot"
+                                                    id="timeslot">
+                                                <option selected>Select</option>
                                             </select>
                                         </div>
                                     </div>
