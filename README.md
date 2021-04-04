@@ -26,3 +26,15 @@ See the [open issues](https://github.com/mrkaushal/HMS/issues) for a list of pro
 
 Interested in contributing to Genetic? We'd love your help. Spese is an open source project, built on contribution by
 users like you. See [CONTRIBUTING](https://github.com/mrkaushal/HMS) file for instructions on how to contribute.
+
+## Contributors ✨
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/mrkaushal"><img src="https://avatars.githubusercontent.com/u/55987371?v=4" width="100px;" alt=""/><br /><sub><b>Kaushal Patel</b></sub></a><br /><a href="https://github.com/mrkaushal/HMS/commits?author=mrkaushal" title="Code">💻</a> <a href="#content-mrkaushal" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/karankhojiji"><img src="https://avatars.githubusercontent.com/u/57584243?v=4" width="100px;" alt=""/><br /><sub><b>Karan Khojiji</b></sub></a><br /><a href="https://github.com/mrkaushal/HMS/commits?author=karankhojiji" title="Code">💻</a> <a href="#fundingFinding-monkrus" title="Funding Finding">🔍</a> <a href="#ideas-monkrus" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
+  </table>
