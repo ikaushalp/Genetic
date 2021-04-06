@@ -73,4 +73,31 @@ $(document).ready(function () {
 //             }
 //         });
 //     });
+
+// Show All Patient Details
+    $(document).on('click', '#employee_patient_details', function (e) {
+        e.preventDefault();
+        let currentrow = $(this).closest('tr');
+
+        let data = $('#admin').DataTable().row(currentrow).data();
+
+        $('#eid').text(data[0]);
+        $('#ename').text(data[1]);
+        $('#gender').text(data[2]);
+        $('#birthdate').text(data[3]);
+        $('#blood_group').text(data[4]);
+        $('#marital_status').text(data[5]);
+        $('#mobile_no').text(data[6]);
+        $('#email').text(data[7]);
+        $('#address').text(data[8]);
+        $('#role').text(data[9]);
+        $('#designation').text(data[10]);
+        $('#joining_date').text(data[11]);
+        $('#qualification').text(data[12]);
+
+        $('#employee_view_modal').modal('show');
+
+        return false;
+    });
+
 });

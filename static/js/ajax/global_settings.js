@@ -24,6 +24,7 @@ $(document).ready(function () {
             }
         })
     });
+
     if (sessionStorage.getItem("load")) {
         setTimeout(function () {
             $.notify("Information Saved SuccessFully");

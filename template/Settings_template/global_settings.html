@@ -53,6 +53,7 @@
                             <!--begin::Card-->
                             <form method="post" id="global_settings">
                                 {% csrf_token %}
+                                <input type="hidden" name="id">
                                 <div class="card card-custom mb-4">
                                     <div class="card-header">
                                         <div class="card-title">
@@ -72,7 +73,7 @@
                                                         <div class="input-group-prepend"><span class="input-group-text"><i
                                                                 class="fas fa-building"></i></span></div>
                                                         <input type="text" class="form-control"
-                                                               placeholder="Hospital" name="name"/>
+                                                               placeholder="Hospital" name="hospital_name"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,7 +153,7 @@
                                         <div class="d-flex justify-content-end">
                                             <button type="submit"
                                                     class="btn btn-light-success btn-lg mr-2 font-weight-bold">
-                                                Save
+                                                Update
                                             </button>
                                             <button type="reset"
                                                     class="btn btn-light-danger btn-lg font-weight-bold">Cancel
@@ -172,30 +173,7 @@
             <!--end::Content-->
 
             <!--begin::Footer-->
-            <div class="footer bg-white py-4 d-flex flex-lg-column " id="kt_footer">
-                <!--begin::Container-->
-                <div
-                        class=" container-fluid  d-flex flex-column flex-md-row align-items-center justify-content-between">
-                    <!--begin::Copyright-->
-                    <div class="text-dark order-2 order-md-1">
-                        <span class="text-muted font-weight-bold mr-2">2020&copy;</span>
-                        <a href="http://keenthemes.com/metronic" target="_blank"
-                           class="text-dark-75 text-hover-primary">Keenthemes</a>
-                    </div>
-                    <!--end::Copyright-->
 
-                    <!--begin::Nav-->
-                    <div class="nav nav-dark">
-                        <a href="http://keenthemes.com/metronic" target="_blank"
-                           class="nav-link pl-0 pr-5">About</a>
-                        <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link pl-0 pr-5">Team</a>
-                        <a href="http://keenthemes.com/metronic" target="_blank"
-                           class="nav-link pl-0 pr-0">Contact</a>
-                    </div>
-                    <!--end::Nav-->
-                </div>
-                <!--end::Container-->
-            </div>
             <!--end::Footer-->
         </div>
         <!--end::Wrapper-->
