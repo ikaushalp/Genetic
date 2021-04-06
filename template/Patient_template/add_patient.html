@@ -52,8 +52,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label>Gender *</label>
-                                            <select class="form-control selectpicker" data-size="4" name="gender">
-                                                <option selected hidden></option>
+                                            <select class="form-control selectpicker" data-size="4" name="gender" title="Nothing Selected">
                                                 <option>Male</option>
                                                 <option>Female</option>
                                             </select>
@@ -79,8 +78,7 @@
                                         <div class="col-lg-4">
                                             <label>Marital Status *</label>
                                             <select class="form-control selectpicker" data-size="4"
-                                                    name="marital_status">
-                                                <option selected hidden></option>
+                                                    name="marital_status" title="Nothing Selected">
                                                 <option>Single</option>
                                                 <option>Married</option>
                                             </select>
@@ -108,8 +106,7 @@
                                         <div class="col-lg-4">
                                             <label>Category *</label>
                                             <select class="form-control selectpicker" data-size="4" name="category"
-                                                    data-live-search="true">
-                                                <option selected hidden></option>
+                                                    data-live-search="true" title="Nothing Selected">
                                                 {% for cat in category_list %}
                                                     <option value="{{ cat.id }}">{{ cat.category }}</option>
                                                 {% endfor %}
@@ -117,8 +114,7 @@
                                         </div>
                                         <div class="col-lg-2">
                                             <label>Blood Group</label>
-                                            <select class="form-control selectpicker" data-size="4" name="blood_group">
-                                                <option selected hidden></option>
+                                            <select class="form-control selectpicker" data-size="4" name="blood_group" title="Nothing Selected">
                                                 <option>A+</option>
                                                 <option>A-</option>
                                                 <option>B+</option>
@@ -235,6 +231,7 @@
                 a = a - 1;
             }
             document.getElementById('age').value = a;
+            patient_validation.validateField('age');
         }
     </script>
 {% endblock js %}

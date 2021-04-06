@@ -46,8 +46,7 @@
                                         <div class="col-lg-5">
                                             <label>Patient *</label>
                                             <select class="form-control selectpicker" data-live-search="true"
-                                                    data-size="4" name="patient">
-                                                <option selected disabled hidden></option>
+                                                    data-size="4" name="patient" title="Nothing selected">
                                                 {% for item in patient_list %}
                                                     <option value="{{ item.id }}">{{ item.name }}</option>
                                                 {% endfor %}
@@ -59,8 +58,7 @@
                                             <label>Doctor *</label>
                                             <select class="form-control selectpicker" data-live-search="true"
                                                     data-size="4" data-dropup-auto="false" name="doctor"
-                                                    id="doctor_list">
-                                                <option selected disabled hidden></option>
+                                                    id="doctor_list" title="Nothing selected">
                                                 {% for item in doctor_list %}
                                                     <option value="{{ item.id }}">{{ item.ename }}</option>
                                                 {% endfor %}
@@ -86,8 +84,7 @@
                                             <label>Time Slot *</label>
                                             <select class="form-control selectpicker"
                                                     data-size="4" data-dropup-auto="false" name="time_slot"
-                                                    id="timeslot">
-                                                <option selected>Select</option>
+                                                    id="timeslot" title="Nothing selected" data-live-search="true">
                                             </select>
                                         </div>
                                     </div>

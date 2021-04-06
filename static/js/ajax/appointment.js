@@ -18,30 +18,48 @@ $(document).ready(function () {
         let date = new Date(appointment_date);
         let weekday = days[date.getDay()];
         let csrf = $('input[name=csrfmiddlewaretoken]').val();
+        let time = $('#timeslot').selectpicker();
 
-        info = {
-            doctor_id: doctor_id,
-            weekday: weekday,
-            csrfmiddlewaretoken: csrf
-        }
-
-        $.ajax({
-            type: 'POST',
-            url: 'loadtimeslot',
-            data: info,
-            dataType: 'json',
-            success: function (data) {
-                let time = $('#timeslot').selectpicker();
-                time.find('option').remove();
-                time.selectpicker('refresh');
-                $('input[name=fees]').val(data['fees']);
-                if (data['start_time'] && data['end_time']) {
-                    time.append("<option>" + data['end_time'] + " - " + data['end_time'] + "</option>");
-                    time.selectpicker('refresh');
-                } else {
-                    time.selectpicker({title: "No Schedule Found"}).selectpicker('render');
-                }
+        if (doctor_id !== '' && weekday !== '') {
+            time.selectpicker({title: "Exploring...."}).selectpicker('refresh');
+            info = {
+                doctor_id: doctor_id,
+                weekday: weekday,
+                csrfmiddlewaretoken: csrf
             }
-        })
+
+            $.ajax({
+                type: 'POST',
+                url: 'loadtimeslot',
+                data: info,
+                dataType: 'json',
+                success: function (data) {
+                    time.find('option').remove();
+                    time.selectpicker('refresh');
+                    $('input[name=fees]').val(data['fees']);
+
+                    let start_time = data['start_time'];
+                    let end_time = data['end_time'];
+
+                    if (start_time && end_time) {
+                        start_time = new Date(new Date().toDateString() + ' ' + start_time);
+                        end_time = new Date(new Date().toDateString() + ' ' + end_time);
+
+                        start_time = start_time.toLocaleTimeString().replace(/([\d]+:[\d]+):[\d]+(\s\w+)/g, "$1$2");
+                        end_time = end_time.toLocaleTimeString().replace(/([\d]+:[\d]+):[\d]+(\s\w+)/g, "$1$2");
+
+                        setTimeout(function () {
+                            time.selectpicker({title: "Nothing Selected"}).selectpicker('refresh');
+                            time.append("<option>" + start_time + " - " + end_time + "</option>");
+                            time.selectpicker('refresh');
+                        }, 500)
+                    } else {
+                        setTimeout(function () {
+                            time.selectpicker({title: "No Schedule Found"}).selectpicker('refresh');
+                        }, 500)
+                    }
+                }
+            })
+        }
     });
 })

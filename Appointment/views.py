@@ -1,5 +1,5 @@
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from Patient.models import Patient
 from Employee.models import Employee
@@ -25,6 +25,7 @@ def loadtimeslot(request):
     if request.method == 'POST':
         doctor_id = request.POST['doctor_id']
         week_day = request.POST['weekday']
+        doctor_id = int(doctor_id)
 
         try:
             data = Schedule.objects.get(doctor_id=doctor_id, week_day=week_day)
@@ -33,12 +34,15 @@ def loadtimeslot(request):
 
         timeslot = {}
         if data is not None:
+            start_time = data.start_time
+            end_time = data.end_time
+            fees = data.fees
+
             timeslot = {
-                'start_time': data.start_time,
-                'end_time': data.end_time,
-                'fees': data.fees
+                'start_time': start_time,
+                'end_time': end_time,
+                'fees': fees
             }
-        timeslot = json.dumps(timeslot, default=str)
-        return HttpResponse(timeslot)
+        return JsonResponse(timeslot)
     else:
         return render(request, 'Dashboard_template/dashboard.html')
