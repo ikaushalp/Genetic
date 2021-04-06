@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     )
     $('[name="joining_date"]').on('changeDate', function () {
-        // Revalidate the date field
         employee_create_validation.revalidateField('joining_date');
     });
 })
