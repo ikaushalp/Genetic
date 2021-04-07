@@ -54,8 +54,8 @@ def add_employee(request):
 
 
 def employee_list(request):
-    admin = Employee.objects.filter(role=1)
-    doctor = Employee.objects.filter(role=2)
-    receptionist = Employee.objects.filter(role=3)
+    admin = Employee.objects.filter(designation='Admin')
+    doctor = Employee.objects.filter(designation='Doctor')
+    receptionist = Employee.objects.filter(designation='Receptionist')
     context = {'admin': admin, 'doctor': doctor, 'receptionist': receptionist}
     return render(request, 'Employee_template/employee_list.html', context=context)

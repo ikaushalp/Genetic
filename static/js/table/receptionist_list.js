@@ -1,6 +1,5 @@
-var table;
 jQuery(document).ready(function () {
-    table = $("#admin").DataTable({
+    var table = $("#receptionist").DataTable({
 
         searching: true,
 
@@ -36,19 +35,17 @@ jQuery(document).ready(function () {
 
         ordering: false,
 
-        buttons: [
-            {
-                extend: 'print',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-                },
-                title: 'Admin List',
+        buttons: [{
+            extend: 'print',
+            exportOptions: {
+                columns: [0, 2, 3, 4, 5, 6, 7]
             },
-
+            title: 'Admin List',
+        },
             {
                 extend: 'pdfHtml5',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                    columns: [0, 2, 3, 4, 5, 6, 7]
                 },
                 title: 'Admin List',
                 customize: function (doc) {
@@ -75,19 +72,12 @@ jQuery(document).ready(function () {
             {
                 extend: 'excelHtml5',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                    columns: [0, 2, 3, 4, 5, 6, 7]
                 },
                 title: 'Admin List',
             },
         ],
 
-        columnDefs: [
-            {
-                "targets": [8, 9, 10, 11, 12],
-                "visible": false,
-                "searchable": false
-            },
-        ],
     });
     $('#export_print').on('click', function (e) {
         e.preventDefault();
@@ -103,5 +93,4 @@ jQuery(document).ready(function () {
         e.preventDefault();
         table.button(2).trigger();
     });
-})
-;
+});
