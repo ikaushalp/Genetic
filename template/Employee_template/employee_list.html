@@ -56,6 +56,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                {% csrf_token %}
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="tab_pane_1" role="tabpanel">
                                         <table class="table table-separate table-head-custom text-center" id="admin">
@@ -69,12 +70,12 @@
                                                 <th>Mobile No</th>
                                                 <th>Designation</th>
                                                 <th>Role</th>
-                                                <th>Blood Group</th>
-                                                <th>Marital Status</th>
-                                                <th>Address</th>
-                                                <th>Joining Date</th>
-                                                <th>Qualification</th>
-                                                <th>Action</th>
+                                                <th style="display: none !important;">Blood Group</th>
+                                                <th style="display: none !important;">Marital Status</th>
+                                                <th style="display: none !important;">Address</th>
+                                                <th style="display: none !important;">Joining Date</th>
+                                                <th style="display: none !important;">Qualification</th>
+                                                <th style="display: none !important;">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -96,16 +97,16 @@
                                                     {% if item.role == 3 %}
                                                         <td>Receptionist</td>
                                                     {% endif %}
-                                                    <td>{{ item.blood_group }}</td>
-                                                    <td>{{ item.marital_status }}</td>
-                                                    <td>{{ item.address }}</td>
-                                                    <td>{{ item.joining_date }}</td>
-                                                    <td>{{ item.qualification }}</td>
+                                                    <td style="display: none !important;">{{ item.blood_group }}</td>
+                                                    <td style="display: none !important;">{{ item.marital_status }}</td>
+                                                    <td style="display: none !important;">{{ item.address }}</td>
+                                                    <td style="display: none !important;">{{ item.joining_date }}</td>
+                                                    <td style="display: none !important;">{{ item.qualification }}</td>
                                                     <td>
                                                         <button
                                                                 class="btn btn-icon btn-outline-warning btn-sm mr-2"
-                                                                type="button" id="show_patient_details"
-                                                                data-info="{{ items.id }}" data-toggle="tooltip"
+                                                                type="button" id="show_admin_details"
+                                                                data-toggle="tooltip"
                                                                 data-placement="top" title="View"
                                                                 data-theme="dark">
                                                             <i class="fas fa-eye"></i>
@@ -119,8 +120,9 @@
                                                         </button>
 
                                                         <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
-                                                                type="button" data-info="{{ items.id }}"
-                                                                id="patient_delete" data-toggle="tooltip"
+                                                                type="button" data-eid="{{ item.id }}"
+                                                                data-role="{{ item.role }}"
+                                                                id="employee_delete" data-toggle="tooltip"
                                                                 data-placement="top" title="Delete"
                                                                 data-theme="dark">
                                                             <i class="fas fa-trash"></i>
@@ -132,10 +134,155 @@
                                         </table>
                                     </div>
                                     <div class="tab-pane fade" id="tab_pane_2" role="tabpanel">
+                                        <table class="table table-separate table-head-custom text-center" id="doctor">
+                                            <thead>
+                                            <tr>
+                                                <th>Employee Id</th>
+                                                <th>Name</th>
+                                                <th>Gender</th>
+                                                <th>Birthdate</th>
+                                                <th>Email</th>
+                                                <th>Mobile No</th>
+                                                <th>Designation</th>
+                                                <th>Role</th>
+                                                <th style="display: none !important;">Blood Group</th>
+                                                <th style="display: none !important;">Marital Status</th>
+                                                <th style="display: none !important;">Address</th>
+                                                <th style="display: none !important;">Joining Date</th>
+                                                <th style="display: none !important;">Qualification</th>
+                                                <th style="display: none !important;">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for item in doctor %}
+                                                <tr>
+                                                    <td>{{ item.id }}</td>
+                                                    <td>{{ item.ename }}</td>
+                                                    <td>{{ item.gender }}</td>
+                                                    <td>{{ item.birthdate }}</td>
+                                                    <td>{{ item.email }}</td>
+                                                    <td>{{ item.mobile }}</td>
+                                                    <td>{{ item.designation }}</td>
+                                                    {% if item.role == 1 %}
+                                                        <td>Admin</td>
+                                                    {% endif %}
+                                                    {% if item.role == 2 %}
+                                                        <td>Doctor</td>
+                                                    {% endif %}
+                                                    {% if item.role == 3 %}
+                                                        <td>Receptionist</td>
+                                                    {% endif %}
+                                                    <td style="display: none !important;">{{ item.blood_group }}</td>
+                                                    <td style="display: none !important;">{{ item.marital_status }}</td>
+                                                    <td style="display: none !important;">{{ item.address }}</td>
+                                                    <td style="display: none !important;">{{ item.joining_date }}</td>
+                                                    <td style="display: none !important;">{{ item.qualification }}</td>
+                                                    <td>
+                                                        <button
+                                                                class="btn btn-icon btn-outline-warning btn-sm mr-2"
+                                                                type="button" id="show_doctor_details"
+                                                                data-toggle="tooltip"
+                                                                data-placement="top" title="View"
+                                                                data-theme="dark">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <button href="{% url 'Employee:add' %}"
+                                                                class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                                type="button" data-toggle="tooltip"
+                                                                data-placement="top" title="Edit"
+                                                                data-theme="dark">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
 
+                                                        <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                                type="button" data-eid="{{ item.id }}"
+                                                                data-role="{{ item.role }}"
+                                                                id="employee_delete" data-toggle="tooltip"
+                                                                data-placement="top" title="Delete"
+                                                                data-theme="dark">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="tab-pane fade" id="tab_pane_3" role="tabpanel">
+                                        <table class="table table-separate table-head-custom text-center"
+                                               id="receptionist">
+                                            <thead>
+                                            <tr>
+                                                <th>Employee Id</th>
+                                                <th>Name</th>
+                                                <th>Gender</th>
+                                                <th>Birthdate</th>
+                                                <th>Email</th>
+                                                <th>Mobile No</th>
+                                                <th>Designation</th>
+                                                <th>Role</th>
+                                                <th style="display: none !important;">Blood Group</th>
+                                                <th style="display: none !important;">Marital Status</th>
+                                                <th style="display: none !important;">Address</th>
+                                                <th style="display: none !important;">Joining Date</th>
+                                                <th style="display: none !important;">Qualification</th>
+                                                <th style="display: none !important;">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for item in receptionist %}
+                                                <tr>
+                                                    <td>{{ item.id }}</td>
+                                                    <td>{{ item.ename }}</td>
+                                                    <td>{{ item.gender }}</td>
+                                                    <td>{{ item.birthdate }}</td>
+                                                    <td>{{ item.email }}</td>
+                                                    <td>{{ item.mobile }}</td>
+                                                    <td>{{ item.designation }}</td>
+                                                    {% if item.role == 1 %}
+                                                        <td>Admin</td>
+                                                    {% endif %}
+                                                    {% if item.role == 2 %}
+                                                        <td>Doctor</td>
+                                                    {% endif %}
+                                                    {% if item.role == 3 %}
+                                                        <td>Receptionist</td>
+                                                    {% endif %}
+                                                    <td style="display: none !important;">{{ item.blood_group }}</td>
+                                                    <td style="display: none !important;">{{ item.marital_status }}</td>
+                                                    <td style="display: none !important;">{{ item.address }}</td>
+                                                    <td style="display: none !important;">{{ item.joining_date }}</td>
+                                                    <td style="display: none !important;">{{ item.qualification }}</td>
+                                                    <td>
+                                                        <button
+                                                                class="btn btn-icon btn-outline-warning btn-sm mr-2"
+                                                                type="button" id="show_receptionist_details"
+                                                                data-toggle="tooltip"
+                                                                data-placement="top" title="View"
+                                                                data-theme="dark">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <button href="{% url 'Employee:add' %}"
+                                                                class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                                type="button" data-toggle="tooltip"
+                                                                data-placement="top" title="Edit"
+                                                                data-theme="dark">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
 
+                                                        <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                                type="button" data-eid="{{ item.id }}"
+                                                                data-role="{{ item.role }}"
+                                                                id="employee_delete" data-toggle="tooltip"
+                                                                data-placement="top" title="Delete"
+                                                                data-theme="dark">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +344,7 @@
                             <th>Role</th>
                             <td><span id="role"></span></td>
                             <th>Designation</th>
-                            <td><span id="designation"></span></td>
+                            <td><span id="designation2"></span></td>
                         </tr>
                         <tr>
                             <th>Joining Date</th>
@@ -219,7 +366,8 @@
 {% endblock content %}
 </body>
 {% block js %}
-
+    <script src="{% static "js/ajax/employee.js" %}"></script>
+    <script src="{% static "js/table/admin_list.js" %}"></script>
     <script src="{% static "js/table/doctor_list.js" %}"></script>
     <script src="{% static "js/table/receptionist_list.js" %}"></script>
 {% endblock js %}

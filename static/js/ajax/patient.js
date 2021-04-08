@@ -16,7 +16,7 @@ $(document).ready(function () {
 
                             setTimeout(function () {
                                 window.location.reload();
-                            }, 800)
+                            }, 500)
 
                         } else if (data.exist === 1) {
                             Swal.fire(
@@ -111,6 +111,6 @@ $(document).ready(function () {
         setTimeout(function () {
             $.notify("Information Saved SuccessFully");
             sessionStorage.clear();
-        }, 1000)
+        }, 800)
     }
 });

@@ -27,15 +27,17 @@ jQuery(document).ready(function () {
             {
                 extend: 'print',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 6, 7, 8, 9]
-                }
+                    columns: [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13]
+                },
+                title: 'Patient List'
             },
 
             {
                 extend: 'pdfHtml5',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 6, 7, 8, 9]
+                    columns: [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13]
                 },
+                orientation: 'landscape',
                 customize: function (doc) {
                     doc.styles.title = {
                         fontSize: '35',
@@ -46,17 +48,19 @@ jQuery(document).ready(function () {
                         color: 'white',
                         fontSize: '12',
                         bold: 2,
-                        alignment: 'center'
+                        alignment: 'center',
                     }
                     doc.defaultStyle.alignment = 'center';
-                }
+                },
+                title: 'Patient List'
             },
 
             {
                 extend: 'excelHtml5',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 6, 7, 8, 9]
-                }
+                    columns: [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13]
+                },
+                title: 'Patient List'
             },
         ],
 

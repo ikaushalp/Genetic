@@ -35,19 +35,20 @@ jQuery(document).ready(function () {
 
         ordering: false,
 
-        buttons: [{
-            extend: 'print',
-            exportOptions: {
-                columns: [0, 2, 3, 4, 5, 6, 7]
+        buttons: [
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [0, 2, 3, 4, 5, 6, 7]
+                },
+                title: 'Receptionist List',
             },
-            title: 'Admin List',
-        },
             {
                 extend: 'pdfHtml5',
                 exportOptions: {
                     columns: [0, 2, 3, 4, 5, 6, 7]
                 },
-                title: 'Admin List',
+                title: 'Receptionist List',
                 customize: function (doc) {
                     doc.styles.title = {
                         fontSize: '35',
@@ -68,16 +69,22 @@ jQuery(document).ready(function () {
                     }
                 }
             },
-
             {
                 extend: 'excelHtml5',
                 exportOptions: {
                     columns: [0, 2, 3, 4, 5, 6, 7]
                 },
-                title: 'Admin List',
+                title: 'Receptionist List',
             },
         ],
 
+        columnDefs: [
+            {
+                "targets": [8, 9, 10, 11, 12],
+                "visible": false,
+                "searchable": false
+            },
+        ],
     });
     $('#export_print').on('click', function (e) {
         e.preventDefault();

@@ -38,21 +38,21 @@
                                     </h5>
                                 </div>
                                 <div class="card-toolbar">
-                                    <a href="javaScript:void(0)" class="btn btn-light-warning btn-icon btn-lg mr-2"
-                                       id="export_print" data-toggle="tooltip" data-placement="top" title="Print"
-                                       data-theme="dark">
+                                    <button class="btn btn-light-warning btn-icon btn-lg mr-2"
+                                            id="export_print" data-toggle="tooltip" data-placement="top" title="Print"
+                                            data-theme="dark">
                                         <i class="fas fa-print"></i>
-                                    </a>
-                                    <a href="javaScript:void(0)" class="btn btn-light-primary btn-icon btn-lg mr-2"
-                                       id="export_pdf" data-toggle="tooltip" data-placement="top" title="PDF"
-                                       data-theme="dark">
+                                    </button>
+                                    <button class="btn btn-light-primary btn-icon btn-lg mr-2"
+                                            id="export_pdf" data-toggle="tooltip" data-placement="top" title="PDF"
+                                            data-theme="dark">
                                         <i class="fas fa-file-pdf"></i>
-                                    </a>
-                                    <a href="javaScript:void(0)" class="btn btn-light-success btn-icon btn-lg mr-2"
-                                       id="export_excel" data-toggle="tooltip" data-placement="top" title="Excel"
-                                       data-theme="dark">
+                                    </button>
+                                    <button class="btn btn-light-success btn-icon btn-lg mr-2"
+                                            id="export_excel" data-toggle="tooltip" data-placement="top" title="Excel"
+                                            data-theme="dark">
                                         <i class="fas fa-file-excel"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             {% csrf_token %}
@@ -71,11 +71,11 @@
                                         <th>Mobile No</th>
                                         <th>Email</th>
                                         <th>Category</th>
-                                        <th>Blood Group</th>
-                                        <th>Blood Presssure</th>
-                                        <th>Height</th>
-                                        <th>Weight</th>
-                                        <th>Address</th>
+                                        <th style="display: none !important;">Blood Group</th>
+                                        <th style="display: none !important;">Blood Pressure</th>
+                                        <th style="display: none !important;">Height</th>
+                                        <th style="display: none !important;">Weight</th>
+                                        <th style="display: none !important;">Address</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -91,11 +91,11 @@
                                             <td>{{ items.mobile_no }}</td>
                                             <td>{{ items.email }}</td>
                                             <td>{{ items.category }}</td>
-                                            <td>{{ items.blood_group }}</td>
-                                            <td>{{ items.blood_pressure }}</td>
-                                            <td>{{ items.height }}</td>
-                                            <td>{{ items.weight }}</td>
-                                            <td>{{ items.address }}</td>
+                                            <td style="display: none !important;">{{ items.blood_group }}</td>
+                                            <td style="display: none !important;">{{ items.blood_pressure }}</td>
+                                            <td style="display: none !important;">{{ items.height }}</td>
+                                            <td style="display: none !important;">{{ items.weight }}</td>
+                                            <td style="display: none !important;">{{ items.address }}</td>
                                             <td>
                                                 <button
                                                         class="btn btn-icon btn-outline-warning btn-sm mr-2"

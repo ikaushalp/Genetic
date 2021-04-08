@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Employee.models import Employee
 from Authentication.models import CustomUser
 from django.http import JsonResponse
@@ -59,3 +59,17 @@ def employee_list(request):
     receptionist = Employee.objects.filter(designation='Receptionist')
     context = {'admin': admin, 'doctor': doctor, 'receptionist': receptionist}
     return render(request, 'Employee_template/employee_list.html', context=context)
+
+
+def delete_employee(request):
+    if request.method == 'POST':
+        employee_id = request.POST['employee_id']
+        employee_role = request.POST['role']
+        employee_role = int(employee_role)
+        rem = Employee.objects.get(pk=employee_id)
+        rem2 = CustomUser.objects.get(aid=employee_id, role=employee_role)
+        rem.delete()
+        rem2.delete()
+        return JsonResponse({'delete': 1})
+    else:
+        return redirect('/dashboard')
