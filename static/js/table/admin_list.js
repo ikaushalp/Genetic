@@ -6,6 +6,8 @@ jQuery(document).ready(function () {
 
         responsive: true,
 
+        bDeferRender: true,
+
         dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'<"toolbar">>>
 			<'row'<'col-sm-12'tr>>
 			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
