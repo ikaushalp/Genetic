@@ -13,7 +13,6 @@ $(document).ready(function () {
                         if (data.insert === 1) {
                             sessionStorage.setItem("load", "true");
                             KTUtil.scrollTop();
-
                             setTimeout(function () {
                                 window.location.reload();
                             }, 500)
@@ -84,8 +83,13 @@ $(document).ready(function () {
     $(document).on('click', '#show_patient_details', function (e) {
         e.preventDefault();
         let currentrow = $(this).closest('tr');
+        let data;
 
-        let data = $('#patient').DataTable().row(currentrow).data();
+        if (table.row(this).child.isShown()) {
+            data = table.row(this).data();
+        } else {
+            data = table.row(currentrow).data();
+        }
 
         $('#id').text(data[0]);
         $('#name').text(data[1]);

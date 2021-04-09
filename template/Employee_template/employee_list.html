@@ -122,7 +122,7 @@
                                                         <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
                                                                 type="button" data-eid="{{ item.id }}"
                                                                 data-role="{{ item.role }}"
-                                                                id="employee_delete" data-toggle="tooltip"
+                                                                id="admin_delete" data-toggle="tooltip"
                                                                 data-placement="top" title="Delete"
                                                                 data-theme="dark">
                                                             <i class="fas fa-trash"></i>
@@ -197,7 +197,7 @@
                                                         <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
                                                                 type="button" data-eid="{{ item.id }}"
                                                                 data-role="{{ item.role }}"
-                                                                id="employee_delete" data-toggle="tooltip"
+                                                                id="doctor_delete" data-toggle="tooltip"
                                                                 data-placement="top" title="Delete"
                                                                 data-theme="dark">
                                                             <i class="fas fa-trash"></i>
@@ -209,8 +209,7 @@
                                         </table>
                                     </div>
                                     <div class="tab-pane fade" id="tab_pane_3" role="tabpanel">
-                                        <table class="table table-separate table-head-custom text-center"
-                                               id="receptionist">
+                                        <table class="table table-separate table-head-custom text-center" id="receptionist">
                                             <thead>
                                             <tr>
                                                 <th>Employee Id</th>
@@ -273,7 +272,7 @@
                                                         <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
                                                                 type="button" data-eid="{{ item.id }}"
                                                                 data-role="{{ item.role }}"
-                                                                id="employee_delete" data-toggle="tooltip"
+                                                                id="receptionist_delete" data-toggle="tooltip"
                                                                 data-placement="top" title="Delete"
                                                                 data-theme="dark">
                                                             <i class="fas fa-trash"></i>
@@ -367,8 +366,6 @@
 </body>
 {% block js %}
     <script src="{% static "js/ajax/employee.js" %}"></script>
-    <script src="{% static "js/table/admin_list.js" %}"></script>
-    <script src="{% static "js/table/doctor_list.js" %}"></script>
-    <script src="{% static "js/table/receptionist_list.js" %}"></script>
+    <script src="{% static "js/table/employee_list.js" %}"></script>
 {% endblock js %}
 </html>

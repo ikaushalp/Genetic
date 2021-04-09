@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Schedule.models import Schedule
 from Employee.models import Employee
 
@@ -19,7 +19,7 @@ def add_schedule(request):
             return JsonResponse({'exist': 1})
         add = Schedule(doctor_id=doctor, fees=fees, start_time=start_time, end_time=end_time, week_day=week_day)
         add.save()
-
+        return JsonResponse({'insert': 1})
     else:
         doctor_list = Employee.objects.filter(role=2)
         context = {'doctor_list': doctor_list}
@@ -32,4 +32,11 @@ def schedule_list(request):
     return render(request, 'Schedule_template/schedule_list.html', context=context)
 
 
-
+def delete_schedule(request):
+    if request.method == 'POST':
+        schedule_id = request.POST['schedule_id']
+        rem = Schedule.objects.get(pk=schedule_id)
+        rem.delete()
+        return JsonResponse({'delete': 1})
+    else:
+        return redirect('/dashboard')

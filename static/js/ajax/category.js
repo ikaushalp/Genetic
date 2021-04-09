@@ -11,7 +11,8 @@ $(document).ready(function () {
                     dataType: 'json',
                     success: function (data) {
                         if (data.insert === 1) {
-                            $.notify("Information Saved Successfully")
+                            sessionStorage.setItem("insert", "true");
+                            window.location.reload();
                         } else if (data.exist === 1) {
                             Swal.fire(
                                 "Error",
@@ -101,7 +102,10 @@ $(document).ready(function () {
                     success: function (data) {
                         if (data.update === 1) {
                             $('#category-modal').modal('hide');
-                            $.notify("Information Saved Successfully");
+                            sessionStorage.setItem("update", "true");
+                            setTimeout(function (){
+                                window.location.reload();
+                            }, 500)
                         } else if (data.exist === 1) {
                             Swal.fire(
                                 "Error",
@@ -114,4 +118,17 @@ $(document).ready(function () {
             }
         })
     });
+    if (sessionStorage.getItem("insert")) {
+        setTimeout(function () {
+            $.notify("Information Saved SuccessFully");
+            sessionStorage.clear();
+        }, 800)
+    }
+
+    if (sessionStorage.getItem("update")) {
+        setTimeout(function () {
+            $.notify("Information Updated SuccessFully");
+            sessionStorage.clear();
+        }, 800)
+    }
 });

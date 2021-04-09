@@ -25,9 +25,7 @@
 <body>
 {% block content %}
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
-
         <div class="d-flex flex-column-fluid">
-            <!--begin::Container-->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -58,7 +56,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <!--begin: Datatable-->
+                                {% csrf_token %}
                                 <table class="table table-separate table-head-custom text-center" id="schedule">
                                     <thead>
                                     <tr>
@@ -78,21 +76,22 @@
                                             <td>{{ item.doctor }}</td>
                                             <td>{{ item.fees }}</td>
                                             <td>{{ item.week_day }}</td>
-                                            <td>{{ item.start_time|time:'g:i A'}}</td>
-                                            <td>{{ item.end_time|time:'g:i A'}}</td>
+                                            <td>{{ item.start_time|time:'g:i A' }}</td>
+                                            <td>{{ item.end_time|time:'g:i A' }}</td>
                                             <td>
-                                                <a href="{% url 'Schedule:add' %}"
-                                                   class="btn btn-icon btn-outline-success btn-sm mr-2"><i
-                                                        class="fas fa-pen"></i></a>
-                                                <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"><i
-                                                        class="fas fa-trash" id="delete"></i></a>
+
+                                                <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                        type="button" data-id="{{ item.id }}"
+                                                        id="schedule_delete" data-toggle="tooltip"
+                                                        data-placement="top" title="Delete"
+                                                        data-theme="dark">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     {% endfor %}
-
                                     </tbody>
                                 </table>
-                                <!--end: Datatable-->
                             </div>
                         </div>
                     </div>
@@ -100,9 +99,103 @@
             </div>
         </div>
     </div>
+    <!-- Update Schedule Modal -->
+    <div class="modal fade" id="update_schedule" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="POST" id="update_category">
+                    {% csrf_token %}
+                    <div class="modal-header ">
+                        <h5 class="modal-title">
+                            <i class="fas fa-edit icon-lg mr-1"></i>
+                            Edit Schedule
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-5">
+                                <label>Doctor *</label>
+                                <select class="form-control selectpicker" data-live-search="true"
+                                        data-size="4" name="doctor" title="Nothing Selected">
+                                    {% for item in doctor_list %}
+                                        <option value="{{ item.id }}">{{ item.ename }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-5">
+                                <label>Consultation Fees *</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-rupee-sign"></i>
+                                                    </span>
+                                    </div>
+                                    <input type="number" class="form-control" name="fees">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-5">
+                                <label>Week Day *</label>
+                                <select class="form-control selectpicker" data-live-search="true"
+                                        data-size="4" data-dropup-auto="false" name="weekday" title="Nothing Selected">
+                                    <option value="Sunday">Sunday</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-5">
+                                <label>Time Slot *</label>
+                                <div class="form-group row">
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="input-group timepicker">
+                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-clock"></i>
+                                                            </span>
+                                            </div>
+                                            <input class="form-control" type="text"
+                                                   name="start_time" id="start_timepicker"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-group timepicker">
+                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="fas fa-clock"></i>
+                                                            </span>
+                                            </div>
+                                            <input class="form-control" type="text"
+                                                   name="end_time" id="end_timepicker">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-light-primary btn-lg mr-2 font-weight-bold">Update</button>
+                        <button type="button" class="btn btn-light-danger btn-lg mr-2 font-weight-bold"
+                                data-dismiss="modal">Close
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 </body>
 {% block js %}
     <script src="{% static "js/table/schedule_list.js" %}"></script>
+    <script src="{% static "js/ajax/schedule.js" %}"></script>
 {% endblock js %}
 </html>

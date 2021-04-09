@@ -32,12 +32,11 @@ $(document).ready(function () {
     });
 
 // Delete Patient Data
-    $(".table").on('click', '#employee_delete', function () {
+    $(document).on('click', '#admin_delete, #doctor_delete, #receptionist_delete', function () {
 
         let id = $(this).attr("data-eid");
         let role = $(this).attr("data-role");
         let csrf = $("input[name=csrfmiddlewaretoken]").val();
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -85,8 +84,13 @@ $(document).ready(function () {
     $(document).on('click', '#show_admin_details', function (e) {
         e.preventDefault();
         let currentrow = $(this).closest('tr');
+        let data;
 
-        let data = $('#admin').DataTable().row(currentrow).data();
+        if ($('#admin').DataTable().row(this).child.isShown()) {
+            data = $('#admin').DataTable().row(this).data();
+        } else {
+            data = $('#admin').DataTable().row($(this).parents("tr")).data();
+        }
 
         $('#eid').text(data[0]);
         $('#ename').text(data[1]);
@@ -110,9 +114,13 @@ $(document).ready(function () {
 
     $(document).on('click', '#show_doctor_details', function (e) {
         e.preventDefault();
-        let currentrow = $(this).closest('tr');
 
-        let data = $('#doctor').DataTable().row(currentrow).data();
+        let data;
+        if ($('#doctor').DataTable().row(this).child.isShown()) {
+            data = $('#doctor').DataTable().row(this).data();
+        } else {
+            data = $('#doctor').DataTable().row($(this).parents("tr")).data();
+        }
 
         $('#eid').text(data[0]);
         $('#ename').text(data[1]);
@@ -136,9 +144,13 @@ $(document).ready(function () {
 
     $(document).on('click', '#show_receptionist_details', function (e) {
         e.preventDefault();
-        let currentrow = $(this).closest('tr');
 
-        let data = $('#receptionist').DataTable().row(currentrow).data();
+        let data;
+        if ($('#receptionist').DataTable().row(this).child.isShown()) {
+            data = $('#receptionist').DataTable().row(this).data();
+        } else {
+            data = $('#receptionist').DataTable().row($(this).parents("tr")).data();
+        }
 
         $('#eid').text(data[0]);
         $('#ename').text(data[1]);

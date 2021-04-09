@@ -6,5 +6,5 @@ app_name = 'Schedule'
 urlpatterns = [
     path('add', views.add_schedule, name='add'),
     path('view', views.schedule_list, name='view'),
-
+    path('delete', views.delete_schedule, name='delete'),
 ]

@@ -66,6 +66,7 @@ def delete_employee(request):
         employee_id = request.POST['employee_id']
         employee_role = request.POST['role']
         employee_role = int(employee_role)
+
         rem = Employee.objects.get(pk=employee_id)
         rem2 = CustomUser.objects.get(aid=employee_id, role=employee_role)
         rem.delete()
