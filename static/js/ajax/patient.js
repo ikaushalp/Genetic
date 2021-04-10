@@ -85,10 +85,10 @@ $(document).ready(function () {
         let currentrow = $(this).closest('tr');
         let data;
 
-        if (table.row(this).child.isShown()) {
-            data = table.row(this).data();
+        if ($('#patient').DataTable().row(this).child.isShown()) {
+            data = $('#patient').DataTable().row(this).data();
         } else {
-            data = table.row(currentrow).data();
+            data = $('#patient').DataTable().row(currentrow).data();
         }
 
         $('#id').text(data[0]);
