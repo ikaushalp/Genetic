@@ -12,7 +12,7 @@ def add_appointment(request):
         pass
     else:
         patient_list = Patient.objects.all()
-        doctor_list = Employee.objects.filter(role=2)
+        doctor_list = Employee.objects.filter(designation='Doctor')
         context = {'patient_list': patient_list, 'doctor_list': doctor_list}
         return render(request, 'Appointment_template/add_appointment.html', context=context)
 

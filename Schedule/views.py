@@ -21,7 +21,7 @@ def add_schedule(request):
         add.save()
         return JsonResponse({'insert': 1})
     else:
-        doctor_list = Employee.objects.filter(role=2)
+        doctor_list = Employee.objects.filter(designation='Doctor')
         context = {'doctor_list': doctor_list}
         return render(request, 'Schedule_template/add_schedule.html', context=context)
 

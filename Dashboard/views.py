@@ -9,7 +9,8 @@ from Employee.models import Employee
 def index(request):
     patient = Patient.objects.count()
     employee = Employee.objects.count()
-    context = {'patient': patient, 'employee': employee}
+    doctor = Employee.objects.filter(designation='Doctor').count()
+    context = {'patient': patient, 'employee': employee, 'doctor':doctor}
     return render(request, 'Dashboard_template/dashboard.html', context=context)
 
 
