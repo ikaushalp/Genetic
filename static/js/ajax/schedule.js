@@ -11,7 +11,7 @@ $(document).ready(function () {
                     dataType: 'json',
                     success: function (data) {
                         if (data.insert === 1) {
-                            sessionStorage.setItem("load", "true");
+                            sessionStorage.setItem("insert", "true");
                             KTUtil.scrollTop();
                             setTimeout(function () {
                                 window.location.reload();
@@ -30,7 +30,7 @@ $(document).ready(function () {
     });
 
 // Delete Schedule
-    $(document).on('click', '#schedule_delete', function () {
+    $(document).on('click', '#schedule_delete_button', function () {
 
         let id = $(this).attr("data-id");
         let csrf = $("input[name=csrfmiddlewaretoken]").val();
@@ -79,11 +79,88 @@ $(document).ready(function () {
     });
 
 // Update Schedule
+    $(document).on('click', '#schedule_update_button', function (e) {
+        e.preventDefault();
+        let currentrow = $(this).closest('tr');
+        let data;
 
-    if (sessionStorage.getItem("load")) {
+        if ($('#schedule').DataTable().row(this).child.isShown()) {
+            data = $('#schedule').DataTable().row(this).data();
+        } else {
+            data = $('#schedule').DataTable().row(currentrow).data();
+        }
+        let schedule_id = data[0]
+        let doctor_id = data[1]
+        let fees = data[3]
+        let weekday = data[4]
+        let start_time = data[5]
+        let end_time = data[6]
+
+        start_time = convertTime12to24(start_time)
+        end_time = convertTime12to24(end_time)
+
+        $('input[name=schedule_id]').val(schedule_id);
+        $('#doctor_list').selectpicker('val', doctor_id).selectpicker('render');
+        $('input[name=update_fees]').val(fees);
+        $('#weekday').selectpicker('val', weekday).selectpicker('render');
+        $('input[name=update_start_time]').val(start_time);
+        $('input[name=update_end_time]').val(end_time);
+
+        schedule_update_validation.validate().then(function (status) {
+            if (status === 'Valid') {
+                $('#update_schedule_modal').modal('show');
+                return false;
+            }
+        })
+
+    });
+
+    $(document).on('submit', '#update_schedule', function (e) {
+        e.preventDefault();
+        schedule_update_validation.validate().then(function (status) {
+            if (status === 'Valid') {
+                $.ajax({
+                    type: 'POST',
+                    url: 'update',
+                    data: $('#update_schedule').serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.update === 1) {
+                            $('#category-modal').modal('hide');
+                            sessionStorage.setItem("update", "true");
+                            location.reload();
+                        }
+                    }
+                });
+            }
+        })
+    });
+    if (sessionStorage.getItem("insert")) {
         setTimeout(function () {
             $.notify("Information Saved SuccessFully");
             sessionStorage.clear();
         }, 800)
+    }
+
+    if (sessionStorage.getItem("update")) {
+        setTimeout(function () {
+            $.notify("Information Updated SuccessFully");
+            sessionStorage.clear();
+        }, 800)
+    }
+    const convertTime12to24 = (time12h) => {
+        const [time, modifier] = time12h.split(' ');
+
+        let [hours, minutes] = time.split(':');
+
+        if (hours === '12') {
+            hours = '00';
+        }
+
+        if (modifier === 'PM') {
+            hours = parseInt(hours, 10) + 12;
+        }
+
+        return `${hours}:${minutes}`;
     }
 })

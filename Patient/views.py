@@ -123,8 +123,7 @@ def update_category(request):
         if check:
             return JsonResponse({'exist': 1})
 
-        cat = Category.objects.get(pk=id)
-        Category.objects.filter(category=cat.category).update(category=category)
+        Category.objects.filter(pk=id).update(category=category)
 
         return JsonResponse({'update': 1})
     else:

@@ -50,7 +50,13 @@ $(document).ready(function () {
                 }
             },
         ],
-
+        columnDefs: [
+            {
+                "targets": [1],
+                "visible": false,
+                "searchable": false
+            },
+        ],
     });
     $('#export_print').on('click', function (e) {
         e.preventDefault();

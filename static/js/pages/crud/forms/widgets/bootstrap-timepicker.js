@@ -4,6 +4,7 @@ jQuery(document).ready(function () {
         minuteStep: 1,
         defaultTime: '',
         showMeridian: false,
-        disableMousewheel: true
+        disableMousewheel: true,
+        showInputs: true
     });
 });
