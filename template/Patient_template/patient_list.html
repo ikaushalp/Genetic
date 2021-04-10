@@ -105,9 +105,8 @@
                                                         data-theme="dark">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
-                                                <button href="{% url 'Patient:add' %}"
-                                                        class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                        type="button" data-toggle="tooltip"
+                                                <button id="patient_update" class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                        type="button" data-toggle="tooltip" data-info="{{ items.id }}"
                                                         data-placement="top" title="Edit"
                                                         data-theme="dark">
                                                     <i class="fas fa-pen"></i>

@@ -80,6 +80,10 @@ def patient_list(request):
     return render(request, 'Patient_template/patient_list.html', context)
 
 
+def update_patient(request):
+    pass
+
+
 # Category #
 def category(request):
     if request.method == 'POST':

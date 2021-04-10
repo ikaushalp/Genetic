@@ -111,6 +111,9 @@ $(document).ready(function () {
         return false;
     });
 
+// Update Patient Data
+
+
     if (sessionStorage.getItem("load")) {
         setTimeout(function () {
             $.notify("Information Saved SuccessFully");
