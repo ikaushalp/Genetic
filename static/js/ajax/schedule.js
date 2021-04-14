@@ -130,6 +130,13 @@ $(document).ready(function () {
                             sessionStorage.setItem("update", "true");
                             location.reload();
                         }
+                        else if (data.exist === 1){
+                             Swal.fire(
+                                "Error",
+                                "Schedule Already Exist",
+                                "error"
+                            )
+                        }
                     }
                 });
             }
@@ -160,6 +167,8 @@ $(document).ready(function () {
         if (modifier === 'PM') {
             hours = parseInt(hours, 10) + 12;
         }
+        hours = hours.toString();
+        minutes = minutes.toString();
 
         return `${hours}:${minutes}`;
     }

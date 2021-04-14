@@ -43,37 +43,6 @@ def delete_schedule(request):
         return redirect('/dashboard')
 
 
-def get_schedule(request):
-    if request.method == 'POST':
-        schedule_id = request.POST['schedule_id']
-        try:
-            data = Schedule.objects.get(pk=schedule_id)
-        except Schedule.DoesNotExist:
-            data = None
-
-        schedule_data = {}
-        if data is not None:
-            schedule_id = data.id
-            doctor = data.doctor_id
-            fees = data.fees
-            weekday = data.week_day
-            start_time = data.start_time
-            end_time = data.end_time
-
-            schedule_data = {
-                'id': schedule_id,
-                'doctor': doctor,
-                'fees': fees,
-                'weekday': weekday,
-                'start_time': start_time,
-                'end_time': end_time,
-                'find': 1
-            }
-        return JsonResponse(schedule_data)
-    else:
-        return render(request, 'Dashboard_template/dashboard.html')
-
-
 def update_schedule(request):
     if request.method == 'POST':
         schedule_id = request.POST['schedule_id']
@@ -83,6 +52,14 @@ def update_schedule(request):
         start_time = request.POST['update_start_time']
         end_time = request.POST['update_end_time']
 
+        check = Schedule.objects.filter(doctor_id=doctor, week_day=week_day)
+        if check:
+            check1 = Schedule.objects.filter(doctor_id=doctor, fees=fees, start_time=start_time, end_time=end_time)
+            if not check1:
+                Schedule.objects.filter(pk=schedule_id).update(doctor=doctor, fees=fees, week_day=week_day,
+                                                               start_time=start_time, end_time=end_time)
+                return JsonResponse({'update': 1})
+            return JsonResponse({'exist': 1})
         Schedule.objects.filter(pk=schedule_id).update(doctor=doctor, fees=fees, week_day=week_day,
                                                        start_time=start_time, end_time=end_time)
         return JsonResponse({'update': 1})

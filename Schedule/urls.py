@@ -7,6 +7,5 @@ urlpatterns = [
     path('add', views.add_schedule, name='add'),
     path('view', views.schedule_list, name='view'),
     path('delete', views.delete_schedule, name='delete'),
-    path('update', views.update_schedule, name='update'),
-    path('get_schedule', views.get_schedule, name='get_schedule'),
+    path('update', views.update_schedule, name='update')
 ]
