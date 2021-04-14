@@ -7,7 +7,20 @@
 {% block header_name_sub %}
     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
         <li class="breadcrumb-item">
-            <a href="" class="text-muted">Admin</a>
+            <a href="" class="text-muted">
+                {% if request.user.role == 1 %}
+                    Admin
+                {% endif %}
+                {% if request.user.role == 2 %}
+                    Doctor
+                {% endif %}
+                {% if request.user.role == 3 %}
+                    Receptionist
+                {% endif %}
+                {% if request.user.role == 4 %}
+                    Patient
+                {% endif %}
+            </a>
         </li>
         <li class="breadcrumb-item">
             <a href="" class="text-muted">Dashboard</a>

@@ -28,8 +28,6 @@
     <link href="{% static "plugins/custom/datatables/datatables.bundle.css" %}" rel="stylesheet" type="text/css"/>
 
 
-
-
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="{% static "media/logos/favicon.ico" %}"/>
     <style>
@@ -56,8 +54,8 @@
 <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
     <!--begin::Logo-->
     <a href="{% url 'Dashboard:dashboard' %}">
-{#        <img alt="Logo" src="{% static "media/logos/logo-light.png" %}"#}
-{#             style="height: 165px !important; width: 200px !important; margin-left: 0px !important;"/>#}
+        {#        <img alt="Logo" src="{% static "media/logos/logo-light.png" %}"#}
+        {#             style="height: 165px !important; width: 200px !important; margin-left: 0px !important;"/>#}
         <h3 style="color: whitesmoke">HMS</h3>
     </a>
     <!--end::Logo-->
@@ -104,9 +102,8 @@
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
             <!--begin::Header-->
 
-
             <!--begin::Subheader-->
-            <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+            <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
                 <div
                         class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                     <!--begin::Info-->
@@ -129,11 +126,8 @@
                     <!--end::Info-->
                 </div>
             </div>
-            <!--begin::Entry-->
-
-
+            <!--end::Subheader-->
             {% include 'header.html' %}
-
             <!--end::Header-->
 
             <!--begin::Content-->
@@ -155,7 +149,6 @@
 <!--end::Main-->
 
 <!-- begin::User Panel-->
-{% include 'user_panel.html' %}
 <!-- end::User Panel-->
 
 <!--begin::Chat Panel-->

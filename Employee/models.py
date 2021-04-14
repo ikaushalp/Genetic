@@ -1,9 +1,14 @@
 from django.db import models
+
+
 # Create your models here.
 
 class Employee(models.Model):
     class Meta:
         db_table = 'employee'
+
+    def __str__(self):
+        return self.ename
 
     id = models.AutoField(primary_key=True)
     ename = models.CharField(max_length=50)
@@ -18,6 +23,3 @@ class Employee(models.Model):
     designation = models.CharField(max_length=20)
     joining_date = models.DateField()
     qualification = models.CharField(max_length=225)
-
-    def __str__(self):
-        return self.ename
