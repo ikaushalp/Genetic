@@ -75,56 +75,71 @@ def delete_patient(request):
 
 
 def patient_list(request):
-    patient_all_list = Patient.objects.all()
-    context = {'all_patient': patient_all_list}
-    return render(request, 'Patient_template/patient_list.html', context)
+    if request.user.role == 1 or request.user.role == 2 or request.user.role == 3:
+        patient_all_list = Patient.objects.all()
+        context = {'all_patient': patient_all_list}
+        return render(request, 'Patient_template/patient_list.html', context)
+    else:
+        return render(request, '404.html')
 
 
 def update_patient(request):
-    pass
+    if request.user.role == 1 or request.user.role == 3:
+        pass
+    else:
+        return render(request, '404.html')
 
 
 # Category #
 def category(request):
-    if request.method == 'POST':
-        category = request.POST['category']
+    if request.user.role == 1:
+        if request.method == 'POST':
+            category = request.POST['category']
 
-        check = Category.objects.filter(category=category)
-        if check:
-            return JsonResponse({'exist': 1})
+            check = Category.objects.filter(category=category)
+            if check:
+                return JsonResponse({'exist': 1})
 
-        add = Category(category=category)
-        add.save()
-        return JsonResponse({'insert': 1})
+            add = Category(category=category)
+            add.save()
+            return JsonResponse({'insert': 1})
+        else:
+            list = Category.objects.all()
+            context = {'category_list': list}
+            return render(request, 'Patient_template/category.html', context)
     else:
-        list = Category.objects.all()
-        context = {'category_list': list}
-        return render(request, 'Patient_template/category.html', context)
+        return render(request, '404.html')
 
 
 def delete_category(request):
-    if request.method == 'POST':
-        id = request.POST['category_id']
+    if request.user.role == 1:
+        if request.method == 'POST':
+            id = request.POST['category_id']
 
-        cat = Category.objects.get(pk=id)
-        cat.delete()
+            cat = Category.objects.get(pk=id)
+            cat.delete()
 
-        return JsonResponse({'delete': 1})
+            return JsonResponse({'delete': 1})
+        else:
+            return redirect('/dashboard')
     else:
-        return redirect('/dashboard')
+        return render(request, '404.html')
 
 
 def update_category(request):
-    if request.method == 'POST':
-        id = request.POST['id']
-        category = request.POST['update_category']
+    if request.user.role == 1:
+        if request.method == 'POST':
+            id = request.POST['id']
+            category = request.POST['update_category']
 
-        check = Category.objects.filter(category=category)
-        if check:
-            return JsonResponse({'exist': 1})
+            check = Category.objects.filter(category=category)
+            if check:
+                return JsonResponse({'exist': 1})
 
-        Category.objects.filter(pk=id).update(category=category)
+            Category.objects.filter(pk=id).update(category=category)
 
-        return JsonResponse({'update': 1})
+            return JsonResponse({'update': 1})
+        else:
+            return redirect('/dashboard')
     else:
-        return redirect('/dashboard')
+        return render(request, '404.html')
