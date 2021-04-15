@@ -255,7 +255,7 @@
                         </li>
                     {% endif %}
 
-                    <li class="menu-item menu-item-submenu {% if view_name == 'Appointment:view' or view_name == 'Appointment:add' %}menu-item-here menu-item-open{% endif %}"
+                    <li class="menu-item menu-item-submenu {% if view_name == 'Appointment:view' or view_name == 'Appointment:add' or view_name == 'Appointment:pending' %}menu-item-here menu-item-open{% endif %}"
                         aria-haspopup="true" data-menu-toggle="hover">
                         <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
@@ -302,6 +302,15 @@
                                         </a>
                                     </li>
                                 {% endif %}
+                                <li class="menu-item {% if view_name == 'Appointment:pending' %}menu-item-active{% endif %}"
+                                    aria-haspopup="true">
+                                    <a href="{% url 'Appointment:pending' %}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="menu-text">Pending List</span>
+                                    </a>
+                                </li>
                                 <li class="menu-item {% if view_name == 'Appointment:view' %}menu-item-active{% endif %}"
                                     aria-haspopup="true">
                                     <a href="{% url 'Appointment:view' %}" class="menu-link">

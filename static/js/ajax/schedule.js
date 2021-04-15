@@ -103,8 +103,9 @@ $(document).ready(function () {
         $('#doctor_list').selectpicker('val', doctor_id).selectpicker('render');
         $('input[name=update_fees]').val(fees);
         $('#weekday').selectpicker('val', weekday).selectpicker('render');
-        $('input[name=update_start_time]').val(start_time);
-        $('input[name=update_end_time]').val(end_time);
+        $('#update_start_timepicker').timepicker('setTime', start_time);
+        $('#update_end_timepicker').timepicker('setTime', end_time);
+
 
         schedule_update_validation.validate().then(function (status) {
             if (status === 'Valid') {
@@ -129,9 +130,8 @@ $(document).ready(function () {
                             $('#category-modal').modal('hide');
                             sessionStorage.setItem("update", "true");
                             location.reload();
-                        }
-                        else if (data.exist === 1){
-                             Swal.fire(
+                        } else if (data.exist === 1) {
+                            Swal.fire(
                                 "Error",
                                 "Schedule Already Exist",
                                 "error"
@@ -142,6 +142,7 @@ $(document).ready(function () {
             }
         })
     });
+
     if (sessionStorage.getItem("insert")) {
         setTimeout(function () {
             $.notify("Information Saved SuccessFully");

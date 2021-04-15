@@ -18,6 +18,9 @@ class Patient(models.Model):
     class Meta:
         db_table = 'patient'
 
+    def __str__(self):
+        return self.name
+
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=150)
     gender = models.CharField(max_length=6)

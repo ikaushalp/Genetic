@@ -1,11 +1,11 @@
-let create_schedule_form = document.getElementById('schedule');
-let schedule_create_validation;
+let update_schedule_form = document.getElementById('update_schedule');
+let schedule_update_validation;
 
 $(document).ready(function () {
-    schedule_create_validation = FormValidation.formValidation(create_schedule_form,
+    schedule_update_validation = FormValidation.formValidation(update_schedule_form,
         {
             fields: {
-                doctor: {
+                update_doctor: {
                     validators: {
                         notEmpty: {
                             message: 'Please select an option'
@@ -13,7 +13,7 @@ $(document).ready(function () {
                     }
                 },
 
-                fees: {
+                update_fees: {
                     validators: {
                         notEmpty: {
                             message: 'Consultation Fees is required'
@@ -21,21 +21,23 @@ $(document).ready(function () {
                     }
                 },
 
-                weekday: {
+                update_weekday: {
                     validators: {
                         notEmpty: {
                             message: 'Please select an option'
                         }
                     }
                 },
-                start_time: {
+
+                update_start_time: {
                     validators: {
                         notEmpty: {
                             message: 'Please select an option'
                         }
                     }
                 },
-                end_time: {
+
+                update_end_time: {
                     validators: {
                         notEmpty: {
                             message: 'Please select an option'
@@ -50,6 +52,4 @@ $(document).ready(function () {
             }
         }
     );
-
-
-});
+})

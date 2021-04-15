@@ -31,48 +31,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card card-custom mb-2">
-                            <div class="card-header ">
-                                <div class="card-title">
-                                    <h5 class="card-label">
-                                        <i class="fas fa-edit icon-lg mr-1"></i>
-                                        Select Date
-                                    </h5>
-                                </div>
-                            </div>
-                            <form action="" method="POST">
-                                {% csrf_token %}
-                                <div class="card-body">
-                                    <div class="form-group row flex-row justify-content-center">
-                                        <div class="col-lg-4">
-                                            <label>Date *</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-calendar-check"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" name="date"
-                                                       id="kt_daterangepicker_6" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-flex justify-content-end">
-                                        <button type="button"
-                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">Filter
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
                         <div class="card card-custom" id="table">
                             <div class="card-header ">
                                 <div class="card-title">
                                     <h5 class="card-label">
                                         <i class="fas fa-list icon-lg mr-1"></i>
-                                        Appointment List
+                                        Pending Appointment List
                                     </h5>
                                 </div>
                                 <div class="card-toolbar">
@@ -94,7 +58,8 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <table class="table table-separate table-head-custom text-center" id="appointment">
+                                <table class="table table-separate table-head-custom text-center"
+                                       id="pending_appointment">
                                     <thead>
                                     <tr>
                                         <th>Appointment ID</th>
@@ -115,24 +80,22 @@
                                             <td>{{ item.appointment_date }}</td>
                                             <td>{{ item.time_slot }}</td>
                                             <td>
-                                                {% if item.status == 'Confirmed' %}
-                                                    <span class="label label-success label-inline label-lg font-weight-bold mr-2">Confirmed</span>
-                                                {% endif %}
-                                                {% if item.status == 'Closed' %}
-                                                    <span class="label label-primary label-inline label-lg font-weight-bold mr-2">Closed</span>
-                                                {% endif %}
+                                                <span class="label label-success label-inline label-lg font-weight-bold mr-2">{{ item.status }}</span>
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-icon btn-outline-info btn-sm mr-2"
-                                                   data-toggle="tooltip" data-placement="top" title="Make Closed"
-                                                   data-theme="dark"><i class="fas fa-check"></i></a>
-                                                <a href="{% url 'Appointment:add' %}"
+                                                {% csrf_token %}
+                                                <button href="#" class="btn btn-icon btn-outline-info btn-sm mr-2"
+                                                        data-toggle="tooltip" data-placement="top" title="Make Confirm"
+                                                        data-theme="dark" id="confirm_appointment" data-id="{{ item.id }}"><i class="fas fa-check"></i>
+                                                </button>
+                                                <a href="#"
                                                    class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                    data-toggle="tooltip" data-placement="top" title="Edit"
                                                    data-theme="dark"><i class="fas fa-pen"></i></a>
-                                                <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"
-                                                   data-toggle="tooltip" data-placement="top" title="Delete"
-                                                   data-theme="dark" id="delete"><i class="fas fa-trash"></i></a>
+                                                <button href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"
+                                                        data-toggle="tooltip" data-placement="top" title="Delete"
+                                                        data-theme="dark" id="delete"><i class="fas fa-trash"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -148,7 +111,8 @@
 {% endblock content %}
 </body>
 {% block js %}
-    <script src="{% static "js/table/appointment_list.js" %}"></script>
+    <script src="{% static "js/table/pending_list.js" %}"></script>
+    <script src="{% static "js/ajax/appointment.js" %}"></script>
 {% endblock js %}
 
 </html>

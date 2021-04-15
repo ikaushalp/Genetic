@@ -174,7 +174,7 @@
                                                 </span>
                                             </div>
                                             <input class="form-control" type="text"
-                                                   name="update_start_time" id="start_timepicker"/>
+                                                   name="update_start_time" id="update_start_timepicker" readonly/>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -185,7 +185,7 @@
                                                 </span>
                                             </div>
                                             <input class="form-control" type="text"
-                                                   name="update_end_time" id="end_timepicker">
+                                                   name="update_end_time" id="update_end_timepicker" readonly/>
                                         </div>
                                     </div>
                                 </div>
@@ -205,7 +205,7 @@
 {% endblock content %}
 </body>
 {% block js %}
-    <script src="{% static "js/forms/validation/schedule_validation.js" %}"></script>
+    <script src="{% static "js/forms/Validation/update_schedule_validation.js" %}"></script>
     <script src="{% static "js/ajax/schedule.js" %}"></script>
     <script src="{% static "js/table/schedule_list.js" %}"></script>
 {% endblock js %}

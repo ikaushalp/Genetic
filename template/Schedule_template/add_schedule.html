@@ -70,7 +70,8 @@
                                         <div class="col-lg-5">
                                             <label>Week Day *</label>
                                             <select class="form-control selectpicker" data-live-search="true"
-                                                    data-size="4" data-dropup-auto="false" name="weekday" title="Nothing Selected">
+                                                    data-size="4" data-dropup-auto="false" name="weekday"
+                                                    title="Nothing Selected">
                                                 <option value="Sunday">Sunday</option>
                                                 <option value="Monday">Monday</option>
                                                 <option value="Tuesday">Tuesday</option>
@@ -93,7 +94,7 @@
                                                             </span>
                                                         </div>
                                                         <input class="form-control" type="text"
-                                                               name="start_time" id="start_timepicker"/>
+                                                               name="start_time" id="start_timepicker" readonly/>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -104,7 +105,7 @@
                                                             </span>
                                                         </div>
                                                         <input class="form-control" type="text"
-                                                               name="end_time" id="end_timepicker">
+                                                               name="end_time" id="end_timepicker" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -131,6 +132,14 @@
 {% endblock content %}
 </body>
 {% block js %}
+    <script type="text/javascript">
+        $('#start_timepicker').inputOnChange(function () {
+            schedule_create_validation.revalidateField('start_time');
+        })
+         $('#end_timepicker').inputOnChange(function () {
+            schedule_create_validation.revalidateField('end_time');
+        })
+    </script>
     <script src="{% static 'js/forms/validation/schedule_validation.js' %}"></script>
     <script src="{% static 'js/ajax/schedule.js' %}"></script>
 {% endblock js %}

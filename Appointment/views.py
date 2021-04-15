@@ -1,15 +1,30 @@
-import json
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from Patient.models import Patient
 from Employee.models import Employee
 from Schedule.models import Schedule
+from Appointment.models import Appointment
 
 
 # Create your views here.
 def add_appointment(request):
     if request.method == 'POST':
-        pass
+        patient = request.POST['patient']
+        doctor = request.POST['doctor']
+        appointment_date = request.POST['appointment_date']
+        time_slot = request.POST['time_slot']
+        fees = request.POST['fees']
+
+        data = Employee.objects.get(pk=doctor, role=2)
+        if data:
+            doctor = data.ename
+        check = Appointment.objects.filter(patient_id=patient, doctor=doctor, appointment_date=appointment_date)
+        if check:
+            return JsonResponse({'exist': 1})
+        add = Appointment(patient_id=patient, doctor=doctor, appointment_date=appointment_date, time_slot=time_slot,
+                          fees=fees, status='Pending')
+        add.save()
+        return JsonResponse({'insert': 1})
     else:
         patient_list = Patient.objects.all()
         doctor_list = Employee.objects.filter(designation='Doctor')
@@ -18,7 +33,23 @@ def add_appointment(request):
 
 
 def appointment_list(request):
-    return render(request, 'Appointment_template/appointment_list.html')
+    appointment = Appointment.objects.filter(status='Confirmed' or 'Closed')
+    return render(request, 'Appointment_template/appointment_list.html', context={'appointment_list': appointment})
+
+
+def pending_appointment_list(request):
+    appointment = Appointment.objects.filter(status='Pending')
+    return render(request, 'Appointment_template/pending_list.html', context={'appointment_list': appointment})
+
+
+def confirm_appointment(request):
+    if request.method == 'POST':
+        id = request.POST['appointment_id']
+
+        Appointment.objects.filter(pk=id).update(status='Confirmed')
+        return JsonResponse({'update': 1})
+    else:
+        return render(request, 'Dashboard_template/dashboard.html')
 
 
 def loadtimeslot(request):

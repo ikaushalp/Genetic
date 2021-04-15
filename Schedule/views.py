@@ -54,7 +54,8 @@ def update_schedule(request):
 
         check = Schedule.objects.filter(doctor_id=doctor, week_day=week_day)
         if check:
-            check1 = Schedule.objects.filter(doctor_id=doctor, fees=fees, start_time=start_time, end_time=end_time)
+            check1 = Schedule.objects.filter(doctor_id=doctor, fees=fees, week_day=week_day, start_time=start_time,
+                                             end_time=end_time)
             if not check1:
                 Schedule.objects.filter(pk=schedule_id).update(doctor=doctor, fees=fees, week_day=week_day,
                                                                start_time=start_time, end_time=end_time)

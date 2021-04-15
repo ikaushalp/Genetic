@@ -5,6 +5,13 @@ jQuery(document).ready(function () {
         defaultTime: '',
         showMeridian: false,
         disableMousewheel: true,
-        showInputs: true
+        showInputs: true,
+    });
+    $('#update_start_timepicker, #update_end_timepicker').timepicker({
+        minuteStep: 1,
+        defaultTime: '',
+        showMeridian: false,
+        disableMousewheel: true,
+        showInputs: true,
     });
 });
