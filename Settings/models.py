@@ -16,3 +16,4 @@ class Global(models.Model):
     link1 = models.CharField(max_length=60)
     link2 = models.CharField(max_length=60)
     link3 = models.CharField(max_length=60)
+    modified_date = models.DateTimeField(auto_now=True)

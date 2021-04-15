@@ -3,7 +3,8 @@ let global_settings_validation;
 document.addEventListener('DOMContentLoaded', function () {
     global_settings_validation = FormValidation.formValidation(global_form, {
         fields: {
-            name: {
+
+            hospital_name: {
                 validators: {
                     notEmpty: {
                         message: 'Hospital name is required'
@@ -15,7 +16,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 validators: {
                     notEmpty: {
                         message: 'Visible name is required'
-                    }
+                    },
+                    stringLength: {
+                        max: 10,
+                        message: 'The full name must be less than 10 characters'
+                    },
                 }
             },
 

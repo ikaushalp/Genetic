@@ -1,5 +1,5 @@
 from django.urls import path
-from  Settings import views
+from Settings import views
 
 app_name = 'Settings'
 
