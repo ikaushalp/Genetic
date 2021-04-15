@@ -111,6 +111,7 @@
                                                                 data-theme="dark">
                                                             <i class="fas fa-eye"></i>
                                                         </button>
+                                                        {% if request.user.role == 1 %}
                                                         <button href="{% url 'Employee:add' %}"
                                                                 class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                                 type="button" data-toggle="tooltip"
@@ -127,6 +128,7 @@
                                                                 data-theme="dark">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
+                                                        {% endif %}
                                                     </td>
                                                 </tr>
                                             {% endfor %}
@@ -186,6 +188,7 @@
                                                                 data-theme="dark">
                                                             <i class="fas fa-eye"></i>
                                                         </button>
+                                                        {% if request.user.role == 1 %}
                                                         <button href="{% url 'Employee:add' %}"
                                                                 class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                                 type="button" data-toggle="tooltip"
@@ -202,6 +205,7 @@
                                                                 data-theme="dark">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
+                                                        {% endif %}
                                                     </td>
                                                 </tr>
                                             {% endfor %}
@@ -261,6 +265,7 @@
                                                                 data-theme="dark">
                                                             <i class="fas fa-eye"></i>
                                                         </button>
+                                                        {% if request.user.role == 1 %}
                                                         <button href="{% url 'Employee:add' %}"
                                                                 class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                                 type="button" data-toggle="tooltip"
@@ -277,6 +282,7 @@
                                                                 data-theme="dark">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
+                                                        {% endif %}
                                                     </td>
                                                 </tr>
                                             {% endfor %}

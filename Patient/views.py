@@ -1,7 +1,6 @@
-import json
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
-
+from HMS.decorators import role_required, login_required
 from Authentication.models import CustomUser
 from Patient.models import Patient, Category
 
@@ -75,71 +74,57 @@ def delete_patient(request):
 
 
 def patient_list(request):
-    if request.user.role == 1 or request.user.role == 2 or request.user.role == 3:
-        patient_all_list = Patient.objects.all()
-        context = {'all_patient': patient_all_list}
-        return render(request, 'Patient_template/patient_list.html', context)
-    else:
-        return render(request, '404.html')
+    patient_all_list = Patient.objects.all()
+    context = {'all_patient': patient_all_list}
+    return render(request, 'Patient_template/patient_list.html', context)
 
 
 def update_patient(request):
-    if request.user.role == 1 or request.user.role == 3:
-        pass
-    else:
-        return render(request, '404.html')
+    pass
 
 
 # Category #
+
 def category(request):
-    if request.user.role == 1:
-        if request.method == 'POST':
-            category = request.POST['category']
+    if request.method == 'POST':
+        category = request.POST['category']
 
-            check = Category.objects.filter(category=category)
-            if check:
-                return JsonResponse({'exist': 1})
+        check = Category.objects.filter(category=category)
+        if check:
+            return JsonResponse({'exist': 1})
 
-            add = Category(category=category)
-            add.save()
-            return JsonResponse({'insert': 1})
-        else:
-            list = Category.objects.all()
-            context = {'category_list': list}
-            return render(request, 'Patient_template/category.html', context)
+        add = Category(category=category)
+        add.save()
+        return JsonResponse({'insert': 1})
     else:
-        return render(request, '404.html')
+        list = Category.objects.all()
+        context = {'category_list': list}
+        return render(request, 'Patient_template/category.html', context)
 
 
 def delete_category(request):
-    if request.user.role == 1:
-        if request.method == 'POST':
-            id = request.POST['category_id']
+    if request.method == 'POST':
+        id = request.POST['category_id']
 
-            cat = Category.objects.get(pk=id)
-            cat.delete()
+        cat = Category.objects.get(pk=id)
+        cat.delete()
 
-            return JsonResponse({'delete': 1})
-        else:
-            return redirect('/dashboard')
+        return JsonResponse({'delete': 1})
     else:
-        return render(request, '404.html')
+        return redirect('/dashboard')
 
 
 def update_category(request):
-    if request.user.role == 1:
-        if request.method == 'POST':
-            id = request.POST['id']
-            category = request.POST['update_category']
+    if request.method == 'POST':
+        id = request.POST['id']
+        category = request.POST['update_category']
 
-            check = Category.objects.filter(category=category)
-            if check:
-                return JsonResponse({'exist': 1})
+        check = Category.objects.filter(category=category)
+        if check:
+            return JsonResponse({'exist': 1})
 
-            Category.objects.filter(pk=id).update(category=category)
+        Category.objects.filter(pk=id).update(category=category)
 
-            return JsonResponse({'update': 1})
-        else:
-            return redirect('/dashboard')
+        return JsonResponse({'update': 1})
     else:
-        return render(request, '404.html')
+        return redirect('/dashboard')
