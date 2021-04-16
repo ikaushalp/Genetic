@@ -40,7 +40,7 @@
                                     </h5>
                                 </div>
                             </div>
-                            <form action="" method="POST">
+                            <form method="POST" id="filter_appointment">
                                 {% csrf_token %}
                                 <div class="card-body">
                                     <div class="form-group row flex-row justify-content-center">
@@ -52,15 +52,15 @@
                                                         <i class="fas fa-calendar-check"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" name="date"
-                                                       id="kt_daterangepicker_6" readonly>
+                                                <input type="text" class="form-control" name="appointment_date"
+                                                       id="filter_appointement_date" readonly>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-end">
-                                        <button type="button"
+                                        <button type="submit"
                                                 class="btn btn-light-success btn-lg mr-2 font-weight-bold">Filter
                                         </button>
                                     </div>
@@ -149,6 +149,7 @@
 </body>
 {% block js %}
     <script src="{% static "js/table/appointment_list.js" %}"></script>
+    <script src="{% static "js/ajax/appointment.js" %}"></script>
 {% endblock js %}
 
 </html>

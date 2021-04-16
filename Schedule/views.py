@@ -9,16 +9,25 @@ def add_schedule(request):
     if request.method == 'POST':
         doctor = request.POST['doctor']
         fees = request.POST['fees']
-        week_day = request.POST['weekday']
+        week_day = request.POST.getlist('weekday')
         start_time = request.POST['start_time']
         end_time = request.POST['end_time']
         doctor = int(doctor)
 
-        check = Schedule.objects.filter(doctor_id=doctor, week_day=week_day)
-        if check:
-            return JsonResponse({'exist': 1})
-        add = Schedule(doctor_id=doctor, fees=fees, start_time=start_time, end_time=end_time, week_day=week_day)
-        add.save()
+        for element in week_day:
+            try:
+                exist = Schedule.objects.get(doctor_id=doctor, week_day=element)
+            except Schedule.DoesNotExist:
+                exist = None
+            
+            if exist:
+                day = exist.week_day
+                return JsonResponse({'exist': 1, 'day': day})
+
+        for element in week_day:
+            add = Schedule(doctor_id=doctor, fees=fees, start_time=start_time, end_time=end_time, week_day=element)
+            print(element)
+            add.save()
         return JsonResponse({'insert': 1})
     else:
         doctor_list = Employee.objects.filter(designation='Doctor')

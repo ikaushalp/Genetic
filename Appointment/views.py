@@ -1,4 +1,6 @@
-from django.http import JsonResponse
+import json
+from django.db.models import Q
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from Patient.models import Patient
 from Employee.models import Employee
@@ -33,8 +35,16 @@ def add_appointment(request):
 
 
 def appointment_list(request):
-    appointment = Appointment.objects.filter(status='Confirmed' or 'Closed')
-    return render(request, 'Appointment_template/appointment_list.html', context={'appointment_list': appointment})
+    if request.method == 'POST':
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
+
+        appointment = Appointment.objects.filter(
+            Q(appointment_date__gte=start_date) & Q(appointment_date__lte=end_date), status='Confirmed' or 'Closed')
+        return HttpResponse(json.dumps({'appointment_list': appointment}, default=str))
+    else:
+        appointment = Appointment.objects.filter(status='Confirmed' or 'Closed')
+        return render(request, 'Appointment_template/appointment_list.html', context={'appointment_list': appointment})
 
 
 def pending_appointment_list(request):
@@ -45,7 +55,6 @@ def pending_appointment_list(request):
 def confirm_appointment(request):
     if request.method == 'POST':
         id = request.POST['appointment_id']
-
         Appointment.objects.filter(pk=id).update(status='Confirmed')
         return JsonResponse({'update': 1})
     else:

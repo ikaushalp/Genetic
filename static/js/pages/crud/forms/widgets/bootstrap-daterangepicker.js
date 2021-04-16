@@ -80,7 +80,7 @@ var KTBootstrapDaterangepicker = function () {
         var start = new Date();
         var end = new Date();
 
-        $('#kt_daterangepicker_6').daterangepicker({
+        $('#filter_appointement_date').daterangepicker({
             buttonClasses: ' btn',
             applyClass: 'btn-primary',
             cancelClass: 'btn-secondary',
@@ -99,8 +99,8 @@ var KTBootstrapDaterangepicker = function () {
             locale: {
                 format: 'DD/MM/YYYY',
             },
-        }, function(start, end, label) {
-            $('#kt_daterangepicker_6 .form-control').val(start.format('DD/MM/YYYY')+ ' - ' + end.format('DD/MM/YYYY'));
+        }, function(start, end) {
+            $('#filter_appointement_date .form-control').val(start+ ' - ' + end);
         });
     }
 

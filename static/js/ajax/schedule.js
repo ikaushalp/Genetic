@@ -12,14 +12,15 @@ $(document).ready(function () {
                     success: function (data) {
                         if (data.insert === 1) {
                             sessionStorage.setItem("insert", "true");
-                            KTUtil.scrollTop();
+                            KTUtil.scrollTop(0, 1000);
                             setTimeout(function () {
                                 window.location.reload();
                             }, 500)
-                        } else if (data.exist === 1) {
+                        }
+                        if (data.exist === 1) {
                             Swal.fire(
                                 'Error',
-                                'Schedule Already Exist',
+                                 data.day + ' Schedule Already Exist',
                                 'error'
                             )
                         }
@@ -55,7 +56,7 @@ $(document).ready(function () {
                         if (data.delete === 1) {
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                text: "Your record has been deleted.",
                                 icon: "success",
                                 confirmButtonText: "Ok",
                             }).then(function (result) {

@@ -137,6 +137,26 @@ $(document).ready(function () {
 
     });
 
+// Filter Appointment Datewise
+    $(document).on('submit', '#filter_appointment', function (e) {
+        e.preventDefault();
+        let start_date = $('#filter_appointement_date').data('daterangepicker').startDate;
+        let end_date = $('#filter_appointement_date').data('daterangepicker').endDate;
+        start_date = start_date.format('YYYY-MM-DD');
+        end_date = end_date.format('YYYY-MM-DD');
+        let csrf = $("input[name=csrfmiddlewaretoken]").val();
+        info = {start_date: start_date, end_date: end_date, csrfmiddlewaretoken: csrf}
+        $.ajax({
+            type: 'POST',
+            url: 'view',
+            data: info,
+            dataType: 'json',
+            success: function () {
+                $('#appointment').DataTable().clear().draw();
+            }
+        });
+    });
+
     if (sessionStorage.getItem("insert")) {
         setTimeout(function () {
             $.notify("Information Saved SuccessFully");
@@ -144,4 +164,4 @@ $(document).ready(function () {
         }, 800)
     }
 
-})
+});
