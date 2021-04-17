@@ -112,7 +112,24 @@ $(document).ready(function () {
     });
 
 // Update Patient Data
+    $(document).on('click', '#patient_update_button', function (e) {
+        e.preventDefault();
+        let patient_id = $(this).attr("data-id");
+        let csrf = $("input[name=csrfmiddlewaretoken]").val();
 
+        info = {patient_id: patient_id, csrfmiddlewaretoken: csrf}
+        $.ajax({
+            url: 'get_patient',
+            type: 'POST',
+            data: info,
+            dataType: 'json',
+            success: function (data) {
+                if (data.delete === 1) {
+                    console.log("Got it!!!")
+                }
+            }
+        });
+    });
 
     if (sessionStorage.getItem("load")) {
         setTimeout(function () {

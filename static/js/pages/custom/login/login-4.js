@@ -53,7 +53,7 @@ var KTLogin = function() {
 					KTUtil.btnRelease(formSubmitButton);
 				}, 2000);
 
-				// Form Validation & Ajax Submission: https://formvalidation.io/guide/examples/using-ajax-to-submit-the-form
+				// Form validation & Ajax Submission: https://formvalidation.io/guide/examples/using-ajax-to-submit-the-form
 				/**
 		        FormValidation.utils.fetch(formSubmitUrl, {
 		            method: 'POST',
@@ -280,7 +280,7 @@ var KTLogin = function() {
 			clickableSteps: false // to make steps clickable this set value true and add data-wizard-clickable="true" in HTML for class="wizard" element
 		});
 
-		// Validation before going to next page
+		// validation before going to next page
 		wizardObj.on('beforeNext', function (wizard) {
 			validations[wizard.getStep() - 1].validate().then(function (status) {
 				if (status == 'Valid') {

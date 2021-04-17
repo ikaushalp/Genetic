@@ -17,7 +17,7 @@ var KTAddUser = function () {
 			clickableSteps: true  // allow step clicking
 		});
 
-		// Validation before going to next page
+		// validation before going to next page
 		_wizard.on('beforeNext', function (wizard) {
 			// Don't go to the next step yet
 			_wizard.stop();
@@ -53,7 +53,7 @@ var KTAddUser = function () {
 	var _initValidations = function () {
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
 
-		// Validation Rules For Step 1
+		// validation Rules For Step 1
 		_validations.push(FormValidation.formValidation(
 			_formEl,
 			{

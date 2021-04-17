@@ -1,5 +1,6 @@
 const patient_form = document.getElementById('patient');
 let patient_validation;
+
 document.addEventListener('DOMContentLoaded', function () {
     patient_validation = FormValidation.formValidation(patient_form, {
         fields: {
@@ -110,5 +111,5 @@ document.addEventListener('DOMContentLoaded', function () {
             trigger: new FormValidation.plugins.Trigger(),
             bootstrap: new FormValidation.plugins.Bootstrap(),
         }
-    })
+    });
 });

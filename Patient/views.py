@@ -1,3 +1,4 @@
+import json
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from HMS.decorators import role_required, login_required
@@ -80,7 +81,34 @@ def patient_list(request):
 
 
 def update_patient(request):
-    pass
+    if request.method == 'POST':
+        name = request.POST['update_name']
+        gender = request.POST['update_gender']
+        birthdate = request.POST['update_birthdate']
+        age = request.POST['update_age']
+        marital_status = request.POST['update_marital_status']
+        mobile_no = request.POST['update_phone']
+        email = request.POST['update_email']
+        category = request.POST['update_category']
+        blood_group = request.POST['update_blood_group']
+        blood_pressure = request.POST['update_blood_pressure']
+        height = request.POST['update_height']
+        weight = request.POST['update_weight']
+        address = request.POST['update_address']
+        username = request.POST['update_username']
+        password = request.POST['update_retype_password']
+        category = int(category)
+    return render(request, 'Patient_template/update_patient.html')
+
+
+def get_patient_list(request):
+    if request.method == 'POST':
+        patient_id = request.POST['patient_id']
+        data = Patient.objects.get(pk=patient_id)
+        data = json.dumps(data, default=str)
+        return HttpResponse(data)
+    else:
+        return redirect('/dashboard')
 
 
 # Category #

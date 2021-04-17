@@ -2727,7 +2727,7 @@ Docs & License: https://fullcalendar.io/
         }
         return true;
     }
-    // Moving Event Validation
+    // Moving Event validation
     // ------------------------------------------------------------------------------------------------------------------------
     function isInteractionPropsValid(state, calendar, dateSpanMeta, filterConfig) {
         var interaction = state.eventDrag; // HACK: the eventDrag props is used for ALL interactions
@@ -2799,7 +2799,7 @@ Docs & License: https://fullcalendar.io/
         }
         return true;
     }
-    // Date Selection Validation
+    // Date Selection validation
     // ------------------------------------------------------------------------------------------------------------------------
     function isDateSelectionPropsValid(state, calendar, dateSpanMeta, filterConfig) {
         var relevantEventStore = state.eventStore;
@@ -4029,7 +4029,7 @@ Docs & License: https://fullcalendar.io/
         DateComponent.prototype.queryHit = function (positionLeft, positionTop, elWidth, elHeight) {
             return null; // this should be abstract
         };
-        // Validation
+        // validation
         // -----------------------------------------------------------------------------------------------------------------
         DateComponent.prototype.isInteractionValid = function (interaction) {
             var calendar = this.context.calendar;
