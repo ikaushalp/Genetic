@@ -85,4 +85,5 @@ $(document).ready(function (){
             bootstrap: new FormValidation.plugins.Bootstrap(),
         }
     })
+    update_patient_validation.validate();
 })

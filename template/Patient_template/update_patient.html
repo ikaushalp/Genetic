@@ -48,14 +48,17 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                         class="fas fa-user"></i></span></div>
-                                                <input type="text" class="form-control" name="update_name"/>
+                                                <input type="text" class="form-control" name="update_name"
+                                                       value="{{ data.name }}"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>Gender *</label>
-                                            <select class="form-control selectpicker" data-size="4" name="update_gender" title="Nothing Selected">
-                                                <option>Male</option>
-                                                <option>Female</option>
+                                            <select class="form-control selectpicker" data-size="4" name="update_gender"
+                                                    title="Nothing Selected">
+                                                <option {% if data.gender == 'Male' %}selected{% endif %}>Male</option>
+                                                <option {% if data.gender == 'Female' %}selected{% endif %}>Female
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -69,19 +72,23 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" id="patient_birthdate"
-                                                       name="update_birthdate" onchange="AGE()" readonly/>
+                                                       name="update_birthdate" onchange="AGE()" readonly
+                                                       value="{{ data.birthdate|default_if_none:'' }}"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Age *</label>
-                                            <input type="number" class="form-control" name="update_age" id="age" value=""/>
+                                            <input type="number" class="form-control" name="update_age" id="age"
+                                                   value="{{ data.age }}"/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>Marital Status *</label>
                                             <select class="form-control selectpicker" data-size="4"
                                                     name="update_marital_status" title="Nothing Selected">
-                                                <option>Single</option>
-                                                <option>Married</option>
+                                                <option {% if data.marital_status == 'Single' %}selected{% endif %}>Single
+                                                </option>
+                                                <option {% if data.marital_status == 'Married' %}selected{% endif %}>Married
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -91,7 +98,8 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                         class="fas fa-phone-volume"></i></span></div>
-                                                <input type="text" name="update_phone" class="form-control"/>
+                                                <input type="text" name="update_phone" class="form-control"
+                                                       value="{{ data.mobile_no }}"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -99,51 +107,66 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                         class="fas fa-envelope-open"></i></span></div>
-                                                <input type="email" class="form-control" name="update_email"/>
+                                                <input type="email" class="form-control" name="update_email"
+                                                       value="{{ data.email }}"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>Category *</label>
-                                            <select class="form-control selectpicker" data-size="4" name="update_category"
+                                            <select class="form-control selectpicker" data-size="4"
+                                                    name="update_category"
                                                     data-live-search="true" title="Nothing Selected">
                                                 {% for cat in category_list %}
-                                                    <option value="{{ cat.id }}">{{ cat.category }}</option>
+                                                    <option value="{{ cat.id }}"
+                                                            {% if data.category_id == cat.id %}selected{% endif %}>{{ cat.category }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
                                         <div class="col-lg-2">
                                             <label>Blood Group</label>
-                                            <select class="form-control selectpicker" data-size="4" name="update_blood_group" title="Nothing Selected">
-                                                <option>A+</option>
-                                                <option>A-</option>
-                                                <option>B+</option>
-                                                <option>B-</option>
-                                                <option>O+</option>
-                                                <option>O-</option>
-                                                <option>AB+</option>
-                                                <option>AB-</option>
+                                            <select class="form-control selectpicker" data-size="4"
+                                                    name="update_blood_group" title="Nothing Selected">
+                                                <option {% if data.category_id ==  'A+' %}selected{% endif %}>A+
+                                                </option>
+                                                <option {% if data.category_id ==  'A-' %}selected{% endif %}>A-
+                                                </option>
+                                                <option {% if data.category_id ==  'B+' %}selected{% endif %}>B+
+                                                </option>
+                                                <option {% if data.category_id ==  'B-' %}selected{% endif %}>B-
+                                                </option>
+                                                <option {% if data.category_id ==  'O+' %}selected{% endif %}>O+
+                                                </option>
+                                                <option {% if data.category_id ==  'O-' %}selected{% endif %}>O-
+                                                </option>
+                                                <option {% if data.category_id ==  'AB+' %}selected{% endif %}>AB+
+                                                </option>
+                                                <option {% if data.category_id ==  'AB-' %}selected{% endif %}>AB-
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-lg-2">
                                             <label>Blood Pressure</label>
-                                            <input type="number" class="form-control" name="update_blood_pressure"/>
+                                            <input type="number" class="form-control" name="update_blood_pressure"
+                                                   value="{{ data.blood_pressure }}"/>
                                         </div>
                                         <div class="col-lg-2">
                                             <label>Height</label>
-                                            <input type="number" class="form-control" name="update_height"/>
+                                            <input type="number" class="form-control" name="update_height"
+                                                   value="{{ data.height }}"/>
                                         </div>
                                         <div class="col-lg-2">
                                             <label>Weight</label>
-                                            <input type="number" class="form-control" name="update_weight"/>
+                                            <input type="number" class="form-control" name="update_weight"
+                                                   value="{{ data.weight }}"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-12">
                                             <label>Address</label>
                                             <textarea class="form-control" id="kt_autosize_1" rows="3"
-                                                      name="update_address"></textarea>
+                                                      name="update_address">{{ data.address|default_if_none:'' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +190,8 @@
                                                         <i class="fas fa-user-lock"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" name="update_username"/>
+                                                <input type="text" class="form-control" name="update_username"
+                                                       value="{{ login_data.username }}"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">

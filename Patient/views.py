@@ -1,5 +1,4 @@
-import json
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from HMS.decorators import role_required, login_required
 from Authentication.models import CustomUser
@@ -101,14 +100,13 @@ def update_patient(request):
     return render(request, 'Patient_template/update_patient.html')
 
 
-def get_patient_list(request):
-    if request.method == 'POST':
-        patient_id = request.POST['patient_id']
-        data = Patient.objects.get(pk=patient_id)
-        data = json.dumps(data, default=str)
-        return HttpResponse(data)
-    else:
-        return redirect('/dashboard')
+def get_patient_list(request, patient_id):
+    data = Patient.objects.get(pk=patient_id)
+    login_data = CustomUser.objects.get(aid=patient_id, role=4)
+
+    category_list = Category.objects.all()
+    return render(request, 'Patient_template/update_patient.html',
+                  context={'data': data, 'login_data': login_data, 'category_list': category_list})
 
 
 # Category #
