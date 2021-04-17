@@ -125,43 +125,68 @@ $(document).ready(function () {
                         }
                     }
                 });
-            } else if (result.dismiss === "cancel") {
-                Swal.fire({
-                    title: "Cancelled",
-                    text: "Your Record is safe",
-                    icon: "error",
-                    confirmButtonText: "Ok"
-                })
             }
         });
-
     });
 
-// Filter Appointment Datewise
-    $(document).on('submit', '#filter_appointment', function (e) {
+// Update Appointment Data
+    $(document).on('click', '#apoointment_update_button', function (e) {
         e.preventDefault();
-        let start_date = $('#filter_appointement_date').data('daterangepicker').startDate;
-        let end_date = $('#filter_appointement_date').data('daterangepicker').endDate;
-        start_date = start_date.format('YYYY-MM-DD');
-        end_date = end_date.format('YYYY-MM-DD');
-        let csrf = $("input[name=csrfmiddlewaretoken]").val();
-        info = {start_date: start_date, end_date: end_date, csrfmiddlewaretoken: csrf}
-        $.ajax({
-            type: 'POST',
-            url: 'view',
-            data: info,
-            dataType: 'json',
-            success: function () {
-                $('#appointment').DataTable().clear().draw();
-            }
-        });
+        let currentrow = $(this).closest('tr');
+        let data;
+
+        // if ($('#appointment').DataTable().row(this).child.isShown()) {
+        //     data = $('#schedule').DataTable().row(this).data();
+        // } else {
+        //     data = $('#schedule').DataTable().row(currentrow).data();
+        // }
+        // let schedule_id = data[0]
+        // let doctor_id = data[1]
+        // let fees = data[3]
+        // let weekday = data[4]
+        // let start_time = data[5]
+        // let end_time = data[6]
+
+        // category_update_validation.validate().then(function (status) {
+        //     if (status === 'Invalid') {
+                $('#update_pending_appointment_modal').modal('show');
+        //         return false;
+        //     }
+        // })
     });
 
+    $(document).on('submit', '#update_category', function (e) {
+        e.preventDefault();
+        category_update_validation.validate().then(function (status) {
+            if (status === 'Valid') {
+                $.ajax({
+                    type: 'POST',
+                    url: 'update_category',
+                    data: $('#update_category').serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.update === 1) {
+                            $('#category-modal').modal('hide');
+                            sessionStorage.setItem("update", "true");
+                            setTimeout(function (){
+                                window.location.reload();
+                            }, 500)
+                        } else if (data.exist === 1) {
+                            Swal.fire(
+                                "Error",
+                                "Appointment Already Exist",
+                                "error"
+                            )
+                        }
+                    }
+                });
+            }
+        })
+    });
     if (sessionStorage.getItem("insert")) {
         setTimeout(function () {
             $.notify("Information Saved SuccessFully");
             sessionStorage.clear();
         }, 800)
     }
-
 });

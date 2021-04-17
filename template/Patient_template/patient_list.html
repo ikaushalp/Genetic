@@ -85,7 +85,7 @@
                                             <td>{{ items.id }}</td>
                                             <td>{{ items.name }}</td>
                                             <td>{{ items.gender }}</td>
-                                            <td>{{ items.birthdate }}</td>
+                                            <td>{{ items.birthdate|date:'d-M-Y'|default:"None" }}</td>
                                             <td>{{ items.age }}</td>
                                             <td>{{ items.marital_status }}</td>
                                             <td>{{ items.mobile_no }}</td>

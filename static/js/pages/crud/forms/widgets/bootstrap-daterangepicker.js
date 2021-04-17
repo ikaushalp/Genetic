@@ -97,7 +97,7 @@ var KTBootstrapDaterangepicker = function () {
                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             },
             locale: {
-                format: 'DD/MM/YYYY',
+                format: 'YYYY/MM/DD',
             },
         }, function(start, end) {
             $('#filter_appointement_date .form-control').val(start+ ' - ' + end);

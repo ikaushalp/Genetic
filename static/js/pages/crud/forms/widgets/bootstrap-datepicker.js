@@ -25,7 +25,7 @@ jQuery(document).ready(function () {
         format: "yyyy-mm-dd",
     });
 
-    $('#employee_joining_date, #appointment_datepicker').datepicker({
+    $('#employee_joining_date').datepicker({
         rtl: KTUtil.isRTL(),
         todayBtn: "linked",
         clearBtn: true,
@@ -36,5 +36,14 @@ jQuery(document).ready(function () {
         format: "yyyy-mm-dd",
     });
 
+    $('#appointment_datepicker').datepicker({
+        rtl: KTUtil.isRTL(),
+        todayHighlight: true,
+        autoclose: true,
+        orientation: 'top right',
+        templates: arrows,
+        format: "yyyy-mm-dd",
+    });
     $('#appointment_datepicker').datepicker('setDate', today);
+
 });

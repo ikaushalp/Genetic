@@ -84,7 +84,7 @@
                                                     <td>{{ item.id }}</td>
                                                     <td>{{ item.ename }}</td>
                                                     <td>{{ item.gender }}</td>
-                                                    <td>{{ item.birthdate }}</td>
+                                                    <td>{{ item.birthdate|date:'d-m-Y'|default:"None" }}</td>
                                                     <td>{{ item.email }}</td>
                                                     <td>{{ item.mobile }}</td>
                                                     <td>{{ item.designation }}</td>
@@ -100,7 +100,7 @@
                                                     <td style="display: none !important;">{{ item.blood_group }}</td>
                                                     <td style="display: none !important;">{{ item.marital_status }}</td>
                                                     <td style="display: none !important;">{{ item.address }}</td>
-                                                    <td style="display: none !important;">{{ item.joining_date }}</td>
+                                                    <td style="display: none !important;">{{ item.joining_date|date:'d-m-Y'|default:"None" }}</td>
                                                     <td style="display: none !important;">{{ item.qualification }}</td>
                                                     <td>
                                                         <button
@@ -161,7 +161,7 @@
                                                     <td>{{ item.id }}</td>
                                                     <td>{{ item.ename }}</td>
                                                     <td>{{ item.gender }}</td>
-                                                    <td>{{ item.birthdate }}</td>
+                                                    <td>{{ item.birthdate|date:'d-m-Y'|default:"None" }}</td>
                                                     <td>{{ item.email }}</td>
                                                     <td>{{ item.mobile }}</td>
                                                     <td>{{ item.designation }}</td>
@@ -177,7 +177,7 @@
                                                     <td style="display: none !important;">{{ item.blood_group }}</td>
                                                     <td style="display: none !important;">{{ item.marital_status }}</td>
                                                     <td style="display: none !important;">{{ item.address }}</td>
-                                                    <td style="display: none !important;">{{ item.joining_date }}</td>
+                                                    <td style="display: none !important;">{{ item.joining_date|date:'d-m-Y'|default:"None"}}</td>
                                                     <td style="display: none !important;">{{ item.qualification }}</td>
                                                     <td>
                                                         <button
@@ -238,7 +238,7 @@
                                                     <td>{{ item.id }}</td>
                                                     <td>{{ item.ename }}</td>
                                                     <td>{{ item.gender }}</td>
-                                                    <td>{{ item.birthdate }}</td>
+                                                    <td>{{ item.birthdate|date:'d-m-Y'|default:"None" }}</td>
                                                     <td>{{ item.email }}</td>
                                                     <td>{{ item.mobile }}</td>
                                                     <td>{{ item.designation }}</td>
@@ -254,7 +254,7 @@
                                                     <td style="display: none !important;">{{ item.blood_group }}</td>
                                                     <td style="display: none !important;">{{ item.marital_status }}</td>
                                                     <td style="display: none !important;">{{ item.address }}</td>
-                                                    <td style="display: none !important;">{{ item.joining_date }}</td>
+                                                    <td style="display: none !important;">{{ item.joining_date|date:'d-m-Y'|default:"None" }}</td>
                                                     <td style="display: none !important;">{{ item.qualification }}</td>
                                                     <td>
                                                         <button

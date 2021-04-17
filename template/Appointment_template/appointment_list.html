@@ -45,7 +45,7 @@
                                 <div class="card-body">
                                     <div class="form-group row flex-row justify-content-center">
                                         <div class="col-lg-4">
-                                            <label>Date *</label>
+                                            <label>Date</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
@@ -53,7 +53,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control" name="appointment_date"
-                                                       id="filter_appointement_date" readonly>
+                                                       id="filter_appointement_date">
                                             </div>
                                         </div>
                                     </div>
@@ -62,6 +62,9 @@
                                     <div class="d-flex justify-content-end">
                                         <button type="submit"
                                                 class="btn btn-light-success btn-lg mr-2 font-weight-bold">Filter
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-light-danger btn-lg mr-2 font-weight-bold" id="reset_table">Reset Table
                                         </button>
                                     </div>
                                 </div>
@@ -112,7 +115,7 @@
                                             <td>{{ item.id }}</td>
                                             <td>{{ item.doctor }}</td>
                                             <td>{{ item.patient }}</td>
-                                            <td>{{ item.appointment_date }}</td>
+                                            <td>{{ item.appointment_date|date:'Y/m/d' }}</td>
                                             <td>{{ item.time_slot }}</td>
                                             <td>
                                                 {% if item.status == 'Confirmed' %}
@@ -142,6 +145,83 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pending Appointment Update Modal-->
+    <div class="modal fade" id="update_pending_appointment_modal" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="POST" class="form" id="update_pending_appointment">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-edit icon-lg mr-1"></i>
+                            Edit Appointment
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-5">
+                                <label>Patient *</label>
+                                <select class="form-control selectpicker" data-live-search="true"
+                                        data-size="4" name="patient" title="Nothing selected">
+                                    {% for item in patient_list %}
+                                        <option value="{{ item.id }}">{{ item.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-5">
+                                <label>Doctor *</label>
+                                <select class="form-control selectpicker" data-live-search="true"
+                                        data-size="4" data-dropup-auto="false" name="doctor"
+                                        id="doctor_list" title="Nothing selected">
+                                    {% for item in doctor_list %}
+                                        <option value="{{ item.id }}">{{ item.ename }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-5">
+                                <label>Appointment Date *</label>
+                                <div class="input-group date mb-2">
+                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-calendar-plus"></i>
+                                                    </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="appointment_date"
+                                           id="appointment_datepicker" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-5">
+                                <label>Time Slot *</label>
+                                <select class="form-control selectpicker"
+                                        data-size="4" data-dropup-auto="false" name="time_slot"
+                                        id="timeslot" title="Nothing selected" data-live-search="true">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-5">
+                                <label>Consultation Fees</label>
+                                <input type="number" class="form-control" name="fees" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-light-primary btn-lg mr-2 font-weight-bold">Update</button>
+                        <button type="button" class="btn btn-light-danger btn-lg mr-2 font-weight-bold"
+                                data-dismiss="modal">Close
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -77,22 +77,19 @@
                                             <td>{{ item.id }}</td>
                                             <td>{{ item.doctor }}</td>
                                             <td>{{ item.patient }}</td>
-                                            <td>{{ item.appointment_date }}</td>
+                                            <td>{{ item.appointment_date|date:'Y/m/d' }}</td>
                                             <td>{{ item.time_slot }}</td>
                                             <td>
                                                 <span class="label label-success label-inline label-lg font-weight-bold mr-2">{{ item.status }}</span>
                                             </td>
                                             <td>
                                                 {% csrf_token %}
-                                                <button href="#" class="btn btn-icon btn-outline-info btn-sm mr-2"
+                                                <button class="btn btn-icon btn-outline-info btn-sm mr-2"
                                                         data-toggle="tooltip" data-placement="top" title="Make Confirm"
-                                                        data-theme="dark" id="confirm_appointment" data-id="{{ item.id }}"><i class="fas fa-check"></i>
+                                                        data-theme="dark" id="confirm_appointment"
+                                                        data-id="{{ item.id }}"><i class="fas fa-check"></i>
                                                 </button>
-                                                <a href="#"
-                                                   class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                   data-toggle="tooltip" data-placement="top" title="Edit"
-                                                   data-theme="dark"><i class="fas fa-pen"></i></a>
-                                                <button href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"
+                                                <button class="btn btn-icon btn-outline-danger btn-sm mr-2"
                                                         data-toggle="tooltip" data-placement="top" title="Delete"
                                                         data-theme="dark" id="delete"><i class="fas fa-trash"></i>
                                                 </button>
@@ -108,6 +105,7 @@
             </div>
         </div>
     </div>
+
 {% endblock content %}
 </body>
 {% block js %}
