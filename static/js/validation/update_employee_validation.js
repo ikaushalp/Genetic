@@ -1,6 +1,6 @@
 let update_employee_form = document.getElementById('update_employee');
 let update_employee_validation;
-document.addEventListener('DOMContentLoaded', function () {
+$(document).ready(function () {
     update_employee_validation = FormValidation.formValidation(update_employee_form, {
             fields: {
                 update_name: {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
             },
 
-            plugins: { //Learn more: https://formvalidation.io/guide/plugins
+            plugins: {
                 trigger: new FormValidation.plugins.Trigger(),
                 bootstrap: new FormValidation.plugins.Bootstrap(),
             }
@@ -81,4 +81,5 @@ document.addEventListener('DOMContentLoaded', function () {
         update_employee_validation.revalidateField('update_joining_date');
     });
     update_employee_validation.validate();
-})
+});
+

@@ -67,7 +67,8 @@ $(document).ready(function () {
                 }
             }
         },
-        plugins: { //Learn more: https://formvalidation.io/guide/plugins
+
+        plugins: {
             trigger: new FormValidation.plugins.Trigger(),
             bootstrap: new FormValidation.plugins.Bootstrap(),
         }
