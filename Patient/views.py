@@ -79,7 +79,7 @@ def patient_list(request):
     return render(request, 'Patient_template/patient_list.html', context)
 
 
-def update_patient(request):
+def update_patient(request, patient_id):
     if request.method == 'POST':
         name = request.POST['update_name']
         gender = request.POST['update_gender']
@@ -94,10 +94,33 @@ def update_patient(request):
         height = request.POST['update_height']
         weight = request.POST['update_weight']
         address = request.POST['update_address']
-        username = request.POST['update_username']
-        password = request.POST['update_retype_password']
         category = int(category)
-    return render(request, 'Patient_template/update_patient.html')
+
+        if not birthdate:
+            birthdate = None
+
+        if not blood_pressure:
+            blood_pressure = None
+
+        if not height:
+            height = None
+
+        if not weight:
+            weight = None
+
+        if not address:
+            address = None
+
+        Patient.objects.filter(pk=patient_id).update(name=name, gender=gender, birthdate=birthdate, age=age,
+                                                     marital_status=marital_status,
+                                                     mobile_no=mobile_no, email=email, category_id=category,
+                                                     blood_group=blood_group,
+                                                     blood_pressure=blood_pressure, height=height,
+                                                     weight=weight,
+                                                     address=address)
+        return JsonResponse({'update': 1})
+    else:
+        return JsonResponse({'update': 1})
 
 
 def get_patient_list(request, patient_id):

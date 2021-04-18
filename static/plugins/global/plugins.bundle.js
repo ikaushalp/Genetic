@@ -10021,7 +10021,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 // Support: Safari 8 only
 // In Safari 8 documents created via document.implementation.createHTMLDocument
-// collapse sibling forms: the second one becomes a child of the first one.
+// collapse sibling validation: the second one becomes a child of the first one.
 // Because of that, this security measure has to be disabled in Safari 8.
 // https://bugs.webkit.org/show_bug.cgi?id=137337
 support.createHTMLDocument = ( function() {
@@ -40660,7 +40660,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	JavaScriptCompiler.prototype = {
 	  // PUBLIC API: You can override these methods in a subclass to provide
-	  // alternative compiled forms for name lookup and buffering semantics
+	  // alternative compiled validation for name lookup and buffering semantics
 	  nameLookup: function nameLookup(parent, name /* , type*/) {
 	    if (name === 'constructor') {
 	      return ['(', parent, '.propertyIsEnumerable(\'constructor\') ? ', parent, '.constructor : undefined', ')'];

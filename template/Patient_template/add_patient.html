@@ -24,7 +24,7 @@
 
 <body>
 {% block content %}
-    <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="d-flex flex-column-fluid">
             <div class="container">
                 <div class="row">
@@ -216,7 +216,7 @@
 {% endblock content %}
 </body>
 {% block js %}
-    <script src="{% static "js/forms/validation/patient_validation.js" %}"></script>
+    <script src="{% static "js/validation/patient_validation.js" %}"></script>
     <script src="{% static "js/ajax/patient.js" %}"></script>
     <script type="text/javascript">
         function AGE() {
@@ -235,5 +235,4 @@
         }
     </script>
 {% endblock js %}
-
 </html>

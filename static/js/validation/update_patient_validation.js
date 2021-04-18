@@ -1,10 +1,10 @@
-const patient_form = document.getElementById('patient');
-let patient_validation;
+const update_patient_form = document.getElementById('update_patient');
+let patient_update_validation;
 
-document.addEventListener('DOMContentLoaded', function () {
-    patient_validation = FormValidation.formValidation(patient_form, {
+$(document).ready(function () {
+    patient_update_validation = FormValidation.formValidation(update_patient_form, {
         fields: {
-            name: {
+            update_name: {
                 validators: {
                     notEmpty: {
                         message: 'Patient name is required'
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
 
-            gender: {
+            update_gender: {
                 validators: {
                     notEmpty: {
                         message: 'Please select an option'
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
 
-            age: {
+            update_age: {
                 validators: {
                     notEmpty: {
                         message: 'Patient age is required'
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
 
-            marital_status: {
+            update_marital_status: {
                 validators: {
                     notEmpty: {
                         message: 'Please select an option'
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
 
-            phone: {
+            update_phone: {
                 validators: {
                     notEmpty: {
                         message: 'Indian phone number is required'
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
 
-            email: {
+            update_email: {
                 validators: {
                     notEmpty: {
                         message: 'Patient email is required'
@@ -59,57 +59,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
 
-            category: {
+            update_category: {
                 validators: {
                     notEmpty: {
                         message: 'Patient category is required'
                     }
                 }
-            },
-
-            username: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please enter a username'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_.]+$/,
-                        message: 'The username can only consist of alphabetical, number, dot and underscore'
-                    }
-                },
-
-            },
-
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please enter a password'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 12,
-                        message: 'The username must be more than 6 and less than 12 characters long'
-                    }
-                }
-            },
-
-            retype_password: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please enter a password again'
-                    },
-                    identical: {
-                        compare: function () {
-                            return patient_form.querySelector('[name="password"]').value;
-                        },
-                        message: "Password doesn't match"
-                    }
-                },
-            },
+            }
         },
         plugins: { //Learn more: https://formvalidation.io/guide/plugins
             trigger: new FormValidation.plugins.Trigger(),
             bootstrap: new FormValidation.plugins.Bootstrap(),
         }
-    });
+    })
+    patient_update_validation.validate();
 });
