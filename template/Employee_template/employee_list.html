@@ -112,7 +112,7 @@
                                                             <i class="fas fa-eye"></i>
                                                         </button>
                                                         {% if request.user.role == 1 %}
-                                                        <button href="{% url 'Employee:add' %}"
+                                                        <button id="admin_update_button" data-id="{{ item.id }}"
                                                                 class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                                 type="button" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit"
@@ -189,7 +189,7 @@
                                                             <i class="fas fa-eye"></i>
                                                         </button>
                                                         {% if request.user.role == 1 %}
-                                                        <button href="{% url 'Employee:add' %}"
+                                                        <button id="doctor_update_button" data-id="{{ item.id }}"
                                                                 class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                                 type="button" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit"
@@ -257,8 +257,7 @@
                                                     <td style="display: none !important;">{{ item.joining_date|date:'d-m-Y'|default:"None" }}</td>
                                                     <td style="display: none !important;">{{ item.qualification }}</td>
                                                     <td>
-                                                        <button
-                                                                class="btn btn-icon btn-outline-warning btn-sm mr-2"
+                                                        <button class="btn btn-icon btn-outline-warning btn-sm mr-2"
                                                                 type="button" id="show_receptionist_details"
                                                                 data-toggle="tooltip"
                                                                 data-placement="top" title="View"
@@ -266,7 +265,7 @@
                                                             <i class="fas fa-eye"></i>
                                                         </button>
                                                         {% if request.user.role == 1 %}
-                                                        <button href="{% url 'Employee:add' %}"
+                                                        <button id="receptionist_update_button" data-id="{{ item.id }}"
                                                                 class="btn btn-icon btn-outline-success btn-sm mr-2"
                                                                 type="button" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit"

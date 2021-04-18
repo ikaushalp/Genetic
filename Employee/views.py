@@ -61,6 +61,49 @@ def employee_list(request):
     return render(request, 'Employee_template/employee_list.html', context=context)
 
 
+def update_employee(request, employee_id):
+    if request.method == 'POST':
+        ename = request.POST['name']
+        gender = request.POST['gender']
+        birthdate = request.POST['birthdate']
+        blood_group = request.POST['blood_group']
+        marital_status = request.POST['marital_status']
+        mobile = request.POST['mobile_no']
+        email = request.POST['email']
+        address = request.POST['address']
+        role = request.POST['role']
+        designation = request.POST['designation']
+        joining_date = request.POST['joining_date']
+        qualification = request.POST['qualification']
+
+        if not birthdate:
+            birthdate = None
+
+        if role == 'Admin':
+            role = 1
+
+        if role == 'Doctor':
+            role = 2
+
+        if role == 'Receptionist':
+            role = 3
+
+        Employee.objects.filter(pk=employee_id).updateEmployee(ename=ename, gender=gender, birthdate=birthdate,
+                                                               blood_group=blood_group, mobile=mobile, email=email,
+                                                               marital_status=marital_status, address=address,
+                                                               role=role, designation=designation,
+                                                               joining_date=joining_date, qualification=qualification)
+        return JsonResponse({'update': 1})
+    else:
+        return JsonResponse({'update': 1})
+
+
+def get_employee_list(request, employee_id):
+    data = Employee.objects.get(pk=employee_id)
+    return render(request, 'Employee_template/update_employee.html',
+                  context={'data': data})
+
+
 def delete_employee(request):
     if request.method == 'POST':
         employee_id = request.POST['employee_id']

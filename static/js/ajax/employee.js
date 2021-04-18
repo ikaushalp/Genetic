@@ -80,6 +80,21 @@ $(document).ready(function () {
         });
     });
 
+// Update Patient Data
+    $(document).on('click', '#admin_update_button, #doctor_update_button, #receptionist_update_button', function (e){
+       let employee_id = $(this).attr("data-id");
+       window.location.href = "edit/" + employee_id;
+    });
+
+    $(document).on('submit', '#update_employee', function (e) {
+        e.preventDefault();
+        update_employee_validation.validate().then(function (status) {
+            if (status === 'Valid') {
+                console.log("Got it")
+            }
+        })
+    });
+
 // Show All Patient Details
     $(document).on('click', '#show_admin_details', function (e) {
         e.preventDefault();

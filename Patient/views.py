@@ -125,11 +125,10 @@ def update_patient(request, patient_id):
 
 def get_patient_list(request, patient_id):
     data = Patient.objects.get(pk=patient_id)
-    login_data = CustomUser.objects.get(aid=patient_id, role=4)
 
     category_list = Category.objects.all()
     return render(request, 'Patient_template/update_patient.html',
-                  context={'data': data, 'login_data': login_data, 'category_list': category_list})
+                  context={'data': data, 'category_list': category_list})
 
 
 # Category #
