@@ -35,12 +35,12 @@ def add_appointment(request):
 
 
 def appointment_list(request):
-    appointment = Appointment.objects.filter(status='Confirmed' or 'Closed')
+    appointment = Appointment.objects.filter(status='Confirmed' or 'Closed').order_by('-appointment_date')
     return render(request, 'Appointment_template/appointment_list.html', context={'appointment_list': appointment})
 
 
 def pending_appointment_list(request):
-    appointment = Appointment.objects.filter(status='Pending')
+    appointment = Appointment.objects.filter(status='Pending').order_by('-appointment_date')
     return render(request, 'Appointment_template/pending_list.html', context={'appointment_list': appointment})
 
 

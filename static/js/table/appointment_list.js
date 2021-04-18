@@ -73,8 +73,8 @@ jQuery(document).ready(function () {
             let start_date = $('#filter_appointement_date').data('daterangepicker').startDate;
             let end_date = $('#filter_appointement_date').data('daterangepicker').endDate;
 
-            start_date = start_date.format('YYYY-MM-DD');
-            end_date = end_date.format('YYYY-MM-DD');
+            start_date = start_date.format('YYYY/MM/DD');
+            end_date = end_date.format('YYYY/MM/DD');
 
             console.log(start_date, end_date)
             let position = data[3];
