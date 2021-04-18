@@ -6,8 +6,8 @@ from Authentication.models import CustomUser
 
 
 # Create your tests here.
-# Execute Test.py file in windows : manage.py test HMS.tests.MainTestCase.MainCase
-# Execute Test.py file in linux   : ./manage.py test HMS.tests.MainTestCase.MainCase
+# Execute Test.py file in windows : manage.py test Genetic.tests.MainTestCase.MainCase
+# Execute Test.py file in linux   : ./manage.py test Genetic.tests.MainTestCase.MainCase
 
 class MainTestCase(unittest.TestCase):
     def MainCase(self):
@@ -18,6 +18,6 @@ class MainTestCase(unittest.TestCase):
         auth = CustomUser.objects.create_user(username="admin", password="admin123", role=1, aid=1)
         auth.save()
 
-        add = Global(hospital="Genetic Hospital", visible="HMS", contact="+91 9534587463", email="admin@admin.com",
+        add = Global(hospital="Genetic Hospital", visible="Genetic", contact="+91 9534587463", email="admin@admin.com",
                      address="Enter your address..")
         add.save()

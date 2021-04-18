@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from HMS.decorators import role_required, login_required
+from Genetic.decorators import role_required, login_required
 from Authentication.models import CustomUser
 from Patient.models import Patient, Category
 

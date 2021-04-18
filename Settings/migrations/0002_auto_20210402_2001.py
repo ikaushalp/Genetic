@@ -23,6 +23,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='global',
             name='visible',
-            field=models.CharField(default='HMS', max_length=10),
+            field=models.CharField(default='Genetic', max_length=10),
         ),
     ]
