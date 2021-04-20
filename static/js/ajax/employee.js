@@ -11,11 +11,10 @@ $(document).ready(function () {
                     dataType: 'json',
                     success: function (data) {
                         if (data.insert === 1) {
-                            sessionStorage.setItem("load", "true");
-                            KTUtil.scrollTop();
-
+                            sessionStorage.setItem("insert", "true");
+                            KTUtil.scrollTop(0, 10);
                             setTimeout(function () {
-                                window.location.reload();
+                                location.reload();
                             }, 500)
 
                         } else if (data.exist === 1) {
@@ -81,16 +80,32 @@ $(document).ready(function () {
     });
 
 // Update Patient Data
-    $(document).on('click', '#admin_update_button, #doctor_update_button, #receptionist_update_button', function (e){
-       let employee_id = $(this).attr("data-id");
-       window.location.href = "edit/" + employee_id;
+    $(document).on('click', '#admin_update_button, #doctor_update_button, #receptionist_update_button', function (e) {
+        let employee_id = $(this).attr("data-id");
+        window.location.href = "edit/" + employee_id;
     });
 
     $(document).on('submit', '#update_employee', function (e) {
         e.preventDefault();
+        let employee_id = $('input[name=employee_id]').val()
         update_employee_validation.validate().then(function (status) {
             if (status === 'Valid') {
-                console.log("Got it")
+                $.ajax({
+                    type: 'POST',
+                    url: 'update/' + employee_id,
+                    data: $("#update_employee").serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.update === 1) {
+                            sessionStorage.setItem("update", "true");
+                            KTUtil.scrollTop(0, 50);
+                            setTimeout(function () {
+                                location.reload();
+                            }, 500)
+
+                        }
+                    }
+                });
             }
         })
     });
@@ -187,10 +202,20 @@ $(document).ready(function () {
         return false;
     });
 
-    if (sessionStorage.getItem("load")) {
+    if (sessionStorage.getItem("insert")) {
         setTimeout(function () {
             $.notify("Information Saved SuccessFully");
             sessionStorage.clear();
+        }, 800)
+    }
+
+    if (sessionStorage.getItem("update")) {
+        setTimeout(function () {
+            $.notify("Information Updated SuccessFully");
+            sessionStorage.clear();
+            setTimeout(function () {
+                window.location.href = '/employee/view';
+            }, 1500)
         }, 800)
     }
 });

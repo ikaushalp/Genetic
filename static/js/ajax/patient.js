@@ -159,6 +159,9 @@ $(document).ready(function () {
         setTimeout(function () {
             $.notify("Information Updated SuccessFully");
             sessionStorage.clear();
+            setTimeout(function () {
+                window.location.href = '/patient/view';
+            }, 1500)
         }, 800)
     }
 });

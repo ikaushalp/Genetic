@@ -120,7 +120,7 @@ def update_patient(request, patient_id):
                                                      address=address)
         return JsonResponse({'update': 1})
     else:
-        return JsonResponse({'update': 1})
+        return render(request, 'Dashboard_template/dashboard.html')
 
 
 def get_patient_list(request, patient_id):

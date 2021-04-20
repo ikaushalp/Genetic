@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from Employee.models import Employee
+from Appointment.models import Appointment
 from Authentication.models import CustomUser
 from django.http import JsonResponse
 
@@ -63,18 +64,18 @@ def employee_list(request):
 
 def update_employee(request, employee_id):
     if request.method == 'POST':
-        ename = request.POST['name']
-        gender = request.POST['gender']
-        birthdate = request.POST['birthdate']
-        blood_group = request.POST['blood_group']
-        marital_status = request.POST['marital_status']
-        mobile = request.POST['mobile_no']
-        email = request.POST['email']
-        address = request.POST['address']
-        role = request.POST['role']
-        designation = request.POST['designation']
-        joining_date = request.POST['joining_date']
-        qualification = request.POST['qualification']
+        ename = request.POST['update_name']
+        gender = request.POST['update_gender']
+        birthdate = request.POST['update_birthdate']
+        blood_group = request.POST['update_blood_group']
+        marital_status = request.POST['update_marital_status']
+        mobile = request.POST['update_mobile_no']
+        email = request.POST['update_email']
+        address = request.POST['update_address']
+        role = request.POST['update_role']
+        designation = request.POST['update_designation']
+        joining_date = request.POST['update_joining_date']
+        qualification = request.POST['update_qualification']
 
         if not birthdate:
             birthdate = None
@@ -88,14 +89,15 @@ def update_employee(request, employee_id):
         if role == 'Receptionist':
             role = 3
 
-        Employee.objects.filter(pk=employee_id).updateEmployee(ename=ename, gender=gender, birthdate=birthdate,
-                                                               blood_group=blood_group, mobile=mobile, email=email,
-                                                               marital_status=marital_status, address=address,
-                                                               role=role, designation=designation,
-                                                               joining_date=joining_date, qualification=qualification)
+        Employee.objects.filter(pk=employee_id).update(ename=ename, gender=gender, birthdate=birthdate,
+                                                       blood_group=blood_group, mobile=mobile, email=email,
+                                                       marital_status=marital_status, address=address,
+                                                       role=role, designation=designation,
+                                                       joining_date=joining_date, qualification=qualification)
+        request.session['name'] = ename
         return JsonResponse({'update': 1})
     else:
-        return JsonResponse({'update': 1})
+        return render(request, 'Dashboard_template/dashboard.html')
 
 
 def get_employee_list(request, employee_id):
@@ -112,6 +114,9 @@ def delete_employee(request):
 
         rem = Employee.objects.get(pk=employee_id)
         rem2 = CustomUser.objects.get(aid=employee_id, role=employee_role)
+        if employee_role == 2:
+            print('Inside')
+            Appointment.objects.filter(doctor_id=employee_id).update(time_slot=None)
         rem.delete()
         rem2.delete()
         return JsonResponse({'delete': 1})

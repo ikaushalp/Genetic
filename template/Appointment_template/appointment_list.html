@@ -105,7 +105,7 @@
                                         <th>Patient Name</th>
                                         <th>Date</th>
                                         <th style="display: none !important;">Fees</th>
-                                        <th>Schedule</th>
+                                        <th>Time Slot</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -118,7 +118,7 @@
                                             <td>{{ item.patient }}</td>
                                             <td>{{ item.appointment_date|date:'Y-m-d' }}</td>
                                             <td style="display: none !important;">{{ item.fees }}</td>
-                                            <td>{{ item.time_slot }}</td>
+                                            <td>{{ item.time_slot|default:None }}</td>
                                             <td>
                                                 {% if item.status == 'Confirmed' %}
                                                     <span class="label label-success label-inline label-lg font-weight-bold mr-2">Confirmed</span>

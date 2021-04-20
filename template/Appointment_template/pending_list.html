@@ -66,7 +66,7 @@
                                         <th>Doctor Name</th>
                                         <th>Patient Name</th>
                                         <th>Date</th>
-                                        <th>Schedule</th>
+                                        <th>Time Slot</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -78,7 +78,7 @@
                                             <td>{{ item.doctor }}</td>
                                             <td>{{ item.patient }}</td>
                                             <td>{{ item.appointment_date|date:'Y/m/d' }}</td>
-                                            <td>{{ item.time_slot }}</td>
+                                            <td>{{ item.time_slot|default:None }}</td>
                                             <td>
                                                 <span class="label label-success label-inline label-lg font-weight-bold mr-2">{{ item.status }}</span>
                                             </td>
