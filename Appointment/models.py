@@ -1,5 +1,6 @@
 from django.db import models
 from Patient.models import Patient
+from Employee.models import Employee
 
 
 # Create your models here.
@@ -9,7 +10,7 @@ class Appointment(models.Model):
 
     id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    doctor = models.CharField(max_length=100)
+    doctor = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
     appointment_date = models.DateField()
     time_slot = models.CharField(max_length=50)
     fees = models.IntegerField()

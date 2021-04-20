@@ -25,7 +25,6 @@
 <body>
 {% block content %}
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
-
         <div class="d-flex flex-column-fluid">
             <!--begin::Container-->
             <div class="container">
@@ -64,7 +63,8 @@
                                                 class="btn btn-light-success btn-lg mr-2 font-weight-bold">Filter
                                         </button>
                                         <button type="button"
-                                                class="btn btn-light-danger btn-lg mr-2 font-weight-bold" id="reset_table">Reset Table
+                                                class="btn btn-light-danger btn-lg mr-2 font-weight-bold"
+                                                id="reset_table">Reset Table
                                         </button>
                                     </div>
                                 </div>
@@ -104,6 +104,7 @@
                                         <th>Doctor Name</th>
                                         <th>Patient Name</th>
                                         <th>Date</th>
+                                        <th style="display: none !important;">Fees</th>
                                         <th>Schedule</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -115,7 +116,8 @@
                                             <td>{{ item.id }}</td>
                                             <td>{{ item.doctor }}</td>
                                             <td>{{ item.patient }}</td>
-                                            <td>{{ item.appointment_date|date:'Y/m/d' }}</td>
+                                            <td>{{ item.appointment_date|date:'Y-m-d' }}</td>
+                                            <td style="display: none !important;">{{ item.fees }}</td>
                                             <td>{{ item.time_slot }}</td>
                                             <td>
                                                 {% if item.status == 'Confirmed' %}
@@ -126,16 +128,27 @@
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-icon btn-outline-info btn-sm mr-2"
-                                                   data-toggle="tooltip" data-placement="top" title="Make Closed"
-                                                   data-theme="dark"><i class="fas fa-check"></i></a>
-                                                <a href="{% url 'Appointment:add' %}"
-                                                   class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                   data-toggle="tooltip" data-placement="top" title="Edit"
-                                                   data-theme="dark"><i class="fas fa-pen"></i></a>
-                                                <a href="#" class="btn btn-icon btn-outline-danger btn-sm mr-2"
-                                                   data-toggle="tooltip" data-placement="top" title="Delete"
-                                                   data-theme="dark" id="delete"><i class="fas fa-trash"></i></a>
+                                                {% if item.status == 'Confirmed' %}
+                                                    <button id="close_appointment" data-id="{{ item.id }}"
+                                                            class="btn btn-icon btn-outline-info btn-sm mr-2"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Make Closed"
+                                                            data-theme="dark"><i class="fas fa-check"></i></button>
+
+                                                    <button id="appointment_update_button"
+                                                            data-pid="{{ item.patient_id }}"
+                                                            data-did="{{ item.doctor_id }}"
+                                                            data-status="{{ item.status }}" class="btn btn-icon btn-outline-success
+                                                            btn-sm mr-2"
+                                                            data-toggle="tooltip" data-placement="top" title="Edit"
+                                                            data-theme="dark"><i class="fas fa-pen"></i></button>
+                                                {% endif %}
+
+                                                <button id="delete_appointment" data-id="{{ item.id }}"
+                                                        class="btn btn-icon btn-outline-danger btn-sm mr-2"
+                                                        data-toggle="tooltip" data-placement="top" title="Delete"
+                                                        data-theme="dark" id="delete"><i class="fas fa-trash"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -151,22 +164,23 @@
     <!-- Pending Appointment Update Modal-->
     <div class="modal fade" id="update_pending_appointment_modal" data-backdrop="static" tabindex="-1" role="dialog"
          aria-labelledby="edit" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form method="POST" class="form" id="update_pending_appointment">
+                <form method="POST" id="update_appointment">
                     {% csrf_token %}
-                    <div class="modal-header">
+                    <div class="modal-header ">
                         <h5 class="modal-title">
                             <i class="fas fa-edit icon-lg mr-1"></i>
                             Edit Appointment
                         </h5>
                     </div>
                     <div class="modal-body">
+                        <input type="hidden" name="appointment_id"/>
                         <div class="form-group row justify-content-center">
-                            <div class="col-lg-5">
+                            <div class="col-lg-10">
                                 <label>Patient *</label>
                                 <select class="form-control selectpicker" data-live-search="true"
-                                        data-size="4" name="patient" title="Nothing selected">
+                                        data-size="4" name="update_patient" id="patient" title="Nothing selected">
                                     {% for item in patient_list %}
                                         <option value="{{ item.id }}">{{ item.name }}</option>
                                     {% endfor %}
@@ -174,11 +188,11 @@
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <div class="col-lg-5">
+                            <div class="col-lg-10">
                                 <label>Doctor *</label>
                                 <select class="form-control selectpicker" data-live-search="true"
-                                        data-size="4" data-dropup-auto="false" name="doctor"
-                                        id="doctor_list" title="Nothing selected">
+                                        data-size="4" data-dropup-auto="false" name="update_doctor"
+                                        id="update_doctor_list" title="Nothing selected">
                                     {% for item in doctor_list %}
                                         <option value="{{ item.id }}">{{ item.ename }}</option>
                                     {% endfor %}
@@ -186,32 +200,43 @@
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <div class="col-lg-5">
+                            <div class="col-lg-10">
                                 <label>Appointment Date *</label>
                                 <div class="input-group date mb-2">
                                     <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-calendar-plus"></i>
-                                                    </span>
+                                        <span class="input-group-text">
+                                            <i class="fas fa-calendar-plus"></i>
+                                        </span>
                                     </div>
-                                    <input type="text" class="form-control" name="appointment_date"
-                                           id="appointment_datepicker" readonly>
+                                    <input type="text" class="form-control" name="update_appointment_date"
+                                           id="update_appointment_datepicker" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <div class="col-lg-5">
+                            <div class="col-lg-10">
                                 <label>Time Slot *</label>
                                 <select class="form-control selectpicker"
-                                        data-size="4" data-dropup-auto="false" name="time_slot"
-                                        id="timeslot" title="Nothing selected" data-live-search="true">
+                                        data-size="4" data-dropup-auto="false" name="update_time_slot"
+                                        id="update_timeslot" title="Nothing selected" data-live-search="true">
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <div class="col-lg-5">
+                            <div class="col-lg-10">
                                 <label>Consultation Fees</label>
-                                <input type="number" class="form-control" name="fees" readonly>
+                                <input type="number" class="form-control" name="update_fees" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-lg-10">
+                                <label>Status</label>
+                                <select class="form-control selectpicker"
+                                        data-size="4" name="update_status" title="Nothing selected" id="status">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Confirmed">Confirm</option>
+                                    <option value="Closed">Close</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -228,6 +253,7 @@
 {% endblock content %}
 </body>
 {% block js %}
+    <script src="{% static "js/validation/update_appointment_validation.js" %}"></script>
     <script src="{% static "js/table/appointment_list.js" %}"></script>
     <script src="{% static "js/ajax/appointment.js" %}"></script>
 {% endblock js %}

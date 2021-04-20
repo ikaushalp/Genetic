@@ -36,7 +36,7 @@ jQuery(document).ready(function () {
         format: "yyyy-mm-dd",
     });
 
-    $('#appointment_datepicker').datepicker({
+    $('#appointment_datepicker, #update_appointment_datepicker').datepicker({
         rtl: KTUtil.isRTL(),
         todayHighlight: true,
         autoclose: true,
@@ -44,6 +44,4 @@ jQuery(document).ready(function () {
         templates: arrows,
         format: "yyyy-mm-dd",
     });
-    $('#appointment_datepicker').datepicker('setDate', today);
-
 });

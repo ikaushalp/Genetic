@@ -1,6 +1,5 @@
-import json
 from django.db.models import Q
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from Patient.models import Patient
 from Employee.models import Employee
@@ -17,13 +16,10 @@ def add_appointment(request):
         time_slot = request.POST['time_slot']
         fees = request.POST['fees']
 
-        data = Employee.objects.get(pk=doctor, role=2)
-        if data:
-            doctor = data.ename
-        check = Appointment.objects.filter(patient_id=patient, doctor=doctor, appointment_date=appointment_date)
+        check = Appointment.objects.filter(patient_id=patient, doctor_id=doctor, appointment_date=appointment_date)
         if check:
             return JsonResponse({'exist': 1})
-        add = Appointment(patient_id=patient, doctor=doctor, appointment_date=appointment_date, time_slot=time_slot,
+        add = Appointment(patient_id=patient, doctor_id=doctor, appointment_date=appointment_date, time_slot=time_slot,
                           fees=fees, status='Pending')
         add.save()
         return JsonResponse({'insert': 1})
@@ -35,8 +31,11 @@ def add_appointment(request):
 
 
 def appointment_list(request):
-    appointment = Appointment.objects.filter(status='Confirmed' or 'Closed').order_by('-appointment_date')
-    return render(request, 'Appointment_template/appointment_list.html', context={'appointment_list': appointment})
+    patient_list = Patient.objects.all()
+    doctor_list = Employee.objects.filter(designation='Doctor')
+    appointment = Appointment.objects.filter(Q(status='Confirmed') | Q(status='Closed')).order_by('-appointment_date')
+    return render(request, 'Appointment_template/appointment_list.html',
+                  context={'appointment_list': appointment, 'patient_list': patient_list, 'doctor_list': doctor_list})
 
 
 def pending_appointment_list(request):
@@ -48,7 +47,26 @@ def confirm_appointment(request):
     if request.method == 'POST':
         id = request.POST['appointment_id']
         Appointment.objects.filter(pk=id).update(status='Confirmed')
-        return JsonResponse({'update': 1})
+        return JsonResponse({'confirm': 1})
+    else:
+        return render(request, 'Dashboard_template/dashboard.html')
+
+
+def close_appointment(request):
+    if request.method == 'POST':
+        id = request.POST['appointment_id']
+        Appointment.objects.filter(pk=id).update(status='Closed')
+        return JsonResponse({'close': 1})
+    else:
+        return render(request, 'Dashboard_template/dashboard.html')
+
+
+def delete_appointment(request):
+    if request.method == 'POST':
+        id = request.POST['appointment_id']
+        rem = Appointment.objects.filter(pk=id)
+        rem.delete()
+        return JsonResponse({'delete': 1})
     else:
         return render(request, 'Dashboard_template/dashboard.html')
 
@@ -76,5 +94,36 @@ def loadtimeslot(request):
                 'fees': fees
             }
         return JsonResponse(timeslot)
+    else:
+        return render(request, 'Dashboard_template/dashboard.html')
+
+
+def update_appointment(request):
+    if request.method == 'POST':
+        id = request.POST['appointment_id']
+        patient = request.POST['update_patient']
+        doctor = request.POST['update_doctor']
+        appointment_date = request.POST['update_appointment_date']
+        time_slot = request.POST['update_time_slot']
+        fees = request.POST['update_fees']
+        status = request.POST['update_status']
+
+        check = Appointment.objects.filter(patient_id=patient, doctor_id=doctor, appointment_date=appointment_date)
+        if check:
+            check1 = Appointment.objects.filter(pk=id, patient_id=patient, doctor_id=doctor,
+                                                appointment_date=appointment_date, time_slot=time_slot,
+                                                fees=fees, status=status)
+            if not check1:
+                Appointment.objects.filter(pk=id).update(patient_id=patient, doctor_id=doctor,
+                                                         appointment_date=appointment_date, time_slot=time_slot,
+                                                         fees=fees, status=status)
+                return JsonResponse({'update': 1})
+            if check1:
+                return JsonResponse({'update': 1})
+            return JsonResponse({'exist': 1})
+        Appointment.objects.filter(pk=id).update(patient_id=patient, doctor_id=doctor,
+                                                 appointment_date=appointment_date, time_slot=time_slot,
+                                                 fees=fees, status=status)
+        return JsonResponse({'update': 1})
     else:
         return render(request, 'Dashboard_template/dashboard.html')

@@ -57,7 +57,7 @@ $(document).ready(function () {
                         if (data.delete === 1) {
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                text: "Your information has been deleted.",
                                 icon: "success",
                                 confirmButtonText: "Ok",
                             }).then(function (result) {

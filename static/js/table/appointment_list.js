@@ -52,6 +52,13 @@ jQuery(document).ready(function () {
             },
         ],
 
+        columnDefs: [
+            {
+                "targets": 4,
+                "visible": false,
+                "searchable": false
+            },
+        ],
     });
     $('#export_print').on('click', function (e) {
         e.preventDefault();
@@ -73,10 +80,9 @@ jQuery(document).ready(function () {
             let start_date = $('#filter_appointement_date').data('daterangepicker').startDate;
             let end_date = $('#filter_appointement_date').data('daterangepicker').endDate;
 
-            start_date = start_date.format('YYYY/MM/DD');
-            end_date = end_date.format('YYYY/MM/DD');
+            start_date = start_date.format('YYYY-MM-DD');
+            end_date = end_date.format('YYYY-MM-DD');
 
-            console.log(start_date, end_date)
             let position = data[3];
             if (start_date <= position && position <= end_date) {
                 return true;
