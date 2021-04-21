@@ -15,7 +15,7 @@ class MainTestCase(unittest.TestCase):
         adm = Employee(ename="John Doe", gender="Male", role=1, designation="Admin", joining_date=current_date)
         adm.save()
 
-        auth = CustomUser.objects.create_user(username="admin", password="admin123", role=1, aid=1)
+        auth = CustomUser.objects.create_user(username="admin", password="admin123", email="admin@admin.com", role=1, aid=1)
         auth.save()
 
         add = Global(hospital="Genetic Hospital", visible="Genetic", contact="+91 9534587463", email="admin@admin.com",

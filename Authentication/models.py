@@ -6,12 +6,13 @@ from django.contrib.auth.models import (
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, password=None, role=None, aid=None):
+    def create_user(self, username, password=None, role=None, aid=None, email=None):
         if username and role and aid:
             user = self.model(
                 username=username,
                 role=role,
-                aid=aid
+                aid=aid,
+                email=email
             )
         user.set_password(password)
         user.save(using=self._db)
@@ -23,6 +24,7 @@ class CustomUser(AbstractBaseUser):
     aid = models.IntegerField()
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=150)
+    email = models.EmailField()
     role = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

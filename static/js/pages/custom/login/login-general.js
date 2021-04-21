@@ -9,11 +9,11 @@ jQuery(document).ready(function () {
         login.removeClass('login-signin-on');
 
         login.addClass(cls);
-        if (Form === 'kt_login_forgot_form'){
-            forgot_password_validation.resetForm();
+        if (Form === 'kt_login_forgot_form') {
+            forgot_password_validation.resetForm(true);
         }
-        if (Form === 'kt_login_signin_form'){
-            signin_validation.resetForm();
+        if (Form === 'kt_login_signin_form') {
+            signin_validation.resetForm(true);
         }
         KTUtil.animateClass(KTUtil.getById(Form), 'animate__animated animate__backInUp');
     }
@@ -109,12 +109,40 @@ jQuery(document).ready(function () {
     );
 
     // Handle submit button
-    $('#kt_login_forgot_submit').on('click', function (e) {
+    $('#kt_login_forgot_form').on('submit', function (e) {
         e.preventDefault();
 
         forgot_password_validation.validate().then(function (status) {
             if (status === 'Valid') {
-                KTUtil.scrollTop();
+                $.ajax({
+                    type: 'POST',
+                    url: 'password_reset',
+                    data: $('#kt_login_forgot_form').serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.success === 1) {
+                            Swal.fire(
+                                "Success",
+                                "Email Has Been Sent",
+                                "success"
+                            )
+                        }
+                        else if (data.notexist === 1) {
+                            Swal.fire(
+                                "Error",
+                                "Email Not Exist",
+                                "error"
+                            )
+                        }
+                        else if (data.failed === 1) {
+                            Swal.fire(
+                                "Error",
+                                "Invalid Credentials",
+                                "error"
+                            )
+                        }
+                    },
+                });
             } else {
                 KTUtil.scrollTop();
             }

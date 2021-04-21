@@ -47,7 +47,7 @@ def add_employee(request):
         add.save()
 
         aid = add.id
-        user = CustomUser.objects.create_user(username=username, password=password, role=role, aid=aid)
+        user = CustomUser.objects.create_user(username=username, password=password, email=email, role=role, aid=aid)
         user.save()
         return JsonResponse({'insert': 1})
     else:

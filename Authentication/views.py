@@ -1,10 +1,16 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, reverse
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+from django.core.mail import send_mail, BadHeaderError
+from django.template.loader import render_to_string
 
 from Employee.models import Employee
 from Patient.models import Patient
 from Settings.models import Global
+from Authentication.models import CustomUser
 
 # Create your views here.
 
@@ -53,3 +59,34 @@ def handlelogin(request):
 def handlelogout(request):
     logout(request)
     return redirect(reverse('Authentication:loginpage'))
+
+
+def password_reset(request):
+    if request.method == "POST":
+        email = request.POST['email']
+
+        email = CustomUser.objects.filter(email=email)
+
+        if email.exists():
+            for user in email:
+                subject = "Password Reset Requested"
+                email_template_name = "Authentication_template/password_reset_email.txt"
+                c = {
+                    "email": user.email,
+                    'domain': '127.0.0.1:8000',
+                    'site_name': 'Website',
+                    "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+                    "user": user,
+                    'token': default_token_generator.make_token(user),
+                    'protocol': 'http',
+                }
+                email = render_to_string(email_template_name, c)
+                try:
+                    send_mail(subject, email, 'admin@getlocalhost.com', [user.email], fail_silently=False)
+                    return JsonResponse({'success': 1})
+                except BadHeaderError:
+                    return JsonResponse({'failed': 1})
+        else:
+            return JsonResponse({'notexist': 1})
+    else:
+        return render(request, 'Authentication_template/login.html')

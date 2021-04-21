@@ -116,6 +116,7 @@
                 <div class="login-form login-forgot">
                     <!--begin::Form-->
                     <form class="form" id="kt_login_forgot_form" method="POST">
+                        {% csrf_token %}
                         <!--begin::Title-->
                         <div class="pb-13 pt-lg-0 pt-5">
                             <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Forgotten Password
@@ -132,7 +133,7 @@
                         <!--end::Form group-->
                         <!--begin::Form group-->
                         <div class="form-group d-flex flex-wrap pb-lg-0">
-                            <button type="button" id="kt_login_forgot_submit"
+                            <button type="submit" id="kt_login_forgot_submit"
                                     class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Submit
                             </button>
                             <button type="button" id="kt_login_forgot_cancel"
@@ -145,6 +146,17 @@
                 </div>
                 <!--end::Forgot-->
             </div>
+            <!--begin::Content footer-->
+					<div class="d-flex justify-content-lg-start justify-content-center align-items-end py-7 py-lg-0">
+						<div class="text-dark-50 font-size-lg font-weight-bolder mr-10">
+							<span class="mr-1">{% now 'Y' %}©</span>
+							<a href="{% url 'Authentication:loginpage' %}" class="text-dark-75 text-hover-primary">{{ data.hospital }}</a>
+						</div>
+						<a href="{{ data.link1 }}" class="text-primary font-weight-bolder font-size-lg">About</a>
+						<a href="{{ data.link2 }}" class="text-primary ml-5 font-weight-bolder font-size-lg">Team</a>
+						<a href="{{ data.link3 }}" class="text-primary ml-5 font-weight-bolder font-size-lg">Contact Us</a>
+					</div>
+					<!--end::Content footer-->
         </div>
         <!--end::Content-->
     </div>
