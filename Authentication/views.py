@@ -1,16 +1,17 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import JsonResponse, HttpResponse
-from django.shortcuts import render, redirect, reverse
-from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
-from django.utils.encoding import force_bytes
 from django.core.mail import send_mail, BadHeaderError
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, reverse
 from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 
+from Authentication.models import CustomUser
 from Employee.models import Employee
 from Patient.models import Patient
 from Settings.models import Global
-from Authentication.models import CustomUser
+
 
 # Create your views here.
 
@@ -69,6 +70,7 @@ def password_reset(request):
 
         if email.exists():
             for user in email:
+                print(user)
                 subject = "Password Reset Requested"
                 email_template_name = "Authentication_template/password_reset_email.txt"
                 c = {
