@@ -73,10 +73,12 @@
                 <!--begin::Signin-->
                 <div class="login-form login-signin">
                     <!--begin::Form-->
-                    <form class="form"  id="kt_login_signin_form" method="POST">
+                    <form class="form" id="kt_login_signin_form" method="POST">
+                        {% csrf_token %}
                         <!--begin::Title-->
                         <div class="pb-13 pt-lg-0 pt-5">
-                            <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Welcome to {{ data.visible }}</h3>
+                            <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Welcome
+                                to {{ data.visible }}</h3>
                         </div>
                         <!--begin::Title-->
                         <!--begin::Form group-->
@@ -113,7 +115,7 @@
                 <!--begin::Forgot-->
                 <div class="login-form login-forgot">
                     <!--begin::Form-->
-                    <form class="form" novalidate="novalidate" id="kt_login_forgot_form">
+                    <form class="form" id="kt_login_forgot_form" method="POST">
                         <!--begin::Title-->
                         <div class="pb-13 pt-lg-0 pt-5">
                             <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Forgotten Password
@@ -143,18 +145,6 @@
                 </div>
                 <!--end::Forgot-->
             </div>
-            <!--end::Content body-->
-            <!--begin::Content footer-->
-            <div class="d-flex justify-content-lg-start justify-content-center align-items-end py-7 py-lg-0">
-                <div class="text-dark-50 font-size-lg font-weight-bolder mr-10">
-                    <span class="mr-1">2021©</span>
-                    <a href="http://keenthemes.com/metronic" target="_blank" class="text-dark-75 text-hover-primary">Keenthemes</a>
-                </div>
-                <a href="#" class="text-primary font-weight-bolder font-size-lg">Terms</a>
-                <a href="#" class="text-primary ml-5 font-weight-bolder font-size-lg">Plans</a>
-                <a href="#" class="text-primary ml-5 font-weight-bolder font-size-lg">Contact Us</a>
-            </div>
-            <!--end::Content footer-->
         </div>
         <!--end::Content-->
     </div>
@@ -162,7 +152,8 @@
 </div>
 <!--end::Main-->
 <!--begin::Global Config(global config for global JS scripts)-->
-<script>var KTAppSettings = {"breakpoints": {"sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1400},
+<script>var KTAppSettings = {
+    "breakpoints": {"sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1400},
     "colors": {
         "theme": {
             "base": {
