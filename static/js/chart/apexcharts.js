@@ -38,6 +38,10 @@ jQuery(document).ready(function () {
         xaxis: {
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         },
+        yaxis: {
+            min: 0,
+            max: 350,
+        },
         colors: [primary]
     };
 

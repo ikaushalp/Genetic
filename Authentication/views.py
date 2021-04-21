@@ -4,14 +4,17 @@ from django.shortcuts import render, redirect, reverse
 
 from Employee.models import Employee
 from Patient.models import Patient
-
+from Settings.models import Global
 
 # Create your views here.
 
 def loginpage(request):
     if request.user.is_authenticated:
         return redirect(reverse('Dashboard:dashboard'))
-    return render(request, 'Authentication_template/login.html')
+    else:
+        data = Global.objects.get(pk=1)
+        context = {'data': data}
+        return render(request, 'Authentication_template/login.html', context=context)
 
 
 def handlelogin(request):
@@ -42,7 +45,9 @@ def handlelogin(request):
         else:
             return JsonResponse({'NotExist': 1})
     else:
-        return render(request, 'Authentication_template/login.html')
+        data = Global.objects.get(pk=1)
+        context = {'data': data}
+        return render(request, 'Authentication_template/login.html', context=context)
 
 
 def handlelogout(request):
