@@ -10,6 +10,7 @@ jQuery(document).ready(function () {
 
         login.addClass(cls);
         if (Form === 'kt_login_forgot_form') {
+            console.log('Inside')
             forgot_password_validation.resetForm(true);
         }
         if (Form === 'kt_login_signin_form') {
@@ -107,47 +108,6 @@ jQuery(document).ready(function () {
             }
         }
     );
-
-    // Handle submit button
-    $('#kt_login_forgot_form').on('submit', function (e) {
-        e.preventDefault();
-
-        forgot_password_validation.validate().then(function (status) {
-            if (status === 'Valid') {
-                $.ajax({
-                    type: 'POST',
-                    url: 'password_reset',
-                    data: $('#kt_login_forgot_form').serialize(),
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.success === 1) {
-                            Swal.fire(
-                                "Success",
-                                "Email Has Been Sent",
-                                "success"
-                            )
-                        }
-                        else if (data.notexist === 1) {
-                            Swal.fire(
-                                "Error",
-                                "Email Not Exist",
-                                "error"
-                            )
-                        }
-                        else if (data.failed === 1) {
-                            Swal.fire(
-                                "Error",
-                                "Invalid Credentials",
-                                "error"
-                            )
-                        }
-                    },
-                });
-            } else {
-                KTUtil.scrollTop();
-            }
-        });
-    });
 
     // Handle cancel button
     $('#kt_login_forgot_cancel').on('click', function (e) {

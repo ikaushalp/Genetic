@@ -34,12 +34,10 @@ class CustomUser(AbstractBaseUser):
 
     objects = CustomUserManager()
 
-    def __str__(self):
-        return self.username
-
     @property
     def is_authenticated(self):
         return True
+
 
     class Meta:
         db_table = 'login'

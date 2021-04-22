@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail, BadHeaderError
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
@@ -70,7 +70,6 @@ def password_reset(request):
 
         if email.exists():
             for user in email:
-                print(user)
                 subject = "Password Reset Requested"
                 email_template_name = "Authentication_template/password_reset_email.txt"
                 c = {
@@ -85,10 +84,8 @@ def password_reset(request):
                 email = render_to_string(email_template_name, c)
                 try:
                     send_mail(subject, email, 'admin@getlocalhost.com', [user.email], fail_silently=False)
-                    return JsonResponse({'success': 1})
                 except BadHeaderError:
-                    return JsonResponse({'failed': 1})
-        else:
-            return JsonResponse({'notexist': 1})
+                    return HttpResponse('Invalid header found.')
+                return redirect("password_reset/done/")
     else:
         return render(request, 'Authentication_template/login.html')
