@@ -88,7 +88,7 @@ $(document).ready(function () {
                     stringLength: {
                         min: 6,
                         max: 12,
-                        message: 'The username must be more than 6 and less than 12 characters long'
+                        message: 'The password must be more than 6 and less than 12 characters long'
                     }
                 }
             },

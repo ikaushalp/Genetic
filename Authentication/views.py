@@ -85,7 +85,9 @@ def password_reset(request):
                 try:
                     send_mail(subject, email, 'admin@getlocalhost.com', [user.email], fail_silently=False)
                 except BadHeaderError:
-                    return HttpResponse('Invalid header found.')
-                return redirect("password_reset/done/")
+                    return JsonResponse({'failed': 1})
+                return JsonResponse({'sent': 1})
+        else:
+            return JsonResponse({'notexist': 1})
     else:
         return render(request, 'Authentication_template/login.html')
