@@ -30,7 +30,7 @@ var KTCalendarGoogle = function() {
 
                 defaultView: 'dayGridMonth',
 
-                editable: true,
+                editable: false,
                 eventLimit: true, // allow "more" link when too many events
                 navLinks: true,
 

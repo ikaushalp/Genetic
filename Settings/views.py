@@ -12,13 +12,14 @@ def global_settings(request):
         visible = request.POST['visible']
         contact = request.POST['contact']
         email = request.POST['email']
+        facebook = request.POST['facebook']
         address = request.POST['address']
         link1 = request.POST['link1']
         link2 = request.POST['link2']
         link3 = request.POST['link3']
 
         Global.objects.filter(pk=1).update(hospital=hospital, visible=visible, contact=contact, email=email,
-                                        address=address, link1=link1, link2=link2, link3=link3)
+                                           address=address, facebook=facebook, link1=link1, link2=link2, link3=link3)
         request.session['h_name'] = hospital
         request.session['v_name'] = visible
         request.session['link1'] = link1

@@ -10,7 +10,6 @@ jQuery(document).ready(function () {
 
         login.addClass(cls);
         if (Form === 'kt_login_forgot_form') {
-            console.log('Inside')
             forgot_password_validation.resetForm(true);
         }
         if (Form === 'kt_login_signin_form') {
@@ -117,19 +116,10 @@ jQuery(document).ready(function () {
                     data: $('#kt_login_forgot_form').serialize(),
                     dataType: 'json',
                     success: function (data) {
-                        if (data.sent === 1) {
-                            Swal.fire(
-                                "Success",
-                                "Email has been sent",
-                                "success"
-                            )
-                        } else if (data.notexist === 1) {
-                            Swal.fire(
-                                "Error",
-                                "Email not found",
-                                "error"
-                            )
-                        } else if (data.failed === 1) {
+                        if (data.sent === 1){
+                            window.location.href = "password_reset/done/"
+                        }
+                        else if (data.failed === 1) {
                             Swal.fire(
                                 "Error",
                                 "Failed, Email not sent",

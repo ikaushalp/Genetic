@@ -13,6 +13,7 @@ class Global(models.Model):
     contact = models.CharField(max_length=13)
     email = models.EmailField()
     address = models.TextField(null=True)
+    facebook = models.CharField(max_length=100)
     link1 = models.CharField(max_length=60)
     link2 = models.CharField(max_length=60)
     link3 = models.CharField(max_length=60)

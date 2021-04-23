@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import BadHeaderError, EmailMultiAlternatives
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.template.loader import get_template
 from django.utils.encoding import force_bytes
@@ -84,13 +84,15 @@ def password_reset(request):
                     'domain': '127.0.0.1:8000',
                     'site_name': site.visible,
                     'site_full_name': site.hospital,
-                    'site_email': "admin@genetic.com",
+                    'site_email': site.email,
                     'user_name': Name,
                     'site_address': site.address,
                     "uid": urlsafe_base64_encode(force_bytes(user.pk)),
                     "user": user,
                     'token': default_token_generator.make_token(user),
                     'protocol': 'http',
+                    'facebook': site.facebook,
+                    'contact': site.contact,
                 }
                 text_content = plaintext.render(c)
                 html_content = htmltemp.render(c)
@@ -99,10 +101,9 @@ def password_reset(request):
                                                  headers={'Reply-To': 'admin@example.com'})
                     msg.attach_alternative(html_content, "text/html")
                     msg.send()
-                    return JsonResponse({'sent': 1})
                 except BadHeaderError:
                     return JsonResponse({'failed': 1})
-        else:
-            return JsonResponse({'notexist': 1})
+                return JsonResponse({'sent': 1})
+
     else:
         return render(request, 'Authentication_template/login.html')

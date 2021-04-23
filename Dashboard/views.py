@@ -3,6 +3,7 @@ from django.shortcuts import render
 from Patient.models import Patient
 from Employee.models import Employee
 from Settings.models import Global
+from Appointment.models import Appointment
 
 # Create your views here.
 
@@ -10,6 +11,7 @@ def index(request):
     patient = Patient.objects.count()
     employee = Employee.objects.count()
     doctor = Employee.objects.filter(designation='Doctor').count()
+    appointment = Appointment.objects.count()
 
     global_list = Global.objects.get(id=1)
     request.session['h_name'] = global_list.hospital
@@ -18,5 +20,5 @@ def index(request):
     request.session['link2'] = global_list.link2
     request.session['link3'] = global_list.link3
 
-    context = {'patient': patient, 'employee': employee, 'doctor': doctor}
+    context = {'patient': patient, 'employee': employee, 'doctor': doctor, 'appointment': appointment}
     return render(request, 'Dashboard_template/dashboard.html', context=context)
