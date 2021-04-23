@@ -66,10 +66,15 @@ def password_reset(request):
     if request.method == "POST":
         email = request.POST['email']
 
-        email = CustomUser.objects.filter(email=email)
-
-        if email.exists():
-            for user in email:
+        user_email = CustomUser.objects.filter(email=email)
+        try:
+            name = Patient.objects.get(email=email)
+            Name = name.name
+        except Patient.DoesNotExist:
+            name = Employee.objects.get(email=email)
+            Name = name.ename
+        if user_email.exists():
+            for user in user_email:
                 subject = "Password Reset Requested"
                 plaintext = get_template("Authentication_template/password_reset_email.txt")
                 htmltemp = get_template("Authentication_template/password_email_template.html")
@@ -80,7 +85,7 @@ def password_reset(request):
                     'site_name': site.visible,
                     'site_full_name': site.hospital,
                     'site_email': "admin@genetic.com",
-                    'user_name': user,
+                    'user_name': Name,
                     'site_address': site.address,
                     "uid": urlsafe_base64_encode(force_bytes(user.pk)),
                     "user": user,
