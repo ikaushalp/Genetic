@@ -129,11 +129,11 @@ USE_TZ = False
 # Email Configurations
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_LOCALTIME = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'beastanonymous007@gmail.com'
-EMAIL_HOST_PASSWORD = 'Pass'
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'server294.web-hosting.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'genetic@getlocalhost.com'
+EMAIL_HOST_PASSWORD = 'gX}t{wNEnwWR'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

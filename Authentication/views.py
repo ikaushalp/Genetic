@@ -96,9 +96,10 @@ def password_reset(request):
                 }
                 text_content = plaintext.render(c)
                 html_content = htmltemp.render(c)
+                from_email = site.hospital + " " + "<" + site.email + ">"
                 try:
-                    msg = EmailMultiAlternatives(subject, text_content, 'Website <a@a.com>', [user.email],
-                                                 headers={'Reply-To': 'admin@example.com'})
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [user.email],
+                                                 headers={'Reply-To': site.email})
                     msg.attach_alternative(html_content, "text/html")
                     msg.send()
                 except BadHeaderError:
