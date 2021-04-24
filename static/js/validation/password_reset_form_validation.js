@@ -40,11 +40,11 @@ $(document).ready(function () {
 
     $('#password_reset').on('click', function (e) {
         e.preventDefault();
+
         signin_validation.validate().then(function (status) {
             if (status === 'Valid') {
                 $('#kt_login_password_reset_form').submit();
             }
-            console.log('Invalid');
         })
     })
 })

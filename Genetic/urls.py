@@ -28,7 +28,6 @@ urlpatterns = [
     path('employee/', include('Employee.urls')),
     path('schedule/', include('Schedule.urls')),
     path('appointment/', include('Appointment.urls')),
-    path('prescription/', include('Prescription.urls')),
     path('settings', include('Settings.urls')),
     path('profile/', include('Profile.urls')),
 ]

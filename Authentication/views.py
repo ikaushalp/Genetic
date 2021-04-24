@@ -1,10 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import BadHeaderError, EmailMultiAlternatives
+from django.core.mail import BadHeaderError, EmailMultiAlternatives, send_mail
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, reverse
-from django.template.loader import get_template
+from django.template.loader import get_template, render_to_string
 from django.utils.encoding import force_bytes
+from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_encode
 
 from Authentication.models import CustomUser
@@ -67,25 +68,28 @@ def password_reset(request):
         email = request.POST['email']
 
         user_email = CustomUser.objects.filter(email=email)
+        site = Global.objects.get(pk=1)
+
         try:
             name = Patient.objects.get(email=email)
-            Name = name.name
+            full_name = name.name
         except Patient.DoesNotExist:
-            name = Employee.objects.get(email=email)
-            Name = name.ename
+            try:
+                name = Employee.objects.get(email=email)
+                full_name = name.ename
+            except Employee.DoesNotExist:
+                full_name = None
+
         if user_email.exists():
             for user in user_email:
                 subject = "Password Reset Requested"
-                plaintext = get_template("Authentication_template/password_reset_email.txt")
-                htmltemp = get_template("Authentication_template/password_email_template.html")
-                site = Global.objects.get(pk=1)
                 c = {
                     "email": user.email,
                     'domain': '127.0.0.1:8000',
                     'site_name': site.visible,
                     'site_full_name': site.hospital,
                     'site_email': site.email,
-                    'user_name': Name,
+                    'user_name': full_name,
                     'site_address': site.address,
                     "uid": urlsafe_base64_encode(force_bytes(user.pk)),
                     "user": user,
@@ -94,17 +98,12 @@ def password_reset(request):
                     'facebook': site.facebook,
                     'contact': site.contact,
                 }
-                text_content = plaintext.render(c)
-                html_content = htmltemp.render(c)
+                html_template = render_to_string('Authentication_template/password_email_template.html', c)
                 from_email = site.hospital + " " + "<" + site.email + ">"
                 try:
-                    msg = EmailMultiAlternatives(subject, text_content, from_email, [user.email],
-                                                 headers={'Reply-To': site.email})
-                    msg.attach_alternative(html_content, "text/html")
-                    msg.send()
+                    send_mail(subject, None, from_email, [user.email], html_message=html_template)
                 except BadHeaderError:
                     return JsonResponse({'failed': 1})
-                return JsonResponse({'sent': 1})
-
+        return JsonResponse({'sent': 1})
     else:
         return render(request, 'Authentication_template/login.html')

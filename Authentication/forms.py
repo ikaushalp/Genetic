@@ -19,3 +19,11 @@ class MyPasswordResetForm(BootstrapStylesMixin, PasswordResetForm):
 
 class SetPasswordForm(BootstrapStylesMixin, SetPasswordForm):
     field_names = ['new_password1', 'new_password2']
+
+    def clean_new_password2(self):
+        password1 = self.cleaned_data['new_password1']
+        password2 = self.cleaned_data['new_password2']
+        if password1 and password2:
+            if password1 != password2:
+                pass
+        return password2
