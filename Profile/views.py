@@ -31,4 +31,14 @@ def acc_info(request):
 
 
 def change_password(request):
-    return render(request, "Profile_template/change_password.html")
+    if request.user.role == 1 or request.user.role == 2 or request.user.role == 3:
+        employee = Employee.objects.get(pk=request.user.aid)
+        acc_details = CustomUser.objects.get(pk=request.user.id)
+        context = {'personal': employee, 'account': acc_details}
+        return render(request, "Profile_template/change_password.html", context)
+
+    else:
+        patient = Patient.objects.get(pk=request.user.aid)
+        acc_details = CustomUser.objects.get(pk=request.user.id)
+        context = {'personal': patient, 'account': acc_details}
+        return render(request, "Profile_template/change_password.html", context)

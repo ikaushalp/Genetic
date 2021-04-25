@@ -26,7 +26,6 @@ def add_schedule(request):
 
         for element in week_day:
             add = Schedule(doctor_id=doctor, fees=fees, start_time=start_time, end_time=end_time, week_day=element)
-            print(element)
             add.save()
         return JsonResponse({'insert': 1})
     else:

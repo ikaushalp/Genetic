@@ -9,8 +9,8 @@ jQuery(document).ready(function () {
     const apexChart = "#chart_1";
     var options = {
         series: [{
-            name: "Desktops",
-            data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 110, 150, 200]
+            name: "Appointment",
+            data: [data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12]]
         }],
         chart: {
             height: 350,
@@ -20,7 +20,7 @@ jQuery(document).ready(function () {
             }
         },
         title: {
-            text: 'Stock Price Movement',
+            text: 'Annual Appointment Statistics',
             align: 'left'
         },
         dataLabels: {
@@ -37,10 +37,6 @@ jQuery(document).ready(function () {
         },
         xaxis: {
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        },
-        yaxis: {
-            min: 0,
-            max: 350,
         },
         colors: [primary]
     };

@@ -1,11 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import BadHeaderError, EmailMultiAlternatives, send_mail
-from django.http import JsonResponse, HttpResponse
+from django.core.mail import BadHeaderError, send_mail
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, reverse
-from django.template.loader import get_template, render_to_string
+from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
-from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_encode
 
 from Authentication.models import CustomUser
@@ -107,3 +107,20 @@ def password_reset(request):
         return JsonResponse({'sent': 1})
     else:
         return render(request, 'Authentication_template/login.html')
+
+
+def change_password(request):
+    if request.method == 'POST':
+        old_password = request.POST['old_password']
+        retype_new_password = request.POST['retype_new_password']
+
+        user = CustomUser.objects.get(pk=request.user.id)
+        check = check_password(old_password, user.password)
+        if check:
+            user.set_password(retype_new_password)
+            user.save()
+            return JsonResponse({'success': 1})
+        else:
+            return JsonResponse({'failed': 1})
+    else:
+        return redirect('/profile/change-password')

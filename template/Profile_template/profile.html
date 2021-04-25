@@ -51,12 +51,10 @@
 
                                 <!--begin::User-->
                                 <div class="d-flex align-items-center">
-                                    <div
-                                            class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
-                                        <div class="symbol-label"
-                                             style="background-image:url({% static 'media/users/300_21.jpg' %})">
-                                        </div>
-                                        <i class="symbol-badge bg-success"></i>
+                                    <div class="symbol symbol-40 symbol-xxl-70 mr-5 align-self-start align-self-xxl-center symbol-light-success">
+                                            <span class="symbol-label display-3 font-weight-bold">{% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                                {{ personal.ename|make_list|first }}{% endif %}
+                                            {% if request.user.role == 4 %}{{ personal.name|make_list|first }}{% endif %}</span>
                                     </div>
                                     <div>
                                         <a href="#"
@@ -66,13 +64,18 @@
                                             {% if request.user.role == 4 %}{{ personal.name }}{% endif %}
                                         </a>
                                         <div class="text-muted">
-                                            Application Developer
-                                        </div>
-                                        <div class="mt-2">
-                                            <a href="#"
-                                               class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Chat</a>
-                                            <a href="#"
-                                               class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Follow</a>
+                                            {% if request.user.role == 1 %}
+                                                Admin
+                                            {% endif %}
+                                            {% if request.user.role == 2 %}
+                                                Doctor
+                                            {% endif %}
+                                            {% if request.user.role == 3 %}
+                                                Receptionist
+                                            {% endif %}
+                                            {% if request.user.role == 4 %}
+                                                Patient
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -96,10 +99,10 @@
 
                                 <!--begin::Nav-->
                                 {% with request.resolver_match.view_name as view_name %}
-                                <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
-                                    <div class="navi-item mb-2">
-                                        <a href="{% url 'Profile:personal-info' %}"
-                                           class="navi-link py-4 {% if view_name == 'Profile:personal-info' %}active{% endif %}">
+                                    <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
+                                        <div class="navi-item mb-2">
+                                            <a href="{% url 'Profile:personal-info' %}"
+                                               class="navi-link py-4 {% if view_name == 'Profile:personal-info' %}active{% endif %}">
                                                         <span class="navi-icon mr-2">
                                                             <span class="svg-icon">
                                                                 <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg--><svg
@@ -120,14 +123,14 @@
                                                                     </g>
                                                                 </svg>
                                                                 <!--end::Svg Icon--></span> </span>
-                                            <span class="navi-text font-size-lg">
+                                                <span class="navi-text font-size-lg">
                                                             Personal Information
                                                         </span>
-                                        </a>
-                                    </div>
-                                    <div class="navi-item mb-2">
-                                        <a href="{% url 'Profile:account-info' %}"
-                                           class="navi-link py-4 {% if view_name == 'Profile:account-info' %}active{% endif %}">
+                                            </a>
+                                        </div>
+                                        <div class="navi-item mb-2">
+                                            <a href="{% url 'Profile:account-info' %}"
+                                               class="navi-link py-4 {% if view_name == 'Profile:account-info' %}active{% endif %}">
                                                         <span class="navi-icon mr-2">
                                                             <span class="svg-icon">
                                                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg--><svg
@@ -147,14 +150,14 @@
                                                                     </g>
                                                                 </svg>
                                                                 <!--end::Svg Icon--></span> </span>
-                                            <span class="navi-text font-size-lg">
+                                                <span class="navi-text font-size-lg">
                                                             Account Information
                                                         </span>
-                                        </a>
-                                    </div>
-                                    <div class="navi-item mb-2">
-                                        <a href="{% url 'Profile:change-password' %}"
-                                           class="navi-link py-4 {% if view_name == 'Profile:change-password' %}active{% endif %}">
+                                            </a>
+                                        </div>
+                                        <div class="navi-item mb-2">
+                                            <a href="{% url 'Profile:change-password' %}"
+                                               class="navi-link py-4 {% if view_name == 'Profile:change-password' %}active{% endif %}">
                                                         <span class="navi-icon mr-2">
                                                             <span class="svg-icon">
                                                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Shield-user.svg--><svg
@@ -177,17 +180,13 @@
                                                                     </g>
                                                                 </svg>
                                                                 <!--end::Svg Icon--></span> </span>
-                                            <span class="navi-text font-size-lg">
+                                                <span class="navi-text font-size-lg">
                                                             Change Password
-                                                        </span>
-                                            <span class="navi-label">
-                                                            <span
-                                                                    class="label label-light-danger label-rounded font-weight-bold">5</span>
-                                                        </span>
-                                        </a>
+                                                </span>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            {% endwith %}
+                                {% endwith %}
                                 <!--end::Nav-->
                             </div>
                             <!--end::Body-->
@@ -197,7 +196,6 @@
                     <!--end::Aside-->
 
                     <!--begin::Content-->
-
                     {% block inner_content %}
 
                     {% endblock %}

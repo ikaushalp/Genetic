@@ -1,9 +1,15 @@
-from django.contrib.auth.decorators import login_required
+import datetime
+import json
+
 from django.shortcuts import render
-from Patient.models import Patient
-from Employee.models import Employee
-from Settings.models import Global
+
 from Appointment.models import Appointment
+from Employee.models import Employee
+from Patient.models import Patient
+from Settings.models import Global
+
+current = datetime.date.today()
+
 
 # Create your views here.
 
@@ -12,6 +18,12 @@ def index(request):
     employee = Employee.objects.count()
     doctor = Employee.objects.filter(designation='Doctor').count()
     appointment = Appointment.objects.count()
+    data = {}
+    for month in range(1, 13):
+        appointment_data = Appointment.objects.filter(appointment_date__month=month,
+                                                      appointment_date__year=current.year).count()
+        data.update({month: appointment_data})
+    data = json.dumps(data)
 
     global_list = Global.objects.get(id=1)
     request.session['h_name'] = global_list.hospital
@@ -19,6 +31,6 @@ def index(request):
     request.session['link1'] = global_list.link1
     request.session['link2'] = global_list.link2
     request.session['link3'] = global_list.link3
-
-    context = {'patient': patient, 'employee': employee, 'doctor': doctor, 'appointment': appointment}
+    context = {'patient': patient, 'employee': employee, 'doctor': doctor, 'appointment': appointment,
+               'data': data}
     return render(request, 'Dashboard_template/dashboard.html', context=context)
