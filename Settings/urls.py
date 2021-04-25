@@ -5,5 +5,4 @@ app_name = 'Settings'
 
 urlpatterns = [
     path('', views.global_settings, name='global'),
-    path('profile', views.profile, name='profile'),
 ]

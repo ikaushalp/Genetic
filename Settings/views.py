@@ -31,6 +31,3 @@ def global_settings(request):
         context = {'main_list': global_list}
         return render(request, 'Settings_template/global_settings.html', context=context)
 
-
-def profile(request):
-    return render(request, 'Settings_template/profile.html')
