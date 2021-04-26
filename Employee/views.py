@@ -9,12 +9,12 @@ from django.http import JsonResponse
 
 def add_employee(request):
     if request.method == 'POST':
-        ename = request.POST['name']
+        name = request.POST['name']
         gender = request.POST['gender']
         birthdate = request.POST['birthdate']
         blood_group = request.POST['blood_group']
         marital_status = request.POST['marital_status']
-        mobile = request.POST['mobile_no']
+        mobile_no = request.POST['mobile_no']
         email = request.POST['email']
         address = request.POST['address']
         username = request.POST['username']
@@ -40,7 +40,7 @@ def add_employee(request):
         if check:
             return JsonResponse({'exist': 1})
 
-        add = Employee(ename=ename, gender=gender, birthdate=birthdate, blood_group=blood_group, mobile=mobile,
+        add = Employee(name=name, gender=gender, birthdate=birthdate, blood_group=blood_group, mobile_no=mobile_no,
                        email=email,
                        marital_status=marital_status, address=address, role=role, designation=designation,
                        joining_date=joining_date, qualification=qualification)
@@ -64,12 +64,12 @@ def employee_list(request):
 
 def update_employee(request, employee_id):
     if request.method == 'POST':
-        ename = request.POST['update_name']
+        name = request.POST['update_name']
         gender = request.POST['update_gender']
         birthdate = request.POST['update_birthdate']
         blood_group = request.POST['update_blood_group']
         marital_status = request.POST['update_marital_status']
-        mobile = request.POST['update_mobile_no']
+        mobile_no = request.POST['update_mobile_no']
         email = request.POST['update_email']
         address = request.POST['update_address']
         role = request.POST['update_role']
@@ -89,12 +89,22 @@ def update_employee(request, employee_id):
         if role == 'Receptionist':
             role = 3
 
-        Employee.objects.filter(pk=employee_id).update(ename=ename, gender=gender, birthdate=birthdate,
-                                                       blood_group=blood_group, mobile=mobile, email=email,
+        try:
+            emp = Employee.objects.get(pk=employee_id)
+        except Employee.DoesNotExist:
+            emp = None
+
+        if role:
+            CustomUser.objects.filter(aid=emp.id, role=emp.role).update(role=role)
+
+        Employee.objects.filter(pk=employee_id).update(name=name, gender=gender, birthdate=birthdate,
+                                                       blood_group=blood_group, mobile_no=mobile_no, email=email,
                                                        marital_status=marital_status, address=address,
                                                        role=role, designation=designation,
                                                        joining_date=joining_date, qualification=qualification)
-        request.session['name'] = ename
+
+        if int(employee_id) == request.user.aid:
+            request.session['name'] = name
         return JsonResponse({'update': 1})
     else:
         return render(request, 'Dashboard_template/dashboard.html')
@@ -115,7 +125,6 @@ def delete_employee(request):
         rem = Employee.objects.get(pk=employee_id)
         rem2 = CustomUser.objects.get(aid=employee_id, role=employee_role)
         if employee_role == 2:
-            print('Inside')
             Appointment.objects.filter(doctor_id=employee_id).update(time_slot=None)
         rem.delete()
         rem2.delete()

@@ -53,14 +53,14 @@
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-40 symbol-xxl-70 mr-5 align-self-start align-self-xxl-center symbol-light-success">
                                             <span class="symbol-label display-3 font-weight-bold">{% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
-                                                {{ personal.ename|make_list|first }}{% endif %}
+                                                {{ personal.name|make_list|first }}{% endif %}
                                             {% if request.user.role == 4 %}{{ personal.name|make_list|first }}{% endif %}</span>
                                     </div>
                                     <div>
                                         <a href="#"
                                            class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">
                                             {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
-                                                {{ personal.ename }}{% endif %}
+                                                {{ personal.name }}{% endif %}
                                             {% if request.user.role == 4 %}{{ personal.name }}{% endif %}
                                         </a>
                                         <div class="text-muted">

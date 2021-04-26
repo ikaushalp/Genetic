@@ -12,13 +12,16 @@ from Authentication.models import CustomUser
 class MainTestCase(unittest.TestCase):
     def MainCase(self):
         current_date = datetime.date.today()
-        adm = Employee(ename="John Doe", gender="Male", role=1, designation="Admin", joining_date=current_date)
+        adm = Employee(name="John Doe", gender="Male", role=1, designation="Admin", joining_date=current_date)
         adm.save()
 
         auth = CustomUser.objects.create_user(username="admin", password="admin123", email="admin@admin.com", role=1,
                                               aid=1)
         auth.save()
 
-        add = Global(hospital="Genetic Hospital", visible="Genetic", contact="+91 9534587463", email="admin@admin.com",
-                     facebook="https://facebook.com/", address="Enter your address..")
+        add = Global.objects.create(hospital="Genetic Hospital", visible="Genetic", contact="+919534587463",
+                                    email="admin@admin.com",
+                                    address="Enter your address..", facebook="https://facebook.com",
+                                    link1="https://aboutus.com",
+                                    link2="https://teams.com", link3="https://contactus.com")
         add.save()

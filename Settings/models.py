@@ -5,7 +5,7 @@ from django.db import models
 
 class Global(models.Model):
     class Meta:
-        db_table = 'Global_settings'
+        db_table = 'global_settings'
 
     id = models.AutoField(primary_key=True)
     hospital = models.CharField(max_length=60)
@@ -17,4 +17,3 @@ class Global(models.Model):
     link1 = models.CharField(max_length=60)
     link2 = models.CharField(max_length=60)
     link3 = models.CharField(max_length=60)
-    modified_date = models.DateTimeField(auto_now=True)

@@ -36,7 +36,7 @@ def handlelogin(request):
 
             if request.user.role == 1 or request.user.role == 2 or request.user.role == 3:
                 data = Employee.objects.get(pk=request.user.aid, role=request.user.role)
-                request.session['name'] = data.ename
+                request.session['name'] = data.name
                 if request.user.role == 1:
                     request.session['role'] = 'Admin'
                 if request.user.role == 2:
@@ -76,7 +76,7 @@ def password_reset(request):
         except Patient.DoesNotExist:
             try:
                 name = Employee.objects.get(email=email)
-                full_name = name.ename
+                full_name = name.name
             except Employee.DoesNotExist:
                 full_name = None
 

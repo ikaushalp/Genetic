@@ -82,11 +82,11 @@
                                             {% for item in admin %}
                                                 <tr>
                                                     <td>{{ item.id }}</td>
-                                                    <td>{{ item.ename }}</td>
+                                                    <td>{{ item.name }}</td>
                                                     <td>{{ item.gender }}</td>
                                                     <td>{{ item.birthdate|date:'d-m-Y'|default:"None" }}</td>
                                                     <td>{{ item.email }}</td>
-                                                    <td>{{ item.mobile }}</td>
+                                                    <td>{{ item.mobile_no }}</td>
                                                     <td>{{ item.designation }}</td>
                                                     {% if item.role == 1 %}
                                                         <td>Admin</td>
@@ -159,11 +159,11 @@
                                             {% for item in doctor %}
                                                 <tr>
                                                     <td>{{ item.id }}</td>
-                                                    <td>{{ item.ename }}</td>
+                                                    <td>{{ item.name }}</td>
                                                     <td>{{ item.gender }}</td>
                                                     <td>{{ item.birthdate|date:'d-m-Y'|default:"None" }}</td>
                                                     <td>{{ item.email }}</td>
-                                                    <td>{{ item.mobile }}</td>
+                                                    <td>{{ item.mobile_no }}</td>
                                                     <td>{{ item.designation }}</td>
                                                     {% if item.role == 1 %}
                                                         <td>Admin</td>
@@ -236,11 +236,11 @@
                                             {% for item in receptionist %}
                                                 <tr>
                                                     <td>{{ item.id }}</td>
-                                                    <td>{{ item.ename }}</td>
+                                                    <td>{{ item.name }}</td>
                                                     <td>{{ item.gender }}</td>
                                                     <td>{{ item.birthdate|date:'d-m-Y'|default:"None" }}</td>
                                                     <td>{{ item.email }}</td>
-                                                    <td>{{ item.mobile }}</td>
+                                                    <td>{{ item.mobile_no }}</td>
                                                     <td>{{ item.designation }}</td>
                                                     {% if item.role == 1 %}
                                                         <td>Admin</td>
@@ -313,7 +313,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-center">
-                        <h4 class="font-weight-bold" id="ename"></h4>
+                        <h4 class="font-weight-bold" id="name"></h4>
                         <p>Employee / <span id="designation"></span></p>
                     </div>
                     <table class="table table-striped table-bordered">

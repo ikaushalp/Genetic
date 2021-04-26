@@ -123,7 +123,7 @@ $(document).ready(function () {
         }
 
         $('#eid').text(data[0]);
-        $('#ename').text(data[1]);
+        $('#name').text(data[1]);
         $('#gender').text(data[2]);
         $('#birthdate').text(data[3]);
         $('#email').text(data[4]);
@@ -153,7 +153,7 @@ $(document).ready(function () {
         }
 
         $('#eid').text(data[0]);
-        $('#ename').text(data[1]);
+        $('#name').text(data[1]);
         $('#gender').text(data[2]);
         $('#birthdate').text(data[3]);
         $('#email').text(data[4]);
@@ -183,7 +183,7 @@ $(document).ready(function () {
         }
 
         $('#eid').text(data[0]);
-        $('#ename').text(data[1]);
+        $('#name').text(data[1]);
         $('#gender').text(data[2]);
         $('#birthdate').text(data[3]);
         $('#email').text(data[4]);

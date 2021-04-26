@@ -21,7 +21,7 @@ def index(request):
     data = {}
     for month in range(1, 13):
         appointment_data = Appointment.objects.filter(appointment_date__month=month,
-                                                      appointment_date__year=current.year).count()
+                                                      appointment_date__year=current.year, status='Confirmed').count()
         data.update({month: appointment_data})
     data = json.dumps(data)
 
