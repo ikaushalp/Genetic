@@ -1,3 +1,4 @@
+from Genetic.decorators import login_required, role_required
 from django.http import JsonResponse
 from django.shortcuts import render
 from Settings.models import Global
@@ -5,7 +6,8 @@ from Settings.models import Global
 
 # Create your views here.
 
-
+@login_required
+@role_required(allowed_roles=[1])
 def global_settings(request):
     if request.method == 'POST':
         hospital = request.POST['hospital_name']

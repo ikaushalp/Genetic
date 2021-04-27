@@ -1,13 +1,17 @@
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
-from Patient.models import Patient
-from Employee.models import Employee
-from Schedule.models import Schedule
+
 from Appointment.models import Appointment
+from Employee.models import Employee
+from Genetic.decorators import login_required, role_required
+from Patient.models import Patient
+from Schedule.models import Schedule
 
 
 # Create your views here.
+@login_required
+@role_required(allowed_roles=[1, 3])
 def add_appointment(request):
     if request.method == 'POST':
         patient = request.POST['patient']
@@ -30,6 +34,7 @@ def add_appointment(request):
         return render(request, 'Appointment_template/add_appointment.html', context=context)
 
 
+@login_required
 def appointment_list(request):
     patient_list = Patient.objects.all()
     doctor_list = Employee.objects.filter(designation='Doctor')
@@ -38,11 +43,15 @@ def appointment_list(request):
                   context={'appointment_list': appointment, 'patient_list': patient_list, 'doctor_list': doctor_list})
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def pending_appointment_list(request):
     appointment = Appointment.objects.filter(status='Pending').order_by('-appointment_date')
     return render(request, 'Appointment_template/pending_list.html', context={'appointment_list': appointment})
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def confirm_appointment(request):
     if request.method == 'POST':
         id = request.POST['appointment_id']
@@ -52,6 +61,8 @@ def confirm_appointment(request):
         return render(request, 'Dashboard_template/dashboard.html')
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def close_appointment(request):
     if request.method == 'POST':
         id = request.POST['appointment_id']
@@ -61,6 +72,8 @@ def close_appointment(request):
         return render(request, 'Dashboard_template/dashboard.html')
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def delete_appointment(request):
     if request.method == 'POST':
         id = request.POST['appointment_id']
@@ -71,6 +84,7 @@ def delete_appointment(request):
         return render(request, 'Dashboard_template/dashboard.html')
 
 
+@login_required
 def loadtimeslot(request):
     if request.method == 'POST':
         doctor_id = request.POST['doctor_id']
@@ -98,6 +112,8 @@ def loadtimeslot(request):
         return render(request, 'Dashboard_template/dashboard.html')
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def update_appointment(request):
     if request.method == 'POST':
         id = request.POST['appointment_id']

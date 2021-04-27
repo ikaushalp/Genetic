@@ -1,12 +1,15 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from Employee.models import Employee
+
 from Appointment.models import Appointment
 from Authentication.models import CustomUser
-from django.http import JsonResponse
+from Employee.models import Employee
+from Genetic.decorators import login_required, role_required
 
 
 # Create your views here.
-
+@login_required
+@role_required(allowed_roles=[1])
 def add_employee(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -54,6 +57,8 @@ def add_employee(request):
         return render(request, 'Employee_template/add_employee.html')
 
 
+@login_required
+@role_required(allowed_roles=[1, 2, 3])
 def employee_list(request):
     admin = Employee.objects.filter(designation='Admin')
     doctor = Employee.objects.filter(designation='Doctor')
@@ -62,6 +67,8 @@ def employee_list(request):
     return render(request, 'Employee_template/employee_list.html', context=context)
 
 
+@login_required
+@role_required(allowed_roles=[1])
 def update_employee(request, employee_id):
     if request.method == 'POST':
         name = request.POST['update_name']
@@ -110,12 +117,16 @@ def update_employee(request, employee_id):
         return render(request, 'Dashboard_template/dashboard.html')
 
 
+@login_required
+@role_required(allowed_roles=[1])
 def get_employee_list(request, employee_id):
     data = Employee.objects.get(pk=employee_id)
     return render(request, 'Employee_template/update_employee.html',
                   context={'data': data})
 
 
+@login_required
+@role_required(allowed_roles=[1])
 def delete_employee(request):
     if request.method == 'POST':
         employee_id = request.POST['employee_id']

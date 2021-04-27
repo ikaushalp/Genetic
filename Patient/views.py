@@ -1,11 +1,14 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from Genetic.decorators import role_required, login_required
+
 from Authentication.models import CustomUser
+from Genetic.decorators import login_required, role_required
 from Patient.models import Patient, Category
 
 
 # Patient #
+@login_required
+@role_required(allowed_roles=[1, 3])
 def add_patient(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -65,6 +68,8 @@ def add_patient(request):
         return render(request, 'Patient_template/add_patient.html', context)
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def delete_patient(request):
     if request.method == 'POST':
         patient_id = request.POST['patient_id']
@@ -77,12 +82,16 @@ def delete_patient(request):
         return redirect('/dashboard')
 
 
+@login_required
+@role_required(allowed_roles=[1, 2, 3])
 def patient_list(request):
     patient_all_list = Patient.objects.all()
     context = {'all_patient': patient_all_list}
     return render(request, 'Patient_template/patient_list.html', context)
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def update_patient(request, patient_id):
     if request.method == 'POST':
         name = request.POST['update_name']
@@ -127,6 +136,8 @@ def update_patient(request, patient_id):
         return render(request, 'Dashboard_template/dashboard.html')
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def get_patient_list(request, patient_id):
     data = Patient.objects.get(pk=patient_id)
 
@@ -136,7 +147,8 @@ def get_patient_list(request, patient_id):
 
 
 # Category #
-
+@login_required
+@role_required(allowed_roles=[1, 2, 3])
 def category(request):
     if request.method == 'POST':
         category = request.POST['category']
@@ -154,6 +166,8 @@ def category(request):
         return render(request, 'Patient_template/category.html', context)
 
 
+@login_required
+@role_required(allowed_roles=[1, 2, 3])
 def delete_category(request):
     if request.method == 'POST':
         id = request.POST['category_id']
@@ -166,6 +180,8 @@ def delete_category(request):
         return redirect('/dashboard')
 
 
+@login_required
+@role_required(allowed_roles=[1])
 def update_category(request):
     if request.method == 'POST':
         id = request.POST['id']

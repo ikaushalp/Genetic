@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from Patient.models import Patient
-from Employee.models import Employee
+from django.shortcuts import render
+
 from Authentication.models import CustomUser
+from Employee.models import Employee
+from Genetic.decorators import login_required
+from Patient.models import Patient
 
 
 # Create your views here.
+@login_required
 def personal_info(request):
     if request.user.role == 1 or request.user.role == 2 or request.user.role == 3:
         employee = Employee.objects.get(pk=request.user.aid)
@@ -17,6 +19,7 @@ def personal_info(request):
         return render(request, "Profile_template/patient_personal_information.html", context=context)
 
 
+@login_required
 def acc_info(request):
     if request.user.role == 1 or request.user.role == 2 or request.user.role == 3:
         employee = Employee.objects.get(pk=request.user.aid)
@@ -30,6 +33,7 @@ def acc_info(request):
         return render(request, "Profile_template/account_information.html", context=context)
 
 
+@login_required
 def change_password(request):
     if request.user.role == 1 or request.user.role == 2 or request.user.role == 3:
         employee = Employee.objects.get(pk=request.user.aid)

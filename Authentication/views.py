@@ -10,6 +10,7 @@ from django.utils.http import urlsafe_base64_encode
 
 from Authentication.models import CustomUser
 from Employee.models import Employee
+from Genetic.decorators import login_required
 from Patient.models import Patient
 from Settings.models import Global
 
@@ -109,6 +110,7 @@ def password_reset(request):
         return render(request, 'Authentication_template/login.html')
 
 
+@login_required
 def change_password(request):
     if request.method == 'POST':
         old_password = request.POST['old_password']

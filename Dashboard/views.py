@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 from Appointment.models import Appointment
 from Employee.models import Employee
+from Genetic.decorators import login_required
 from Patient.models import Patient
 from Settings.models import Global
 
@@ -12,7 +13,7 @@ current = datetime.date.today()
 
 
 # Create your views here.
-
+@login_required
 def index(request):
     patient = Patient.objects.count()
     employee = Employee.objects.count()

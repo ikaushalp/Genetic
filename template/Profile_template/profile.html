@@ -90,9 +90,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-2">
                                         <span class="font-weight-bold mr-2">Phone:</span>
-                                        <span class="text-muted">{% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
-                                            {{ personal.mobile }}{% endif %}
-                                            {% if request.user.role == 4 %}{{ personal.mobile_no }}{% endif %}</span>
+                                        <span class="text-muted">{{ personal.mobile_no }}</span>
                                     </div>
                                 </div>
                                 <!--end::Contact-->

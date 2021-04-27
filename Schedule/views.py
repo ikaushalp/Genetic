@@ -1,10 +1,14 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from Schedule.models import Schedule
+
 from Employee.models import Employee
+from Genetic.decorators import login_required, role_required
+from Schedule.models import Schedule
 
 
 # Create your views here.
+@login_required
+@role_required(allowed_roles=[1, 3])
 def add_schedule(request):
     if request.method == 'POST':
         doctor = request.POST['doctor']
@@ -19,7 +23,7 @@ def add_schedule(request):
                 exist = Schedule.objects.get(doctor_id=doctor, week_day=element)
             except Schedule.DoesNotExist:
                 exist = None
-            
+
             if exist:
                 day = exist.week_day
                 return JsonResponse({'exist': 1, 'day': day})
@@ -34,6 +38,8 @@ def add_schedule(request):
         return render(request, 'Schedule_template/add_schedule.html', context=context)
 
 
+@login_required
+@role_required(allowed_roles=[1, 2, 3])
 def schedule_list(request):
     schedule_items = Schedule.objects.all()
     doctor_list = Employee.objects.filter(designation='Doctor')
@@ -41,6 +47,8 @@ def schedule_list(request):
     return render(request, 'Schedule_template/schedule_list.html', context=context)
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def delete_schedule(request):
     if request.method == 'POST':
         schedule_id = request.POST['schedule_id']
@@ -51,6 +59,8 @@ def delete_schedule(request):
         return redirect('/dashboard')
 
 
+@login_required
+@role_required(allowed_roles=[1, 3])
 def update_schedule(request):
     if request.method == 'POST':
         schedule_id = request.POST['schedule_id']
