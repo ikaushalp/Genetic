@@ -16,7 +16,7 @@ class Employee(models.Model):
     blood_group = models.CharField(max_length=3)
     birthdate = models.DateField(null=True)
     mobile_no = models.CharField(max_length=13)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     marital_status = models.CharField(max_length=10)
     address = models.TextField()
     role = models.IntegerField()

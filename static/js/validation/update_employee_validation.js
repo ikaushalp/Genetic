@@ -29,7 +29,7 @@ $(document).ready(function () {
                             message: 'The value is not a valid Indian phone number'
                         },
                         regexp: {
-                            regexp: /^(\+)?(91)?(| |-)?[6789]\d{9}$/,
+                            regexp: /^(\+)?(91)?[6789]\d{9}$/,
                             message: 'The value can only consist phone number'
                         }
                     }

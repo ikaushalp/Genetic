@@ -17,10 +17,16 @@ $(document).ready(function () {
                                 window.location.reload();
                             }, 500)
 
-                        } else if (data.exist === 1) {
+                        } else if (data.exist_email === 1) {
                             Swal.fire(
                                 "Error",
-                                "Username Not Available",
+                                "Email already exist",
+                                "error"
+                            )
+                        } else if (data.exist_username === 1) {
+                            Swal.fire(
+                                "Error",
+                                "Username not available",
                                 "error"
                             )
                         }

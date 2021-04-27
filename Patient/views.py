@@ -40,9 +40,13 @@ def add_patient(request):
         if not address:
             address = None
 
-        check = CustomUser.objects.filter(username=username)
-        if check:
-            return JsonResponse({'exist': 1})
+        check_email = CustomUser.objects.filter(email=email)
+        if check_email:
+            return JsonResponse({'exist_email': 1})
+
+        check_username = CustomUser.objects.filter(username=username)
+        if check_username:
+            return JsonResponse({'exist_username': 1})
 
         add = Patient(name=name, gender=gender, birthdate=birthdate, age=age, marital_status=marital_status,
                       mobile_no=mobile_no, email=email, category_id=category, blood_group=blood_group,

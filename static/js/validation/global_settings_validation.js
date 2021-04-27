@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         message: 'Indian phone number is required'
                     },
                     regexp: {
-                        regexp: /^(\+)?(91)?(| |-)?[6789]\d{9}$/,
+                        regexp: /^(\+)?(91)?[6789]\d{9}$/,
                         message: 'The value can only consist phone number'
                     },
                 }
