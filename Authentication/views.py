@@ -126,3 +126,11 @@ def change_password(request):
             return JsonResponse({'failed': 1})
     else:
         return redirect('/profile/change-password')
+
+
+def handle_not_found(request, exception):
+    return render(request, 'ErrorPages/404.html')
+
+
+def handle_server_error(request):
+    return render(request, 'ErrorPages/401.html')

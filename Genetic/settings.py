@@ -57,7 +57,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 ROOT_URLCONF = 'Genetic.urls'
 
 TEMPLATES = [
