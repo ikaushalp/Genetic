@@ -3,6 +3,7 @@ import datetime
 from Settings.models import Global
 from Employee.models import Employee
 from Authentication.models import CustomUser
+from Patient.models import Patient, Category
 
 
 # Create your tests here.
@@ -12,16 +13,19 @@ from Authentication.models import CustomUser
 class MainTestCase(unittest.TestCase):
     def MainCase(self):
         current_date = datetime.date.today()
-        adm = Employee(name="John Doe", gender="Male", role=1, designation="Admin", joining_date=current_date)
-        adm.save()
+        print('Creating Admin Account....')
 
-        auth = CustomUser.objects.create_user(username="admin", password="admin123", email="admin@admin.com", role=1,
-                                              aid=1)
-        auth.save()
+        Employee.objects.create(name='John Doe', gender='Male', blood_group='A+', birthdate='2002-05-02',
+                                mobile_no=8160521030, email='admin@admin.com', marital_status='Single',
+                                address='Golden Height,Andheri(West)', role=1, designation='Admin',
+                                joining_date=current_date)
 
-        add = Global.objects.create(hospital="Genetic Hospital", visible="Genetic", contact="+919534587463",
-                                    email="admin@admin.com",
-                                    address="Enter your address..", facebook="https://facebook.com",
-                                    link1="https://aboutus.com",
-                                    link2="https://teams.com", link3="https://contactus.com")
+        add = CustomUser.objects.create_user(username='admin', password='admin@123', email='admin@admin.com', role=1,
+                                             aid=1)
         add.save()
+
+        Global.objects.create(hospital="Genetic Hospital", visible="Genetic", contact="+919534587463",
+                              email="admin@admin.com",
+                              address="Enter your address..", facebook="https://facebook.com",
+                              link1="https://aboutus.com",
+                              link2="https://teams.com", link3="https://contactus.com")
