@@ -107,7 +107,9 @@ def password_reset(request):
                     return JsonResponse({'failed': 1})
         return JsonResponse({'sent': 1})
     else:
-        return render(request, 'Authentication_template/login.html')
+        data = Global.objects.get(pk=1)
+        context = {'data': data}
+        return render(request, 'Authentication_template/password_reset.html', context)
 
 
 @login_required

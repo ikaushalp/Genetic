@@ -104,6 +104,9 @@ def update_employee(request, employee_id):
         if role:
             CustomUser.objects.filter(aid=emp.id, role=emp.role).update(role=role)
 
+        if email:
+            CustomUser.objects.filter(aid=emp.id, role=emp.role).update(email=email)
+
         Employee.objects.filter(pk=employee_id).update(name=name, gender=gender, birthdate=birthdate,
                                                        blood_group=blood_group, mobile_no=mobile_no, email=email,
                                                        marital_status=marital_status, address=address,

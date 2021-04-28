@@ -1,26 +1,5 @@
+let signin_validation;
 jQuery(document).ready(function () {
-    let login = $('#kt_login');
-
-    let showForm = function (form) {
-        let cls = 'login-' + form + '-on';
-        let Form = 'kt_login_' + form + '_form';
-
-        login.removeClass('login-forgot-on');
-        login.removeClass('login-signin-on');
-
-        login.addClass(cls);
-        if (Form === 'kt_login_forgot_form') {
-            forgot_password_validation.resetForm(true);
-        }
-        if (Form === 'kt_login_signin_form') {
-            signin_validation.resetForm(true);
-        }
-        KTUtil.animateClass(KTUtil.getById(Form), 'animate__animated animate__backInUp');
-    }
-
-// Start::Login Page //
-    let signin_validation;
-
     signin_validation = FormValidation.formValidation(
         KTUtil.getById('kt_login_signin_form'),
         {
@@ -72,75 +51,4 @@ jQuery(document).ready(function () {
             }
         });
     });
-
-    // Handle forgot button
-    $('#kt_login_forgot').on('click', function (e) {
-        e.preventDefault();
-        showForm('forgot');
-    });
-
-// End::Login Page //
-
-// Start::Forgot Password Page //
-    let forgot_password_validation;
-
-    forgot_password_validation = FormValidation.formValidation(
-        KTUtil.getById('kt_login_forgot_form'),
-        {
-            fields: {
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Email address is required'
-                        },
-                        emailAddress: {
-                            message: 'The value is not a valid email address'
-                        }
-                    }
-                }
-            },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                bootstrap: new FormValidation.plugins.Bootstrap()
-            }
-        }
-    );
-
-    $('#kt_login_forgot_form').on('submit', function (e) {
-        e.preventDefault();
-        forgot_password_validation.validate().then(function (status) {
-            if (status === 'Valid') {
-                let btn = KTUtil.getById('kt_login_forgot_submit');
-                KTUtil.btnWait(btn, "spinner spinner-right spinner-white pr-15", "Sending...");
-                setTimeout(function () {
-                    KTUtil.btnRelease(btn);
-                }, 4000);
-                $.ajax({
-                    type: 'POST',
-                    url: 'password_reset',
-                    data: $('#kt_login_forgot_form').serialize(),
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.sent === 1) {
-                            window.location.href = "password_reset/done/"
-                        } else if (data.failed === 1) {
-                            Swal.fire(
-                                "Error",
-                                "Failed, Email not sent",
-                                "error"
-                            )
-                        }
-                    },
-                });
-            }
-        });
-    });
-
-    // Handle cancel button
-    $('#kt_login_forgot_cancel').on('click', function (e) {
-        e.preventDefault();
-        showForm('signin');
-    });
-
-// End::Forgot Password Page //
 });
