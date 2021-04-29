@@ -107,7 +107,9 @@
                                         <th style="display: none !important;">Fees</th>
                                         <th>Time Slot</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        {% if request.user.role == 1 or request.user.role == 3 %}
+                                            <th>Action</th>
+                                        {% endif %}
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -127,29 +129,31 @@
                                                     <span class="label label-primary label-inline label-lg font-weight-bold mr-2">Closed</span>
                                                 {% endif %}
                                             </td>
-                                            <td>
-                                                {% if item.status == 'Confirmed' %}
-                                                    <button id="close_appointment" data-id="{{ item.id }}"
-                                                            class="btn btn-icon btn-outline-info btn-sm mr-2"
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Make Closed"
-                                                            data-theme="dark"><i class="fas fa-check"></i></button>
+                                            {% if request.user.role == 1 or request.user.role == 3 %}
+                                                <td>
+                                                    {% if item.status == 'Confirmed' %}
+                                                        <button id="close_appointment" data-id="{{ item.id }}"
+                                                                class="btn btn-icon btn-outline-info btn-sm mr-2"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Make Closed"
+                                                                data-theme="dark"><i class="fas fa-check"></i></button>
 
-                                                    <button id="appointment_update_button"
-                                                            data-pid="{{ item.patient_id }}"
-                                                            data-did="{{ item.doctor_id }}"
-                                                            data-status="{{ item.status }}" class="btn btn-icon btn-outline-success
+                                                        <button id="appointment_update_button"
+                                                                data-pid="{{ item.patient_id }}"
+                                                                data-did="{{ item.doctor_id }}"
+                                                                data-status="{{ item.status }}" class="btn btn-icon btn-outline-success
                                                             btn-sm mr-2"
-                                                            data-toggle="tooltip" data-placement="top" title="Edit"
-                                                            data-theme="dark"><i class="fas fa-pen"></i></button>
-                                                {% endif %}
+                                                                data-toggle="tooltip" data-placement="top" title="Edit"
+                                                                data-theme="dark"><i class="fas fa-pen"></i></button>
+                                                    {% endif %}
 
-                                                <button id="delete_appointment" data-id="{{ item.id }}"
-                                                        class="btn btn-icon btn-outline-danger btn-sm mr-2"
-                                                        data-toggle="tooltip" data-placement="top" title="Delete"
-                                                        data-theme="dark" id="delete"><i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
+                                                    <button id="delete_appointment" data-id="{{ item.id }}"
+                                                            class="btn btn-icon btn-outline-danger btn-sm mr-2"
+                                                            data-toggle="tooltip" data-placement="top" title="Delete"
+                                                            data-theme="dark" id="delete"><i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            {% endif %}
                                         </tr>
                                     {% endfor %}
                                     </tbody>

@@ -112,22 +112,22 @@
                                                             <i class="fas fa-eye"></i>
                                                         </button>
                                                         {% if request.user.role == 1 %}
-                                                        <button id="admin_update_button" data-id="{{ item.id }}"
-                                                                class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                                type="button" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit"
-                                                                data-theme="dark">
-                                                            <i class="fas fa-pen"></i>
-                                                        </button>
+                                                            <button id="admin_update_button" data-id="{{ item.id }}"
+                                                                    class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                                    type="button" data-toggle="tooltip"
+                                                                    data-placement="top" title="Edit"
+                                                                    data-theme="dark">
+                                                                <i class="fas fa-pen"></i>
+                                                            </button>
 
-                                                        <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
-                                                                type="button" data-eid="{{ item.id }}"
-                                                                data-role="{{ item.role }}"
-                                                                id="admin_delete" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete"
-                                                                data-theme="dark">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
+                                                            <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                                    type="button" data-eid="{{ item.id }}"
+                                                                    data-role="{{ item.role }}"
+                                                                    id="admin_delete" data-toggle="tooltip"
+                                                                    data-placement="top" title="Delete"
+                                                                    data-theme="dark">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
                                                         {% endif %}
                                                     </td>
                                                 </tr>
@@ -177,7 +177,7 @@
                                                     <td style="display: none !important;">{{ item.blood_group }}</td>
                                                     <td style="display: none !important;">{{ item.marital_status }}</td>
                                                     <td style="display: none !important;">{{ item.address }}</td>
-                                                    <td style="display: none !important;">{{ item.joining_date|date:'d-m-Y'|default:"None"}}</td>
+                                                    <td style="display: none !important;">{{ item.joining_date|date:'d-m-Y'|default:"None" }}</td>
                                                     <td style="display: none !important;">{{ item.qualification }}</td>
                                                     <td>
                                                         <button
@@ -189,22 +189,22 @@
                                                             <i class="fas fa-eye"></i>
                                                         </button>
                                                         {% if request.user.role == 1 %}
-                                                        <button id="doctor_update_button" data-id="{{ item.id }}"
-                                                                class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                                type="button" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit"
-                                                                data-theme="dark">
-                                                            <i class="fas fa-pen"></i>
-                                                        </button>
+                                                            <button id="doctor_update_button" data-id="{{ item.id }}"
+                                                                    class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                                    type="button" data-toggle="tooltip"
+                                                                    data-placement="top" title="Edit"
+                                                                    data-theme="dark">
+                                                                <i class="fas fa-pen"></i>
+                                                            </button>
 
-                                                        <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
-                                                                type="button" data-eid="{{ item.id }}"
-                                                                data-role="{{ item.role }}"
-                                                                id="doctor_delete" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete"
-                                                                data-theme="dark">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
+                                                            <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                                    type="button" data-eid="{{ item.id }}"
+                                                                    data-role="{{ item.role }}"
+                                                                    id="doctor_delete" data-toggle="tooltip"
+                                                                    data-placement="top" title="Delete"
+                                                                    data-theme="dark">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
                                                         {% endif %}
                                                     </td>
                                                 </tr>
@@ -213,7 +213,8 @@
                                         </table>
                                     </div>
                                     <div class="tab-pane fade" id="tab_pane_3" role="tabpanel">
-                                        <table class="table table-separate table-head-custom text-center" id="receptionist">
+                                        <table class="table table-separate table-head-custom text-center"
+                                               id="receptionist">
                                             <thead>
                                             <tr>
                                                 <th>Employee Id</th>
@@ -265,22 +266,23 @@
                                                             <i class="fas fa-eye"></i>
                                                         </button>
                                                         {% if request.user.role == 1 %}
-                                                        <button id="receptionist_update_button" data-id="{{ item.id }}"
-                                                                class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                                type="button" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit"
-                                                                data-theme="dark">
-                                                            <i class="fas fa-pen"></i>
-                                                        </button>
+                                                            <button id="receptionist_update_button"
+                                                                    data-id="{{ item.id }}"
+                                                                    class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                                    type="button" data-toggle="tooltip"
+                                                                    data-placement="top" title="Edit"
+                                                                    data-theme="dark">
+                                                                <i class="fas fa-pen"></i>
+                                                            </button>
 
-                                                        <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
-                                                                type="button" data-eid="{{ item.id }}"
-                                                                data-role="{{ item.role }}"
-                                                                id="receptionist_delete" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete"
-                                                                data-theme="dark">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
+                                                            <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                                    type="button" data-eid="{{ item.id }}"
+                                                                    data-role="{{ item.role }}"
+                                                                    id="receptionist_delete" data-toggle="tooltip"
+                                                                    data-placement="top" title="Delete"
+                                                                    data-theme="dark">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
                                                         {% endif %}
                                                     </td>
                                                 </tr>
@@ -370,7 +372,7 @@
 {% endblock content %}
 </body>
 {% block js %}
+    <script src="{% static 'js/table/employee_list.js'%}"></script>
     <script src="{% static "js/ajax/employee.js" %}"></script>
-    <script src="{% static "js/table/employee_list.js" %}"></script>
 {% endblock js %}
 </html>

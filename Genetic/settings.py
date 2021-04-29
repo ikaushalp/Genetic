@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'genetic',
-        'USER': 'genetic',
-        'PASSWORD': '#Genetic123#',
-        'HOST': '103.137.19.198',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
         'PORT': 3306
     }
 }

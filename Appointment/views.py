@@ -36,11 +36,22 @@ def add_appointment(request):
 
 @login_required
 def appointment_list(request):
-    patient_list = Patient.objects.all()
-    doctor_list = Employee.objects.filter(designation='Doctor')
-    appointment = Appointment.objects.filter(Q(status='Confirmed') | Q(status='Closed')).order_by('-appointment_date')
-    return render(request, 'Appointment_template/appointment_list.html',
-                  context={'appointment_list': appointment, 'patient_list': patient_list, 'doctor_list': doctor_list})
+    if request.user.role == 1 or request.user.role == 3:
+        patient_list = Patient.objects.all()
+        doctor_list = Employee.objects.filter(designation='Doctor')
+        appointment = Appointment.objects.filter(Q(status='Confirmed') | Q(status='Closed')).order_by(
+            '-appointment_date')
+        return render(request, 'Appointment_template/appointment_list.html',
+                      context={'appointment_list': appointment, 'patient_list': patient_list,
+                               'doctor_list': doctor_list})
+    elif request.user.role == 2:
+        patient_list = Patient.objects.all()
+        doctor_list = Employee.objects.filter(designation='Doctor')
+        appointment = Appointment.objects.filter(Q(status='Confirmed') | Q(status='Closed'), doctor_id=request.user.aid).order_by(
+            '-appointment_date')
+        return render(request, 'Appointment_template/appointment_list.html',
+                      context={'appointment_list': appointment, 'patient_list': patient_list,
+                               'doctor_list': doctor_list})
 
 
 @login_required

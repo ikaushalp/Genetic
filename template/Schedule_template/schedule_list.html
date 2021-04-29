@@ -67,7 +67,9 @@
                                         <th>Week Day</th>
                                         <th>Time Start</th>
                                         <th>Time End</th>
-                                        <th>Action</th>
+                                        {% if request.user.role == 1 or request.user.role == 3 %}
+                                            <th>Action</th>
+                                        {% endif %}
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -80,22 +82,24 @@
                                             <td>{{ item.week_day }}</td>
                                             <td>{{ item.start_time|time:'g:i A' }}</td>
                                             <td>{{ item.end_time|time:'g:i A' }}</td>
-                                            <td>
-                                                <button id="schedule_update_button" data-id="{{ item.id }}"
-                                                        class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                        type="button" data-toggle="tooltip"
-                                                        data-placement="top" title="Edit"
-                                                        data-theme="dark">
-                                                    <i class="fas fa-pen"></i>
-                                                </button>
-                                                <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
-                                                        type="button" data-id="{{ item.id }}"
-                                                        id="schedule_delete_button" data-toggle="tooltip"
-                                                        data-placement="top" title="Delete"
-                                                        data-theme="dark">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
+                                            {% if request.user.role == 1 or request.user.role == 3 %}
+                                                <td>
+                                                    <button id="schedule_update_button" data-id="{{ item.id }}"
+                                                            class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                            type="button" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"
+                                                            data-theme="dark">
+                                                        <i class="fas fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                            type="button" data-id="{{ item.id }}"
+                                                            id="schedule_delete_button" data-toggle="tooltip"
+                                                            data-placement="top" title="Delete"
+                                                            data-theme="dark">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            {% endif %}
                                         </tr>
                                     {% endfor %}
                                     </tbody>

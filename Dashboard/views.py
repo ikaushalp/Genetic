@@ -26,12 +26,12 @@ def index(request):
         data.update({month: appointment_data})
     data = json.dumps(data)
 
-    global_list = Global.objects.get(id=1)
-    request.session['h_name'] = global_list.hospital
-    request.session['v_name'] = global_list.visible
-    request.session['link1'] = global_list.link1
-    request.session['link2'] = global_list.link2
-    request.session['link3'] = global_list.link3
+    # global_list = Global.objects.get(id=1)
+    # request.session['h_name'] = global_list.hospital
+    # request.session['v_name'] = global_list.visible
+    # request.session['link1'] = global_list.link1
+    # request.session['link2'] = global_list.link2
+    # request.session['link3'] = global_list.link3
     context = {'patient': patient, 'employee': employee, 'doctor': doctor, 'appointment': appointment,
                'data': data}
     return render(request, 'Dashboard_template/dashboard.html', context=context)

@@ -7,7 +7,7 @@ def role_required(allowed_roles=[]):
             if request.user.role in allowed_roles:
                 return func(request, *args, **kwargs)
             else:
-                return render(request, 'ErrorPages/404.html')
+                return render(request, 'ErrorPages/401.html')
 
         return wrap
 
@@ -20,5 +20,4 @@ def login_required(func):
             return func(request, *args, **kwargs)
         else:
             return redirect('/')
-
     return wrap

@@ -117,7 +117,9 @@
                                             </a>
                                         </li>
                                     {% endif %}
-                                    <li class="menu-item {% if request.path == '/patient/view' %}menu-item-active{% endif %}"
+
+                                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                    <li class="menu-item {% if view_name == 'Patient:view' %}menu-item-active{% endif %}"
                                         aria-haspopup="true">
                                         <a href="{% url 'Patient:view' %}" class="menu-link">
                                             <i class="menu-bullet menu-bullet-dot">
@@ -126,8 +128,10 @@
                                             <span class="menu-text">Patient List</span>
                                         </a>
                                     </li>
-                                    {% if request.user.role == 1 or request.user.role == 3 %}
-                                        <li class="menu-item {% if request.path == '/patient/category' %}menu-item-active{% endif %}"
+                                    {% endif %}
+
+                                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                        <li class="menu-item {% if view_name == 'Patient:category' %}menu-item-active{% endif %}"
                                             aria-haspopup="true">
                                             <a href="{% url 'Patient:category' %}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
@@ -255,9 +259,10 @@
                         </li>
                     {% endif %}
 
-                    <li class="menu-item menu-item-submenu {% if view_name == 'Appointment:view' or view_name == 'Appointment:add' or view_name == 'Appointment:pending' %}menu-item-here menu-item-open{% endif %}"
-                        aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" class="menu-link menu-toggle">
+                    {% if  request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                        <li class="menu-item menu-item-submenu {% if view_name == 'Appointment:view' or view_name == 'Appointment:add' or view_name == 'Appointment:pending' %}menu-item-here menu-item-open{% endif %}"
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -280,50 +285,52 @@
                                 </svg>
                                 <!--end::Svg Icon-->
                             </span>
-                            <span class="menu-text">Appointment</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="menu-submenu">
-                            <i class="menu-arrow"></i>
-                            <ul class="menu-subnav">
-                                <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                <span class="menu-text">Appointment</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="menu-submenu">
+                                <i class="menu-arrow"></i>
+                                <ul class="menu-subnav">
+                                    <li class="menu-item menu-item-parent" aria-haspopup="true">
                                     <span class="menu-link">
                                         <span class="menu-text">Appointment</span>
                                     </span>
-                                </li>
-                                {% if request.user.role == 1 or request.user.role == 3 %}
-                                    <li class="menu-item {% if view_name == 'Appointment:add' %}menu-item-active{% endif %}"
+                                    </li>
+                                    {% if request.user.role == 1 or request.user.role == 3 %}
+                                        <li class="menu-item {% if view_name == 'Appointment:add' %}menu-item-active{% endif %}"
+                                            aria-haspopup="true">
+                                            <a href="{% url 'Appointment:add' %}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot">
+                                                    <span></span>
+                                                </i>
+                                                <span class="menu-text">Add Appointment</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if request.user.role == 1 or request.user.role == 3 %}
+                                        <li class="menu-item {% if view_name == 'Appointment:pending' %}menu-item-active{% endif %}"
+                                            aria-haspopup="true">
+                                            <a href="{% url 'Appointment:pending' %}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot">
+                                                    <span></span>
+                                                </i>
+                                                <span class="menu-text">Pending List</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    <li class="menu-item {% if view_name == 'Appointment:view' %}menu-item-active{% endif %}"
                                         aria-haspopup="true">
-                                        <a href="{% url 'Appointment:add' %}" class="menu-link">
+                                        <a href="{% url 'Appointment:view' %}" class="menu-link">
                                             <i class="menu-bullet menu-bullet-dot">
                                                 <span></span>
                                             </i>
-                                            <span class="menu-text">Add Appointment</span>
+                                            <span class="menu-text">Appointment List</span>
                                         </a>
                                     </li>
-                                {% endif %}
-                                <li class="menu-item {% if view_name == 'Appointment:pending' %}menu-item-active{% endif %}"
-                                    aria-haspopup="true">
-                                    <a href="{% url 'Appointment:pending' %}" class="menu-link">
-                                        <i class="menu-bullet menu-bullet-dot">
-                                            <span></span>
-                                        </i>
-                                        <span class="menu-text">Pending List</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item {% if view_name == 'Appointment:view' %}menu-item-active{% endif %}"
-                                    aria-haspopup="true">
-                                    <a href="{% url 'Appointment:view' %}" class="menu-link">
-                                        <i class="menu-bullet menu-bullet-dot">
-                                            <span></span>
-                                        </i>
-                                        <span class="menu-text">Appointment List</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
+                                </ul>
+                            </div>
+                        </li>
+                    {% endif %}
                     {% if request.user.role == 1 %}
                         <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                             <a href="javascript:;" class="menu-link menu-toggle">

@@ -1,34 +1,34 @@
 .login.login-1 .login-signin,
 .login.login-1 .login-signup,
 .login.login-1 .login-forgot {
-  display: none; }
-
-.login.login-1.login-signin-on .login-signup {
-  display: none; }
-
-.login.login-1.login-signin-on .login-signin {
   display: block; }
 
-.login.login-1.login-signin-on .login-forgot {
-  display: none; }
+/*.login.login-1.login-signin-on .login-signup {*/
+/*  display: none; }*/
 
-.login.login-1.login-signup-on .login-signup {
-  display: block; }
+/*.login.login-1.login-signin-on .login-signin {*/
+/*  display: block; }*/
 
-.login.login-1.login-signup-on .login-signin {
-  display: none; }
+/*.login.login-1.login-signin-on .login-forgot {*/
+/*  display: none; }*/
 
-.login.login-1.login-signup-on .login-forgot {
-  display: none; }
+/*.login.login-1.login-signup-on .login-signup {*/
+/*  display: block; }*/
 
-.login.login-1.login-forgot-on .login-signup {
-  display: none; }
+/*.login.login-1.login-signup-on .login-signin {*/
+/*  display: none; }*/
 
-.login.login-1.login-forgot-on .login-signin {
-  display: none; }
+/*.login.login-1.login-signup-on .login-forgot {*/
+/*  display: none; }*/
 
-.login.login-1.login-forgot-on .login-forgot {
-  display: block; }
+/*.login.login-1.login-forgot-on .login-signup {*/
+/*  display: none; }*/
+
+/*.login.login-1.login-forgot-on .login-signin {*/
+/*  display: none; }*/
+
+/*.login.login-1.login-forgot-on .login-forgot {*/
+/*  display: block; }*/
 
 @media (min-width: 992px) {
   .login.login-1 .login-aside {

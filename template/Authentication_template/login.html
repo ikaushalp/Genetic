@@ -6,7 +6,7 @@
 <!--begin::Head-->
 <head>
     <meta charset="utf-8"/>
-    <title>{{ data.visible }} | Authentication</title>
+    <title>{% block title %}{{ request.session.v_name }} | Authentication{% endblock %}</title>
     <meta name="description" content="Login page example"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 </head>
@@ -15,14 +15,14 @@
 <!--begin::Body-->
 <body>
 {% block content %}
-    <div class="login-form login-signin">
+    <div class="login-form">
         <!--begin::Form-->
         <form class="form" id="kt_login_signin_form" method="POST">
             {% csrf_token %}
             <!--begin::Title-->
             <div class="pb-13 pt-lg-0 pt-5">
                 <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Welcome
-                    to {{ data.visible }}</h3>
+                    to {{ request.session.v_name }}</h3>
             </div>
             <!--end::Title-->
             <!--begin::Form group-->

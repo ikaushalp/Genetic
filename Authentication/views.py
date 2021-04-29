@@ -21,9 +21,13 @@ def loginpage(request):
     if request.user.is_authenticated:
         return redirect(reverse('Dashboard:dashboard'))
     else:
-        data = Global.objects.get(pk=1)
-        context = {'data': data}
-        return render(request, 'Authentication_template/login.html', context=context)
+        global_list = Global.objects.get(pk=1)
+        request.session['h_name'] = global_list.hospital
+        request.session['v_name'] = global_list.visible
+        request.session['link1'] = global_list.link1
+        request.session['link2'] = global_list.link2
+        request.session['link3'] = global_list.link3
+        return render(request, 'Authentication_template/login.html')
 
 
 def handlelogin(request):
@@ -107,9 +111,7 @@ def password_reset(request):
                     return JsonResponse({'failed': 1})
         return JsonResponse({'sent': 1})
     else:
-        data = Global.objects.get(pk=1)
-        context = {'data': data}
-        return render(request, 'Authentication_template/password_reset.html', context)
+        return render(request, 'Authentication_template/password_reset.html')
 
 
 @login_required

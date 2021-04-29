@@ -5,7 +5,7 @@
 <!--begin::Head-->
 <head>
     <meta charset="utf-8"/>
-    <title>{{ data.visible }} | Authentication</title>
+    <title>{% block title %} {% endblock %}</title>
     <meta name="description" content="Login page example"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
@@ -32,7 +32,7 @@
     <link href="{% static "css/themes/layout/aside/dark.css" %}" rel="stylesheet" type="text/css"/>
     <!--end::Layout Themes-->
 
-    <link rel="shortcut icon" href="{% static "media/logos/favicon.ico" %}"/>
+    <link rel="shortcut icon" href="{% static "media/logos/favicon.svg" %}"/>
 
 </head>
 <!--end::Head-->
@@ -45,7 +45,7 @@
 <div class="d-flex flex-column flex-root">
     {% with request.resolver_match.view_name as view_name %}
         <!--begin::Login-->
-        <div class="login login-1 {% if view_name == 'Authentication:loginpage' %}login-signin-on{% endif %}{% if view_name == 'Authentication:password_reset' %}login-forgot-on{% endif %} d-flex flex-column flex-lg-row flex-column-fluid bg-white">
+        <div class="login login-1 d-flex flex-column flex-lg-row flex-column-fluid bg-white">
             <!--begin::Aside-->
             <div class="login-aside d-flex flex-column flex-row-auto" style="background-color: #F2B98A;">
                 <!--begin::Aside Top-->
@@ -68,11 +68,11 @@
 
             <!--begin::Content-->
             <div class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto">
-{#                <a class="text-center">#}
-{#                    <img src="{% static 'media/logos/logo.png' %}" class="max-h-255px" alt=""/>#}
-{#                </a>#}
+                <a class="text-center mt-15">
+                    <img src="{% static 'media/logos/logo.png' %}" class="max-h-95px" alt=""/>
+                </a>
                 <!--begin::Content body-->
-                <div class="d-flex flex-column-fluid flex-center">
+                <div class="d-flex flex-column-fluid pt-18">
                     {% block content %}
 
                     {% endblock %}

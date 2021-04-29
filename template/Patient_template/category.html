@@ -29,37 +29,39 @@
             <!--begin::Container-->
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-5 mb-2">
-                        <form id="create_category" method="POST">
-                            {% csrf_token %}
-                            <div class="card card-custom">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h5 class="card-label">
-                                            <i class="fas fa-edit icon-lg mr-1"></i>
-                                            Add Category
-                                        </h5>
+                    {% if request.user.role == 1 %}
+                        <div class="col-lg-5 mb-2">
+                            <form id="create_category" method="POST">
+                                {% csrf_token %}
+                                <div class="card card-custom">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h5 class="card-label">
+                                                <i class="fas fa-edit icon-lg mr-1"></i>
+                                                Add Category
+                                            </h5>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <div class="col-lg-12">
-                                            <label>Category Name *</label>
-                                            <input type="text" class="form-control" name="category"/>
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <div class="col-lg-12">
+                                                <label>Category Name *</label>
+                                                <input type="text" class="form-control" name="category"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit"
+                                                    class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="d-flex justify-content-end">
-                                        <button type="submit"
-                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">Save
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-7">
+                            </form>
+                        </div>
+                    {% endif %}
+                    <div class="{% if request.user.role == 1 %}col-lg-7{% endif %}{% if request.user.role == 2 or request.user.role == 3 %}col-lg-5{% endif %}">
                         <div class="card card-custom">
                             <div class="card-header ">
                                 <div class="card-title">
@@ -93,7 +95,9 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Action</th>
+                                        {% if request.user.role == 1 %}
+                                            <th>Action</th>
+                                        {% endif %}
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -101,17 +105,21 @@
                                         <tr>
                                             <td>{{ cat.id }}</td>
                                             <td>{{ cat.category }}</td>
-                                            <td>
-                                                {% csrf_token %}
-                                                <button class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                        id="category-edit" data-id="{{ cat.id }}"><i
-                                                        class="fas fa-pen"></i></button>
-                                                <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
-                                                        type="button" data-info="{{ cat.id }}"
-                                                        id="delete_category">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
+
+                                            {% if request.user.role == 1 %}
+
+                                                <td>
+                                                    {% csrf_token %}
+                                                    <button class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                            id="category-edit" data-id="{{ cat.id }}"><i
+                                                            class="fas fa-pen"></i></button>
+                                                    <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                            type="button" data-info="{{ cat.id }}"
+                                                            id="delete_category">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            {% endif %}
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -159,7 +167,9 @@
 {% endblock content %}%
 </body>
 {% block js %}
-    <script src="{% static "js/validation/category_validation.js" %}"></script>
+    {% if request.user.role == 1 %}
+        <script src="{% static "js/validation/category_validation.js" %}"></script>
+    {% endif %}
     <script src="{% static "js/table/category_list.js" %}"></script>
     <script src="{% static "js/ajax/category.js" %}"></script>
 {% endblock js %}
