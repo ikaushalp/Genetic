@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 
 from Appointment.models import Appointment
+from Appointment.tasks import AppointmentCreate
 from Employee.models import Employee
 from Genetic.decorators import login_required, role_required
 from Patient.models import Patient
@@ -26,6 +27,7 @@ def add_appointment(request):
         add = Appointment(patient_id=patient, doctor_id=doctor, appointment_date=appointment_date, time_slot=time_slot,
                           fees=fees, status='Pending')
         add.save()
+        AppointmentCreate(patient, doctor, add, appointment_date, time_slot).start()
         return JsonResponse({'insert': 1})
     else:
         patient_list = Patient.objects.all()
@@ -47,7 +49,8 @@ def appointment_list(request):
     elif request.user.role == 2:
         patient_list = Patient.objects.all()
         doctor_list = Employee.objects.filter(designation='Doctor')
-        appointment = Appointment.objects.filter(Q(status='Confirmed') | Q(status='Closed'), doctor_id=request.user.aid).order_by(
+        appointment = Appointment.objects.filter(Q(status='Confirmed') | Q(status='Closed'),
+                                                 doctor_id=request.user.aid).order_by(
             '-appointment_date')
         return render(request, 'Appointment_template/appointment_list.html',
                       context={'appointment_list': appointment, 'patient_list': patient_list,

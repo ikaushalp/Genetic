@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
 
         columnDefs: [
             {
-                "targets": [9, 10, 11, 12, 13],
+                "targets": [5, 9, 10, 11, 12, 13],
                 "visible": false,
                 "searchable": false
             },

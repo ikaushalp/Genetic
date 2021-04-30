@@ -13,7 +13,7 @@ from Employee.models import Employee
 from Genetic.decorators import login_required
 from Patient.models import Patient
 from Settings.models import Global
-
+from Authentication.tasks import ForgotPassword
 
 # Create your views here.
 
@@ -73,7 +73,6 @@ def password_reset(request):
         email = request.POST['email']
 
         user_email = CustomUser.objects.filter(email=email)
-        site = Global.objects.get(pk=1)
 
         try:
             name = Patient.objects.get(email=email)
@@ -87,29 +86,8 @@ def password_reset(request):
 
         if user_email.exists():
             for user in user_email:
-                subject = "Password Reset Requested"
-                c = {
-                    "email": user.email,
-                    'domain': '127.0.0.1:8000',
-                    'site_name': site.visible,
-                    'site_full_name': site.hospital,
-                    'site_email': site.email,
-                    'user_name': full_name,
-                    'site_address': site.address,
-                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                    'user': user,
-                    'token': default_token_generator.make_token(user),
-                    'protocol': 'http',
-                    'facebook': site.facebook,
-                    'contact': site.contact,
-                }
-                html_template = render_to_string('Authentication_template/password_email_template.html', c)
-                from_email = site.hospital + " " + "<" + site.email + ">"
-                try:
-                    send_mail(subject, None, from_email, [user.email], html_message=html_template)
-                except BadHeaderError:
-                    return JsonResponse({'failed': 1})
-        return JsonResponse({'sent': 1})
+                ForgotPassword(user, full_name).start()
+        return redirect(reverse('Authentication:password_reset_done'))
     else:
         return render(request, 'Authentication_template/password_reset.html')
 

@@ -67,7 +67,7 @@
                                         <th>Gender</th>
                                         <th>Birthdate</th>
                                         <th>Age</th>
-                                        <th>Marital Status</th>
+                                        <th style="display: none !important;">Marital Status</th>
                                         <th>Mobile No</th>
                                         <th>Email</th>
                                         <th>Category</th>
@@ -87,7 +87,7 @@
                                             <td>{{ items.gender }}</td>
                                             <td>{{ items.birthdate|date:'d-m-Y'|default:"None" }}</td>
                                             <td>{{ items.age }}</td>
-                                            <td>{{ items.marital_status }}</td>
+                                            <td style="display: none !important;">{{ items.marital_status }}</td>
                                             <td>{{ items.mobile_no }}</td>
                                             <td>{{ items.email }}</td>
                                             <td>{{ items.category }}</td>
