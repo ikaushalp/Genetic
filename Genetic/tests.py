@@ -16,7 +16,7 @@ class MainTestCase(unittest.TestCase):
         print('Creating Admin Account....')
 
         Employee.objects.create(name='John Doe', gender='Male', blood_group='A+', birthdate='2002-05-02',
-                                mobile_no=8160521030, email='admin@admin.com', marital_status='Single',
+                                mobile_no="+918160521030", email='admin@admin.com', marital_status='Single',
                                 address='Golden Height,Andheri(West)', role=1, designation='Admin',
                                 joining_date=current_date)
 
@@ -25,7 +25,7 @@ class MainTestCase(unittest.TestCase):
         add.save()
 
         Global.objects.create(hospital="Genetic Hospital", visible="Genetic", contact="+919534587463",
-                              email="admin@admin.com",
+                              email="genetic@getlocalhost.com",
                               address="Enter your address..", facebook="https://facebook.com",
                               link1="https://aboutus.com",
                               link2="https://teams.com", link3="https://contactus.com")

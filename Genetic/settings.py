@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'genetic',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'USER': 'genetic',
+        'PASSWORD': '#Genetic123#',
+        'HOST': '103.137.19.198',
         'PORT': 3306
     }
 }
@@ -129,10 +129,10 @@ USE_TZ = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_LOCALTIME = True
 EMAIL_USE_SSL = True
-EMAIL_HOST = 'mail.mrkaushal.com'
+EMAIL_HOST = 'mail.getlocalhost.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'genetic@mrkaushal.com'
-EMAIL_HOST_PASSWORD = ';8jFG=GKP?$R'
+EMAIL_HOST_USER = 'genetic@getlocalhost.com'
+EMAIL_HOST_PASSWORD = '#Genetic8741#'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
