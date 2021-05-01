@@ -34,31 +34,37 @@
                             <div class="card-header card-header-tabs-line">
                                 <div class="card-toolbar">
                                     <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                                        {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#tab_pane_1">
+                                                    <span class="nav-icon"><i class="fas fa-users"></i></span>
+                                                    <span class="nav-text">Admin</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#tab_pane_1">
-                                                <span class="nav-icon"><i class="fas fa-users"></i></span>
-                                                <span class="nav-text">Admin</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#tab_pane_2">
+                                            <a class="nav-link {% if request.user.role == 4 %}active{% endif %}"
+                                               data-toggle="tab" href="#tab_pane_2">
                                                 <span class="nav-icon"><i class="fas fa-users"></i></span>
                                                 <span class="nav-text">Doctor</span>
                                             </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#tab_pane_3">
-                                                <span class="nav-icon"><i class="fas fa-users"></i></span>
-                                                <span class="nav-text">Receptionist</span>
-                                            </a>
-                                        </li>
+                                        {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab_pane_3">
+                                                    <span class="nav-icon"><i class="fas fa-users"></i></span>
+                                                    <span class="nav-text">Receptionist</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
                                 {% csrf_token %}
                                 <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="tab_pane_1" role="tabpanel">
+                                    <div class="tab-pane fade {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}show active{% endif %}"
+                                         id="tab_pane_1" role="tabpanel">
                                         <table class="table table-separate table-head-custom text-center" id="admin">
                                             <thead>
                                             <tr>
@@ -135,24 +141,31 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane fade" id="tab_pane_2" role="tabpanel">
+                                    <div class="tab-pane fade {% if request.user.role == 4 %}show active{% endif %}"
+                                         id="tab_pane_2" role="tabpanel">
                                         <table class="table table-separate table-head-custom text-center" id="doctor">
                                             <thead>
                                             <tr>
                                                 <th>Employee Id</th>
                                                 <th>Name</th>
                                                 <th>Gender</th>
-                                                <th>Birthdate</th>
+                                                {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                                    <th>Birthdate</th>
+                                                {% endif %}
                                                 <th>Email</th>
                                                 <th>Mobile No</th>
                                                 <th>Designation</th>
-                                                <th>Role</th>
+                                                {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                                    <th>Role</th>
+                                                {% endif %}
                                                 <th style="display: none !important;">Blood Group</th>
                                                 <th style="display: none !important;">Marital Status</th>
                                                 <th style="display: none !important;">Address</th>
                                                 <th style="display: none !important;">Joining Date</th>
                                                 <th style="display: none !important;">Qualification</th>
-                                                <th style="display: none !important;">Action</th>
+                                                {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                                    <th style="display: none !important;">Action</th>
+                                                {% endif %}
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -161,58 +174,66 @@
                                                     <td>{{ item.id }}</td>
                                                     <td>{{ item.name }}</td>
                                                     <td>{{ item.gender }}</td>
-                                                    <td>{{ item.birthdate|date:'d-m-Y'|default:"None" }}</td>
+                                                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                                        <td>{{ item.birthdate|date:'d-m-Y'|default:"None" }}</td>
+                                                    {% endif %}
                                                     <td>{{ item.email }}</td>
                                                     <td>{{ item.mobile_no }}</td>
                                                     <td>{{ item.designation }}</td>
-                                                    {% if item.role == 1 %}
-                                                        <td>Admin</td>
-                                                    {% endif %}
-                                                    {% if item.role == 2 %}
-                                                        <td>Doctor</td>
-                                                    {% endif %}
-                                                    {% if item.role == 3 %}
-                                                        <td>Receptionist</td>
+                                                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                                        {% if item.role == 1 %}
+                                                            <td>Admin</td>
+                                                        {% endif %}
+                                                        {% if item.role == 2 %}
+                                                            <td>Doctor</td>
+                                                        {% endif %}
+                                                        {% if item.role == 3 %}
+                                                            <td>Receptionist</td>
+                                                        {% endif %}
                                                     {% endif %}
                                                     <td style="display: none !important;">{{ item.blood_group }}</td>
                                                     <td style="display: none !important;">{{ item.marital_status }}</td>
                                                     <td style="display: none !important;">{{ item.address }}</td>
                                                     <td style="display: none !important;">{{ item.joining_date|date:'d-m-Y'|default:"None" }}</td>
                                                     <td style="display: none !important;">{{ item.qualification }}</td>
-                                                    <td>
-                                                        <button
-                                                                class="btn btn-icon btn-outline-warning btn-sm mr-2"
-                                                                type="button" id="show_doctor_details"
-                                                                data-toggle="tooltip"
-                                                                data-placement="top" title="View"
-                                                                data-theme="dark">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                        {% if request.user.role == 1 %}
-                                                            <button id="doctor_update_button" data-id="{{ item.id }}"
-                                                                    class="btn btn-icon btn-outline-success btn-sm mr-2"
-                                                                    type="button" data-toggle="tooltip"
-                                                                    data-placement="top" title="Edit"
+                                                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                                        <td>
+                                                            <button
+                                                                    class="btn btn-icon btn-outline-warning btn-sm mr-2"
+                                                                    type="button" id="show_doctor_details"
+                                                                    data-toggle="tooltip"
+                                                                    data-placement="top" title="View"
                                                                     data-theme="dark">
-                                                                <i class="fas fa-pen"></i>
+                                                                <i class="fas fa-eye"></i>
                                                             </button>
+                                                            {% if request.user.role == 1 %}
+                                                                <button id="doctor_update_button"
+                                                                        data-id="{{ item.id }}"
+                                                                        class="btn btn-icon btn-outline-success btn-sm mr-2"
+                                                                        type="button" data-toggle="tooltip"
+                                                                        data-placement="top" title="Edit"
+                                                                        data-theme="dark">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </button>
 
-                                                            <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
-                                                                    type="button" data-eid="{{ item.id }}"
-                                                                    data-role="{{ item.role }}"
-                                                                    id="doctor_delete" data-toggle="tooltip"
-                                                                    data-placement="top" title="Delete"
-                                                                    data-theme="dark">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        {% endif %}
-                                                    </td>
+                                                                <button class="btn btn-icon btn-outline-danger btn-sm btn-del mr-2"
+                                                                        type="button" data-eid="{{ item.id }}"
+                                                                        data-role="{{ item.role }}"
+                                                                        id="doctor_delete" data-toggle="tooltip"
+                                                                        data-placement="top" title="Delete"
+                                                                        data-theme="dark">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </button>
+                                                            {% endif %}
+                                                        </td>
+                                                    {% endif %}
                                                 </tr>
                                             {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane fade" id="tab_pane_3" role="tabpanel">
+                                    <div class="tab-pane fade {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}show active{% endif %}"
+                                         id="tab_pane_3" role="tabpanel">
                                         <table class="table table-separate table-head-custom text-center"
                                                id="receptionist">
                                             <thead>
@@ -372,7 +393,7 @@
 {% endblock content %}
 </body>
 {% block js %}
-    <script src="{% static 'js/table/employee_list.js'%}"></script>
+    <script src="{% static 'js/table/employee_list.js' %}"></script>
     <script src="{% static "js/ajax/employee.js" %}"></script>
 {% endblock js %}
 </html>

@@ -37,6 +37,7 @@ def add_appointment(request):
 
 
 @login_required
+@role_required(allowed_roles=[1, 2, 3, 4])
 def appointment_list(request):
     if request.user.role == 1 or request.user.role == 3:
         patient_list = Patient.objects.all()
@@ -46,15 +47,18 @@ def appointment_list(request):
         return render(request, 'Appointment_template/appointment_list.html',
                       context={'appointment_list': appointment, 'patient_list': patient_list,
                                'doctor_list': doctor_list})
+
     elif request.user.role == 2:
-        patient_list = Patient.objects.all()
-        doctor_list = Employee.objects.filter(designation='Doctor')
         appointment = Appointment.objects.filter(Q(status='Confirmed') | Q(status='Closed'),
-                                                 doctor_id=request.user.aid).order_by(
-            '-appointment_date')
+                                                 doctor_id=request.user.aid).order_by('-appointment_date')
         return render(request, 'Appointment_template/appointment_list.html',
-                      context={'appointment_list': appointment, 'patient_list': patient_list,
-                               'doctor_list': doctor_list})
+                      context={'appointment_list': appointment})
+
+    elif request.user.role == 4:
+        appointment = Appointment.objects.filter(Q(status='Confirmed') | Q(status='Closed'),
+                                                 patient_id=request.user.aid).order_by('-appointment_date')
+        return render(request, 'Appointment_template/appointment_list.html',
+                      context={'appointment_list': appointment})
 
 
 @login_required

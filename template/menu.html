@@ -147,7 +147,7 @@
                         </li>
                     {% endif %}
 
-                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 or request.user.role == 4 %}
                         <li class="menu-item menu-item-submenu {% if view_name == 'Employee:view' or view_name == 'Employee:add' %}menu-item-here menu-item-open{% endif %}"
                             aria-haspopup="true" data-menu-toggle="hover">
                             <a href="javascript:;" class="menu-link menu-toggle">
@@ -259,7 +259,7 @@
                         </li>
                     {% endif %}
 
-                    {% if  request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                    {% if  request.user.role == 1 or request.user.role == 2 or request.user.role == 3 or request.user.role == 4 %}
                         <li class="menu-item menu-item-submenu {% if view_name == 'Appointment:view' or view_name == 'Appointment:add' or view_name == 'Appointment:pending' %}menu-item-here menu-item-open{% endif %}"
                             aria-haspopup="true" data-menu-toggle="hover">
                             <a href="javascript:;" class="menu-link menu-toggle">

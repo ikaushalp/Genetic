@@ -58,14 +58,18 @@ def add_employee(request):
 
 
 @login_required
-@role_required(allowed_roles=[1, 2, 3])
+@role_required(allowed_roles=[1, 2, 3, 4])
 def employee_list(request):
-    admin = Employee.objects.filter(designation='Admin')
-    doctor = Employee.objects.filter(designation='Doctor')
-    receptionist = Employee.objects.filter(designation='Receptionist')
-    context = {'admin': admin, 'doctor': doctor, 'receptionist': receptionist}
-    return render(request, 'Employee_template/employee_list.html', context=context)
-
+    if request.user.role == 1 or request.user.role == 2 or request.user.role == 3:
+        admin = Employee.objects.filter(designation='Admin')
+        doctor = Employee.objects.filter(designation='Doctor')
+        receptionist = Employee.objects.filter(designation='Receptionist')
+        context = {'admin': admin, 'doctor': doctor, 'receptionist': receptionist}
+        return render(request, 'Employee_template/employee_list.html', context=context)
+    else:
+        doctor = Employee.objects.filter(designation='Doctor')
+        context = {'doctor': doctor}
+        return render(request, 'Employee_template/employee_list.html', context=context)
 
 @login_required
 @role_required(allowed_roles=[1])
