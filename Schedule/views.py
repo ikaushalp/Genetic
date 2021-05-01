@@ -39,7 +39,7 @@ def add_schedule(request):
 
 
 @login_required
-@role_required(allowed_roles=[1, 2, 3])
+@role_required(allowed_roles=[1, 2, 3, 4])
 def schedule_list(request):
     schedule_items = Schedule.objects.all()
     doctor_list = Employee.objects.filter(designation='Doctor')

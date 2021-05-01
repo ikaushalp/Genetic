@@ -119,15 +119,15 @@
                                     {% endif %}
 
                                     {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
-                                    <li class="menu-item {% if view_name == 'Patient:view' %}menu-item-active{% endif %}"
-                                        aria-haspopup="true">
-                                        <a href="{% url 'Patient:view' %}" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                <span></span>
-                                            </i>
-                                            <span class="menu-text">Patient List</span>
-                                        </a>
-                                    </li>
+                                        <li class="menu-item {% if view_name == 'Patient:view' %}menu-item-active{% endif %}"
+                                            aria-haspopup="true">
+                                            <a href="{% url 'Patient:view' %}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot">
+                                                    <span></span>
+                                                </i>
+                                                <span class="menu-text">Patient List</span>
+                                            </a>
+                                        </li>
                                     {% endif %}
 
                                     {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
@@ -189,21 +189,34 @@
                                             </a>
                                         </li>
                                     {% endif %}
-                                    <li class="menu-item {% if view_name == 'Employee:view' %}menu-item-active{% endif %}"
-                                        aria-haspopup="true">
-                                        <a href="{% url 'Employee:view' %}" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                <span></span>
-                                            </i>
-                                            <span class="menu-text">Employee List</span>
-                                        </a>
-                                    </li>
+                                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                        <li class="menu-item {% if view_name == 'Employee:view' %}menu-item-active{% endif %}"
+                                            aria-haspopup="true">
+                                            <a href="{% url 'Employee:view' %}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot">
+                                                    <span></span>
+                                                </i>
+                                                <span class="menu-text">Employee List</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if request.user.role == 4 %}
+                                        <li class="menu-item {% if view_name == 'Employee:view' %}menu-item-active{% endif %}"
+                                            aria-haspopup="true">
+                                            <a href="{% url 'Employee:view' %}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot">
+                                                    <span></span>
+                                                </i>
+                                                <span class="menu-text">Doctor List</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </li>
                     {% endif %}
 
-                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 or request.user.role == 4 %}
                         <li class="menu-item menu-item-submenu {% if view_name == 'Schedule:view' or view_name == 'Schedule:add' %}menu-item-here menu-item-open{% endif %}"
                             aria-haspopup="true" data-menu-toggle="hover">
                             <a href="javascript:;" class="menu-link menu-toggle">
@@ -318,15 +331,28 @@
                                             </a>
                                         </li>
                                     {% endif %}
-                                    <li class="menu-item {% if view_name == 'Appointment:view' %}menu-item-active{% endif %}"
-                                        aria-haspopup="true">
-                                        <a href="{% url 'Appointment:view' %}" class="menu-link">
-                                            <i class="menu-bullet menu-bullet-dot">
-                                                <span></span>
-                                            </i>
-                                            <span class="menu-text">Appointment List</span>
-                                        </a>
-                                    </li>
+                                    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                                        <li class="menu-item {% if view_name == 'Appointment:view' %}menu-item-active{% endif %}"
+                                            aria-haspopup="true">
+                                            <a href="{% url 'Appointment:view' %}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot">
+                                                    <span></span>
+                                                </i>
+                                                <span class="menu-text">Appointment List</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if request.user.role == 4 %}
+                                        <li class="menu-item {% if view_name == 'Appointment:view' %}menu-item-active{% endif %}"
+                                            aria-haspopup="true">
+                                            <a href="{% url 'Appointment:view' %}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot">
+                                                    <span></span>
+                                                </i>
+                                                <span class="menu-text">My Appointment List</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </li>

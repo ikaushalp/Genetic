@@ -1,5 +1,6 @@
 let table;
-jQuery(document).ready(function () {
+
+$(document).ready(function () {
     table = $("#appointment").DataTable({
 
         searching: true,
@@ -75,6 +76,14 @@ jQuery(document).ready(function () {
         table.button(2).trigger();
     });
 
+    $(document).on('submit', '#filter_app', function (e) {
+        e.preventDefault();
+        table.draw();
+    });
+    $(document).on('click', '#reset_table', function () {
+        location.reload();
+    });
+
     $.fn.dataTable.ext.search.push(
         function (settings, data, dataIndex) {
             let start_date = $('#filter_appointement_date').data('daterangepicker').startDate;
@@ -94,13 +103,6 @@ jQuery(document).ready(function () {
 
         }
     );
-
-    $(document).on('submit', '#filter_appointment', function (e) {
-        e.preventDefault();
-        table.draw();
-    });
-    $(document).on('click', '#reset_table', function () {
-        location.reload();
-    });
 });
+
 

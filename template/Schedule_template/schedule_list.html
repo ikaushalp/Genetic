@@ -37,23 +37,25 @@
                                         Schedule List
                                     </h5>
                                 </div>
-                                <div class="card-toolbar">
-                                    <a href="javaScript:void(0)" class="btn btn-light-warning btn-icon btn-lg mr-2"
-                                       id="export_print" data-toggle="tooltip" data-placement="top" title="Print"
-                                       data-theme="dark">
-                                        <i class="fas fa-print"></i>
-                                    </a>
-                                    <a href="javaScript:void(0)" class="btn btn-light-primary btn-icon btn-lg mr-2"
-                                       id="export_pdf" data-toggle="tooltip" data-placement="top" title="PDF"
-                                       data-theme="dark">
-                                        <i class="fas fa-file-pdf"></i>
-                                    </a>
-                                    <a href="javaScript:void(0)" class="btn btn-light-success btn-icon btn-lg mr-2"
-                                       id="export_excel" data-toggle="tooltip" data-placement="top" title="Excel"
-                                       data-theme="dark">
-                                        <i class="fas fa-file-excel"></i>
-                                    </a>
-                                </div>
+                                {% if request.user.role == 3 %}
+                                    <div class="card-toolbar">
+                                        <a href="javaScript:void(0)" class="btn btn-light-warning btn-icon btn-lg mr-2"
+                                           id="export_print" data-toggle="tooltip" data-placement="top" title="Print"
+                                           data-theme="dark">
+                                            <i class="fas fa-print"></i>
+                                        </a>
+                                        <a href="javaScript:void(0)" class="btn btn-light-primary btn-icon btn-lg mr-2"
+                                           id="export_pdf" data-toggle="tooltip" data-placement="top" title="PDF"
+                                           data-theme="dark">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </a>
+                                        <a href="javaScript:void(0)" class="btn btn-light-success btn-icon btn-lg mr-2"
+                                           id="export_excel" data-toggle="tooltip" data-placement="top" title="Excel"
+                                           data-theme="dark">
+                                            <i class="fas fa-file-excel"></i>
+                                        </a>
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="card-body">
                                 {% csrf_token %}

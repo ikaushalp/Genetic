@@ -30,47 +30,49 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card card-custom mb-2">
-                            <div class="card-header ">
-                                <div class="card-title">
-                                    <h5 class="card-label">
-                                        <i class="fas fa-edit icon-lg mr-1"></i>
-                                        Select Date
-                                    </h5>
+                        {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+                            <div class="card card-custom mb-2">
+                                <div class="card-header ">
+                                    <div class="card-title">
+                                        <h5 class="card-label">
+                                            <i class="fas fa-edit icon-lg mr-1"></i>
+                                            Select Date
+                                        </h5>
+                                    </div>
                                 </div>
-                            </div>
-                            <form method="POST" id="filter_appointment">
-                                {% csrf_token %}
-                                <div class="card-body">
-                                    <div class="form-group row flex-row justify-content-center">
-                                        <div class="col-lg-4">
-                                            <label>Date</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
+                                <form method="POST" id="filter_app">
+                                    {% csrf_token %}
+                                    <div class="card-body">
+                                        <div class="form-group row flex-row justify-content-center">
+                                            <div class="col-lg-4">
+                                                <label>Date</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
                                                     <span class="input-group-text">
                                                         <i class="fas fa-calendar-check"></i>
                                                     </span>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="appointment_date"
+                                                           id="filter_appointement_date">
                                                 </div>
-                                                <input type="text" class="form-control" name="appointment_date"
-                                                       id="filter_appointement_date">
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-flex justify-content-end">
-                                        <button type="submit"
-                                                class="btn btn-light-success btn-lg mr-2 font-weight-bold">Filter
-                                        </button>
-                                        <button type="button"
-                                                class="btn btn-light-danger btn-lg mr-2 font-weight-bold"
-                                                id="reset_table">Reset Table
-                                        </button>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit"
+                                                    class="btn btn-light-success btn-lg mr-2 font-weight-bold">Filter
+                                            </button>
+                                            <button type="button"
+                                                    class="btn btn-light-danger btn-lg mr-2 font-weight-bold"
+                                                    id="reset_table">Reset Table
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card card-custom" id="table">
+                                </form>
+                            </div>
+                        {% endif %}
+                        <div class="card card-custom">
                             <div class="card-header ">
                                 <div class="card-title">
                                     <h5 class="card-label">
@@ -257,9 +259,91 @@
 {% endblock content %}
 </body>
 {% block js %}
-    <script src="{% static "js/validation/update_appointment_validation.js" %}"></script>
-    <script src="{% static "js/table/appointment_list.js" %}"></script>
-    <script src="{% static "js/ajax/appointment.js" %}"></script>
+    {% if request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+        <script src="{% static "js/validation/update_appointment_validation.js" %}"></script>
+        <script src="{% static "js/ajax/appointment.js" %}"></script>
+        <script src="{% static "js/table/appointment_list.js" %}"></script>
+    {% endif %}
+    {% if request.user.role == 4 %}
+        <script type="text/javascript">
+
+            table = $("#appointment").DataTable({
+
+                searching: true,
+
+                responsive: true,
+
+                lengthMenu: [5, 10, 25, 50],
+
+                pageLength: 5,
+
+                language: {
+                    'lengthMenu': 'Display _MENU_',
+                },
+
+                ordering: false,
+
+                buttons: [{
+                    extend: 'print',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    }
+                },
+
+                    {
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        },
+                        customize: function (doc) {
+                            doc.styles.title = {
+                                fontSize: '35',
+                                alignment: 'center'
+                            }
+                            doc.styles.tableHeader = {
+                                fillColor: '#2D4154',
+                                color: 'white',
+                                fontSize: '12',
+                                bold: 2,
+                                alignment: 'center'
+                            },
+                                doc.defaultStyle.alignment = 'center';
+                        }
+                    },
+
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+                    },
+                ],
+
+                columnDefs: [
+                    {
+                        "targets": 4,
+                        "visible": false,
+                        "searchable": false
+                    },
+                ],
+            });
+            $('#export_print').on('click', function (e) {
+                e.preventDefault();
+                table.button(0).trigger();
+            });
+
+            $('#export_pdf').on('click', function (e) {
+                e.preventDefault();
+                table.button(1).trigger();
+            });
+
+            $('#export_excel').on('click', function (e) {
+                e.preventDefault();
+                table.button(2).trigger();
+            });
+        </script>
+    {% endif %}
+
 {% endblock js %}
 
 </html>
