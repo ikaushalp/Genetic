@@ -37,7 +37,7 @@
                                         Schedule List
                                     </h5>
                                 </div>
-                                {% if request.user.role == 3 %}
+                                {% if request.user.role == 1 or request.user.role == 3 %}
                                     <div class="card-toolbar">
                                         <a href="javaScript:void(0)" class="btn btn-light-warning btn-icon btn-lg mr-2"
                                            id="export_print" data-toggle="tooltip" data-placement="top" title="Print"

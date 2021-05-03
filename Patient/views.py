@@ -50,6 +50,7 @@ def add_patient(request):
         check_username = CustomUser.objects.filter(username=username)
         if check_username:
             return JsonResponse({'exist_username': 1})
+        emp = Patient.objects.get()
 
         add = Patient(name=name, gender=gender, birthdate=birthdate, age=age, marital_status=marital_status,
                       mobile_no=mobile_no, email=email, category_id=category, blood_group=blood_group,
@@ -123,6 +124,13 @@ def update_patient(request, patient_id):
 
         if not address:
             address = None
+        try:
+            emp = Patient.objects.get(pk=patient_id)
+        except Patient.DoesNotExist:
+            emp = None
+
+        if email:
+            CustomUser.objects.filter(aid=emp.id,  role=4).update(email=email)
 
         Patient.objects.filter(pk=patient_id).update(name=name, gender=gender, birthdate=birthdate, age=age,
                                                      marital_status=marital_status,

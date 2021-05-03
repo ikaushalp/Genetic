@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 
 from Appointment.models import Appointment
-from Appointment.tasks import AppointmentCreate
+from Appointment.tasks import AppointmentCreate, AppointmentConfirm, AppointmentClosed
 from Employee.models import Employee
 from Genetic.decorators import login_required, role_required
 from Patient.models import Patient
@@ -27,7 +27,8 @@ def add_appointment(request):
         add = Appointment(patient_id=patient, doctor_id=doctor, appointment_date=appointment_date, time_slot=time_slot,
                           fees=fees, status='Pending')
         add.save()
-        AppointmentCreate(patient, doctor, add, appointment_date, time_slot).start()
+        app_id = add.id
+        AppointmentCreate(patient, doctor, app_id, appointment_date, time_slot).start()
         return JsonResponse({'insert': 1})
     else:
         patient_list = Patient.objects.all()
@@ -43,7 +44,7 @@ def appointment_list(request):
         patient_list = Patient.objects.all()
         doctor_list = Employee.objects.filter(designation='Doctor')
         appointment = Appointment.objects.filter(Q(status='Confirmed') | Q(status='Closed')).order_by(
-            '-appointment_date')
+            '-id')
         return render(request, 'Appointment_template/appointment_list.html',
                       context={'appointment_list': appointment, 'patient_list': patient_list,
                                'doctor_list': doctor_list})
@@ -74,6 +75,13 @@ def confirm_appointment(request):
     if request.method == 'POST':
         id = request.POST['appointment_id']
         Appointment.objects.filter(pk=id).update(status='Confirmed')
+        data = Appointment.objects.get(pk=id)
+        patient = data.patient_id
+        doctor = data.doctor_id
+        app_id = id
+        apppointmet_date = data.appointment_date
+        time_slot = data.time_slot
+        AppointmentConfirm(patient, doctor, app_id, apppointmet_date, time_slot).start()
         return JsonResponse({'confirm': 1})
     else:
         return render(request, 'Dashboard_template/dashboard.html')
@@ -85,6 +93,13 @@ def close_appointment(request):
     if request.method == 'POST':
         id = request.POST['appointment_id']
         Appointment.objects.filter(pk=id).update(status='Closed')
+        data = Appointment.objects.get(pk=id)
+        patient = data.patient_id
+        doctor = data.doctor_id
+        app_id = id
+        apppointmet_date = data.appointment_date
+        time_slot = data.time_slot
+        AppointmentClosed(patient, doctor, app_id, apppointmet_date, time_slot).start()
         return JsonResponse({'close': 1})
     else:
         return render(request, 'Dashboard_template/dashboard.html')

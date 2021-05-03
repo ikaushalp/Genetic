@@ -1,19 +1,15 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import BadHeaderError, send_mail
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, reverse
-from django.template.loader import render_to_string
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
 
 from Authentication.models import CustomUser
+from Authentication.tasks import ForgotPassword
 from Employee.models import Employee
 from Genetic.decorators import login_required
 from Patient.models import Patient
 from Settings.models import Global
-from Authentication.tasks import ForgotPassword
+
 
 # Create your views here.
 
