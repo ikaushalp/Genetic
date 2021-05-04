@@ -50,7 +50,6 @@ def add_patient(request):
         check_username = CustomUser.objects.filter(username=username)
         if check_username:
             return JsonResponse({'exist_username': 1})
-        emp = Patient.objects.get()
 
         add = Patient(name=name, gender=gender, birthdate=birthdate, age=age, marital_status=marital_status,
                       mobile_no=mobile_no, email=email, category_id=category, blood_group=blood_group,

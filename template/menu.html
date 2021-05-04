@@ -358,7 +358,7 @@
                         </li>
                     {% endif %}
                     {% if request.user.role == 1 %}
-                        <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                        <li class="menu-item menu-item-submenu {% if view_name == 'Settings:global' or view_name == 'Settings:api'%}menu-item-here menu-item-open{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
                             <a href="javascript:;" class="menu-link menu-toggle">
                             <span class="svg-icon menu-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Mirror.svg-->
@@ -387,13 +387,22 @@
                                         <span class="menu-text">Settings</span>
                                     </span>
                                     </li>
-                                    <li class="menu-item  {% if url_name == 'global' %}menu-item-active{% endif %}"
+                                    <li class="menu-item  {% if view_name == 'Settings:global' %}menu-item-active{% endif %}"
                                         aria-haspopup="true">
                                         <a href="{% url 'Settings:global' %}" class="menu-link">
                                             <i class="menu-bullet menu-bullet-dot">
                                                 <span></span>
                                             </i>
                                             <span class="menu-text">Global Settings</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item  {% if view_name == 'Settings:api' %}menu-item-active{% endif %}"
+                                        aria-haspopup="true">
+                                        <a href="{% url 'Settings:api' %}" class="menu-link">
+                                            <i class="menu-bullet menu-bullet-dot">
+                                                <span></span>
+                                            </i>
+                                            <span class="menu-text">API Settings</span>
                                         </a>
                                     </li>
                                 </ul>

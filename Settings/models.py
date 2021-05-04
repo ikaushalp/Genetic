@@ -17,3 +17,16 @@ class Global(models.Model):
     link1 = models.CharField(max_length=60)
     link2 = models.CharField(max_length=60)
     link3 = models.CharField(max_length=60)
+
+
+class Api_Settings(models.Model):
+    class Meta:
+        db_table = 'api_settings'
+
+    id = models.AutoField(primary_key=True)
+    map_api = models.CharField(max_length=256)
+    title = models.CharField(max_length=50)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
+    message = models.CharField(max_length=256)
+    calendar_api = models.CharField(max_length=256)

@@ -5,4 +5,5 @@ app_name = 'Settings'
 
 urlpatterns = [
     path('', views.global_settings, name='global'),
+    path('api', views.api_settings, name='api'),
 ]
