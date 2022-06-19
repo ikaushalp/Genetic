@@ -1,4 +1,4 @@
-# //🚀HealthCare (Hospital Management System)🚀//
+# //🚀Genetic (Hospital Management System)🚀//
 
 Some introduction to your solution/project.
 
