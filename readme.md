@@ -39,12 +39,12 @@ Provide images or proof of work here. By proof of work we mean  you can provide:
 ## Installation & Usage 📦
 
 - First Python3 and MySql Should be installed
-- Then change the path to the HealthCare cd Healthcare
-- You need to run the requirements.txt file command: **pip install requirements.txt** in terminal
+- Then change the path to the Genetic ```cd Genetic```
+- You need to run the requirements.txt file command: ```pip install requirements.txt``` in terminal
 - After That Create a database in MySql with healthcare
-- Then you need to migrate the database command: **python manage.py migrate** in terminal
-- Run the test command command: **python manage.py test HealthCare.tests.MainTestCase.MainCase** in terminal
-- then to start the Website/Webapp you need to write the final command: **python manage.py runserver** in terminal
+- Then you need to migrate the database command: ```python manage.py migrate``` in terminal
+- Run the test command command: ```python manage.py test Genetic.tests.MainTestCase.MainCase``` in terminal
+- then to start the Website/Webapp you need to write the final command: ```python manage.py runserver``` in terminal
 
 ## Expected Outcomes 💯
 
