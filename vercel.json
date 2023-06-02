@@ -1,6 +1,6 @@
 {
     "builds": [{
-        "src": "project_name/wsgi.py",
+        "src": "Genetic/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     },
