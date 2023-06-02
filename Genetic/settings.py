@@ -90,7 +90,7 @@ DATABASES = {
         'USER': str(os.getenv('DB_USER')),
         'PASSWORD': str(os.getenv('DB_PASSWORD')),
         'HOST': str(os.getenv('DB_HOST')),
-        'PORT': os.getenv('DB_PORT')
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
@@ -142,6 +142,7 @@ EMAIL_HOST_PASSWORD = ''
 
 # static files settings
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles_build' / 'static'
 STATICFILES_DIRS = [
     STATIC_DIR
 ]

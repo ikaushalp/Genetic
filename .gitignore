@@ -1,9 +1,4 @@
-.env
-
-__pycache__/
-
-*.pyc
-
-.idea/
-
+*.env
+bin/
+lib/
 *.sqlite3
