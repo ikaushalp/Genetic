@@ -5,7 +5,7 @@ Some introduction to your solution/project.
 Team Members:
 
 - [Kaushal Patel Github](https://github.com/mrkaushal)
-- [KaranKhojiji Github](https://github.com/karankumarkhojiji)
+- [Karankumar Khojiji Github](https://github.com/karankumarkhojiji)
 
 ## Problem statement 🐾
 
