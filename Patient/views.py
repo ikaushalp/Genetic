@@ -75,8 +75,11 @@ def delete_patient(request):
         patient_id = request.POST['patient_id']
         rem = Patient.objects.get(pk=patient_id)
         rem2 = CustomUser.objects.get(aid=patient_id, role=4)
-        rem.delete()
-        rem2.delete()
+        if rem.id == 1:
+            return JsonResponse({'delete': 0})
+        else:
+            rem.delete()
+            rem2.delete()
         return JsonResponse({'delete': 1})
     else:
         return redirect('/dashboard')

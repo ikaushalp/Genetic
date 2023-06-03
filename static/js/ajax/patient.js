@@ -72,6 +72,12 @@ $(document).ready(function () {
                                     location.reload();
                                 }
                             });
+                        } else if (data.delete === 0) {
+                            Swal.fire(
+                                "Cancelled",
+                                "Your Record is safe",
+                                "error"
+                            )
                         }
                     }
                 });

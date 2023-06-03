@@ -52,13 +52,16 @@
             </div>
             <div class="pb-lg-0 pb-5">
                 <button type="button" onclick="filladminInput()"
-                        class="btn btn-warning font-weight-bolder px-8 py-4 my-3 mr-3">Admin
+                        class="btn btn-warning font-weight-bolder mr-3">Admin
                 </button>
                 <button type="button" onclick="filldoctorInput()"
-                        class="btn btn-warning font-weight-bolder px-8 py-4 my-3 mr-3">Doctor
+                        class="btn btn-warning font-weight-bolder mr-3">Doctor
+                </button>
+                <button type="button" onclick="fillreceptionistInput()"
+                        class="btn btn-warning font-weight-bolder mr-3">Receptionist
                 </button>
                 <button type="button" onclick="fillpatientInput()"
-                        class="btn btn-warning font-weight-bolder px-8 py-4 my-3 mr-3">Patient
+                        class="btn btn-warning font-weight-bolder ">Patient
                 </button>
             </div>
             <!--end::Action-->
@@ -86,6 +89,12 @@
             username_inputBox.value = "doctor";
             var password_inputBox = document.getElementById("password_data");
             password_inputBox.value = "doctor@123";
+        }
+        function fillreceptionistInput() {
+            var username_inputBox = document.getElementById("username_data");
+            username_inputBox.value = "receptionist";
+            var password_inputBox = document.getElementById("password_data");
+            password_inputBox.value = "recept@123";
         }
         function fillpatientInput() {
             var username_inputBox = document.getElementById("username_data");
