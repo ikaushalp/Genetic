@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label class="font-size-h6 font-weight-bolder text-dark ml-1">Username</label>
                 <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg" type="text"
-                       name="username" autocomplete="off" placeholder="John"/>
+                       name="username" autocomplete="off" placeholder="John" id="username_data"/>
             </div>
             <!--end::Form group-->
             <!--begin::Form group-->
@@ -41,13 +41,24 @@
                         ?</a>
                 </div>
                 <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg" type="password"
-                       name="password" autocomplete="off" placeholder="******"/>
+                       name="password" autocomplete="off" placeholder="******" id="password_data"/>
             </div>
             <!--end::Form group-->
             <!--begin::Action-->
             <div class="pb-lg-0 pb-5">
                 <button type="button" id="kt_login_signin_submit"
                         class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Sign In
+                </button>
+            </div>
+            <div class="pb-lg-0 pb-5">
+                <button type="button" onclick="filladminInput()"
+                        class="btn btn-warning font-weight-bolder px-8 py-4 my-3 mr-3">Admin
+                </button>
+                <button type="button" onclick="filldoctorInput()"
+                        class="btn btn-warning font-weight-bolder px-8 py-4 my-3 mr-3">Doctor
+                </button>
+                <button type="button" onclick="fillpatientInput()"
+                        class="btn btn-warning font-weight-bolder px-8 py-4 my-3 mr-3">Patient
                 </button>
             </div>
             <!--end::Action-->
@@ -63,5 +74,25 @@
 </body>
 {% block js %}
     <script src="{% static "js/validation/login_validation.js" %}"></script>
+    <script>
+        function filladminInput() {
+            var username_inputBox = document.getElementById("username_data");
+            username_inputBox.value = "admin";
+            var password_inputBox = document.getElementById("password_data");
+            password_inputBox.value = "admin@123";
+        }
+        function filldoctorInput() {
+            var username_inputBox = document.getElementById("username_data");
+            username_inputBox.value = "doctor";
+            var password_inputBox = document.getElementById("password_data");
+            password_inputBox.value = "doctor@123";
+        }
+        function fillpatientInput() {
+            var username_inputBox = document.getElementById("username_data");
+            username_inputBox.value = "patient";
+            var password_inputBox = document.getElementById("password_data");
+            password_inputBox.value = "patient@123";
+        }
+    </script>
 {% endblock %}
 </html>

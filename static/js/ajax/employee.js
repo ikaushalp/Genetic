@@ -66,6 +66,13 @@ $(document).ready(function () {
                                     location.reload();
                                 }
                             });
+                        } else if (data.delete === 0) {
+                            Swal.fire({
+                                title: "Error",
+                                text: "Admin cannot be deleted",
+                                icon: "error",
+                                confirmButtonText: "Ok",
+                            })
                         }
                     }
                 });

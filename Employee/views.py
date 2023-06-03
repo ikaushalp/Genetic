@@ -142,10 +142,14 @@ def delete_employee(request):
 
         rem = Employee.objects.get(pk=employee_id)
         rem2 = CustomUser.objects.get(aid=employee_id, role=employee_role)
-        if employee_role == 2:
-            Appointment.objects.filter(doctor_id=employee_id).update(time_slot=None)
-        rem.delete()
-        rem2.delete()
-        return JsonResponse({'delete': 1})
+        if rem.id and rem2.id == 1:
+            print('Admin cannot be deleted')
+            return JsonResponse({'delete': 0})
+        else:
+            if employee_role == 2:
+                Appointment.objects.filter(doctor_id=employee_id).update(time_slot=None)
+            rem.delete()
+            rem2.delete()
+            return JsonResponse({'delete': 1})
     else:
         return redirect('/dashboard')
